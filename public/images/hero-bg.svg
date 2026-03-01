@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A9B6A"/>
+      <stop offset="30%" stop-color="#6B7A4A"/>
+      <stop offset="60%" stop-color="#596341"/>
+      <stop offset="100%" stop-color="#3D4530"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="25%" cy="30%" r="35%">
+      <stop offset="0%" stop-color="#A5B580" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#A5B580" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="75%" cy="60%" r="30%">
+      <stop offset="0%" stop-color="#FF8562" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#FF8562" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="50%" cy="90%" r="40%">
+      <stop offset="0%" stop-color="#3D4530" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#3D4530" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#heroGrad)"/>
+  <rect width="1920" height="1080" fill="url(#glow1)"/>
+  <rect width="1920" height="1080" fill="url(#glow2)"/>
+  <rect width="1920" height="1080" fill="url(#glow3)"/>
+  <!-- Abstract luxury geometric shapes -->
+  <circle cx="300" cy="250" r="200" fill="none" stroke="#A5B580" stroke-opacity="0.12" stroke-width="1.5"/>
+  <circle cx="300" cy="250" r="140" fill="none" stroke="#A5B580" stroke-opacity="0.08" stroke-width="1"/>
+  <circle cx="300" cy="250" r="80" fill="#A5B580" fill-opacity="0.04"/>
+  <circle cx="1550" cy="650" r="250" fill="none" stroke="#8A9B6A" stroke-opacity="0.08" stroke-width="1"/>
+  <circle cx="1550" cy="650" r="180" fill="none" stroke="#8A9B6A" stroke-opacity="0.06" stroke-width="1"/>
+  <circle cx="1550" cy="650" r="110" fill="#8A9B6A" fill-opacity="0.03"/>
+  <!-- Diagonal accent lines -->
+  <line x1="500" y1="0" x2="850" y2="1080" stroke="#A5B580" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="750" y1="0" x2="1100" y2="1080" stroke="#A5B580" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="1050" y1="0" x2="1400" y2="1080" stroke="#8A9B6A" stroke-opacity="0.04" stroke-width="1"/>
+  <!-- Diamond shapes with coral accent -->
+  <polygon points="960,180 1020,280 960,380 900,280" fill="none" stroke="#FF8562" stroke-opacity="0.15" stroke-width="1.5"/>
+  <polygon points="960,220 1000,280 960,340 920,280" fill="#FF8562" fill-opacity="0.06"/>
+  <!-- Leaf-like decorative shapes -->
+  <ellipse cx="150" cy="700" rx="60" ry="120" fill="#A5B580" fill-opacity="0.04" transform="rotate(-20, 150, 700)"/>
+  <ellipse cx="1750" cy="300" rx="50" ry="100" fill="#A5B580" fill-opacity="0.03" transform="rotate(25, 1750, 300)"/>
+  <!-- Floating dots -->
+  <circle cx="400" cy="680" r="5" fill="#A5B580" fill-opacity="0.2"/>
+  <circle cx="680" cy="140" r="4" fill="#A5B580" fill-opacity="0.25"/>
+  <circle cx="1180" cy="280" r="6" fill="#FF8562" fill-opacity="0.2"/>
+  <circle cx="1620" cy="180" r="4" fill="#A5B580" fill-opacity="0.2"/>
+  <circle cx="230" cy="920" r="5" fill="#A5B580" fill-opacity="0.15"/>
+  <circle cx="1720" cy="880" r="4" fill="#A5B580" fill-opacity="0.12"/>
+  <circle cx="820" cy="850" r="7" fill="#FF8562" fill-opacity="0.1"/>
+  <!-- Soft flowing curves -->
+  <path d="M0,780 Q480,680 960,730 T1920,800" fill="none" stroke="#A5B580" stroke-opacity="0.08" stroke-width="1.5"/>
+  <path d="M0,850 Q480,750 960,800 T1920,870" fill="none" stroke="#8A9B6A" stroke-opacity="0.05" stroke-width="1"/>
+</svg>

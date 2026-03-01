@@ -1,0 +1,153 @@
+<% const pageTitle = 'Контакты' %>
+<%- include('../partials/header') %>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <h1 class="page-hero__title">Контакты</h1>
+    <p class="page-hero__subtitle">Мы всегда рады вас видеть</p>
+  </div>
+</section>
+
+
+<!-- ===== CONTACT INFO + MAP ===== -->
+<section class="section contacts">
+  <div class="container">
+    <div class="contacts__layout">
+
+      <!-- Left column: Contact cards -->
+      <div class="contacts__info">
+
+        <!-- Address -->
+        <div class="contact-card fade-in delay-1">
+          <div class="contact-card__icon">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <div class="contact-card__body">
+            <p class="contact-card__label">Адрес</p>
+            <p class="contact-card__value"><%= content.site.address %></p>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-card fade-in delay-2">
+          <div class="contact-card__icon">
+            <i data-lucide="phone"></i>
+          </div>
+          <div class="contact-card__body">
+            <p class="contact-card__label">Телефон</p>
+            <p class="contact-card__value">
+              <a href="tel:<%= content.site.phoneRaw %>"><%= content.site.phone %></a>
+              <% if (content.site.phone2) { %>
+                <br><a href="tel:<%= content.site.phoneRaw2 %>"><%= content.site.phone2 %></a>
+              <% } %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="contact-card fade-in delay-3">
+          <div class="contact-card__icon">
+            <i data-lucide="clock"></i>
+          </div>
+          <div class="contact-card__body">
+            <p class="contact-card__label">Режим работы</p>
+            <p class="contact-card__value"><%= content.site.hours %></p>
+          </div>
+        </div>
+
+        <!-- License -->
+        <% if (content.site.license) { %>
+          <div class="contact-card fade-in delay-4">
+            <div class="contact-card__icon">
+              <i data-lucide="shield-check"></i>
+            </div>
+            <div class="contact-card__body">
+              <p class="contact-card__label">Лицензия</p>
+              <p class="contact-card__value"><%= content.site.license %></p>
+            </div>
+          </div>
+        <% } %>
+
+        <!-- Company -->
+        <% if (content.site.company) { %>
+          <div class="contact-card fade-in delay-5">
+            <div class="contact-card__icon">
+              <i data-lucide="building-2"></i>
+            </div>
+            <div class="contact-card__body">
+              <p class="contact-card__label">Организация</p>
+              <p class="contact-card__value"><%= content.site.company %></p>
+            </div>
+          </div>
+        <% } %>
+
+      </div>
+
+      <!-- Right column: Map -->
+      <div class="contacts__map fade-in">
+        <% if (content.site.mapEmbed) { %>
+          <iframe
+            src="<%= content.site.mapEmbed %>"
+            allowfullscreen
+            loading="lazy"
+            title="Карта расположения <%= content.site.name %>"
+          ></iframe>
+        <% } else { %>
+          <div class="contacts__map-placeholder">
+            <i data-lucide="map" style="width:48px;height:48px;"></i>
+            <p>Карта скоро появится</p>
+          </div>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SOCIAL LINKS SECTION ===== -->
+<section class="section contacts-socials bg-off-white">
+  <div class="container">
+    <h2 class="section__title">Мы в соцсетях</h2>
+    <p class="section__subtitle">Подписывайтесь, чтобы быть в курсе акций и новостей</p>
+
+    <div class="contacts-socials__grid">
+
+      <% if (content.site.vk) { %>
+        <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="contacts-socials__card contacts-socials__card--vk fade-in delay-1">
+          <div class="contacts-socials__card-icon">
+            <i data-lucide="users"></i>
+          </div>
+          <span class="contacts-socials__card-label">ВКонтакте</span>
+        </a>
+      <% } %>
+
+      <% if (content.site.telegram) { %>
+        <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="contacts-socials__card contacts-socials__card--telegram fade-in delay-2">
+          <div class="contacts-socials__card-icon">
+            <i data-lucide="send"></i>
+          </div>
+          <span class="contacts-socials__card-label">Телеграм (Telegram)</span>
+        </a>
+      <% } %>
+
+      <% if (content.site.whatsapp) { %>
+        <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="contacts-socials__card contacts-socials__card--whatsapp fade-in delay-3">
+          <div class="contacts-socials__card-icon">
+            <i data-lucide="message-circle"></i>
+          </div>
+          <span class="contacts-socials__card-label">Ватсап (WhatsApp)</span>
+        </a>
+      <% } %>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== CALLBACK FORM ===== -->
+<%- include('../partials/callback-form') %>
+
+<%- include('../partials/footer') %>

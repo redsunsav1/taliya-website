@@ -1,0 +1,83 @@
+<% var pageTitle = 'О нас'; %>
+<%- include('../partials/header') %>
+
+<main>
+  <!-- Герой-баннер -->
+  <section class="section section--hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="section__title">О компании</h1>
+        <p class="section__subtitle">Ваш надежный партнер в мире красоты и здоровья</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Основной текст -->
+  <section class="section">
+    <div class="container">
+      <div class="content-block fade-in">
+        <h2 class="section__title">Наша история</h2>
+        <% if (content.about && content.about.text) { %>
+          <% var paragraphs = content.about.text.split('\n'); %>
+          <% paragraphs.forEach(function(para) { %>
+            <% if (para.trim()) { %>
+              <p class="text-block"><%= para.trim() %></p>
+            <% } %>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Сетка ценностей -->
+  <% if (content.about && content.about.values && Array.isArray(content.about.values)) { %>
+    <section class="section section--values">
+      <div class="container">
+        <h2 class="section__title fade-in">Наши ценности</h2>
+        <div class="values-grid fade-in">
+          <% content.about.values.forEach(function(value) { %>
+            <div class="value-card">
+              <div class="value-card__icon">
+                <i class="lucide" data-icon="<%= value.icon || 'star' %>"></i>
+              </div>
+              <h3 class="value-card__title"><%= value.title %></h3>
+              <p class="value-card__description"><%= value.description %></p>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- Информация о компании -->
+  <section class="section section--info">
+    <div class="container">
+      <div class="info-block fade-in">
+        <h2 class="section__title">Реквизиты компании</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <h3>Название</h3>
+            <p>ООО «МЕДИКА+»</p>
+          </div>
+          <div class="info-item">
+            <h3>Лицензия</h3>
+            <p><%= content.about && content.about.license ? content.about.license : 'Лицензия МЗ РФ' %></p>
+          </div>
+          <div class="info-item">
+            <h3>Сертификаты</h3>
+            <p><%= content.about && content.about.certificates ? content.about.certificates : 'Все специалисты имеют необходимые сертификаты' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма обратной связи -->
+  <section class="section section--callback">
+    <div class="container">
+      <%- include('../partials/callback-form') %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tali-ya.ru)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(curl:*)",
+      "Bash(node -e:*)",
+      "Bash(python3:*)",
+      "Bash(/Users/admin/Documents/Tali-Ya/.env.example << 'EOF'\n# Порт сервера \\(Timeweb подставит автоматически\\)\nPORT=3000\n\n# Секретный ключ для сессий \\(замените на свой!\\)\nSESSION_SECRET=your-super-secret-key-here-make-it-long-and-random\nEOF)",
+      "Bash(zip:*)"
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+<% var pageTitle = 'Галерея'; %>
+<%- include('../partials/header') %>
+
+<main>
+  <!-- Герой-баннер -->
+  <section class="section section--hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="section__title"><%= content.gallery && content.gallery.title ? content.gallery.title : 'Галерея работ' %></h1>
+        <p class="section__subtitle"><%= content.gallery && content.gallery.subtitle ? content.gallery.subtitle : 'Смотрите результаты наших работ' %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Фильтр по категориям -->
+  <% if (content.gallery && content.gallery.categories && Array.isArray(content.gallery.categories)) { %>
+    <section class="section section--filters">
+      <div class="container">
+        <div class="gallery-filters fade-in">
+          <button class="filter-btn filter-btn--active" data-filter="all">Все</button>
+          <% content.gallery.categories.forEach(function(category) { %>
+            <button class="filter-btn" data-filter="<%= category.id %>"><%= category.name %></button>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- Сетка изображений -->
+  <% if (content.gallery && content.gallery.images && Array.isArray(content.gallery.images)) { %>
+    <section class="section section--gallery">
+      <div class="container">
+        <div class="gallery-grid fade-in" id="gallery-grid">
+          <% content.gallery.images.forEach(function(image, index) { %>
+            <div class="gallery-item" data-category="<%= image.category || 'all' %>" data-lightbox="gallery">
+              <img 
+                src="<%= image.thumb || image.src %>" 
+                alt="<%= image.title || 'Изображение работы' %>"
+                data-full="<%= image.src %>"
+                loading="lazy"
+                class="gallery-item__image"
+              >
+              <div class="gallery-item__overlay">
+                <div class="gallery-item__content">
+                  <h3 class="gallery-item__title"><%= image.title || 'Работа' %></h3>
+                  <% if (image.description) { %>
+                    <p class="gallery-item__description"><%= image.description %></p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- Форма обратной связи -->
+  <section class="section section--callback">
+    <div class="container">
+      <%- include('../partials/callback-form') %>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Фильтр галереи
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+      
+      // Обновление активной кнопки
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-btn--active'));
+      this.classList.add('filter-btn--active');
+      
+      // Фильтрация изображений
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        const category = item.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          item.style.display = 'block';
+          setTimeout(() => item.classList.add('visible'), 10);
+        } else {
+          item.classList.remove('visible');
+          setTimeout(() => item.style.display = 'none', 300);
+        }
+      });
+    });
+  });
+
+  // Лайтбокс функциональность
+  document.querySelectorAll('[data-lightbox="gallery"]').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const fullSrc = this.querySelector('img').getAttribute('data-full');
+      const title = this.querySelector('.gallery-item__title')?.textContent || '';
+      
+      // Здесь можно добавить лайтбокс библиотеку (например, GLightbox)
+      // Пока просто открываем изображение в новом окне
+      window.open(fullSrc, '_blank');
+    });
+  });
+</script>
+
+<%- include('../partials/footer') %>

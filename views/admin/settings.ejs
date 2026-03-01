@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки сайта — <%= content.site.name %> Админ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: #f5f1ee; color: #333; min-height: 100vh; }
+
+    .admin-layout { display: flex; min-height: 100vh; }
+
+    .admin-sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, #596341 0%, #454d33 100%);
+      color: #fff;
+      flex-shrink: 0;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .admin-sidebar__brand { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .admin-sidebar__brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; display: block; }
+    .admin-sidebar__brand-sub { font-size: 0.7rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
+    .admin-sidebar__nav { padding: 16px 0; }
+    .admin-sidebar__link {
+      display: flex; align-items: center; gap: 10px; padding: 12px 24px;
+      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem;
+      font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent;
+    }
+    .admin-sidebar__link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .admin-sidebar__link--active { background: rgba(255,255,255,0.12); color: #fff; border-left-color: #fff; }
+    .admin-sidebar__link--danger { color: rgba(255,200,200,0.8); }
+    .admin-sidebar__link--danger:hover { color: #fcc; background: rgba(255,100,100,0.15); }
+    .admin-sidebar__separator { height: 1px; background: rgba(255,255,255,0.12); margin: 8px 24px; }
+    .admin-sidebar__link-icon { width: 18px; text-align: center; font-style: normal; }
+
+    .admin-content { flex: 1; margin-left: 260px; padding: 32px 40px; min-height: 100vh; }
+    .admin-content__header { margin-bottom: 32px; }
+    .admin-content__breadcrumb { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
+    .admin-content__breadcrumb a { color: #596341; text-decoration: none; }
+    .admin-content__breadcrumb a:hover { text-decoration: underline; }
+    .admin-content__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #333; }
+
+    .admin-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 28px; margin-bottom: 24px;
+    }
+    .admin-card__title { font-size: 1rem; font-weight: 600; color: #555; margin-bottom: 16px; }
+
+    .admin-form__group { margin-bottom: 20px; }
+    .admin-form__label {
+      display: block; font-size: 0.8rem; font-weight: 600; color: #555;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .admin-form__input, .admin-form__textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+      font-size: 0.9rem; font-family: 'Montserrat', sans-serif; transition: border-color 0.2s;
+    }
+    .admin-form__input:focus, .admin-form__textarea:focus {
+      outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89,99,65,0.1);
+    }
+    .admin-form__textarea { min-height: 100px; resize: vertical; }
+    .admin-form__hint { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
+
+    .admin-form__btn {
+      display: inline-block; padding: 12px 32px; background: #596341; color: #fff;
+      border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif; cursor: pointer; transition: background 0.2s;
+    }
+    .admin-form__btn:hover { background: #7a4f5c; }
+
+    .admin-alert {
+      padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem;
+    }
+    .admin-alert--success {
+      background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0;
+    }
+
+    .admin-form__row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .admin-sidebar { width: 220px; }
+      .admin-content { margin-left: 220px; padding: 24px 20px; }
+      .admin-form__row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="admin-sidebar__brand-name"><%= content.site.name %></span>
+        <span class="admin-sidebar__brand-sub">Админ-панель</span>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <a href="/admin" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9776;</span> Главная панель
+        </a>
+        <a href="/admin/settings" class="admin-sidebar__link admin-sidebar__link--active">
+          <span class="admin-sidebar__link-icon">&#9881;</span> Настройки сайта
+        </a>
+        <a href="/admin/hero" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9733;</span> Главный экран
+        </a>
+        <a href="/admin/benefits" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#10004;</span> Преимущества
+        </a>
+        <a href="/admin/services" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9998;</span> Разделы услуг
+        </a>
+        <div class="admin-sidebar__separator"></div>
+        <a href="/admin/password" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#128274;</span> Сменить пароль
+        </a>
+        <a href="/admin/logout" class="admin-sidebar__link admin-sidebar__link--danger">
+          <span class="admin-sidebar__link-icon">&#10140;</span> Выход
+        </a>
+        <div class="admin-sidebar__separator"></div>
+        <a href="/" class="admin-sidebar__link" target="_blank">
+          <span class="admin-sidebar__link-icon">&#127760;</span> Вернуться на сайт
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <div class="admin-content__header">
+        <div class="admin-content__breadcrumb">
+          <a href="/admin">Админ-панель</a> / Настройки сайта
+        </div>
+        <h1 class="admin-content__title">Настройки сайта</h1>
+      </div>
+
+      <script>
+        if (new URLSearchParams(window.location.search).get('saved') === '1') {
+          document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('savedAlert');
+            if (el) el.style.display = 'block';
+          });
+        }
+      </script>
+
+      <div class="admin-alert admin-alert--success" id="savedAlert" style="display:none; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; margin-bottom: 20px;">
+        Настройки успешно сохранены.
+      </div>
+
+      <form method="POST" action="/admin/settings" class="admin-form">
+        <!-- General Info -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Основная информация</h2>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="name">Название сайта</label>
+              <input class="admin-form__input" type="text" id="name" name="name" value="<%= content.site.name %>">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="tagline">Слоган</label>
+              <input class="admin-form__input" type="text" id="tagline" name="tagline" value="<%= content.site.tagline %>">
+            </div>
+          </div>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="phone">Телефон (отображаемый)</label>
+              <input class="admin-form__input" type="text" id="phone" name="phone" value="<%= content.site.phone %>">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="phoneRaw">Телефон (для ссылки)</label>
+              <input class="admin-form__input" type="text" id="phoneRaw" name="phoneRaw" value="<%= content.site.phoneRaw %>">
+              <div class="admin-form__hint">Формат: +79001234567</div>
+            </div>
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="address">Адрес</label>
+            <input class="admin-form__input" type="text" id="address" name="address" value="<%= content.site.address %>">
+          </div>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="hours">Часы работы</label>
+              <input class="admin-form__input" type="text" id="hours" name="hours" value="<%= content.site.hours %>">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="email">Электронная почта</label>
+              <input class="admin-form__input" type="email" id="email" name="email" value="<%= content.site.email %>">
+            </div>
+          </div>
+        </div>
+
+        <!-- Social & Links -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Соцсети и ссылки</h2>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="vk">ВКонтакте</label>
+              <input class="admin-form__input" type="url" id="vk" name="vk" value="<%= content.site.vk %>" placeholder="https://vk.com/...">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="telegram">Телеграм (Telegram)</label>
+              <input class="admin-form__input" type="url" id="telegram" name="telegram" value="<%= content.site.telegram %>" placeholder="https://t.me/...">
+            </div>
+          </div>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="whatsapp">Ватсап (WhatsApp)</label>
+              <input class="admin-form__input" type="url" id="whatsapp" name="whatsapp" value="<%= content.site.whatsapp %>" placeholder="https://wa.me/...">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="profsalon">ПрофСалон (Profsalon)</label>
+              <input class="admin-form__input" type="url" id="profsalon" name="profsalon" value="<%= content.site.profsalon %>" placeholder="https://profsalon.org/...">
+            </div>
+          </div>
+        </div>
+
+        <!-- Legal & Map -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Юридическая информация и карта</h2>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="license">Лицензия</label>
+              <input class="admin-form__input" type="text" id="license" name="license" value="<%= content.site.license %>">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="company">Компания</label>
+              <input class="admin-form__input" type="text" id="company" name="company" value="<%= content.site.company %>">
+            </div>
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="mapEmbed">URL карты (Яндекс embed)</label>
+            <textarea class="admin-form__textarea" id="mapEmbed" name="mapEmbed" rows="3"><%= content.site.mapEmbed %></textarea>
+            <div class="admin-form__hint">URL для iframe встраивания Яндекс Карт</div>
+          </div>
+        </div>
+
+        <!-- ProfSalon Widget -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Виджет ПрофСалон</h2>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="profsalonWidget">HTML-код виджета</label>
+            <textarea class="admin-form__textarea" id="profsalonWidget" name="profsalonWidget" rows="6" style="font-family: monospace; font-size: 0.8rem;"><%= content.site.profsalonWidget || '' %></textarea>
+            <div class="admin-form__hint">Вставьте HTML-код виджета, полученный от ПрофСалон. Виджет будет отображаться в правом нижнем углу сайта.</div>
+          </div>
+        </div>
+
+        <button type="submit" class="admin-form__btn">Сохранить настройки</button>
+      </form>
+
+    </main>
+  </div>
+</body>
+</html>

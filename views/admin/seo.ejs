@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поисковая оптимизация — Панель управления</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header h1 { font-size: 20px; font-weight: 600; }
+    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a:hover { color: white; }
+    .admin-body { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back:hover { text-decoration: underline; }
+    .seo-page { background: #f9faf7; border: 1px solid #e0e4da; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    .seo-page__title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 16px; border-bottom: 1px solid #e0e4da; padding-bottom: 12px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .char-count { font-size: 12px; color: #999; margin-top: 4px; }
+    .char-count.warning { color: #d97706; font-weight: 600; }
+    .char-count.error { color: #dc2626; font-weight: 600; }
+    .form-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save:hover { background: #4a5236; }
+    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-cancel:hover { background: #ccc; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .seo-hint { font-size: 12px; color: #666; margin-top: 4px; font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="admin-header">
+  <h1>Поисковая оптимизация (SEO)</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
+  
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+  
+  <form class="admin-form" method="POST" action="/admin/seo">
+    <!-- Home Page -->
+    <div class="seo-page">
+      <div class="seo-page__title">Главная страница</div>
+      <div class="form-group">
+        <label class="form-label">Заголовок (Title)</label>
+        <input type="text" name="pages[home][title]" class="form-input seo-title" value="<%= seo?.home?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/60</div>
+        <div class="seo-hint">Это заголовок в браузере и результатах поиска</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Описание (Meta Description)</label>
+        <textarea name="pages[home][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.home?.description || '' %></textarea>
+        <div class="char-count"><span class="count">0</span>/160</div>
+        <div class="seo-hint">Это краткое описание в результатах поиска</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ключевые слова</label>
+        <input type="text" name="pages[home][keywords]" class="form-input" value="<%= seo?.home?.keywords || '' %>" placeholder="Разделите запятыми: косметология, омоложение, уход...">
+        <div class="seo-hint">Основные ключевые слова для поиска</div>
+      </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="seo-page">
+      <div class="seo-page__title">О нас</div>
+      <div class="form-group">
+        <label class="form-label">Заголовок (Title)</label>
+        <input type="text" name="pages[about][title]" class="form-input seo-title" value="<%= seo?.about?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/60</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Описание (Meta Description)</label>
+        <textarea name="pages[about][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.about?.description || '' %></textarea>
+        <div class="char-count"><span class="count">0</span>/160</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ключевые слова</label>
+        <input type="text" name="pages[about][keywords]" class="form-input" value="<%= seo?.about?.keywords || '' %>" placeholder="Разделите запятыми">
+      </div>
+    </div>
+
+    <!-- Services Page -->
+    <div class="seo-page">
+      <div class="seo-page__title">Услуги</div>
+      <div class="form-group">
+        <label class="form-label">Заголовок (Title)</label>
+        <input type="text" name="pages[services][title]" class="form-input seo-title" value="<%= seo?.services?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/60</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Описание (Meta Description)</label>
+        <textarea name="pages[services][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.services?.description || '' %></textarea>
+        <div class="char-count"><span class="count">0</span>/160</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ключевые слова</label>
+        <input type="text" name="pages[services][keywords]" class="form-input" value="<%= seo?.services?.keywords || '' %>" placeholder="Разделите запятыми">
+      </div>
+    </div>
+
+    <!-- Team Page -->
+    <div class="seo-page">
+      <div class="seo-page__title">Специалисты</div>
+      <div class="form-group">
+        <label class="form-label">Заголовок (Title)</label>
+        <input type="text" name="pages[team][title]" class="form-input seo-title" value="<%= seo?.team?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/60</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Описание (Meta Description)</label>
+        <textarea name="pages[team][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.team?.description || '' %></textarea>
+        <div class="char-count"><span class="count">0</span>/160</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ключевые слова</label>
+        <input type="text" name="pages[team][keywords]" class="form-input" value="<%= seo?.team?.keywords || '' %>" placeholder="Разделите запятыми">
+      </div>
+    </div>
+
+    <!-- Gallery Page -->
+    <div class="seo-page">
+      <div class="seo-page__title">Галерея</div>
+      <div class="form-group">
+        <label class="form-label">Заголовок (Title)</label>
+        <input type="text" name="pages[gallery][title]" class="form-input seo-title" value="<%= seo?.gallery?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/60</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Описание (Meta Description)</label>
+        <textarea name="pages[gallery][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.gallery?.description || '' %></textarea>
+        <div class="char-count"><span class="count">0</span>/160</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ключевые слова</label>
+        <input type="text" name="pages[gallery][keywords]" class="form-input" value="<%= seo?.gallery?.keywords || '' %>" placeholder="Разделите запятыми">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+      <a href="/admin" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+</div>
+
+<script>
+function updateCharCount(input) {
+  const count = input.value.length;
+  const countDisplay = input.nextElementSibling.querySelector('.count');
+  const charCountDiv = input.nextElementSibling;
+  
+  let limit = 60;
+  if (input.classList.contains('seo-desc')) {
+    limit = 160;
+  }
+  
+  countDisplay.textContent = count;
+  
+  if (count > limit) {
+    charCountDiv.classList.add('error');
+  } else if (count > limit * 0.8) {
+    charCountDiv.classList.add('warning');
+  } else {
+    charCountDiv.classList.remove('warning', 'error');
+  }
+}
+
+// Initialize char counts on page load
+document.querySelectorAll('.seo-title, .seo-desc').forEach(el => {
+  updateCharCount(el);
+});
+</script>
+</body>
+</html>

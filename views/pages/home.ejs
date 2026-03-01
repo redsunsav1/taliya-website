@@ -1,0 +1,203 @@
+<% var pageTitle = ''; %>
+<%- include('../partials/header') %>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" style="background-image: url('<%= content.hero.image %>'); background-size: cover; background-position: center;">
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <span class="hero__badge">
+      <i data-lucide="sparkles" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 4px;"></i>
+      <%= content.hero.promoText %>
+    </span>
+    <h1 class="hero__title"><%= content.hero.title %></h1>
+    <p class="hero__description"><%= content.hero.subtitle %></p>
+    <div class="hero__cta-group">
+      <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+        <i data-lucide="calendar-check"></i>
+        Записаться онлайн
+      </a>
+      <a href="#services" class="btn btn--outline btn--lg">
+        <i data-lucide="arrow-down"></i>
+        Наши услуги
+      </a>
+    </div>
+    <% if (content.hero.promoNote) { %>
+      <p class="hero__promo-note" style="font-size: var(--font-size-xs); color: rgba(255,255,255,0.5); margin-top: var(--space-lg); margin-bottom: 0;">
+        <%= content.hero.promoNote %>
+      </p>
+    <% } %>
+  </div>
+</section>
+
+
+<!-- ===== BENEFITS SECTION ===== -->
+<section class="benefits section" id="benefits">
+  <div class="container">
+    <h2 class="section__title fade-in">Почему выбирают нас</h2>
+    <p class="section__subtitle fade-in">Мы создаём пространство, где забота о себе становится удовольствием</p>
+
+    <div class="benefits__grid">
+      <% content.benefits.forEach(function(b, i) { %>
+        <div class="benefit-card fade-in delay-<%= i + 1 %>">
+          <div class="benefit-card__icon">
+            <i data-lucide="<%= b.icon %>"></i>
+          </div>
+          <div class="benefit-card__body">
+            <h3 class="benefit-card__title"><%= b.title %></h3>
+            <p class="benefit-card__text"><%= b.text %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SERVICES SECTION ===== -->
+<section class="services-section section" id="services">
+  <div class="container">
+    <h2 class="section__title fade-in">Наши услуги</h2>
+    <p class="section__subtitle fade-in">Широкий спектр процедур для вашей красоты и здоровья</p>
+
+    <div class="services__grid">
+      <% content.services.forEach(function(s, i) { %>
+        <a href="/service/<%= s.slug %>" class="service-card fade-in">
+          <img
+            data-src="<%= s.image %>"
+            alt="<%= s.name %>"
+            class="service-card__image"
+            loading="lazy"
+          >
+          <div class="service-card__overlay">
+            <% if (s.discount) { %>
+              <span class="service-card__discount" style="
+                display: inline-block;
+                padding: 2px 10px;
+                background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+                color: var(--color-secondary);
+                font-size: var(--font-size-xs);
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: var(--letter-spacing-wide);
+                border-radius: var(--border-radius-xl);
+                margin-bottom: var(--space-sm);
+              "><%= s.discount %></span>
+            <% } %>
+            <h3 class="service-card__name"><%= s.name %></h3>
+            <p class="service-card__brief"><%= s.description %></p>
+          </div>
+          <div class="service-card__arrow">
+            <i data-lucide="arrow-right"></i>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ABOUT / CTA SECTION ===== -->
+<section class="about-cta section" id="about" style="background-color: var(--color-secondary); color: var(--color-white);">
+  <div class="container" style="max-width: var(--container-narrow); text-align: center;">
+    <h2 class="section__title fade-in" style="color: var(--color-white);">Работаем с любовью, предвосхищая ожидания</h2>
+    <p class="fade-in" style="color: rgba(255,255,255,0.7); font-size: var(--font-size-md); line-height: var(--line-height-relaxed); margin-bottom: var(--space-xl);">
+      <%= content.site.name %> -- это центр эстетики тела и косметологии, где каждая процедура
+      выполняется с вниманием к деталям. Наши специалисты подбирают индивидуальные программы,
+      учитывая особенности каждого клиента, чтобы результат превосходил ожидания.
+    </p>
+    <div class="fade-in" style="display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-xl); background: rgba(255,255,255,0.08); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2xl);">
+      <i data-lucide="shield-check" style="color: var(--color-accent);"></i>
+      <span style="font-weight: 600; letter-spacing: var(--letter-spacing-wide); font-size: var(--font-size-sm);">Только оригинальные препараты</span>
+    </div>
+    <br>
+    <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="btn btn--primary btn--lg btn--pulse fade-in">
+      <i data-lucide="calendar-check"></i>
+      Записаться на процедуру
+    </a>
+  </div>
+</section>
+
+
+<!-- ===== CONTACT PREVIEW SECTION ===== -->
+<section class="contact-preview section" id="contact-preview" style="background-color: var(--color-off-white);">
+  <div class="container">
+    <h2 class="section__title fade-in">Как нас найти</h2>
+    <p class="section__subtitle fade-in">Будем рады видеть вас в нашем центре</p>
+
+    <div class="contact-preview__grid fade-in" style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    ">
+
+      <!-- Address card -->
+      <div class="contact-card">
+        <div class="contact-card__icon">
+          <i data-lucide="map-pin"></i>
+        </div>
+        <div>
+          <p class="contact-card__label">Адрес</p>
+          <p class="contact-card__value"><%= content.site.address %></p>
+        </div>
+      </div>
+
+      <!-- Phone card -->
+      <div class="contact-card">
+        <div class="contact-card__icon">
+          <i data-lucide="phone"></i>
+        </div>
+        <div>
+          <p class="contact-card__label">Телефон</p>
+          <p class="contact-card__value">
+            <a href="tel:<%= content.site.phoneRaw %>"><%= content.site.phone %></a>
+            <% if (content.site.phone2) { %>
+              <br><a href="tel:<%= content.site.phoneRaw2 %>"><%= content.site.phone2 %></a>
+            <% } %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Hours card -->
+      <div class="contact-card">
+        <div class="contact-card__icon">
+          <i data-lucide="clock"></i>
+        </div>
+        <div>
+          <p class="contact-card__label">Часы работы</p>
+          <p class="contact-card__value"><%= content.site.hours %></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contact-preview__footer fade-in" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--space-xl);">
+      <!-- Rating badge -->
+      <div class="contact-preview__rating" style="
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-lg);
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+        color: var(--color-secondary);
+        font-weight: 700;
+        font-size: var(--font-size-sm);
+        border-radius: var(--border-radius-xl);
+        box-shadow: var(--shadow-gold);
+      ">
+        <i data-lucide="star" style="width: 16px; height: 16px;"></i>
+        5.0 &mdash; Отличное место
+      </div>
+
+      <a href="/contacts" class="btn btn--secondary">
+        <i data-lucide="map"></i>
+        Контакты и карта
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALLBACK FORM ===== -->
+<%- include('../partials/callback-form') %>
+
+<%- include('../partials/footer') %>

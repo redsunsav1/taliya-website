@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= content.site.name %> — <%= content.site.tagline %>. <%= content.site.address %>. Лицензия <%= content.site.license %>">
+  <meta name="theme-color" content="#596341">
+  <meta name="keywords" content="косметология Мытищи, эстетика тела, центр красоты, массаж, лазерная эпиляция, эндосфера-терапия">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="<%= content.site.company %>">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= typeof pageUrl !== 'undefined' ? pageUrl : content.site.url %>">
+  <meta property="og:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %>">
+  <meta property="og:description" content="<%= content.site.name %> — <%= content.site.tagline %>. <%= content.site.address %>.">
+  <meta property="og:image" content="<%= content.site.url %>/images/og-image.jpg">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="<%= typeof pageUrl !== 'undefined' ? pageUrl : content.site.url %>">
+  <meta property="twitter:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %>">
+  <meta property="twitter:description" content="<%= content.site.name %> — <%= content.site.tagline %>">
+  <meta property="twitter:image" content="<%= content.site.url %>/images/og-image.jpg">
+
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %> — <%= content.site.tagline %></title>
+
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Schema.org LocalBusiness JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "LocalBusiness",
+    "name": "<%= content.site.name %>",
+    "description": "<%= content.site.tagline %>",
+    "url": "<%= content.site.url %>",
+    "telephone": "<%= content.site.phoneRaw %>",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "<%= content.site.address %>",
+      "addressLocality": "Мытищи",
+      "addressRegion": "Московская область",
+      "postalCode": "141006",
+      "addressCountry": "RU"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "10:00",
+      "closes": "22:00"
+    },
+    "image": "<%= content.site.url %>/images/logo.svg",
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "City",
+      "name": "Мытищи"
+    },
+    "sameAs": [
+      "<%= content.site.vk %>",
+      "<%= content.site.telegram %>",
+      "<%= content.site.whatsapp %>"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "telephone": "<%= content.site.phoneRaw %>",
+      "availableLanguage": ["Russian"]
+    },
+    "license": "<%= content.site.license %>"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+
+    <!-- Top info bar (desktop only) -->
+    <div class="header__topbar">
+      <div class="header__topbar-inner container">
+        <div class="header__topbar-left">
+          <span class="header__topbar-item">
+            <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+            <%= content.site.address %>
+          </span>
+          <span class="header__topbar-item">
+            <i data-lucide="clock" style="width:14px;height:14px;"></i>
+            <%= content.site.hours %>
+          </span>
+          <a href="tel:<%= content.site.phoneRaw %>" class="header__topbar-item header__topbar-phone">
+            <i data-lucide="phone" style="width:14px;height:14px;"></i>
+            <%= content.site.phone %>
+          </a>
+        </div>
+        <div class="header__topbar-right">
+          <span class="header__topbar-item header__topbar-license">
+            Лицензия <%= content.site.license %>
+          </span>
+          <div class="header__topbar-socials">
+            <% if (content.site.whatsapp) { %>
+              <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" aria-label="Ватсап" class="header__topbar-social">
+                <i data-lucide="message-circle" style="width:15px;height:15px;"></i>
+              </a>
+            <% } %>
+            <% if (content.site.telegram) { %>
+              <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" aria-label="Телеграм" class="header__topbar-social">
+                <i data-lucide="send" style="width:15px;height:15px;"></i>
+              </a>
+            <% } %>
+            <% if (content.site.vk) { %>
+              <a href="<%= content.site.vk %>" target="_blank" rel="noopener" aria-label="ВКонтакте" class="header__topbar-social">
+                <i data-lucide="users" style="width:15px;height:15px;"></i>
+              </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main header row -->
+    <div class="header__main">
+      <div class="header__container container">
+
+        <!-- Logo -->
+        <a href="/" class="header__logo">
+          <span class="header__logo-name">Талия</span>
+          <span class="header__logo-tagline">ЦЕНТР ЭСТЕТИКИ ТЕЛА</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="header__nav" id="headerNav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="/" class="header__nav-link<%= currentPath === '/' ? ' header__nav-link--active' : '' %>">Главная</a>
+            </li>
+            <li class="header__nav-item header__nav-item--dropdown">
+              <a href="#" class="header__nav-link header__nav-link--dropdown-toggle">
+                Услуги <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+              </a>
+              <ul class="header__dropdown">
+                <% content.services.forEach(function(s) { %>
+                  <li><a href="/service/<%= s.slug %>" class="header__dropdown-link"><%= s.shortName %></a></li>
+                <% }); %>
+              </ul>
+            </li>
+            <li class="header__nav-item">
+              <a href="/about" class="header__nav-link<%= currentPath === '/about' ? ' header__nav-link--active' : '' %>">О нас</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="/team" class="header__nav-link<%= currentPath === '/team' ? ' header__nav-link--active' : '' %>">Специалисты</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="/gallery" class="header__nav-link<%= currentPath === '/gallery' ? ' header__nav-link--active' : '' %>">Галерея</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="/promotions" class="header__nav-link<%= currentPath === '/promotions' ? ' header__nav-link--active' : '' %>">Акции</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="/contacts" class="header__nav-link<%= currentPath === '/contacts' ? ' header__nav-link--active' : '' %>">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Hamburger (mobile/tablet) -->
+        <button class="header__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__inner">
+      <a href="/" class="mobile-menu__logo">Талия</a>
+      <nav class="mobile-menu__nav">
+        <ul class="mobile-menu__list">
+          <li>
+            <a href="/" class="mobile-menu__link<%= currentPath === '/' ? ' mobile-menu__link--active' : '' %>">Главная</a>
+          </li>
+          <li class="mobile-menu__item--dropdown">
+            <button class="mobile-menu__link mobile-menu__link--dropdown-toggle" aria-expanded="false">
+              Услуги <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+            </button>
+            <ul class="mobile-menu__dropdown">
+              <% content.services.forEach(function(s) { %>
+                <li><a href="/service/<%= s.slug %>" class="mobile-menu__dropdown-link"><%= s.shortName %></a></li>
+              <% }); %>
+            </ul>
+          </li>
+          <li>
+            <a href="/about" class="mobile-menu__link<%= currentPath === '/about' ? ' mobile-menu__link--active' : '' %>">О нас</a>
+          </li>
+          <li>
+            <a href="/team" class="mobile-menu__link<%= currentPath === '/team' ? ' mobile-menu__link--active' : '' %>">Специалисты</a>
+          </li>
+          <li>
+            <a href="/gallery" class="mobile-menu__link<%= currentPath === '/gallery' ? ' mobile-menu__link--active' : '' %>">Галерея</a>
+          </li>
+          <li>
+            <a href="/promotions" class="mobile-menu__link<%= currentPath === '/promotions' ? ' mobile-menu__link--active' : '' %>">Акции</a>
+          </li>
+          <li>
+            <a href="/contacts" class="mobile-menu__link<%= currentPath === '/contacts' ? ' mobile-menu__link--active' : '' %>">Контакты</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="mobile-menu__footer">
+        <a href="tel:<%= content.site.phoneRaw %>" class="mobile-menu__phone">
+          <i data-lucide="phone"></i>
+          <%= content.site.phone %>
+        </a>
+        <p class="mobile-menu__address"><%= content.site.address %></p>
+        <div class="mobile-menu__socials">
+          <% if (content.site.whatsapp) { %>
+            <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="mobile-menu__social" aria-label="Ватсап">
+              <i data-lucide="message-circle"></i>
+            </a>
+          <% } %>
+          <% if (content.site.telegram) { %>
+            <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="mobile-menu__social" aria-label="Телеграм">
+              <i data-lucide="send"></i>
+            </a>
+          <% } %>
+          <% if (content.site.vk) { %>
+            <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="mobile-menu__social" aria-label="ВКонтакте">
+              <i data-lucide="users"></i>
+            </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer so content is not hidden behind fixed header -->
+  <div class="header-spacer"></div>
+
+  <main>

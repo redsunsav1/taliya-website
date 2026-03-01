@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главный экран — <%= content.site.name %> Админ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: #f5f1ee; color: #333; min-height: 100vh; }
+
+    .admin-layout { display: flex; min-height: 100vh; }
+
+    .admin-sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, #596341 0%, #454d33 100%);
+      color: #fff; flex-shrink: 0; position: fixed;
+      top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100;
+    }
+    .admin-sidebar__brand { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .admin-sidebar__brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; display: block; }
+    .admin-sidebar__brand-sub { font-size: 0.7rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
+    .admin-sidebar__nav { padding: 16px 0; }
+    .admin-sidebar__link {
+      display: flex; align-items: center; gap: 10px; padding: 12px 24px;
+      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem;
+      font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent;
+    }
+    .admin-sidebar__link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .admin-sidebar__link--active { background: rgba(255,255,255,0.12); color: #fff; border-left-color: #fff; }
+    .admin-sidebar__link--danger { color: rgba(255,200,200,0.8); }
+    .admin-sidebar__link--danger:hover { color: #fcc; background: rgba(255,100,100,0.15); }
+    .admin-sidebar__separator { height: 1px; background: rgba(255,255,255,0.12); margin: 8px 24px; }
+    .admin-sidebar__link-icon { width: 18px; text-align: center; font-style: normal; }
+
+    .admin-content { flex: 1; margin-left: 260px; padding: 32px 40px; min-height: 100vh; }
+    .admin-content__header { margin-bottom: 32px; }
+    .admin-content__breadcrumb { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
+    .admin-content__breadcrumb a { color: #596341; text-decoration: none; }
+    .admin-content__breadcrumb a:hover { text-decoration: underline; }
+    .admin-content__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #333; }
+
+    .admin-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 28px; margin-bottom: 24px;
+    }
+    .admin-card__title { font-size: 1rem; font-weight: 600; color: #555; margin-bottom: 16px; }
+
+    .admin-form__group { margin-bottom: 20px; }
+    .admin-form__label {
+      display: block; font-size: 0.8rem; font-weight: 600; color: #555;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .admin-form__input, .admin-form__textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+      font-size: 0.9rem; font-family: 'Montserrat', sans-serif; transition: border-color 0.2s;
+    }
+    .admin-form__input:focus, .admin-form__textarea:focus {
+      outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89,99,65,0.1);
+    }
+    .admin-form__hint { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
+
+    .admin-form__btn {
+      display: inline-block; padding: 12px 32px; background: #596341; color: #fff;
+      border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif; cursor: pointer; transition: background 0.2s;
+    }
+    .admin-form__btn:hover { background: #7a4f5c; }
+
+    .admin-alert {
+      padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem;
+    }
+    .admin-alert--success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+    .admin-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .admin-form__file-input {
+      padding: 10px 14px; border: 2px dashed #ddd; border-radius: 8px;
+      background: #fafafa; cursor: pointer; transition: border-color 0.2s;
+    }
+    .admin-form__file-input:hover { border-color: #596341; }
+
+    .admin-form__image-preview {
+      margin-top: 12px; max-width: 400px; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .admin-form__image-preview img {
+      width: 100%; height: auto; display: block;
+    }
+
+    @media (max-width: 768px) {
+      .admin-sidebar { width: 220px; }
+      .admin-content { margin-left: 220px; padding: 24px 20px; }
+      .admin-form__row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="admin-sidebar__brand-name"><%= content.site.name %></span>
+        <span class="admin-sidebar__brand-sub">Админ-панель</span>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <a href="/admin" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9776;</span> Главная панель
+        </a>
+        <a href="/admin/settings" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9881;</span> Настройки сайта
+        </a>
+        <a href="/admin/hero" class="admin-sidebar__link admin-sidebar__link--active">
+          <span class="admin-sidebar__link-icon">&#9733;</span> Главный экран
+        </a>
+        <a href="/admin/benefits" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#10004;</span> Преимущества
+        </a>
+        <a href="/admin/services" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9998;</span> Разделы услуг
+        </a>
+        <div class="admin-sidebar__separator"></div>
+        <a href="/admin/password" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#128274;</span> Сменить пароль
+        </a>
+        <a href="/admin/logout" class="admin-sidebar__link admin-sidebar__link--danger">
+          <span class="admin-sidebar__link-icon">&#10140;</span> Выход
+        </a>
+        <div class="admin-sidebar__separator"></div>
+        <a href="/" class="admin-sidebar__link" target="_blank">
+          <span class="admin-sidebar__link-icon">&#127760;</span> Вернуться на сайт
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <div class="admin-content__header">
+        <div class="admin-content__breadcrumb">
+          <a href="/admin">Админ-панель</a> / Главный экран
+        </div>
+        <h1 class="admin-content__title">Главный экран (Hero)</h1>
+      </div>
+
+      <script>
+        if (new URLSearchParams(window.location.search).get('saved') === '1') {
+          document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('savedAlert');
+            if (el) el.style.display = 'block';
+          });
+        }
+      </script>
+
+      <div class="admin-alert admin-alert--success" id="savedAlert" style="display:none;">
+        Главный экран успешно обновлён.
+      </div>
+
+      <form method="POST" action="/admin/hero" enctype="multipart/form-data" class="admin-form">
+
+        <div class="admin-card">
+          <h2 class="admin-card__title">Тексты</h2>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="title">Заголовок</label>
+            <input class="admin-form__input" type="text" id="title" name="title" value="<%= content.hero.title %>">
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="subtitle">Подзаголовок</label>
+            <input class="admin-form__input" type="text" id="subtitle" name="subtitle" value="<%= content.hero.subtitle %>">
+          </div>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="promoText">Промо текст</label>
+              <input class="admin-form__input" type="text" id="promoText" name="promoText" value="<%= content.hero.promoText %>">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="promoNote">Примечание к промо</label>
+              <input class="admin-form__input" type="text" id="promoNote" name="promoNote" value="<%= content.hero.promoNote %>">
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card__title">Фоновое изображение</h2>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="image">Загрузить новое изображение</label>
+            <input class="admin-form__file-input" type="file" id="image" name="image" accept="image/*">
+            <div class="admin-form__hint">JPG, PNG, WebP. Максимум 10 МБ. Оставьте пустым, чтобы сохранить текущее.</div>
+          </div>
+
+          <% if (content.hero.image) { %>
+            <div class="admin-form__group">
+              <label class="admin-form__label">Текущее изображение</label>
+              <div class="admin-form__image-preview">
+                <img src="<%= content.hero.image %>" alt="Hero image">
+              </div>
+              <div class="admin-form__hint">Путь: <%= content.hero.image %></div>
+            </div>
+          <% } %>
+        </div>
+
+        <button type="submit" class="admin-form__btn">Сохранить изменения</button>
+      </form>
+
+    </main>
+  </div>
+</body>
+</html>

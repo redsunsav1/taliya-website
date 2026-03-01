@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О нас — Панель управления</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header h1 { font-size: 20px; font-weight: 600; }
+    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a:hover { color: white; }
+    .admin-body { max-width: 900px; margin: 0 auto; padding: 24px; }
+    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back:hover { text-decoration: underline; }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .file-input-label { display: inline-block; padding: 10px 16px; background: #e8ede0; color: #596341; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+    .file-input-label:hover { background: #dce1d3; }
+    .form-input[type="file"] { display: none; }
+    .image-preview { max-width: 200px; max-height: 200px; margin-top: 10px; border-radius: 6px; }
+    .values-section { background: #f9faf7; border-radius: 8px; padding: 16px; margin-top: 16px; }
+    .value-item { background: white; border: 1px solid #e0e4da; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+    .value-item:last-child { margin-bottom: 0; }
+    .value-item__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .value-item__title { font-weight: 600; color: #333; }
+    .btn-remove { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .btn-remove:hover { background: #dbb5a8; }
+    .value-item input, .value-item textarea { margin-bottom: 8px; }
+    .btn-add-value { padding: 10px 16px; background: #dce1d3; color: #596341; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-add-value:hover { background: #ccd4c3; }
+    .form-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save:hover { background: #4a5236; }
+    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-cancel:hover { background: #ccc; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .alert-error { background: #f1d4d4; color: #5a2d2d; border: 1px solid #e6a8a8; }
+  </style>
+</head>
+<body>
+<div class="admin-header">
+  <h1>О нас</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
+  
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+  
+  <form class="admin-form" method="POST" action="/admin/about" enctype="multipart/form-data">
+    <div class="form-group">
+      <label class="form-label">Название</label>
+      <input type="text" name="title" class="form-input" value="<%= about?.title || '' %>" placeholder="Название раздела">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Подзаголовок</label>
+      <input type="text" name="subtitle" class="form-input" value="<%= about?.subtitle || '' %>" placeholder="Подзаголовок">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Описание</label>
+      <textarea name="text" class="form-textarea" placeholder="Полное описание о компании"><%= about?.text || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Фотография</label>
+      <label class="file-input-label">Выбрать файл</label>
+      <input type="file" name="image" class="form-input" accept="image/*">
+      <% if (about?.image) { %>
+        <img src="<%= about.image %>" alt="<%= about.title %>" class="image-preview">
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Ценности</label>
+      <div class="values-section">
+        <% (about?.values || []).forEach((value, index) => { %>
+          <div class="value-item">
+            <div class="value-item__header">
+              <div class="value-item__title">Ценность <%= index + 1 %></div>
+              <button type="button" class="btn-remove" onclick="removeValue(<%= index %>)">Удалить</button>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Иконка</label>
+              <input type="text" name="values[<%= index %>][icon]" class="form-input" value="<%= value.icon || '' %>" placeholder="Например: heart, star, check">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Название</label>
+              <input type="text" name="values[<%= index %>][title]" class="form-input" value="<%= value.title || '' %>" placeholder="Название ценности">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Описание</label>
+              <textarea name="values[<%= index %>][text]" class="form-textarea" placeholder="Описание ценности"><%= value.text || '' %></textarea>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+      <button type="button" class="btn-add-value" onclick="addValue()">+ Добавить ценность</button>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+      <a href="/admin" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+</div>
+
+<script>
+function addValue() {
+  const valuesSection = document.querySelector('.values-section');
+  const index = valuesSection.querySelectorAll('.value-item').length;
+  const newValue = document.createElement('div');
+  newValue.className = 'value-item';
+  newValue.innerHTML = `
+    <div class="value-item__header">
+      <div class="value-item__title">Ценность ${index + 1}</div>
+      <button type="button" class="btn-remove" onclick="this.closest('.value-item').remove()">Удалить</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Иконка</label>
+      <input type="text" name="values[${index}][icon]" class="form-input" placeholder="Например: heart, star, check">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Название</label>
+      <input type="text" name="values[${index}][title]" class="form-input" placeholder="Название ценности">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Описание</label>
+      <textarea name="values[${index}][text]" class="form-textarea" placeholder="Описание ценности"></textarea>
+    </div>
+  `;
+  valuesSection.appendChild(newValue);
+}
+
+function removeValue(index) {
+  document.querySelectorAll('.value-item')[index].remove();
+}
+</script>
+</body>
+</html>

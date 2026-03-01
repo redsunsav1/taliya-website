@@ -1,0 +1,150 @@
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__container container">
+      <div class="footer__grid">
+
+        <!-- Column 1: About -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Талия</h3>
+          <p class="footer__tagline"><%= content.site.tagline %></p>
+          <p class="footer__company"><%= content.site.company %></p>
+          <p class="footer__license">Лицензия: <%= content.site.license %></p>
+        </div>
+
+        <!-- Column 2: Quick Navigation -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Навигация</h3>
+          <ul class="footer__links">
+            <li>
+              <a href="/about" class="footer__link">О нас</a>
+            </li>
+            <li>
+              <a href="/team" class="footer__link">Специалисты</a>
+            </li>
+            <li>
+              <a href="/gallery" class="footer__link">Галерея</a>
+            </li>
+            <li>
+              <a href="/promotions" class="footer__link">Акции</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contacts -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Контакты</h3>
+          <ul class="footer__contacts">
+            <li class="footer__contact-item">
+              <i data-lucide="map-pin" class="footer__contact-icon"></i>
+              <span><%= content.site.address %></span>
+            </li>
+            <li class="footer__contact-item">
+              <i data-lucide="phone" class="footer__contact-icon"></i>
+              <span>
+                <a href="tel:<%= content.site.phoneRaw %>" class="footer__link"><%= content.site.phone %></a>
+                <% if (content.site.phone2) { %>
+                  <br><a href="tel:<%= content.site.phoneRaw2 %>" class="footer__link"><%= content.site.phone2 %></a>
+                <% } %>
+              </span>
+            </li>
+            <li class="footer__contact-item">
+              <i data-lucide="clock" class="footer__contact-icon"></i>
+              <span><%= content.site.hours %></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Social -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Мы в соцсетях</h3>
+          <div class="footer__socials">
+            <% if (content.site.vk) { %>
+              <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="footer__social" aria-label="ВКонтакте">
+                <i data-lucide="users"></i>
+                <span>ВКонтакте</span>
+              </a>
+            <% } %>
+            <% if (content.site.telegram) { %>
+              <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="footer__social" aria-label="Телеграм">
+                <i data-lucide="send"></i>
+                <span>Телеграм</span>
+              </a>
+            <% } %>
+            <% if (content.site.whatsapp) { %>
+              <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="footer__social" aria-label="Ватсап">
+                <i data-lucide="message-circle"></i>
+                <span>Ватсап</span>
+              </a>
+            <% } %>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; <%= new Date().getFullYear() %> <%= content.site.company %>. Все права защищены.
+        </p>
+        <div class="footer__legal-links">
+          <a href="/privacy" class="footer__legal-link">Политика конфиденциальности</a>
+          <a href="/terms" class="footer__legal-link">Пользовательское соглашение</a>
+          <a href="/consent" class="footer__legal-link">Согласие на обработку данных</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING BUTTONS ===== -->
+
+  <!-- WhatsApp floating button (bottom-left) -->
+  <% if (content.site.whatsapp) { %>
+    <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Написать в Ватсап">
+      <i data-lucide="message-circle"></i>
+    </a>
+  <% } %>
+
+  <!-- ProfSalon booking button (bottom-right) -->
+  <% if (content.site.profsalon) { %>
+    <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="booking-float">
+      <i data-lucide="calendar-check"></i>
+      <span>Записаться онлайн</span>
+    </a>
+  <% } %>
+
+  <!-- ProfSalon Widget -->
+  <% if (content.site.profsalonWidget) { %>
+    <%- content.site.profsalonWidget %>
+  <% } %>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner" style="display:none;">
+    <div class="cookie-banner__content">
+      <p>Наш сайт использует файлы куки (cookies) для улучшения работы сайта и анализа трафика. Продолжая использовать сайт, вы соглашаетесь с <a href="/privacy" class="link-inline">Политикой конфиденциальности</a>.</p>
+      <button class="cookie-banner__btn" id="cookieAccept">Принять</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Cookie consent
+    (function() {
+      var banner = document.getElementById('cookieBanner');
+      var btn = document.getElementById('cookieAccept');
+      if (!localStorage.getItem('cookieConsent')) {
+        banner.style.display = 'flex';
+      }
+      btn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', '1');
+        banner.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>

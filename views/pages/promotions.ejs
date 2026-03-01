@@ -1,0 +1,77 @@
+<% var pageTitle = 'Акции и предложения'; %>
+<%- include('../partials/header') %>
+
+<main>
+  <!-- Герой-баннер -->
+  <section class="section section--hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="section__title"><%= content.promotions && content.promotions.title ? content.promotions.title : 'Акции и предложения' %></h1>
+        <p class="section__subtitle"><%= content.promotions && content.promotions.subtitle ? content.promotions.subtitle : 'Специальные предложения для наших клиентов' %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Карточки акций -->
+  <% if (content.promotions && content.promotions.items && Array.isArray(content.promotions.items)) { %>
+    <section class="section section--promotions">
+      <div class="container">
+        <div class="promotions-grid fade-in">
+          <% content.promotions.items.forEach(function(promo) { %>
+            <% if (promo.active !== false) { %>
+              <div class="promo-card">
+                <% if (promo.badge) { %>
+                  <div class="promo-card__badge">
+                    <span class="badge badge--<%= promo.badge.type || 'info' %>">
+                      <%= promo.badge.text %>
+                    </span>
+                  </div>
+                <% } %>
+                <div class="promo-card__content">
+                  <h3 class="promo-card__title"><%= promo.title %></h3>
+                  <p class="promo-card__description"><%= promo.description %></p>
+                  <% if (promo.details && Array.isArray(promo.details)) { %>
+                    <ul class="promo-card__details">
+                      <% promo.details.forEach(function(detail) { %>
+                        <li>
+                          <i class="lucide" data-icon="check"></i>
+                          <%= detail %>
+                        </li>
+                      <% }); %>
+                    </ul>
+                  <% } %>
+                  <% if (promo.discount) { %>
+                    <div class="promo-card__discount">
+                      Скидка: <span class="discount-value"><%= promo.discount %></span>
+                    </div>
+                  <% } %>
+                </div>
+                <div class="promo-card__footer">
+                  <a href="https://profsalon.ru" class="btn btn--primary">
+                    Записаться
+                    <i class="lucide" data-icon="arrow-right"></i>
+                  </a>
+                  <% if (promo.validUntil) { %>
+                    <p class="promo-card__validity">
+                      <i class="lucide" data-icon="calendar"></i>
+                      По <%= promo.validUntil %>
+                    </p>
+                  <% } %>
+                </div>
+              </div>
+            <% } %>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- Форма обратной связи -->
+  <section class="section section--callback">
+    <div class="container">
+      <%- include('../partials/callback-form') %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

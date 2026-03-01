@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявки — Панель управления</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header h1 { font-size: 20px; font-weight: 600; }
+    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a:hover { color: white; }
+    .admin-body { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back:hover { text-decoration: underline; }
+    .table-container { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #f9faf7; }
+    th { padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e0e4da; }
+    td { padding: 16px; border-bottom: 1px solid #e0e4da; font-size: 14px; }
+    tr:hover { background: #fafbf9; }
+    .status { font-size: 12px; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+    .status.new { background: #dce1d3; color: #596341; }
+    .status.called { background: #d4f1d4; color: #2d5a2d; }
+    .status.missed { background: #f1d4d4; color: #5a2d2d; }
+    .date { color: #999; font-size: 13px; }
+    .phone { font-weight: 500; }
+    .message { max-width: 300px; color: #666; }
+    .btn-delete { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .btn-delete:hover { background: #dbb5a8; }
+    .empty-state { text-align: center; padding: 60px 20px; color: #999; }
+    .empty-state__icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .filter-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .filter-btn { padding: 8px 16px; background: #e0e4da; color: #596341; border: 1px solid #d0d4ca; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+    .filter-btn.active { background: #596341; color: white; border-color: #596341; }
+    .filter-btn:hover { background: #dce1d3; }
+    .filter-btn.active:hover { background: #4a5236; }
+  </style>
+</head>
+<body>
+<div class="admin-header">
+  <h1>Заявки и обратные звонки</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
+  
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+
+  <% if ((callbacks || []).length > 0) { %>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterStatus('')">Все</button>
+      <button class="filter-btn" onclick="filterStatus('new')">Новые</button>
+      <button class="filter-btn" onclick="filterStatus('called')">Обзвонены</button>
+      <button class="filter-btn" onclick="filterStatus('missed')">Не обзвонены</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Дата и время</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Услуга</th>
+            <th>Сообщение</th>
+            <th>Статус</th>
+            <th>Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% callbacks.forEach((cb, index) => { %>
+            <tr class="callback-row" data-status="<%= cb.status || 'new' %>">
+              <td>
+                <div class="date"><%= new Date(cb.date).toLocaleString('ru-RU') %></div>
+              </td>
+              <td><%= cb.name %></td>
+              <td class="phone"><%= cb.phone %></td>
+              <td><%= cb.service || '—' %></td>
+              <td class="message" title="<%= cb.message %>"><%= cb.message ? cb.message.substring(0, 50) + (cb.message.length > 50 ? '...' : '') : '—' %></td>
+              <td>
+                <form method="POST" action="/admin/callbacks/status" style="display: inline;">
+                  <input type="hidden" name="callbackId" value="<%= cb.id %>">
+                  <select name="status" style="border: none; background: transparent; font-size: 12px; font-weight: 600; cursor: pointer;" onchange="this.form.submit()">
+                    <option value="new" <%= cb.status === 'new' ? 'selected' : '' %>>Новая</option>
+                    <option value="called" <%= cb.status === 'called' ? 'selected' : '' %>>Обзвонена</option>
+                    <option value="missed" <%= cb.status === 'missed' ? 'selected' : '' %>>Не обзвонена</option>
+                  </select>
+                </form>
+              </td>
+              <td>
+                <form method="POST" action="/admin/callbacks/delete" style="display: inline;">
+                  <input type="hidden" name="callbackId" value="<%= cb.id %>">
+                  <button type="submit" class="btn-delete" onclick="return confirm('Удалить эту заявку?')">Удалить</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } else { %>
+    <div style="background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      <div class="empty-state">
+        <div class="empty-state__icon">📋</div>
+        <p>Нет поступивших заявок</p>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<script>
+function filterStatus(status) {
+  const rows = document.querySelectorAll('.callback-row');
+  const buttons = document.querySelectorAll('.filter-btn');
+  
+  buttons.forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  rows.forEach(row => {
+    if (status === '' || row.dataset.status === status) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

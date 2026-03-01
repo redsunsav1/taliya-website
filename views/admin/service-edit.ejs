@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редактирование: <%= service.name %> — <%= content.site.name %> Админ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: #f5f1ee; color: #333; min-height: 100vh; }
+
+    .admin-layout { display: flex; min-height: 100vh; }
+
+    .admin-sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, #596341 0%, #454d33 100%);
+      color: #fff; flex-shrink: 0; position: fixed;
+      top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100;
+    }
+    .admin-sidebar__brand { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .admin-sidebar__brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; display: block; }
+    .admin-sidebar__brand-sub { font-size: 0.7rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
+    .admin-sidebar__nav { padding: 16px 0; }
+    .admin-sidebar__link {
+      display: flex; align-items: center; gap: 10px; padding: 12px 24px;
+      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem;
+      font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent;
+    }
+    .admin-sidebar__link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .admin-sidebar__link--active { background: rgba(255,255,255,0.12); color: #fff; border-left-color: #fff; }
+    .admin-sidebar__link--danger { color: rgba(255,200,200,0.8); }
+    .admin-sidebar__link--danger:hover { color: #fcc; background: rgba(255,100,100,0.15); }
+    .admin-sidebar__separator { height: 1px; background: rgba(255,255,255,0.12); margin: 8px 24px; }
+    .admin-sidebar__link-icon { width: 18px; text-align: center; font-style: normal; }
+
+    .admin-content { flex: 1; margin-left: 260px; padding: 32px 40px; min-height: 100vh; }
+    .admin-content__header { margin-bottom: 32px; }
+    .admin-content__breadcrumb { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
+    .admin-content__breadcrumb a { color: #596341; text-decoration: none; }
+    .admin-content__breadcrumb a:hover { text-decoration: underline; }
+    .admin-content__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #333; }
+
+    .admin-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 28px; margin-bottom: 24px;
+    }
+    .admin-card__title { font-size: 1rem; font-weight: 600; color: #555; margin-bottom: 16px; }
+
+    .admin-form__group { margin-bottom: 20px; }
+    .admin-form__label {
+      display: block; font-size: 0.8rem; font-weight: 600; color: #555;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .admin-form__input, .admin-form__textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+      font-size: 0.9rem; font-family: 'Montserrat', sans-serif; transition: border-color 0.2s;
+    }
+    .admin-form__input:focus, .admin-form__textarea:focus {
+      outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89,99,65,0.1);
+    }
+    .admin-form__textarea { min-height: 80px; resize: vertical; }
+    .admin-form__hint { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
+
+    .admin-form__btn {
+      display: inline-block; padding: 12px 32px; background: #596341; color: #fff;
+      border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif; cursor: pointer; transition: background 0.2s;
+    }
+    .admin-form__btn:hover { background: #7a4f5c; }
+
+    .admin-alert {
+      padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem;
+    }
+    .admin-alert--success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+    .admin-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .admin-form__file-input {
+      padding: 10px 14px; border: 2px dashed #ddd; border-radius: 8px;
+      background: #fafafa; cursor: pointer; transition: border-color 0.2s;
+    }
+    .admin-form__file-input:hover { border-color: #596341; }
+
+    .admin-form__image-preview {
+      margin-top: 12px; max-width: 300px; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .admin-form__image-preview img { width: 100%; height: auto; display: block; }
+
+    .admin-form__back-link {
+      display: inline-block; margin-bottom: 20px; color: #596341;
+      text-decoration: none; font-size: 0.88rem; font-weight: 500;
+    }
+    .admin-form__back-link:hover { text-decoration: underline; }
+
+    /* Item rows */
+    .item-row {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .item-row__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .item-row__header-buttons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .item-row__number {
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: #596341;
+    }
+    .item-row__remove {
+      background: none;
+      border: 1px solid #e5e5e5;
+      color: #999;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.2s;
+    }
+    .item-row__remove:hover {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+    }
+    .item-row__reorder {
+      background: none;
+      border: 1px solid #e5e5e5;
+      color: #999;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.2s;
+      min-width: 30px;
+    }
+    .item-row__reorder:hover {
+      background: #f0f9f0;
+      border-color: #86efac;
+      color: #16a34a;
+    }
+    .item-row__reorder:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .item-row__fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .item-row__fields--full {
+      grid-template-columns: 1fr;
+    }
+    .item-row__fields--prices {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .item-row__field-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+    .item-row__field-input {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .item-row__field-input:focus {
+      outline: none;
+      border-color: #596341;
+    }
+
+    .admin-form__add-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: #fff;
+      color: #596341;
+      border: 2px dashed #596341;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+    }
+    .admin-form__add-btn:hover {
+      background: #596341;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .admin-sidebar { width: 220px; }
+      .admin-content { margin-left: 220px; padding: 24px 20px; }
+      .admin-form__row { grid-template-columns: 1fr; }
+      .item-row__fields { grid-template-columns: 1fr; }
+      .item-row__fields--prices { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="admin-sidebar__brand-name"><%= content.site.name %></span>
+        <span class="admin-sidebar__brand-sub">Админ-панель</span>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <a href="/admin" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9776;</span> Главная панель
+        </a>
+        <a href="/admin/settings" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9881;</span> Настройки сайта
+        </a>
+        <a href="/admin/hero" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9733;</span> Главный экран
+        </a>
+        <a href="/admin/benefits" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#10004;</span> Преимущества
+        </a>
+        <a href="/admin/services" class="admin-sidebar__link admin-sidebar__link--active">
+          <span class="admin-sidebar__link-icon">&#9998;</span> Разделы услуг
+        </a>
+        <div class="admin-sidebar__separator"></div>
+        <a href="/admin/password" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#128274;</span> Сменить пароль
+        </a>
+        <a href="/admin/logout" class="admin-sidebar__link admin-sidebar__link--danger">
+          <span class="admin-sidebar__link-icon">&#10140;</span> Выход
+        </a>
+        <div class="admin-sidebar__separator"></div>
+        <a href="/" class="admin-sidebar__link" target="_blank">
+          <span class="admin-sidebar__link-icon">&#127760;</span> Вернуться на сайт
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <div class="admin-content__header">
+        <div class="admin-content__breadcrumb">
+          <a href="/admin">Админ-панель</a> / <a href="/admin/services">Разделы услуг</a> / Редактирование
+        </div>
+        <h1 class="admin-content__title">Редактирование: <%= service.name %></h1>
+      </div>
+
+      <a href="/admin/services" class="admin-form__back-link">&larr; Назад к списку услуг</a>
+
+      <script>
+        if (new URLSearchParams(window.location.search).get('saved') === '1') {
+          document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('savedAlert');
+            if (el) el.style.display = 'block';
+          });
+        }
+      </script>
+
+      <div class="admin-alert admin-alert--success" id="savedAlert" style="display:none;">
+        Раздел услуг успешно обновлён.
+      </div>
+
+      <form method="POST" action="/admin/services/<%= service.slug %>" enctype="multipart/form-data" class="admin-form">
+
+        <!-- Basic Info -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Основная информация</h2>
+
+          <div class="admin-form__row">
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="name">Полное название</label>
+              <input class="admin-form__input" type="text" id="name" name="name" value="<%= service.name %>">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label" for="shortName">Короткое название</label>
+              <input class="admin-form__input" type="text" id="shortName" name="shortName" value="<%= service.shortName %>">
+              <div class="admin-form__hint">Отображается в меню навигации</div>
+            </div>
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="description">Описание</label>
+            <textarea class="admin-form__textarea" id="description" name="description" rows="3"><%= service.description %></textarea>
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="discount">Скидка / акция</label>
+            <input class="admin-form__input" type="text" id="discount" name="discount" value="<%= service.discount %>" placeholder="например: до -50%">
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Изображение раздела</h2>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="image">Загрузить новое изображение</label>
+            <input class="admin-form__file-input" type="file" id="image" name="image" accept="image/*">
+            <div class="admin-form__hint">JPG, PNG, WebP. Максимум 10 МБ. Оставьте пустым, чтобы сохранить текущее.</div>
+          </div>
+
+          <% if (service.image) { %>
+            <div class="admin-form__group">
+              <label class="admin-form__label">Текущее изображение</label>
+              <div class="admin-form__image-preview">
+                <img src="<%= service.image %>" alt="<%= service.name %>">
+              </div>
+              <div class="admin-form__hint">Путь: <%= service.image %></div>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Service Items -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Позиции прайса (<span id="itemCount"><%= service.items ? service.items.length : 0 %></span>)</h2>
+
+          <div id="itemsContainer">
+            <% if (service.items && service.items.length > 0) { %>
+              <% service.items.forEach(function(item, i) { %>
+                <div class="item-row" data-index="<%= i %>">
+                  <div class="item-row__header">
+                    <span class="item-row__number">Позиция #<span class="row-num"><%= i + 1 %></span></span>
+                    <div class="item-row__header-buttons">
+                      <button type="button" class="item-row__reorder" onclick="moveItemUp(this)" <% if (i === 0) { %>disabled<% } %>>▲</button>
+                      <button type="button" class="item-row__reorder" onclick="moveItemDown(this)" <% if (i === service.items.length - 1) { %>disabled<% } %>>▼</button>
+                      <button type="button" class="item-row__remove" onclick="removeItemRow(this)">Удалить</button>
+                    </div>
+                  </div>
+                  <div class="item-row__fields item-row__fields--full">
+                    <div>
+                      <div class="item-row__field-label">Категория (для группировки)</div>
+                      <input class="item-row__field-input" type="text" name="itemCats[]" value="<%= item.category || '' %>">
+                    </div>
+                  </div>
+                  <div class="item-row__fields">
+                    <div>
+                      <div class="item-row__field-label">Название</div>
+                      <input class="item-row__field-input" type="text" name="itemNames[]" value="<%= item.name %>">
+                    </div>
+                    <div>
+                      <div class="item-row__field-label">Длительность</div>
+                      <input class="item-row__field-input" type="text" name="itemDurations[]" value="<%= item.duration %>" placeholder="60 мин">
+                    </div>
+                  </div>
+                  <div class="item-row__fields item-row__fields--full" style="margin-top: 8px;">
+                    <div>
+                      <div class="item-row__field-label">Описание</div>
+                      <input class="item-row__field-input" type="text" name="itemDescs[]" value="<%= item.description %>">
+                    </div>
+                  </div>
+                  <div class="item-row__fields item-row__fields--prices" style="margin-top: 8px;">
+                    <div>
+                      <div class="item-row__field-label">Цена</div>
+                      <input class="item-row__field-input" type="text" name="itemPrices[]" value="<%= item.price %>" placeholder="от 3 000">
+                    </div>
+                    <div>
+                      <div class="item-row__field-label">Пакет 5</div>
+                      <input class="item-row__field-input" type="text" name="itemP5[]" value="<%= item.pricePackage5 %>" placeholder="Цена за 5">
+                    </div>
+                    <div>
+                      <div class="item-row__field-label">Пакет 10</div>
+                      <input class="item-row__field-input" type="text" name="itemP10[]" value="<%= item.pricePackage10 %>" placeholder="Цена за 10">
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+
+          <button type="button" class="admin-form__add-btn" onclick="addItemRow()">+ Добавить позицию</button>
+        </div>
+
+        <!-- Advantages -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Преимущества (<span id="advCount"><%= service.advantages ? service.advantages.length : 0 %></span>)</h2>
+
+          <div id="advantagesContainer">
+            <% if (service.advantages && service.advantages.length > 0) { %>
+              <% service.advantages.forEach(function(adv, i) { %>
+                <div class="item-row" data-adv-index="<%= i %>">
+                  <div class="item-row__header">
+                    <span class="item-row__number">Преимущество #<span class="adv-num"><%= i + 1 %></span></span>
+                    <button type="button" class="item-row__remove" onclick="removeAdvRow(this)">Удалить</button>
+                  </div>
+                  <div class="item-row__fields">
+                    <div>
+                      <div class="item-row__field-label">Иконка (Lucide)</div>
+                      <input class="item-row__field-input" type="text" name="advIcons[]" value="<%= adv.icon %>" placeholder="star">
+                    </div>
+                    <div>
+                      <div class="item-row__field-label">Заголовок</div>
+                      <input class="item-row__field-input" type="text" name="advTitles[]" value="<%= adv.title %>">
+                    </div>
+                  </div>
+                  <div class="item-row__fields item-row__fields--full" style="margin-top: 8px;">
+                    <div>
+                      <div class="item-row__field-label">Описание</div>
+                      <input class="item-row__field-input" type="text" name="advTexts[]" value="<%= adv.text %>">
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+
+          <button type="button" class="admin-form__add-btn" onclick="addAdvRow()">+ Добавить преимущество</button>
+        </div>
+
+        <!-- Doctors -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Специалисты (<span id="docCount"><%= service.doctors ? service.doctors.length : 0 %></span>)</h2>
+
+          <div id="doctorsContainer">
+            <% if (service.doctors && service.doctors.length > 0) { %>
+              <% service.doctors.forEach(function(doc, i) { %>
+                <div class="item-row" data-doc-index="<%= i %>">
+                  <div class="item-row__header">
+                    <span class="item-row__number">Специалист #<span class="doc-num"><%= i + 1 %></span></span>
+                    <button type="button" class="item-row__remove" onclick="removeDocRow(this)">Удалить</button>
+                  </div>
+                  <div class="item-row__fields">
+                    <div>
+                      <div class="item-row__field-label">Имя</div>
+                      <input class="item-row__field-input" type="text" name="docNames[]" value="<%= doc.name %>">
+                    </div>
+                    <div>
+                      <div class="item-row__field-label">Должность</div>
+                      <input class="item-row__field-input" type="text" name="docRoles[]" value="<%= doc.role %>">
+                    </div>
+                  </div>
+                  <div class="item-row__fields" style="margin-top: 8px;">
+                    <div>
+                      <div class="item-row__field-label">Стаж</div>
+                      <input class="item-row__field-input" type="text" name="docExps[]" value="<%= doc.experience %>" placeholder="Стаж 15 лет">
+                    </div>
+                    <div>
+                      <div class="item-row__field-label">Фото (URL)</div>
+                      <input class="item-row__field-input" type="text" name="docPhotos[]" value="<%= doc.photo %>" placeholder="/images/doctors/name.svg">
+                    </div>
+                  </div>
+                  <div class="item-row__fields item-row__fields--full" style="margin-top: 8px;">
+                    <div>
+                      <div class="item-row__field-label">Описание</div>
+                      <input class="item-row__field-input" type="text" name="docBios[]" value="<%= doc.bio %>">
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+
+          <button type="button" class="admin-form__add-btn" onclick="addDocRow()">+ Добавить специалиста</button>
+        </div>
+
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <button type="submit" class="admin-form__btn">Сохранить изменения</button>
+          <a href="/admin/services" style="color: #999; font-size: 0.88rem; text-decoration: none;">Отмена</a>
+        </div>
+      </form>
+
+    </main>
+  </div>
+
+  <script>
+    function updateItemNumbers() {
+      var rows = document.querySelectorAll('#itemsContainer .item-row');
+      rows.forEach(function(row, idx) {
+        var num = row.querySelector('.row-num');
+        if (num) num.textContent = idx + 1;
+
+        // Update button disabled states
+        var upBtn = row.querySelector('.item-row__reorder:nth-of-type(1)');
+        var downBtn = row.querySelector('.item-row__reorder:nth-of-type(2)');
+        if (upBtn) upBtn.disabled = (idx === 0);
+        if (downBtn) downBtn.disabled = (idx === rows.length - 1);
+      });
+      var counter = document.getElementById('itemCount');
+      if (counter) counter.textContent = rows.length;
+    }
+
+    function moveItemUp(btn) {
+      var row = btn.closest('.item-row');
+      var prev = row.previousElementSibling;
+      if (prev && prev.classList.contains('item-row')) {
+        row.parentNode.insertBefore(row, prev);
+        updateItemNumbers();
+      }
+    }
+
+    function moveItemDown(btn) {
+      var row = btn.closest('.item-row');
+      var next = row.nextElementSibling;
+      if (next && next.classList.contains('item-row')) {
+        row.parentNode.insertBefore(next, row);
+        updateItemNumbers();
+      }
+    }
+
+    function addItemRow() {
+      var container = document.getElementById('itemsContainer');
+      var count = container.querySelectorAll('.item-row').length;
+      var div = document.createElement('div');
+      div.className = 'item-row';
+      var isFirst = count === 0;
+      var isLast = true;
+      div.innerHTML =
+        '<div class="item-row__header">' +
+          '<span class="item-row__number">Позиция #<span class="row-num">' + (count + 1) + '</span></span>' +
+          '<div class="item-row__header-buttons">' +
+            '<button type="button" class="item-row__reorder" onclick="moveItemUp(this)" ' + (isFirst ? 'disabled' : '') + '>▲</button>' +
+            '<button type="button" class="item-row__reorder" onclick="moveItemDown(this)" ' + (isLast ? 'disabled' : '') + '>▼</button>' +
+            '<button type="button" class="item-row__remove" onclick="removeItemRow(this)">Удалить</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields item-row__fields--full">' +
+          '<div>' +
+            '<div class="item-row__field-label">Категория (для группировки)</div>' +
+            '<input class="item-row__field-input" type="text" name="itemCats[]" value="">' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields">' +
+          '<div>' +
+            '<div class="item-row__field-label">Название</div>' +
+            '<input class="item-row__field-input" type="text" name="itemNames[]" value="" placeholder="Название услуги">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Длительность</div>' +
+            '<input class="item-row__field-input" type="text" name="itemDurations[]" value="" placeholder="60 мин">' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields item-row__fields--full" style="margin-top: 8px;">' +
+          '<div>' +
+            '<div class="item-row__field-label">Описание</div>' +
+            '<input class="item-row__field-input" type="text" name="itemDescs[]" value="" placeholder="Краткое описание">' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields item-row__fields--prices" style="margin-top: 8px;">' +
+          '<div>' +
+            '<div class="item-row__field-label">Цена</div>' +
+            '<input class="item-row__field-input" type="text" name="itemPrices[]" value="" placeholder="от 3 000">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Пакет 5</div>' +
+            '<input class="item-row__field-input" type="text" name="itemP5[]" value="" placeholder="Цена за 5">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Пакет 10</div>' +
+            '<input class="item-row__field-input" type="text" name="itemP10[]" value="" placeholder="Цена за 10">' +
+          '</div>' +
+          '<div></div>' +
+        '</div>';
+      container.appendChild(div);
+      updateItemNumbers();
+      // Scroll to new row
+      div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function removeItemRow(btn) {
+      var row = btn.closest('.item-row');
+      row.remove();
+      updateItemNumbers();
+    }
+
+    // Advantages
+    function updateAdvNumbers() {
+      var rows = document.querySelectorAll('#advantagesContainer .item-row');
+      rows.forEach(function(row, idx) {
+        var num = row.querySelector('.adv-num');
+        if (num) num.textContent = idx + 1;
+      });
+      var counter = document.getElementById('advCount');
+      if (counter) counter.textContent = rows.length;
+    }
+
+    function addAdvRow() {
+      var container = document.getElementById('advantagesContainer');
+      var count = container.querySelectorAll('.item-row').length;
+      var div = document.createElement('div');
+      div.className = 'item-row';
+      div.innerHTML =
+        '<div class="item-row__header">' +
+          '<span class="item-row__number">Преимущество #<span class="adv-num">' + (count + 1) + '</span></span>' +
+          '<button type="button" class="item-row__remove" onclick="removeAdvRow(this)">Удалить</button>' +
+        '</div>' +
+        '<div class="item-row__fields">' +
+          '<div>' +
+            '<div class="item-row__field-label">Иконка (Lucide)</div>' +
+            '<input class="item-row__field-input" type="text" name="advIcons[]" value="" placeholder="star">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Заголовок</div>' +
+            '<input class="item-row__field-input" type="text" name="advTitles[]" value="">' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields item-row__fields--full" style="margin-top: 8px;">' +
+          '<div>' +
+            '<div class="item-row__field-label">Описание</div>' +
+            '<input class="item-row__field-input" type="text" name="advTexts[]" value="">' +
+          '</div>' +
+        '</div>';
+      container.appendChild(div);
+      updateAdvNumbers();
+      div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function removeAdvRow(btn) {
+      btn.closest('.item-row').remove();
+      updateAdvNumbers();
+    }
+
+    // Doctors
+    function updateDocNumbers() {
+      var rows = document.querySelectorAll('#doctorsContainer .item-row');
+      rows.forEach(function(row, idx) {
+        var num = row.querySelector('.doc-num');
+        if (num) num.textContent = idx + 1;
+      });
+      var counter = document.getElementById('docCount');
+      if (counter) counter.textContent = rows.length;
+    }
+
+    function addDocRow() {
+      var container = document.getElementById('doctorsContainer');
+      var count = container.querySelectorAll('.item-row').length;
+      var div = document.createElement('div');
+      div.className = 'item-row';
+      div.innerHTML =
+        '<div class="item-row__header">' +
+          '<span class="item-row__number">Специалист #<span class="doc-num">' + (count + 1) + '</span></span>' +
+          '<button type="button" class="item-row__remove" onclick="removeDocRow(this)">Удалить</button>' +
+        '</div>' +
+        '<div class="item-row__fields">' +
+          '<div>' +
+            '<div class="item-row__field-label">Имя</div>' +
+            '<input class="item-row__field-input" type="text" name="docNames[]" value="">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Должность</div>' +
+            '<input class="item-row__field-input" type="text" name="docRoles[]" value="">' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields" style="margin-top: 8px;">' +
+          '<div>' +
+            '<div class="item-row__field-label">Стаж</div>' +
+            '<input class="item-row__field-input" type="text" name="docExps[]" value="" placeholder="Стаж 15 лет">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Фото (URL)</div>' +
+            '<input class="item-row__field-input" type="text" name="docPhotos[]" value="" placeholder="/images/doctors/name.svg">' +
+          '</div>' +
+        '</div>' +
+        '<div class="item-row__fields item-row__fields--full" style="margin-top: 8px;">' +
+          '<div>' +
+            '<div class="item-row__field-label">Описание</div>' +
+            '<input class="item-row__field-input" type="text" name="docBios[]" value="">' +
+          '</div>' +
+        '</div>';
+      container.appendChild(div);
+      updateDocNumbers();
+      div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function removeDocRow(btn) {
+      btn.closest('.item-row').remove();
+      updateDocNumbers();
+    }
+  </script>
+</body>
+</html>

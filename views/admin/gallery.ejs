@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Галерея — Панель управления</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header h1 { font-size: 20px; font-weight: 600; }
+    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a:hover { color: white; }
+    .admin-body { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 24px; }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back:hover { text-decoration: underline; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+    .form-input, .form-textarea, .form-select { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .file-input-label { display: inline-block; padding: 10px 16px; background: #e8ede0; color: #596341; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+    .file-input-label:hover { background: #dce1d3; }
+    .form-input[type="file"] { display: none; }
+    .btn-upload { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-upload:hover { background: #4a5236; }
+    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-cancel:hover { background: #ccc; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .alert-error { background: #f1d4d4; color: #5a2d2d; border: 1px solid #e6a8a8; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .gallery-item { background: #f9faf7; border: 1px solid #e0e4da; border-radius: 8px; overflow: hidden; }
+    .gallery-item__image { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .gallery-item__info { padding: 12px; }
+    .gallery-item__category { font-size: 12px; color: #999; margin-bottom: 4px; }
+    .gallery-item__alt { font-size: 13px; font-weight: 500; color: #333; margin-bottom: 8px; word-break: break-word; }
+    .gallery-item__action { display: flex; gap: 8px; }
+    .btn-delete { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; flex: 1; }
+    .btn-delete:hover { background: #dbb5a8; }
+    .gallery-empty { text-align: center; padding: 40px 20px; color: #999; }
+  </style>
+</head>
+<body>
+<div class="admin-header">
+  <h1>Галерея</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
+  
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error"><%= error %></div>
+  <% } %>
+
+  <form class="admin-form" method="POST" action="/admin/gallery" enctype="multipart/form-data">
+    <h2 style="margin-bottom: 20px; font-size: 18px;">Загрузить изображение</h2>
+    
+    <div class="form-group">
+      <label class="form-label">Изображение</label>
+      <label class="file-input-label">Выбрать файл</label>
+      <input type="file" name="image" class="form-input" accept="image/*" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Категория</label>
+        <select name="category" class="form-select">
+          <option value="center">Центр</option>
+          <option value="results">Результаты</option>
+          <option value="services">Услуги</option>
+          <option value="team">Команда</option>
+          <option value="other">Другое</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Alt текст (для SEO)</label>
+        <input type="text" name="alt" class="form-input" placeholder="Описание изображения" required>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 12px;">
+      <button type="submit" class="btn-upload">Загрузить</button>
+      <a href="/admin" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+
+  <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <h2 style="margin-bottom: 20px; font-size: 18px;">Изображения в галерее</h2>
+    
+    <% if ((gallery || []).length > 0) { %>
+      <div class="gallery-grid">
+        <% gallery.forEach((image, index) => { %>
+          <div class="gallery-item">
+            <img src="<%= image.url %>" alt="<%= image.alt %>" class="gallery-item__image">
+            <div class="gallery-item__info">
+              <div class="gallery-item__category"><%= image.category %></div>
+              <div class="gallery-item__alt"><%= image.alt %></div>
+              <div class="gallery-item__action">
+                <form method="POST" action="/admin/gallery/delete" style="flex: 1;">
+                  <input type="hidden" name="imageId" value="<%= image.id %>">
+                  <button type="submit" class="btn-delete" onclick="return confirm('Удалить это изображение?')">Удалить</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <div class="gallery-empty">
+        <p>Галерея пока пуста. Загрузите первое изображение.</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+</body>
+</html>

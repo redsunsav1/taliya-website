@@ -1,0 +1,305 @@
+<% const pageTitle = service.name %>
+<%- include('../partials/header') %>
+
+<%
+  /* Determine whether any item has package pricing */
+  const hasPackage5  = service.items.some(item => item.pricePackage5  && item.pricePackage5.trim());
+  const hasPackage10 = service.items.some(item => item.pricePackage10 && item.pricePackage10.trim());
+
+  /* Other services: exclude current, take first 4 */
+  const otherServices = content.services.filter(s => s.slug !== service.slug).slice(0, 4);
+%>
+
+<!-- ===== SERVICE HERO BANNER ===== -->
+<section class="service-hero">
+  <img
+    src="<%= service.image %>"
+    alt="<%= service.name %>"
+    class="service-hero__bg"
+  >
+  <div class="service-hero__overlay"></div>
+
+  <div class="service-hero__content container">
+    <!-- Breadcrumb -->
+    <nav class="service-hero__breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Главная</a>
+      <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+      <span>Услуги</span>
+      <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+      <span><%= service.name %></span>
+    </nav>
+
+    <!-- Heading -->
+    <h1 class="service-hero__title"><%= service.name %></h1>
+
+    <!-- Description -->
+    <p class="service-hero__description"><%= service.description %></p>
+
+    <!-- Discount badge -->
+    <% if (service.discount) { %>
+      <span class="service-hero__badge">
+        <i data-lucide="percent" style="width:14px;height:14px;"></i>
+        Скидка на первый сеанс: <%= service.discount %>
+      </span>
+    <% } %>
+
+    <!-- CTA -->
+    <div class="service-hero__cta">
+      <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+        <i data-lucide="calendar-check"></i>
+        Записаться
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== PRICE LIST SECTION ===== -->
+<section class="section service-price fade-in" id="price">
+  <div class="container">
+    <h2 class="section__title">Прайс-лист</h2>
+    <p class="section__subtitle"><%= service.name %></p>
+
+    <%
+      /* Group items by category if categories exist */
+      const categories = [];
+      const catMap = {};
+      service.items.forEach(function(item) {
+        const cat = item.category || '';
+        if (!catMap[cat]) {
+          catMap[cat] = [];
+          categories.push(cat);
+        }
+        catMap[cat].push(item);
+      });
+      const hasCategories = categories.length > 1 || (categories.length === 1 && categories[0] !== '');
+    %>
+
+    <% if (hasCategories) { %>
+      <div class="price-accordion">
+        <% categories.forEach(function(cat, catIdx) { %>
+          <div class="price-accordion__item<%= catIdx === 0 ? ' price-accordion__item--open' : '' %>">
+            <button type="button" class="price-accordion__header" onclick="togglePriceAccordion(this)">
+              <span class="price-accordion__title"><%= cat || 'Прочее' %></span>
+              <span class="price-accordion__count"><%= catMap[cat].length %></span>
+              <span class="price-accordion__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="price-accordion__body"<%= catIdx === 0 ? '' : ' style="display:none;"' %>>
+              <div class="price-table-wrapper">
+                <table class="price-table">
+                  <thead>
+                    <tr>
+                      <th>Услуга</th>
+                      <th>Длительность</th>
+                      <th>Цена</th>
+                      <% if (hasPackage5) { %><th>Абонемент</th><% } %>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% catMap[cat].forEach(function(item) { %>
+                      <tr>
+                        <td>
+                          <strong class="service-price__item-name"><%= item.name %></strong>
+                          <% if (item.description) { %>
+                            <span class="service-price__item-desc"><%= item.description %></span>
+                          <% } %>
+                        </td>
+                        <td><%= item.duration || '—' %></td>
+                        <td class="price-cell"><%= item.price %></td>
+                        <% if (hasPackage5) { %>
+                          <td class="price-cell price-cell--discount">
+                            <%= (item.pricePackage5 && item.pricePackage5.trim()) ? item.pricePackage5 : '—' %>
+                          </td>
+                        <% } %>
+                      </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <div class="price-table-wrapper">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>Услуга</th>
+              <th>Длительность</th>
+              <th>Цена</th>
+              <% if (hasPackage5) { %><th>Абонемент 5</th><% } %>
+              <% if (hasPackage10) { %><th>Абонемент 10</th><% } %>
+            </tr>
+          </thead>
+          <tbody>
+            <% service.items.forEach(function(item) { %>
+              <tr>
+                <td>
+                  <strong class="service-price__item-name"><%= item.name %></strong>
+                  <% if (item.description) { %>
+                    <span class="service-price__item-desc"><%= item.description %></span>
+                  <% } %>
+                </td>
+                <td><%= item.duration || '—' %></td>
+                <td class="price-cell"><%= item.price %></td>
+                <% if (hasPackage5) { %>
+                  <td class="price-cell price-cell--discount">
+                    <%= (item.pricePackage5 && item.pricePackage5.trim()) ? item.pricePackage5 : '—' %>
+                  </td>
+                <% } %>
+                <% if (hasPackage10) { %>
+                  <td class="price-cell price-cell--discount">
+                    <%= (item.pricePackage10 && item.pricePackage10.trim()) ? item.pricePackage10 : '—' %>
+                  </td>
+                <% } %>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+
+    <% if (service.discount) { %>
+      <p class="service-price__note">
+        <i data-lucide="info" style="width:16px;height:16px;vertical-align:middle;"></i>
+        Скидка на первый сеанс: <strong><%= service.discount %></strong>
+      </p>
+    <% } %>
+  </div>
+</section>
+
+
+<!-- ===== DETAILED DESCRIPTION + VIDEO ===== -->
+<% if (service.detailedDescription || service.videoUrl) { %>
+  <section class="section service-details fade-in">
+    <div class="container">
+      <% if (service.detailedDescription) { %>
+        <h2 class="section__title">Как это работает</h2>
+        <div class="service-details__text">
+          <p><%= service.detailedDescription %></p>
+        </div>
+      <% } %>
+
+      <% if (service.videoUrl) { %>
+        <div class="service-details__video">
+          <div class="video-wrapper">
+            <iframe
+              src="<%= service.videoUrl %>"
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
+              frameborder="0"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </section>
+<% } %>
+
+
+<!-- ===== ADVANTAGES SECTION ===== -->
+<% if (service.advantages && service.advantages.length) { %>
+  <section class="section service-advantages fade-in">
+    <div class="container">
+      <h2 class="section__title">Наши преимущества</h2>
+      <p class="section__subtitle">Почему клиенты выбирают нас для <%= service.name.toLowerCase() %></p>
+
+      <div class="service-advantages__grid">
+        <% service.advantages.forEach(function(adv, i) { %>
+          <div class="advantage-card fade-in delay-<%= i + 1 %>">
+            <div class="advantage-card__icon">
+              <i data-lucide="<%= adv.icon %>"></i>
+            </div>
+            <div class="advantage-card__body">
+              <h3 class="advantage-card__title"><%= adv.title %></h3>
+              <p class="advantage-card__text"><%= adv.text %></p>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+<% } %>
+
+
+<!-- ===== DOCTORS SECTION ===== -->
+<% if (service.doctors && service.doctors.length) { %>
+  <section class="section service-doctors fade-in">
+    <div class="container">
+      <h2 class="section__title">Наши специалисты</h2>
+      <p class="section__subtitle">Опытные профессионалы, которым вы можете доверять</p>
+
+      <div class="service-doctors__grid">
+        <% service.doctors.forEach(function(doc, i) { %>
+          <div class="doctor-card fade-in delay-<%= i + 1 %>">
+            <div class="doctor-card__photo-wrapper">
+              <img
+                src="<%= doc.photo %>"
+                alt="<%= doc.name %>"
+                class="doctor-card__photo"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              >
+              <div class="doctor-card__placeholder" style="display:none;">
+                <i data-lucide="user" style="width:64px;height:64px;color:var(--color-warm-gray);"></i>
+              </div>
+            </div>
+            <h3 class="doctor-card__name"><%= doc.name %></h3>
+            <p class="doctor-card__role"><%= doc.role %></p>
+            <% if (doc.experience) { %>
+              <p class="doctor-card__experience">
+                <i data-lucide="award" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i>
+                <%= doc.experience %>
+              </p>
+            <% } %>
+            <p class="doctor-card__bio"><%= doc.bio %></p>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+<% } %>
+
+
+<!-- ===== CALLBACK FORM ===== -->
+<%- include('../partials/callback-form') %>
+
+
+<!-- ===== OTHER SERVICES SECTION ===== -->
+<% if (otherServices.length) { %>
+  <section class="section service-others bg-off-white fade-in">
+    <div class="container">
+      <h2 class="section__title">Другие услуги</h2>
+      <p class="section__subtitle">Ознакомьтесь с другими нашими направлениями</p>
+
+      <div class="services__grid">
+        <% otherServices.forEach(function(s, i) { %>
+          <a href="/service/<%= s.slug %>" class="service-card fade-in delay-<%= i + 1 %>">
+            <img
+              src="<%= s.image %>"
+              alt="<%= s.name %>"
+              class="service-card__image"
+              loading="lazy"
+            >
+            <div class="service-card__overlay">
+              <h3 class="service-card__name"><%= s.shortName %></h3>
+              <p class="service-card__brief"><%= s.description.substring(0, 80) %>...</p>
+              <% if (s.items.length) { %>
+                <span class="service-card__price"><%= s.items[0].price %></span>
+              <% } %>
+            </div>
+            <div class="service-card__arrow">
+              <i data-lucide="arrow-right"></i>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+<% } %>
+
+<%- include('../partials/footer') %>

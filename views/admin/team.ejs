@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Специалисты — Панель управления</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header h1 { font-size: 20px; font-weight: 600; }
+    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a:hover { color: white; }
+    .admin-body { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back:hover { text-decoration: underline; }
+    .team-member { background: #f9faf7; border: 1px solid #e0e4da; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    .team-member__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #e0e4da; padding-bottom: 12px; }
+    .team-member__name { font-size: 16px; font-weight: 600; color: #333; }
+    .btn-remove { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .btn-remove:hover { background: #dbb5a8; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .file-input-label { display: inline-block; padding: 10px 16px; background: #e8ede0; color: #596341; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+    .file-input-label:hover { background: #dce1d3; }
+    .form-input[type="file"] { display: none; }
+    .image-preview { max-width: 120px; max-height: 120px; margin-top: 10px; border-radius: 6px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btn-add-member { padding: 12px 20px; background: #dce1d3; color: #596341; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+    .btn-add-member:hover { background: #ccd4c3; }
+    .form-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save:hover { background: #4a5236; }
+    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-cancel:hover { background: #ccc; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+  </style>
+</head>
+<body>
+<div class="admin-header">
+  <h1>Специалисты</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
+  
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+  
+  <form class="admin-form" method="POST" action="/admin/team" enctype="multipart/form-data">
+    <button type="button" class="btn-add-member" onclick="addTeamMember()">+ Добавить специалиста</button>
+
+    <div id="team-members">
+      <% (team || []).forEach((member, index) => { %>
+        <div class="team-member" data-index="<%= index %>">
+          <div class="team-member__header">
+            <div class="team-member__name"><%= member.name || 'Новый специалист' %></div>
+            <button type="button" class="btn-remove" onclick="removeMember(this)">Удалить</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input type="text" name="team[<%= index %>][name]" class="form-input" value="<%= member.name || '' %>" placeholder="Полное имя" onchange="updateName(this)">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Должность</label>
+              <input type="text" name="team[<%= index %>][role]" class="form-input" value="<%= member.role || '' %>" placeholder="Например: Косметолог">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Опыт (лет)</label>
+              <input type="number" name="team[<%= index %>][experience]" class="form-input" value="<%= member.experience || '' %>" placeholder="Количество лет опыта">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Биография</label>
+            <textarea name="team[<%= index %>][bio]" class="form-textarea" placeholder="Краткая биография и достижения"><%= member.bio || '' %></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Фотография</label>
+            <label class="file-input-label">Выбрать файл</label>
+            <input type="file" name="team[<%= index %>][photo]" class="form-input" accept="image/*">
+            <% if (member.photo) { %>
+              <img src="<%= member.photo %>" alt="<%= member.name %>" class="image-preview">
+            <% } %>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Специализации (через запятую)</label>
+            <input type="text" name="team[<%= index %>][specialties]" class="form-input" value="<%= (member.specialties || []).join(', ') %>" placeholder="Например: Омоложение, Инъекции, Чистка">
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+      <a href="/admin" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
+</div>
+
+<script>
+let memberCount = <%= (team || []).length %>;
+
+function addTeamMember() {
+  const container = document.getElementById('team-members');
+  const newMember = document.createElement('div');
+  newMember.className = 'team-member';
+  newMember.data-index = memberCount;
+  newMember.innerHTML = `
+    <div class="team-member__header">
+      <div class="team-member__name">Новый специалист</div>
+      <button type="button" class="btn-remove" onclick="removeMember(this)">Удалить</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Имя</label>
+      <input type="text" name="team[${memberCount}][name]" class="form-input" placeholder="Полное имя" onchange="updateName(this)">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Должность</label>
+        <input type="text" name="team[${memberCount}][role]" class="form-input" placeholder="Например: Косметолог">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Опыт (лет)</label>
+        <input type="number" name="team[${memberCount}][experience]" class="form-input" placeholder="Количество лет опыта">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Биография</label>
+      <textarea name="team[${memberCount}][bio]" class="form-textarea" placeholder="Краткая биография и достижения"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Фотография</label>
+      <label class="file-input-label">Выбрать файл</label>
+      <input type="file" name="team[${memberCount}][photo]" class="form-input" accept="image/*">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Специализации (через запятую)</label>
+      <input type="text" name="team[${memberCount}][specialties]" class="form-input" placeholder="Например: Омоложение, Инъекции, Чистка">
+    </div>
+  `;
+  container.appendChild(newMember);
+  memberCount++;
+}
+
+function removeMember(button) {
+  button.closest('.team-member').remove();
+}
+
+function updateName(input) {
+  const memberDiv = input.closest('.team-member');
+  const nameDisplay = memberDiv.querySelector('.team-member__name');
+  nameDisplay.textContent = input.value || 'Новый специалист';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<% var pageTitle = 'Наша команда'; %>
+<%- include('../partials/header') %>
+
+<main>
+  <!-- Герой-баннер -->
+  <section class="section section--hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="section__title"><%= content.team && content.team.title ? content.team.title : 'Наша команда' %></h1>
+        <p class="section__subtitle"><%= content.team && content.team.subtitle ? content.team.subtitle : 'Опытные специалисты в области косметологии и здоровья' %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Сетка специалистов -->
+  <% if (content.team && content.team.members && Array.isArray(content.team.members)) { %>
+    <section class="section section--team">
+      <div class="container">
+        <div class="team-grid fade-in">
+          <% content.team.members.forEach(function(member) { %>
+            <div class="team-card">
+              <% if (member.photo) { %>
+                <div class="team-card__photo">
+                  <img src="<%= member.photo %>" alt="<%= member.name %>" loading="lazy">
+                </div>
+              <% } %>
+              <div class="team-card__content">
+                <h3 class="team-card__name"><%= member.name %></h3>
+                <p class="team-card__role"><%= member.role %></p>
+                <% if (member.experience) { %>
+                  <p class="team-card__experience">
+                    <i class="lucide" data-icon="briefcase"></i>
+                    Опыт работы: <%= member.experience %> лет
+                  </p>
+                <% } %>
+                <% if (member.bio) { %>
+                  <p class="team-card__bio"><%= member.bio %></p>
+                <% } %>
+                <% if (member.specialties && Array.isArray(member.specialties)) { %>
+                  <div class="team-card__specialties">
+                    <% member.specialties.forEach(function(specialty) { %>
+                      <span class="specialty-tag"><%= specialty %></span>
+                    <% }); %>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- Форма обратной связи -->
+  <section class="section section--callback">
+    <div class="container">
+      <%- include('../partials/callback-form') %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Юридические документы — Панель управления</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header h1 { font-size: 20px; font-weight: 600; }
+    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a:hover { color: white; }
+    .admin-body { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back:hover { text-decoration: underline; }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #333; }
+    .form-textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 13px; resize: vertical; min-height: 200px; }
+    .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
+    .form-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save:hover { background: #4a5236; }
+    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-cancel:hover { background: #ccc; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .alert-info { background: #dce6f1; color: #2d3d5a; border: 1px solid #a8c4e6; }
+    .doc-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #333; }
+    .doc-desc { font-size: 13px; color: #666; margin-bottom: 16px; line-height: 1.5; }
+    .legal-note { background: #fffbf0; border: 1px solid #f0e6d2; border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; color: #666; }
+  </style>
+</head>
+<body>
+<div class="admin-header">
+  <h1>Юридические документы</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
+  
+  <% if (typeof message !== 'undefined' && message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+  
+  <div class="alert alert-info">
+    <strong>Информация:</strong> Юридические документы отредактированы в этой панели. Они отображаются на сайте в виде отдельных страниц. Изменения вступают в силу немедленно.
+  </div>
+
+  <!-- Privacy Policy -->
+  <form class="admin-form" method="POST" action="/admin/legal/privacy">
+    <div class="doc-title">Политика конфиденциальности</div>
+    <div class="doc-desc">
+      Этот документ объясняет, как мы собираем, используем и защищаем личные данные посетителей сайта. 
+      Должен содержать информацию о типах собираемых данных, целях использования и правах пользователей.
+    </div>
+    <div class="legal-note">
+      Эта страница доступна по адресу <code>/privacy</code> на сайте
+    </div>
+    <div class="form-group">
+      <label class="form-label">Содержание политики конфиденциальности</label>
+      <textarea name="privacy" class="form-textarea" placeholder="Введите текст политики конфиденциальности..."><%= legal?.privacy || '' %></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+    </div>
+  </form>
+
+  <!-- Terms of Service -->
+  <form class="admin-form" method="POST" action="/admin/legal/terms">
+    <div class="doc-title">Условия использования</div>
+    <div class="doc-desc">
+      Условия, на которых пользователи могут использовать сайт и услуги. Включает информацию об ответственности, 
+      ограничениях, интеллектуальной собственности и других правовых вопросах.
+    </div>
+    <div class="legal-note">
+      Эта страница доступна по адресу <code>/terms</code> на сайте
+    </div>
+    <div class="form-group">
+      <label class="form-label">Содержание условий использования</label>
+      <textarea name="terms" class="form-textarea" placeholder="Введите текст условий использования..."><%= legal?.terms || '' %></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+    </div>
+  </form>
+
+  <!-- Cookie Consent -->
+  <form class="admin-form" method="POST" action="/admin/legal/cookies">
+    <div class="doc-title">Политика использования файлов Cookie</div>
+    <div class="doc-desc">
+      Информация о том, как сайт использует файлы cookie для улучшения пользовательского опыта, 
+      аналитики и целевой рекламы. Объясняет, какие типы cookie используются и как пользователь может их контролировать.
+    </div>
+    <div class="legal-note">
+      Эта страница доступна по адресу <code>/cookies</code> на сайте
+    </div>
+    <div class="form-group">
+      <label class="form-label">Содержание политики использования файлов Cookie</label>
+      <textarea name="cookies" class="form-textarea" placeholder="Введите текст политики использования cookie..."><%= legal?.cookies || '' %></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+    </div>
+  </form>
+
+  <!-- Consent Text -->
+  <form class="admin-form" method="POST" action="/admin/legal/consent">
+    <div class="doc-title">Текст согласия на обработку персональных данных</div>
+    <div class="doc-desc">
+      Краткий текст согласия, который пользователи должны прочитать и согласиться перед отправкой контактной формы. 
+      Обычно это более краткий вариант политики конфиденциальности.
+    </div>
+    <div class="legal-note">
+      Этот текст отображается в модальном окне при согласии пользователя на форме обратной связи
+    </div>
+    <div class="form-group">
+      <label class="form-label">Текст согласия</label>
+      <textarea name="consent" class="form-textarea" placeholder="Введите текст согласия..."><%= legal?.consent || '' %></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Сохранить</button>
+    </div>
+  </form>
+
+  <form method="GET" action="/admin" style="margin-top: 20px;">
+    <button type="submit" class="btn-cancel">Вернуться в панель управления</button>
+  </form>
+</div>
+</body>
+</html>

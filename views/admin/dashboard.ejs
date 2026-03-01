@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Панель управления — Талия</title>
+<style>
+/* Admin panel styles - self-contained */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
+.admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+.admin-header h1 { font-size: 20px; font-weight: 600; }
+.admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+.admin-header a:hover { color: white; }
+.admin-body { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.admin-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; display: block; }
+.admin-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.admin-card__icon { width: 48px; height: 48px; border-radius: 12px; background: #e8ede0; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: #596341; }
+.admin-card__title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.admin-card__desc { font-size: 13px; color: #666; line-height: 1.4; }
+.admin-section-title { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #999; margin: 24px 0 12px; }
+</style>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head><body>
+<div class="admin-header">
+  <h1>Панель управления — Талия</h1>
+  <div>
+    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/admin/logout">Выйти</a>
+  </div>
+</div>
+<div class="admin-body">
+  <p class="admin-section-title">Главная страница</p>
+  <div class="admin-grid">
+    <a href="/admin/hero" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="image"></i></div>
+      <div class="admin-card__title">Баннер (главная)</div>
+      <div class="admin-card__desc">Заголовок, подзаголовок, фон, акционный текст</div>
+    </a>
+    <a href="/admin/benefits" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="check-circle"></i></div>
+      <div class="admin-card__title">Преимущества</div>
+      <div class="admin-card__desc">Блок «Почему выбирают нас»</div>
+    </a>
+  </div>
+
+  <p class="admin-section-title">Разделы сайта</p>
+  <div class="admin-grid">
+    <a href="/admin/services" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="briefcase"></i></div>
+      <div class="admin-card__title">Услуги</div>
+      <div class="admin-card__desc">Управление услугами, ценами, описаниями</div>
+    </a>
+    <a href="/admin/about" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="info"></i></div>
+      <div class="admin-card__title">О нас</div>
+      <div class="admin-card__desc">Текст о компании, ценности</div>
+    </a>
+    <a href="/admin/team" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="users"></i></div>
+      <div class="admin-card__title">Специалисты</div>
+      <div class="admin-card__desc">Команда, фото, специализации</div>
+    </a>
+    <a href="/admin/gallery" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="camera"></i></div>
+      <div class="admin-card__title">Галерея</div>
+      <div class="admin-card__desc">Фотографии центра и результатов</div>
+    </a>
+    <a href="/admin/promotions" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="gift"></i></div>
+      <div class="admin-card__title">Акции</div>
+      <div class="admin-card__desc">Специальные предложения и скидки</div>
+    </a>
+  </div>
+
+  <p class="admin-section-title">Настройки</p>
+  <div class="admin-grid">
+    <a href="/admin/settings" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="settings"></i></div>
+      <div class="admin-card__title">Общие настройки</div>
+      <div class="admin-card__desc">Контакты, соцсети, виджет записи</div>
+    </a>
+    <a href="/admin/seo" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="search"></i></div>
+      <div class="admin-card__title">Поисковая оптимизация</div>
+      <div class="admin-card__desc">Заголовки и описания страниц для поисковых систем</div>
+    </a>
+    <a href="/admin/pages" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="layout"></i></div>
+      <div class="admin-card__title">Управление страницами</div>
+      <div class="admin-card__desc">Видимость разделов в навигации</div>
+    </a>
+    <a href="/admin/legal" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="file-text"></i></div>
+      <div class="admin-card__title">Юридические документы</div>
+      <div class="admin-card__desc">Политика конфиденциальности, соглашения</div>
+    </a>
+    <a href="/admin/callbacks" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="phone-incoming"></i></div>
+      <div class="admin-card__title">Заявки</div>
+      <div class="admin-card__desc">Обратные звонки и заявки с сайта</div>
+    </a>
+    <a href="/admin/password" class="admin-card">
+      <div class="admin-card__icon"><i data-lucide="lock"></i></div>
+      <div class="admin-card__title">Сменить пароль</div>
+      <div class="admin-card__desc">Изменить пароль администратора</div>
+    </a>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body></html>

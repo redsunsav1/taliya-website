@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A7B4B"/>
+      <stop offset="50%" stop-color="#566740"/>
+      <stop offset="100%" stop-color="#455435"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8562"/>
+      <stop offset="100%" stop-color="#FF6B47"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <circle cx="530" cy="95" r="120" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="70" cy="305" r="90" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="300" cy="180" r="70" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  <!-- Laser beam icon -->
+  <g transform="translate(255, 135)" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M45 10 L45 75"/>
+    <circle cx="45" cy="10" r="8" fill="url(#accent)" stroke="none" opacity="0.9"/>
+    <path d="M30 30 L45 45 L60 30" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    <path d="M25 50 L45 65 L65 50" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    <circle cx="45" cy="75" r="3" fill="#fff"/>
+    <line x1="35" y1="75" x2="25" y2="85" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    <line x1="55" y1="75" x2="65" y2="85" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  </g>
+  <text x="300" y="290" font-family="Georgia, serif" font-size="22" fill="rgba(255,255,255,0.9)" text-anchor="middle" font-weight="500">Лазерная эпиляция</text>
+  <text x="300" y="320" font-family="sans-serif" font-size="13" fill="rgba(255,255,255,0.6)" text-anchor="middle">Гибридные аппараты 3-в-1</text>
+</svg>
