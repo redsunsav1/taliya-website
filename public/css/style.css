@@ -270,80 +270,7 @@ button {
    On scroll it gains a subtle shadow only.
    ========================================================================== */
 
-/* -- Top info bar -- */
-.header__topbar {
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-warm-gray);
-  padding: 6px 0;
-  font-size: 0.75rem;
-  color: var(--color-text-light);
-}
-
-.header__topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-}
-
-.header__topbar-left,
-.header__topbar-right {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-}
-
-.header__topbar-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-}
-
-.header__topbar-license {
-  color: var(--color-text-muted);
-  font-size: 0.7rem;
-}
-
-.header__topbar-socials {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.header__topbar-social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-
-.header__topbar-social:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
-
-.header__topbar-phone {
-  color: var(--color-primary);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.header__topbar-phone:hover {
-  color: var(--color-primary-dark);
-}
-
-/* -- Main header -- */
-.header__main {
-  padding: var(--space-sm) 0;
-}
+/* -- Header (single row) -- */
 
 .header {
   position: fixed;
@@ -352,62 +279,97 @@ button {
   width: 100%;
   z-index: var(--z-fixed);
   background-color: var(--color-off-white);
+  border-bottom: 1px solid var(--color-warm-gray);
   transition: box-shadow var(--transition-base);
 }
 
 .header--scrolled {
-  padding: var(--space-sm) 0;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .header__container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 var(--space-xl);
-  gap: var(--space-sm);
+  padding: 12px var(--space-xl);
+  gap: var(--space-lg);
 }
 
 /* -- Logo -- */
 .header__logo {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .header__logo-name {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-secondary);
   letter-spacing: var(--letter-spacing-wide);
-  line-height: 1.1;
-}
-
-.header__logo-name span {
-  color: var(--color-primary);
-}
-
-.header__logo-tagline {
-  font-family: var(--font-body);
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  margin-top: 2px;
+  line-height: 1;
 }
 
 .header__logo img {
-  height: 48px;
+  height: 52px;
   width: auto;
+  transition: height var(--transition-fast);
 }
 
 .header--scrolled .header__logo img {
   height: 40px;
+}
+
+/* -- Right side (phone + socials) -- */
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.header__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.header__phone:hover {
+  color: var(--color-primary-dark);
+}
+
+.header__socials {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.header__social:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 /* -- Desktop Navigation -- */
@@ -466,29 +428,6 @@ button {
 }
 
 .header__nav-link--active {
-  color: var(--color-primary);
-}
-
-/* -- Header Phone -- */
-.header__phone {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--color-secondary);
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-  text-decoration: none;
-  transition: color var(--transition-base);
-  white-space: nowrap;
-}
-
-.header__phone:hover {
-  color: var(--color-primary);
-}
-
-.header__phone-icon {
-  width: 18px;
-  height: 18px;
   color: var(--color-primary);
 }
 
@@ -571,14 +510,14 @@ button {
   background-color: var(--color-white);
 }
 
-/* -- Header Spacer (topbar ~36px + main ~64px) -- */
+/* -- Header Spacer -- */
 .header-spacer {
-  height: 110px;
+  height: 76px;
 }
 
 @media (max-width: 768px) {
   .header-spacer {
-    height: 70px;
+    height: 66px;
   }
 }
 
@@ -3303,16 +3242,12 @@ button {
     padding: var(--space-xl) 0;
   }
 
-  /* Header: hide topbar, collapse nav to burger */
-  .header__topbar {
-    display: none;
-  }
-
-  .nav {
-    display: none;
-  }
-
+  /* Header: hide nav and right block on mobile, show burger */
   .header__nav {
+    display: none;
+  }
+
+  .header__right {
     display: none;
   }
 

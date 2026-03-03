@@ -81,104 +81,82 @@
 
   <!-- ===== HEADER ===== -->
   <header class="header" id="header">
+    <div class="header__container container">
 
-    <!-- Top info bar (desktop only) -->
-    <div class="header__topbar">
-      <div class="header__topbar-inner container">
-        <div class="header__topbar-left">
-          <span class="header__topbar-item">
-            <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-            <%= content.site.address %>
-          </span>
-          <span class="header__topbar-item">
-            <i data-lucide="clock" style="width:14px;height:14px;"></i>
-            <%= content.site.hours %>
-          </span>
-          <a href="tel:<%= content.site.phoneRaw %>" class="header__topbar-item header__topbar-phone">
-            <i data-lucide="phone" style="width:14px;height:14px;"></i>
-            <%= content.site.phone %>
-          </a>
-        </div>
-        <div class="header__topbar-right">
-          <span class="header__topbar-item header__topbar-license">
-            Лицензия <%= content.site.license %>
-          </span>
-          <div class="header__topbar-socials">
-            <% if (content.site.whatsapp) { %>
-              <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" aria-label="Ватсап" class="header__topbar-social">
-                <i data-lucide="message-circle" style="width:15px;height:15px;"></i>
-              </a>
-            <% } %>
-            <% if (content.site.telegram) { %>
-              <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" aria-label="Телеграм" class="header__topbar-social">
-                <i data-lucide="send" style="width:15px;height:15px;"></i>
-              </a>
-            <% } %>
-            <% if (content.site.vk) { %>
-              <a href="<%= content.site.vk %>" target="_blank" rel="noopener" aria-label="ВКонтакте" class="header__topbar-social">
-                <i data-lucide="users" style="width:15px;height:15px;"></i>
-              </a>
-            <% } %>
-          </div>
-        </div>
-      </div>
-    </div>
+      <!-- Logo -->
+      <a href="/" class="header__logo">
+        <% if (content.site.logo) { %>
+          <img src="<%= content.site.logo %>" alt="<%= content.site.name %>" class="header__logo-img">
+        <% } else { %>
+          <span class="header__logo-name"><%= content.site.name %></span>
+        <% } %>
+      </a>
 
-    <!-- Main header row -->
-    <div class="header__main">
-      <div class="header__container container">
+      <!-- Desktop Navigation -->
+      <nav class="header__nav" id="headerNav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a href="/" class="header__nav-link<%= currentPath === '/' ? ' header__nav-link--active' : '' %>">Главная</a>
+          </li>
+          <li class="header__nav-item header__nav-item--dropdown">
+            <a href="#" class="header__nav-link header__nav-link--dropdown-toggle">
+              Услуги <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+            </a>
+            <ul class="header__dropdown">
+              <% content.services.forEach(function(s) { %>
+                <li><a href="/service/<%= s.slug %>" class="header__dropdown-link"><%= s.shortName %></a></li>
+              <% }); %>
+            </ul>
+          </li>
+          <li class="header__nav-item">
+            <a href="/about" class="header__nav-link<%= currentPath === '/about' ? ' header__nav-link--active' : '' %>">О нас</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/team" class="header__nav-link<%= currentPath === '/team' ? ' header__nav-link--active' : '' %>">Специалисты</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/gallery" class="header__nav-link<%= currentPath === '/gallery' ? ' header__nav-link--active' : '' %>">Галерея</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/promotions" class="header__nav-link<%= currentPath === '/promotions' ? ' header__nav-link--active' : '' %>">Акции</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/contacts" class="header__nav-link<%= currentPath === '/contacts' ? ' header__nav-link--active' : '' %>">Контакты</a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Logo -->
-        <a href="/" class="header__logo">
-          <% if (content.site.logo) { %>
-            <img src="<%= content.site.logo %>" alt="<%= content.site.name %>" class="header__logo-img" style="max-height: 50px; width: auto;">
-          <% } else { %>
-            <span class="header__logo-name"><%= content.site.name %></span>
-          <% } %>
-          <span class="header__logo-tagline">ЦЕНТР ЭСТЕТИКИ ТЕЛА</span>
+      <!-- Right side: phone + socials -->
+      <div class="header__right">
+        <a href="tel:<%= content.site.phoneRaw %>" class="header__phone">
+          <i data-lucide="phone" style="width:15px;height:15px;"></i>
+          <%= content.site.phone %>
         </a>
-
-        <!-- Desktop Navigation -->
-        <nav class="header__nav" id="headerNav">
-          <ul class="header__nav-list">
-            <li class="header__nav-item">
-              <a href="/" class="header__nav-link<%= currentPath === '/' ? ' header__nav-link--active' : '' %>">Главная</a>
-            </li>
-            <li class="header__nav-item header__nav-item--dropdown">
-              <a href="#" class="header__nav-link header__nav-link--dropdown-toggle">
-                Услуги <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-              </a>
-              <ul class="header__dropdown">
-                <% content.services.forEach(function(s) { %>
-                  <li><a href="/service/<%= s.slug %>" class="header__dropdown-link"><%= s.shortName %></a></li>
-                <% }); %>
-              </ul>
-            </li>
-            <li class="header__nav-item">
-              <a href="/about" class="header__nav-link<%= currentPath === '/about' ? ' header__nav-link--active' : '' %>">О нас</a>
-            </li>
-            <li class="header__nav-item">
-              <a href="/team" class="header__nav-link<%= currentPath === '/team' ? ' header__nav-link--active' : '' %>">Специалисты</a>
-            </li>
-            <li class="header__nav-item">
-              <a href="/gallery" class="header__nav-link<%= currentPath === '/gallery' ? ' header__nav-link--active' : '' %>">Галерея</a>
-            </li>
-            <li class="header__nav-item">
-              <a href="/promotions" class="header__nav-link<%= currentPath === '/promotions' ? ' header__nav-link--active' : '' %>">Акции</a>
-            </li>
-            <li class="header__nav-item">
-              <a href="/contacts" class="header__nav-link<%= currentPath === '/contacts' ? ' header__nav-link--active' : '' %>">Контакты</a>
-            </li>
-          </ul>
-        </nav>
-
-        <!-- Hamburger (mobile/tablet) -->
-        <button class="header__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
-          <span class="header__burger-line"></span>
-          <span class="header__burger-line"></span>
-          <span class="header__burger-line"></span>
-        </button>
+        <div class="header__socials">
+          <% if (content.site.whatsapp) { %>
+            <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" aria-label="Ватсап" class="header__social">
+              <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
+            </a>
+          <% } %>
+          <% if (content.site.telegram) { %>
+            <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" aria-label="Телеграм" class="header__social">
+              <i data-lucide="send" style="width:16px;height:16px;"></i>
+            </a>
+          <% } %>
+          <% if (content.site.vk) { %>
+            <a href="<%= content.site.vk %>" target="_blank" rel="noopener" aria-label="ВКонтакте" class="header__social">
+              <i data-lucide="users" style="width:16px;height:16px;"></i>
+            </a>
+          <% } %>
+        </div>
       </div>
+
+      <!-- Hamburger (mobile/tablet) -->
+      <button class="header__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="header__burger-line"></span>
+        <span class="header__burger-line"></span>
+        <span class="header__burger-line"></span>
+      </button>
     </div>
   </header>
 
