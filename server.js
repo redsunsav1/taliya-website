@@ -335,12 +335,20 @@ app.get('/admin/settings', requireAuth, (req, res) => {
   res.render('admin/settings');
 });
 
-app.post('/admin/settings', requireAuth, (req, res) => {
+app.post('/admin/settings', requireAuth, upload.fields([{name: 'logo', maxCount: 1}, {name: 'favicon', maxCount: 1}]), (req, res) => {
   const content = loadContent();
   const fields = ['name', 'tagline', 'phone', 'phoneRaw', 'address', 'hours', 'email', 'vk', 'telegram', 'whatsapp', 'profsalon', 'license', 'company', 'mapEmbed', 'profsalonWidget'];
   fields.forEach(f => {
     if (req.body[f] !== undefined) content.site[f] = req.body[f];
   });
+
+  if (req.files && req.files.logo) {
+    content.site.logo = '/uploads/' + req.files.logo[0].filename;
+  }
+  if (req.files && req.files.favicon) {
+    content.site.favicon = '/uploads/' + req.files.favicon[0].filename;
+  }
+
   saveContent(content);
   res.redirect('/admin/settings?saved=1');
 });

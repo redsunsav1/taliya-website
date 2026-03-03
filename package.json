@@ -1,7 +1,7 @@
 {
   "name": "taliya-website",
   "version": "1.0.0",
-  "description": "Tali.Ya - Центр эстетики тела и косметологии",
+  "description": "Талия - Центр эстетики тела и косметологии",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

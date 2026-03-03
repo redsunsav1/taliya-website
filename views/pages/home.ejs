@@ -70,21 +70,10 @@
           >
           <div class="service-card__overlay">
             <% if (s.discount) { %>
-              <span class="service-card__discount" style="
-                display: inline-block;
-                padding: 2px 10px;
-                background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-                color: var(--color-secondary);
-                font-size: var(--font-size-xs);
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: var(--letter-spacing-wide);
-                border-radius: var(--border-radius-xl);
-                margin-bottom: var(--space-sm);
-              "><%= s.discount %></span>
+              <span class="service-card__discount"><%= s.discount %></span>
             <% } %>
-            <h3 class="service-card__name"><%= s.name %></h3>
-            <p class="service-card__brief"><%= s.description %></p>
+            <h3 class="service-card__name"><%= s.shortName || s.name %></h3>
+            <p class="service-card__brief"><%= s.description ? s.description.substring(0, 60) + (s.description.length > 60 ? '...' : '') : '' %></p>
           </div>
           <div class="service-card__arrow">
             <i data-lucide="arrow-right"></i>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Тали.Я (Tali.Ya) — Центр эстетики тела и косметологии
+   Талия — Центр эстетики тела и косметологии
    Таблица стилей
    ========================================================================== */
 
@@ -12,7 +12,7 @@
    ========================================================================== */
 
 :root {
-  /* --- Primary Palette (from tali-ya.ru) --- */
+  /* --- Primary Palette --- */
   --color-primary: #596341;
   --color-primary-light: #6d7a50;
   --color-primary-dark: #454d33;
@@ -1168,7 +1168,7 @@ button {
   position: relative;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  height: 380px;
+  height: 320px;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1225,16 +1225,22 @@ button {
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: var(--space-sm);
   line-height: var(--line-height-base);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .service-card__discount {
   display: inline-block;
-  padding: 2px var(--space-sm);
-  background-color: var(--color-accent);
-  color: var(--color-white);
+  padding: 3px 12px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  color: var(--color-secondary);
   font-size: var(--font-size-xs);
   font-weight: 700;
-  border-radius: var(--border-radius-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  border-radius: var(--border-radius-xl);
   margin-bottom: var(--space-sm);
 }
 
