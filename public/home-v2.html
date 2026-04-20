@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Талия — Центр эстетики тела и косметологии · v2 preview</title>
+<meta name="description" content="Превью редизайна главной страницы. Quiet luxury, пастельная зелень, плавные анимации.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link rel="stylesheet" href="css/v2.css">
+</head>
+
+<body class="has-sidebar">
+
+<div class="preloader" id="preloader">
+  <span class="preloader__mark">Талия</span>
+  <span class="preloader__line"></span>
+</div>
+
+<!-- Mobile top bar -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <a href="#" class="topbar__logo"><img src="images/logo.svg" alt="Талия"></a>
+    <button class="topbar__burger" id="headerBurger" aria-expanded="false" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <a href="#" class="sidebar__logo">
+    <img src="images/logo.svg" alt="Талия">
+  </a>
+
+  <nav class="sidebar__nav">
+    <ul class="sidebar__nav-list">
+      <li><a href="home-v2.html" class="sidebar__nav-link sidebar__nav-link--active"><span>Главная</span></a></li>
+      <li><a href="about-v2.html" class="sidebar__nav-link"><span>О нас</span></a></li>
+      <li class="sidebar__nav-item--expandable" id="navServices">
+        <a href="#services" class="sidebar__nav-link">
+          <span>Услуги</span>
+          <i data-lucide="chevron-down" class="sidebar__nav-caret"></i>
+        </a>
+        <ul class="sidebar__subnav">
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Врачебная косметология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Эндосфера-терапия</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Массаж</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Аппаратные процедуры</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Эстетическая косметология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Подология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Лазерная эпиляция</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Программы</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Маникюр и педикюр</a></li>
+        </ul>
+      </li>
+      <li><a href="team-v2.html" class="sidebar__nav-link"><span>Мастера</span></a></li>
+      <li><a href="gallery-v2.html" class="sidebar__nav-link"><span>Портфолио</span></a></li>
+      <li><a href="promotions-v2.html" class="sidebar__nav-link"><span>Акции</span></a></li>
+      <li><a href="contacts-v2.html" class="sidebar__nav-link"><span>Контакты</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="sidebar__contacts">
+    <a href="tel:+79852200106" class="sidebar__phone">+7 (985) 220-01-06</a>
+    <a href="tel:+79852200107" class="sidebar__phone sidebar__phone--secondary">+7 (985) 220-01-07</a>
+    <p class="sidebar__address">г. Мытищи, ул. Мира, 35,<br>ЖК «Ярославский»</p>
+  </div>
+
+  <div class="sidebar__socials">
+    <a href="#" class="sidebar__social" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+    <a href="#" class="sidebar__social" aria-label="Telegram"><i data-lucide="send"></i></a>
+    <a href="#" class="sidebar__social" aria-label="VK"><i data-lucide="users"></i></a>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<main class="page">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <span class="hero__bg-blob" data-parallax="0.15"></span>
+    <span class="hero__bg-blob hero__bg-blob--2" data-parallax="-0.12"></span>
+
+    <div class="hero__grid">
+      <div class="hero__text">
+        <span class="hero__eyebrow">
+          <span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Центр эстетики тела и&nbsp;косметологии <b>ТалиЯ</b>
+        </span>
+
+        <span class="hero__brandline">
+          <b>Мытищи</b> · ЖК «Ярославский» · с&nbsp;2019 года
+        </span>
+
+        <h1 class="hero__title">
+          <span class="reveal-line"><span>Работаем с&nbsp;любовью,</span></span>
+          <span class="reveal-line"><span><em class="hero__italic">предвосхищая</em> ожидания</span></span>
+          <span class="reveal-line"><span>и&nbsp;сохраняем время.</span></span>
+        </h1>
+
+        <p class="hero__lead">
+          Медицинская косметология, инъекции красоты, лечебные массажи и&nbsp;подология — в&nbsp;одном центре c&nbsp;действующей медицинской лицензией.
+        </p>
+
+        <ul class="hero__utp">
+          <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Аппаратная косметология</li>
+          <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Инъекции красоты</li>
+          <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Лечебные массажи</li>
+          <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Коррекция фигуры</li>
+          <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Подология и&nbsp;орто-стельки</li>
+          <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Маникюр и&nbsp;педикюр</li>
+        </ul>
+
+        <div class="hero__cta">
+          <span class="magnetic"><a href="#callback" class="btn btn--primary btn--lg"><i data-lucide="calendar-check"></i> Получить консультацию</a></span>
+          <span class="magnetic"><a href="#promo" class="btn btn--ghost btn--lg"><i data-lucide="sparkles"></i> Узнать акции</a></span>
+        </div>
+      </div>
+
+      <div class="hero__media" data-hero-media>
+        <div class="hero__progress" aria-hidden="true"><div class="hero__progress-bar" data-hero-progress></div></div>
+
+        <div class="hero__slides">
+          <!-- Slide 1: Первый визит -->
+          <article class="hero__slide is-active" data-hero-slide>
+            <img src="uploads/1770361328184-601460.jpg" alt="Процедура в центре Талия">
+            <div class="hero__slide-overlay"></div>
+            <span class="hero__slide-chip"><i data-lucide="sparkles"></i> Первый визит</span>
+            <div class="hero__slide-badge">
+              <span class="hero__slide-badge-icon"><i data-lucide="percent"></i></span>
+              <span>
+                <span class="hero__slide-badge-label">Скидка</span>
+                <span class="hero__slide-badge-value">до −50%</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Slide 2: Консультация врача -->
+          <article class="hero__slide" data-hero-slide>
+            <img src="uploads/1770361449483-332223.webp" alt="Консультация косметолога">
+            <div class="hero__slide-overlay"></div>
+            <span class="hero__slide-chip"><i data-lucide="stethoscope"></i> Консультация</span>
+            <div class="hero__slide-badge">
+              <span class="hero__slide-badge-icon"><i data-lucide="gift"></i></span>
+              <span>
+                <span class="hero__slide-badge-label">Врач</span>
+                <span class="hero__slide-badge-value">бесплатно</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Slide 3: InMode Lumecca -->
+          <article class="hero__slide" data-hero-slide>
+            <div class="hero__slide-bg hero__slide-bg--champagne"></div>
+            <div class="hero__slide-ornament"></div>
+            <div class="hero__slide-bigtext">Lumecca</div>
+            <div class="hero__slide-overlay"></div>
+            <span class="hero__slide-chip"><i data-lucide="zap"></i> Новая процедура</span>
+            <div class="hero__slide-badge">
+              <span class="hero__slide-badge-icon"><i data-lucide="sun"></i></span>
+              <span>
+                <span class="hero__slide-badge-label">InMode Lumecca</span>
+                <span class="hero__slide-badge-value">−30%</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Slide 4: Массажный курс -->
+          <article class="hero__slide" data-hero-slide>
+            <div class="hero__slide-bg hero__slide-bg--forest"></div>
+            <div class="hero__slide-ornament"></div>
+            <div class="hero__slide-bigtext" style="color:rgba(255,255,255,0.06);">Massage</div>
+            <div class="hero__slide-headline">Курс массажа <em>10&nbsp;сеансов</em></div>
+            <div class="hero__slide-sub">Релакс · Антицеллюлитный · Лимфо</div>
+            <span class="hero__slide-chip"><i data-lucide="heart"></i> Курс процедур</span>
+            <div class="hero__slide-badge">
+              <span class="hero__slide-badge-icon"><i data-lucide="wand-sparkles"></i></span>
+              <span>
+                <span class="hero__slide-badge-label">Выгода</span>
+                <span class="hero__slide-badge-value">до 20%</span>
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <div class="hero__counter" aria-hidden="true">
+          <span class="hero__counter-num" id="heroCounter">01</span>
+          <span class="hero__counter-sep">/</span>
+          <span class="hero__counter-total" id="heroCounterTotal">04</span>
+        </div>
+
+        <div class="hero__arrows">
+          <button class="hero__arrow" id="heroPrev" aria-label="Предыдущая акция"><i data-lucide="arrow-left"></i></button>
+          <button class="hero__arrow" id="heroNext" aria-label="Следующая акция"><i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="hero__meta">
+        <span class="hero__meta-item"><i data-lucide="map-pin"></i>ул. Мира, 35, ЖК «Ярославский»</span>
+        <span class="hero__meta-dot"></span>
+        <span class="hero__meta-item"><i data-lucide="clock"></i>Ежедневно 10:00–22:00</span>
+        <span class="hero__meta-dot"></span>
+        <span class="hero__meta-item"><i data-lucide="shield-check"></i>Лицензия № Л041-01162-50/00622568</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST MARQUEE ===== -->
+  <section class="trust">
+    <div class="trust__track">
+      <span class="trust__item"><i data-lucide="badge-check"></i> Честный знак</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="shield-check"></i> Мед. лицензия</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="sparkles"></i> InMode Lumecca</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="droplet"></i> Morpheus8</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="zap"></i> Ultraformer III</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="leaf"></i> Endosphères</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="heart"></i> Juvederm · Neuramis</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="star"></i> Профессиональный сервис</span><span class="trust__dot"></span>
+      <!-- duplicate for seamless -->
+      <span class="trust__item"><i data-lucide="badge-check"></i> Честный знак</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="shield-check"></i> Мед. лицензия</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="sparkles"></i> InMode Lumecca</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="droplet"></i> Morpheus8</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="zap"></i> Ultraformer III</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="leaf"></i> Endosphères</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="heart"></i> Juvederm · Neuramis</span><span class="trust__dot"></span>
+      <span class="trust__item"><i data-lucide="star"></i> Профессиональный сервис</span><span class="trust__dot"></span>
+    </div>
+  </section>
+
+  <!-- ===== BENEFITS ===== -->
+  <section class="benefits section">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Преимущества</span>
+        <h2 class="section__title">Почему нам&nbsp;доверяют</h2>
+        <p class="section__subtitle">Мы создаём пространство, где забота о&nbsp;себе становится удовольствием — с&nbsp;вниманием к деталям и&nbsp;уважением ко времени.</p>
+      </div>
+
+      <div class="benefits__grid reveal reveal-stagger">
+        <article class="benefit">
+          <span class="benefit__num">01</span>
+          <span class="benefit__icon"><i data-lucide="shield-check"></i></span>
+          <h3 class="benefit__title">Стерильность</h3>
+          <p class="benefit__text">Безупречное соблюдение требований СанПиН и&nbsp;Роспотребнадзора на каждом этапе.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">02</span>
+          <span class="benefit__icon"><i data-lucide="award"></i></span>
+          <h3 class="benefit__title">Мед. лицензия</h3>
+          <p class="benefit__text">Действующая лицензия и&nbsp;сертификаты — подтверждение уровня наших услуг.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">03</span>
+          <span class="benefit__icon"><i data-lucide="check-circle"></i></span>
+          <h3 class="benefit__title">Оригинальные препараты</h3>
+          <p class="benefit__text">Только сертифицированные препараты и&nbsp;расходные материалы — никаких подделок.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">04</span>
+          <span class="benefit__icon"><i data-lucide="badge-check"></i></span>
+          <h3 class="benefit__title">«Честный знак»</h3>
+          <p class="benefit__text">Все препараты промаркированы — гарантия подлинности и&nbsp;отслеживаемости.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">05</span>
+          <span class="benefit__icon"><i data-lucide="star"></i></span>
+          <h3 class="benefit__title">Авторские методики</h3>
+          <p class="benefit__text">Эффективные протоколы и&nbsp;сопровождение до&nbsp;результата, а не&nbsp;разовая процедура.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">06</span>
+          <span class="benefit__icon"><i data-lucide="coffee"></i></span>
+          <h3 class="benefit__title">Идеальный сервис</h3>
+          <p class="benefit__text">Уютное пространство, кофе и&nbsp;внимательное сопровождение — до&nbsp;и после процедуры.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">07</span>
+          <span class="benefit__icon"><i data-lucide="calendar"></i></span>
+          <h3 class="benefit__title">Удобная запись</h3>
+          <p class="benefit__text">Телефон, WhatsApp, Telegram — с&nbsp;10:00 до&nbsp;22:00, без&nbsp;выходных.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit__num">08</span>
+          <span class="benefit__icon"><i data-lucide="heart-handshake"></i></span>
+          <h3 class="benefit__title">Индивидуальный подход</h3>
+          <p class="benefit__text">Подбираем протокол под ваши особенности — результат превосходит ожидания.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services section" id="services">
+    <div class="services__head reveal">
+      <div class="services__head-text">
+        <span class="eyebrow">Что мы предлагаем</span>
+        <h2 class="section__title">Стоимость и&nbsp;перечень услуг</h2>
+        <p class="section__subtitle">Широкий спектр процедур для вашей красоты и&nbsp;здоровья — от&nbsp;инъекций красоты до&nbsp;деликатной подологии.</p>
+      </div>
+      <div class="services__head-cta">
+        <span class="magnetic"><a href="#callback" class="btn btn--ghost btn--sm">Записаться <i data-lucide="arrow-up-right"></i></a></span>
+      </div>
+    </div>
+
+    <div class="services__grid reveal reveal-stagger">
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">до -50%</span>
+          <img src="images/services/vrachebnaya.svg" alt="Врачебная косметология">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Врачебная косметология</h3>
+          <p class="service__brief">Индивидуальный протокол эстетического преображения и&nbsp;процедуры превентивной медицины. InMode Lumecca, Morpheus8, инъекции красоты.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">Тест-драйв 5000 ₽ + обёртывание в подарок</span>
+          <img src="images/services/endosfera.svg" alt="Эндосфера-терапия">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Эндосфера-терапия</h3>
+          <p class="service__brief">Компрессионная микровибрация в&nbsp;борьбе с&nbsp;целлюлитом и&nbsp;возрастными изменениями кожи. Инновационная аппаратная методика для лица и&nbsp;тела.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">до -50%</span>
+          <img src="images/services/massage.svg" alt="Массаж">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Массаж</h3>
+          <p class="service__brief">Подарите себе не&nbsp;просто массаж, а&nbsp;массаж, от&nbsp;которого вы&nbsp;будете худеть. Профессиональный массаж для перезагрузки тела и&nbsp;настроения.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">до -50%</span>
+          <img src="images/services/apparatnaya.svg" alt="Аппаратные процедуры">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Аппаратные процедуры</h3>
+          <p class="service__brief">Инновационные методы коррекции фигуры, уменьшения целлюлита и&nbsp;общего улучшения без&nbsp;хирургического вмешательства.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">до -50%</span>
+          <img src="images/services/esteticheskaya.svg" alt="Эстетическая косметология">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Эстетическая косметология</h3>
+          <p class="service__brief">Превентивные методы косметологии замедления старения. Массаж лица, коррекция, уходы и&nbsp;процедуры восстановления. Сохраним то, что забирает время.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">-15%</span>
+          <img src="images/services/podologiya.svg" alt="Подология">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Подология</h3>
+          <p class="service__brief">Врачебная подология: лечение вросшего ногтя, удаление бородавок азотом, медицинский педикюр любой сложности, индивидуальные орто-стельки.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">до -50%</span>
+          <img src="uploads/1770361449483-332223.webp" alt="Лазерная эпиляция">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Лазерная эпиляция</h3>
+          <p class="service__brief">Два гибридных лазерных аппарата 3-в-1: диодный, неодимовый, александритовый. Все процедуры проводятся сертифицированными специалистами.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">до -20%</span>
+          <img src="images/services/programmy.svg" alt="Программы по лицу и телу">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Программы</h3>
+          <p class="service__brief">В&nbsp;нашем центре собраны самые эффективные системы для коррекции фигуры. Комплексные программы, составленные нашими врачами.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="service-v2.html" class="service">
+        <div class="service__media">
+          <span class="service__badge">Скидка на первое посещение</span>
+          <img src="images/services/manikyur.svg" alt="Маникюр и педикюр">
+        </div>
+        <div class="service__body">
+          <h3 class="service__name">Маникюр и&nbsp;педикюр</h3>
+          <p class="service__brief">Все виды маникюра и&nbsp;японского восстановления ногтей. Японская Мансура-процедура и&nbsp;идеальный натуральный. Индивидуальный подход.</p>
+          <div class="service__bottom">
+            <span class="service__more">Подробнее</span>
+            <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid reveal reveal-stagger">
+        <div class="stat">
+          <div class="stat__value" data-count="7" data-suffix="+">0</div>
+          <div class="stat__label">Лет заботы</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" data-count="12400" data-suffix="+">0</div>
+          <div class="stat__label">Счастливых клиентов</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" data-count="38">0</div>
+          <div class="stat__label">Видов процедур</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" data-count="5" data-suffix=".0">0</div>
+          <div class="stat__label">Рейтинг в&nbsp;отзывах</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT / CTA ===== -->
+  <section class="about-cta" id="about">
+    <div class="about-cta__panel spotlight-host">
+      <span class="spotlight" id="spotlight"></span>
+      <span class="about-cta__blob about-cta__blob--1"></span>
+      <span class="about-cta__blob about-cta__blob--2"></span>
+
+      <div class="about-cta__content reveal">
+        <span class="eyebrow eyebrow--light">О центре</span>
+        <h2 class="about-cta__title">Не&nbsp;просто процедуры — <em style="font-style:italic;color:var(--champagne);">бережный путь</em> к&nbsp;форме, в&nbsp;которой вам спокойно.</h2>
+        <p class="about-cta__text">
+          «Талия» — центр эстетики тела и&nbsp;косметологии, где каждая процедура выполняется с&nbsp;вниманием к деталям. Подбираем индивидуальные программы, учитывая особенности каждого клиента, чтобы результат превосходил ожидания.
+        </p>
+        <div class="about-cta__chips">
+          <span class="about-cta__chip"><i data-lucide="shield-check"></i> Только оригинальные препараты</span>
+          <span class="about-cta__chip"><i data-lucide="leaf"></i> Натуральный результат</span>
+          <span class="about-cta__chip"><i data-lucide="heart"></i> С&nbsp;заботой о&nbsp;вас</span>
+        </div>
+        <div class="about-cta__actions">
+          <span class="magnetic"><a href="#callback" class="btn btn--accent btn--lg"><i data-lucide="calendar-check"></i> Записаться на&nbsp;процедуру</a></span>
+          <span class="magnetic"><a href="#" class="btn btn--ghost-light btn--lg">О&nbsp;нас подробнее <i data-lucide="arrow-right"></i></a></span>
+        </div>
+      </div>
+
+      <div class="about-cta__aside reveal">
+        <div class="about-cta__card">
+          <h3 class="about-cta__card-title">Первый визит</h3>
+          <p class="about-cta__card-text">Бесплатная консультация врача-косметолога и&nbsp;индивидуальный план процедур.</p>
+          <div class="about-cta__card-row"><span class="about-cta__card-k">Длительность</span><span class="about-cta__card-v">45–60 мин</span></div>
+          <div class="about-cta__card-row"><span class="about-cta__card-k">Формат</span><span class="about-cta__card-v">Очно в&nbsp;центре</span></div>
+          <div class="about-cta__card-row"><span class="about-cta__card-k">Стоимость</span><span class="about-cta__card-v">Бесплатно*</span></div>
+        </div>
+        <div class="about-cta__card">
+          <h3 class="about-cta__card-title">График и&nbsp;локация</h3>
+          <div class="about-cta__card-row"><span class="about-cta__card-k">Адрес</span><span class="about-cta__card-v" style="font-size:13px;">Мытищи, Мира, 35</span></div>
+          <div class="about-cta__card-row"><span class="about-cta__card-k">Часы</span><span class="about-cta__card-v" style="font-size:13px;">10:00 – 22:00</span></div>
+          <div class="about-cta__card-row"><span class="about-cta__card-k">Без выходных</span><span class="about-cta__card-v" style="font-size:13px;">7 / 7</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROMO ===== -->
+  <section class="promo section" id="promo">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Специальное предложение</span>
+        <h2 class="section__title">Акции и&nbsp;выгодные предложения</h2>
+        <p class="section__subtitle">Мы регулярно обновляем программы — и&nbsp;готовы подсветить для вас самое актуальное.</p>
+      </div>
+
+      <div class="promo__grid reveal reveal-stagger">
+        <div class="promo__card">
+          <div class="promo__media">
+            <span class="promo__media-label">-50%</span>
+            <span class="promo__media-glyph"><i data-lucide="sparkles"></i></span>
+          </div>
+          <div class="promo__body">
+            <span class="promo__badge">Новым гостям</span>
+            <h3 class="promo__title">Скидка до&nbsp;50% на&nbsp;первый сеанс</h3>
+            <p class="promo__desc">Для новых гостей — скидка до&nbsp;50% на&nbsp;первую процедуру. Уровень скидки зависит от&nbsp;выбранной услуги.</p>
+            <div class="promo__actions">
+              <span class="magnetic"><a href="https://profsalon.org/o/D6UNi3" target="_blank" rel="noopener" class="btn btn--primary"><i data-lucide="calendar-check"></i> Воспользоваться</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="promo__card">
+          <div class="promo__media">
+            <span class="promo__media-label"><i data-lucide="users"></i></span>
+            <span class="promo__media-glyph"><i data-lucide="heart"></i></span>
+          </div>
+          <div class="promo__body">
+            <span class="promo__badge">Для двоих</span>
+            <h3 class="promo__title">Приведи подругу — получи скидку</h3>
+            <p class="promo__desc">Приходите вместе с&nbsp;подругой или парой и&nbsp;получите скидку на&nbsp;совместное посещение.</p>
+            <div class="promo__actions">
+              <span class="magnetic"><a href="https://profsalon.org/o/D6UNi3" target="_blank" rel="noopener" class="btn btn--primary"><i data-lucide="calendar-check"></i> Воспользоваться</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="promo__card">
+          <div class="promo__media">
+            <span class="promo__media-label">-30%</span>
+            <span class="promo__media-glyph"><i data-lucide="gift"></i></span>
+          </div>
+          <div class="promo__body">
+            <span class="promo__badge">Выгодно</span>
+            <h3 class="promo__title">Абонементы на&nbsp;5 и&nbsp;10&nbsp;процедур</h3>
+            <p class="promo__desc">Приобретайте абонементы на&nbsp;курс процедур и&nbsp;экономьте до&nbsp;30% от&nbsp;стоимости разовых сеансов.</p>
+            <div class="promo__actions">
+              <span class="magnetic"><a href="https://profsalon.org/o/D6UNi3" target="_blank" rel="noopener" class="btn btn--primary"><i data-lucide="calendar-check"></i> Воспользоваться</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTS ===== -->
+  <section class="contacts section" id="contacts">
+    <div class="section__head reveal">
+      <span class="eyebrow">Контакты</span>
+      <h2 class="section__title">Как нас&nbsp;найти</h2>
+      <p class="section__subtitle">Будем рады видеть вас в&nbsp;нашем центре.</p>
+    </div>
+
+    <div class="contacts__grid reveal reveal-stagger">
+      <div class="contact">
+        <span class="contact__icon"><i data-lucide="map-pin"></i></span>
+        <div>
+          <p class="contact__label">Адрес</p>
+          <p class="contact__value">г. Мытищи, ул. Мира, 35,<br>ЖК «Ярославский»</p>
+        </div>
+      </div>
+      <div class="contact">
+        <span class="contact__icon"><i data-lucide="phone"></i></span>
+        <div>
+          <p class="contact__label">Телефон</p>
+          <p class="contact__value">
+            <a href="tel:+79852200106">+7 (985) 220-01-06</a><br>
+            <a href="tel:+79852200107">+7 (985) 220-01-07</a>
+          </p>
+        </div>
+      </div>
+      <div class="contact">
+        <span class="contact__icon"><i data-lucide="clock"></i></span>
+        <div>
+          <p class="contact__label">Часы работы</p>
+          <p class="contact__value">Ежедневно<br>10:00 – 22:00</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts__footer reveal">
+      <div class="contacts__rating">
+        <i data-lucide="star"></i>
+        5.0 — Отличное место
+      </div>
+      <span class="magnetic"><a href="#" class="btn btn--primary btn--sm"><i data-lucide="map"></i> Контакты и&nbsp;карта</a></span>
+    </div>
+  </section>
+
+  <!-- ===== CALLBACK ===== -->
+  <section class="callback" id="callback">
+    <div class="container">
+      <div class="callback__card reveal">
+        <span class="eyebrow" style="justify-content:center;">Запись</span>
+        <h2 class="callback__title">Запишитесь на&nbsp;консультацию</h2>
+        <p class="callback__subtitle">Наши специалисты ответят на&nbsp;все ваши вопросы — перезвоним за&nbsp;10&nbsp;минут.</p>
+        <form class="callback__form" onsubmit="event.preventDefault();alert('Превью — форма условная.')">
+          <input class="callback__input" type="text" name="name" placeholder="Ваше имя *" required minlength="2">
+          <input class="callback__input" type="tel" name="phone" placeholder="+7 (___) ___-__-__ *" required>
+          <input class="callback__input" type="email" name="email" placeholder="Адрес электронной почты">
+          <select class="callback__input callback__select" name="service">
+            <option value="">Интересующая услуга</option>
+            <option value="vrachebnaya-kosmetologiya">Врачебная косметология</option>
+            <option value="endosfera-terapiya">Эндосфера-терапия</option>
+            <option value="massage">Массаж</option>
+            <option value="apparatnaya-korrekciya">Аппаратные процедуры</option>
+            <option value="esteticheskaya-kosmetologiya">Эстетическая косметология</option>
+            <option value="podologiya">Подология</option>
+            <option value="lazernaya-epilyaciya">Лазерная эпиляция</option>
+            <option value="programmy-po-litsu">Программы</option>
+            <option value="manikyur-i-pedikyr">Маникюр и педикюр</option>
+          </select>
+          <textarea class="callback__input callback__textarea" name="message" rows="3" placeholder="Сообщение — расскажите о пожеланиях" maxlength="1000"></textarea>
+          <label class="callback__consent">
+            <input type="checkbox" name="consent" required>
+            <span>Нажимая «Отправить», я&nbsp;даю согласие на&nbsp;обработку персональных данных согласно <a href="#" style="text-decoration:underline;">Политике конфиденциальности</a>.</span>
+          </label>
+          <span class="magnetic callback__submit-wrap"><button type="submit" class="btn btn--primary btn--lg"><i data-lucide="send"></i> Отправить</button></span>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__title">Талия</p>
+        <p class="footer__text">Центр эстетики тела и&nbsp;косметологии в&nbsp;Мытищах.</p>
+        <p class="footer__text" style="margin-top:10px;">ООО «МЕДИКА+»</p>
+        <p class="footer__text" style="font-size:12px;">Лицензия: № Л041-01162-50/00622568</p>
+      </div>
+      <div>
+        <span class="footer__h">Навигация</span>
+        <ul class="footer__list">
+          <li><a href="about-v2.html">О нас</a></li>
+          <li><a href="team-v2.html">Специалисты</a></li>
+          <li><a href="gallery-v2.html">Галерея</a></li>
+          <li><a href="promotions-v2.html">Акции</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer__h">Контакты</span>
+        <ul class="footer__list">
+          <li><a href="tel:+79852200106">+7 (985) 220-01-06</a></li>
+          <li><a href="tel:+79852200107">+7 (985) 220-01-07</a></li>
+          <li>г. Мытищи, ул. Мира, 35, ЖК «Ярославский»</li>
+          <li>Ежедневно 10:00–22:00</li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer__h">Мы в&nbsp;соцсетях</span>
+        <ul class="footer__list">
+          <li><a href="https://vk.com/estetictaliya" target="_blank" rel="noopener">ВКонтакте</a></li>
+          <li><a href="https://t.me/taliya_pro" target="_blank" rel="noopener">Телеграм</a></li>
+          <li><a href="https://wa.me/79852200106" target="_blank" rel="noopener">Ватсап</a></li>
+          <li><a href="https://profsalon.org/o/D6UNi3" target="_blank" rel="noopener">Онлайн-запись</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="yr">2026</span> ООО «МЕДИКА+». Все права защищены.</span>
+      <span class="footer__legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Согласие на&nbsp;обработку данных</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING BUTTONS ===== -->
+  <a href="https://wa.me/79852200106" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Написать в Ватсап">
+    <i data-lucide="message-circle"></i>
+  </a>
+  <a href="https://profsalon.org/o/D6UNi3" target="_blank" rel="noopener" class="booking-float">
+    <i data-lucide="calendar-check"></i>
+    <span>Записаться онлайн</span>
+  </a>
+
+</main>
+
+<span class="preview-tag">PREVIEW · v2</span>
+
+<script>
+/* ================================================================
+   TALIYA — home v2 preview JS
+   ================================================================ */
+(function(){
+  'use strict';
+  const $ = (s, c) => (c||document).querySelector(s);
+  const $$ = (s, c) => Array.from((c||document).querySelectorAll(s));
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- preloader --- */
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => setTimeout(()=> document.body.classList.add('is-loaded'), 200));
+    if (window.lucide) lucide.createIcons();
+  });
+
+  /* --- year --- */
+  const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* --- sidebar --- */
+  const sidebar = $('#sidebar'), burger = $('#headerBurger'), backdrop = $('#sidebarBackdrop');
+  const open = () => { sidebar.classList.add('is-open'); burger.setAttribute('aria-expanded','true'); backdrop.classList.add('is-visible'); document.body.style.overflow='hidden'; };
+  const close = () => { sidebar.classList.remove('is-open'); burger.setAttribute('aria-expanded','false'); backdrop.classList.remove('is-visible'); document.body.style.overflow=''; };
+  if (burger) burger.addEventListener('click', () => sidebar.classList.contains('is-open') ? close() : open());
+  if (backdrop) backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key==='Escape') close(); });
+
+  /* --- sidebar submenu --- */
+  $$('.sidebar__nav-item--expandable > .sidebar__nav-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      link.parentElement.classList.toggle('sidebar__nav-item--open');
+    });
+  });
+
+  /* --- scroll reveal (IntersectionObserver) --- */
+  const reveals = $$('.reveal');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('is-in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  /* --- magnetic buttons --- */
+  if (!prefersReduced && matchMedia('(pointer: fine)').matches) {
+    $$('.magnetic').forEach(el => {
+      const child = el.firstElementChild || el;
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width/2;
+        const y = e.clientY - r.top - r.height/2;
+        child.style.transform = `translate(${x*0.18}px, ${y*0.22}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        child.style.transform = '';
+      });
+    });
+  }
+
+  /* --- parallax (scroll & pointer) --- */
+  if (!prefersReduced) {
+    const items = $$('[data-parallax]').map(el => ({ el, k: parseFloat(el.dataset.parallax) || 0.1 }));
+    const imgs = $$('[data-parallax-img]');
+    let raf = null;
+    const update = () => {
+      const y = window.scrollY;
+      items.forEach(({el,k}) => { el.style.transform = `translate3d(0, ${y*k}px, 0)`; });
+      imgs.forEach(img => {
+        const rect = img.getBoundingClientRect();
+        const centerOff = (rect.top + rect.height/2) - window.innerHeight/2;
+        img.style.transform = `scale(1.06) translateY(${centerOff * -0.04}px)`;
+      });
+      raf = null;
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    schedule();
+  }
+
+  /* --- hero promo carousel (auto every 5s) --- */
+  const heroMedia = $('[data-hero-media]');
+  const pad = n => n < 10 ? '0' + n : '' + n;
+  if (heroMedia) {
+    const slides = $$('[data-hero-slide]', heroMedia);
+    const total = slides.length;
+    const counter = $('#heroCounter');
+    const counterTotal = $('#heroCounterTotal');
+    const progressBar = heroMedia.querySelector('[data-hero-progress]');
+    const AUTO_MS = 5000;
+    let idx = 0, timer = null, progTimer = null, progStart = 0;
+
+    if (counterTotal) counterTotal.textContent = pad(total);
+
+    const render = () => {
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+      if (counter) counter.textContent = pad(idx + 1);
+    };
+    const goTo = (n) => { idx = (n + total) % total; render(); };
+    const next = () => goTo(idx + 1);
+    const prev = () => goTo(idx - 1);
+
+    const resetProgress = () => {
+      if (!progressBar) return;
+      progressBar.style.transition = 'none';
+      progressBar.style.width = '0%';
+      void progressBar.offsetWidth; /* reflow */
+      progressBar.style.transition = `width ${AUTO_MS}ms linear`;
+      progressBar.style.width = '100%';
+    };
+    const stopProgress = () => {
+      if (!progressBar) return;
+      const rect = progressBar.getBoundingClientRect();
+      const parentW = progressBar.parentElement.getBoundingClientRect().width;
+      const pct = parentW ? (rect.width / parentW) * 100 : 0;
+      progressBar.style.transition = 'none';
+      progressBar.style.width = pct + '%';
+    };
+
+    const start = () => {
+      if (total < 2 || prefersReduced) return;
+      stop();
+      resetProgress();
+      timer = setInterval(() => { next(); resetProgress(); }, AUTO_MS);
+    };
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+      stopProgress();
+    };
+
+    heroMedia.addEventListener('mouseenter', stop);
+    heroMedia.addEventListener('mouseleave', start);
+
+    let sx = null;
+    heroMedia.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; stop(); }, { passive: true });
+    heroMedia.addEventListener('touchend', (e) => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) { (dx < 0 ? next() : prev()); }
+      sx = null;
+      start();
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    const prevBtn = $('#heroPrev'), nextBtn = $('#heroNext');
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); start(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); start(); });
+
+    render();
+    start();
+  }
+
+  /* --- stats count-up --- */
+  const counters = $$('.stat__value');
+  const formatNum = (v, target) => {
+    if (target % 1 !== 0) return v.toFixed(1);
+    if (target >= 1000) return Math.round(v).toLocaleString('ru-RU');
+    return Math.round(v).toString();
+  };
+  const animateCount = (el) => {
+    const target = parseFloat(el.dataset.count || '0');
+    const suffix = el.dataset.suffix || '';
+    if (prefersReduced) { el.textContent = formatNum(target, target) + suffix; return; }
+    const dur = 1800;
+    const t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = target * eased;
+      el.textContent = formatNum(v, target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  if ('IntersectionObserver' in window) {
+    const ioCount = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { animateCount(entry.target); ioCount.unobserve(entry.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(el => ioCount.observe(el));
+  } else {
+    counters.forEach(animateCount);
+  }
+
+  /* --- cursor spotlight --- */
+  const sp = $('#spotlight');
+  const spHost = sp && sp.parentElement;
+  if (sp && spHost && !prefersReduced) {
+    spHost.addEventListener('mousemove', (e) => {
+      const r = spHost.getBoundingClientRect();
+      sp.style.left = (e.clientX - r.left) + 'px';
+      sp.style.top = (e.clientY - r.top) + 'px';
+    });
+  }
+
+  /* --- smooth anchor scroll (with sidebar offset) --- */
+  $$('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 20, behavior: prefersReduced ? 'auto' : 'smooth' });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

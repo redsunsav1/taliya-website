@@ -22,7 +22,56 @@
     "subtitle": "Работаем с любовью, предвосхищая ожидания и сохраняем то, что забирает время!",
     "promoText": "Скидка на первый сеанс до -50%",
     "promoNote": "*Уровень скидки зависит от услуги. Оставьте заявку и узнайте вашу выгоду.",
-    "image": "/images/hero-bg.svg"
+    "image": "/images/hero-bg.svg",
+    "eyebrow": "Центр эстетики тела и косметологии",
+    "brand": "ТалиЯ",
+    "brandline": "Мытищи · ЖК «Ярославский» · с 2019 года",
+    "titleLines": [
+      "Работаем с любовью,",
+      "предвосхищая ожидания",
+      "и сохраняем время."
+    ],
+    "titleItalicWord": "предвосхищая",
+    "lead": "Медицинская косметология, инъекции красоты, лечебные массажи и подология — в одном центре c действующей медицинской лицензией.",
+    "utp": [
+      "Аппаратная косметология",
+      "Инъекции красоты",
+      "Лечебные массажи",
+      "Коррекция фигуры",
+      "Подология и орто-стельки",
+      "Маникюр и педикюр"
+    ],
+    "ctaPrimary": { "text": "Получить консультацию", "href": "#callback", "icon": "calendar-check" },
+    "ctaSecondary": { "text": "Узнать акции", "href": "#promo", "icon": "sparkles" },
+    "slides": [
+      { "image": "/uploads/1770361328184-601460.jpg", "chipIcon": "sparkles", "chipText": "Первый визит", "badgeIcon": "percent", "badgeLabel": "Скидка", "badgeValue": "до −50%" },
+      { "image": "/uploads/1770361449483-332223.webp", "chipIcon": "stethoscope", "chipText": "Консультация", "badgeIcon": "gift", "badgeLabel": "Врач", "badgeValue": "бесплатно" }
+    ]
+  },
+  "trust": {
+    "enabled": true,
+    "items": [
+      { "icon": "badge-check", "text": "Честный знак" },
+      { "icon": "shield-check", "text": "Мед. лицензия" },
+      { "icon": "sparkles", "text": "InMode Lumecca" },
+      { "icon": "droplet", "text": "Morpheus8" },
+      { "icon": "zap", "text": "Ultraformer III" },
+      { "icon": "leaf", "text": "Endosphères" },
+      { "icon": "heart", "text": "Juvederm · Neuramis" },
+      { "icon": "star", "text": "Профессиональный сервис" }
+    ]
+  },
+  "floating": {
+    "whatsapp": { "enabled": true, "href": "https://wa.me/79852200106" },
+    "profsalon": { "enabled": true, "href": "https://profsalon.org/o/D6UNi3", "text": "Записаться онлайн" }
+  },
+  "footer": {
+    "tagline": "Центр эстетики тела и косметологии в Мытищах.",
+    "legal": [
+      { "text": "Политика конфиденциальности", "href": "/privacy" },
+      { "text": "Пользовательское соглашение", "href": "/terms" },
+      { "text": "Согласие на обработку данных", "href": "/consent" }
+    ]
   },
   "benefits": [
     {
@@ -54,6 +103,16 @@
       "icon": "calendar",
       "title": "Удобная запись",
       "text": "Записывайтесь с 10 до 22 по телефону, ватсап, телеграм"
+    },
+    {
+      "icon": "badge-check",
+      "title": "«Честный знак»",
+      "text": "Все препараты зарегистрированы в системе «Честный знак» — гарантия подлинности"
+    },
+    {
+      "icon": "heart-handshake",
+      "title": "Индивидуальный подход",
+      "text": "Подбираем протокол под особенности кожи, образ жизни и цели каждого гостя"
     }
   ],
   "services": [

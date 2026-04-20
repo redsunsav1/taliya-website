@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Врачебная косметология | Талия — Центр эстетики тела и косметологии · v2</title>
+<meta name="description" content="Врачебная косметология в центре «ТалиЯ»: InMode Lumecca, Morpheus8, Ultraformer III, инъекции, плазмотерапия.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/v2.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+/* ===== page-specific: /service ===== */
+
+/* SERVICE HERO (overrides subhero for full-bleed media) */
+.s-hero{
+  position:relative;padding:clamp(28px,3vw,52px) clamp(20px,3vw,40px) clamp(40px,5vw,80px);
+  overflow:hidden;background:linear-gradient(180deg, var(--bg-mist) 0%, var(--white) 100%);
+}
+.s-hero__blob{
+  position:absolute;top:-260px;right:-200px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, rgba(143,162,122,0.18), rgba(143,162,122,0) 62%);
+  filter:blur(18px);pointer-events:none;
+  animation:heroBlob 22s ease-in-out infinite alternate;
+}
+@keyframes heroBlob{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(-40px,28px,0) scale(1.05);}
+  100%{transform:translate3d(30px,-22px,0) scale(0.98);}
+}
+.s-hero__inner{
+  position:relative;z-index:2;
+  max-width:var(--container);margin:0 auto;
+  display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(36px,5vw,80px);align-items:center;
+}
+.s-hero__content{display:flex;flex-direction:column;gap:18px;}
+.s-hero__crumbs{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-4);font-weight:500;
+}
+.s-hero__crumbs a{color:var(--ink-3);transition:color 180ms;}
+.s-hero__crumbs a:hover{color:var(--brand-green);}
+.s-hero__crumbs span{color:var(--ink-5);}
+
+.s-hero__eyebrow{
+  display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
+  font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--sage-700);font-weight:600;
+  padding:8px 16px;background:var(--sage-50);border:1px solid var(--sage-100);border-radius:var(--r-pill);
+}
+.s-hero__eyebrow b{color:var(--brand-green);font-weight:700;}
+
+.s-hero__title{
+  font-family:var(--f-display);font-weight:500;
+  font-size:clamp(38px,5.2vw,72px);letter-spacing:-0.025em;line-height:0.98;
+  color:var(--ink);
+}
+.s-hero__title em{font-style:italic;color:var(--brand-green);}
+.s-hero__lead{font-size:16px;color:var(--ink-3);line-height:1.7;max-width:540px;}
+
+.s-hero__meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px;}
+.s-hero__chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 14px;background:var(--white);border:1px solid var(--hairline);
+  border-radius:var(--r-pill);font-size:12px;letter-spacing:0.06em;color:var(--ink-2);font-weight:500;
+}
+.s-hero__chip i{width:14px;height:14px;color:var(--brand-green);}
+
+.s-hero__actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
+
+.s-hero__media{
+  position:relative;aspect-ratio:4/5;border-radius:var(--r-2xl);overflow:hidden;
+  background:linear-gradient(135deg,var(--sage-700),var(--sage-800));box-shadow:var(--sh-4);
+}
+.s-hero__media::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(191,163,121,0.32), transparent 55%),
+    radial-gradient(circle at 75% 78%, rgba(143,162,122,0.28), transparent 60%);
+}
+.s-hero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;mix-blend-mode:luminosity;z-index:0;}
+.s-hero__discount{
+  position:absolute;top:24px;left:24px;z-index:3;
+  font-family:var(--f-display);font-size:clamp(76px,9vw,128px);font-weight:500;
+  color:rgba(255,255,255,0.15);line-height:0.88;letter-spacing:-0.04em;
+}
+.s-hero__badge{
+  position:absolute;bottom:24px;left:24px;z-index:3;
+  padding:9px 16px;background:var(--accent);color:var(--white);
+  border-radius:var(--r-pill);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;
+  box-shadow:0 12px 28px rgba(201,106,62,0.35);
+}
+.s-hero__glyph{
+  position:absolute;bottom:24px;right:24px;z-index:3;
+  width:88px;height:88px;border-radius:50%;
+  background:rgba(255,255,255,0.12);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.18);
+  display:flex;align-items:center;justify-content:center;color:var(--champagne);
+  animation:gentleFloat 6s ease-in-out infinite alternate;
+}
+.s-hero__glyph i{width:36px;height:36px;stroke-width:1.4;}
+@keyframes gentleFloat{to{transform:translateY(-14px) rotate(10deg);}}
+
+/* WHAT-IS */
+.whatis{padding:clamp(80px,9vw,130px) 0;}
+.whatis__grid{
+  display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(40px,6vw,96px);align-items:center;
+  max-width:var(--container);margin:0 auto;padding:0 clamp(20px,4vw,56px);
+}
+.whatis__text p{font-size:16px;color:var(--ink-2);line-height:1.75;margin-bottom:16px;}
+.whatis__card{
+  padding:32px 32px;background:var(--sage-50);border:1px solid var(--sage-100);
+  border-radius:var(--r-lg);
+}
+.whatis__card-h{font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sage-700);font-weight:700;margin-bottom:18px;}
+.whatis__kv{display:grid;grid-template-columns:1fr auto;gap:14px 20px;padding:14px 0;border-bottom:1px solid rgba(35,78,53,0.12);font-size:13.5px;color:var(--ink-2);}
+.whatis__kv:last-of-type{border-bottom:none;}
+.whatis__kv-v{font-family:var(--f-display);font-size:17px;color:var(--brand-green);font-weight:500;letter-spacing:-0.005em;text-align:right;}
+
+/* INCLUDES */
+.includes{padding:clamp(80px,9vw,130px) 0;background:var(--bg-soft);}
+.includes__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  max-width:var(--container);margin:36px auto 0;padding:0 clamp(20px,4vw,56px);
+}
+.inc{
+  padding:28px 28px 30px;background:var(--white);
+  border:1px solid var(--hairline);border-radius:var(--r-lg);
+  transition:transform 500ms var(--e-out), box-shadow 500ms var(--e-out), border-color 500ms var(--e-out);
+}
+.inc:hover{transform:translateY(-6px);box-shadow:var(--sh-3);border-color:var(--sage-200);}
+.inc__icon{
+  width:46px;height:46px;border-radius:50%;
+  background:var(--sage-50);color:var(--brand-green);
+  display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;
+  transition:background 400ms, color 400ms, transform 400ms var(--e-spring);
+}
+.inc:hover .inc__icon{background:var(--brand-green);color:var(--white);transform:rotate(-8deg) scale(1.08);}
+.inc__icon i{width:20px;height:20px;}
+.inc__title{font-family:var(--f-display);font-size:22px;font-weight:500;color:var(--ink);margin-bottom:8px;letter-spacing:-0.01em;}
+.inc__text{font-size:13.5px;color:var(--ink-3);line-height:1.62;}
+
+/* INDICATIONS */
+.indic{padding:clamp(80px,9vw,130px) 0;}
+.indic__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);
+  max-width:var(--container);margin:36px auto 0;padding:0 clamp(20px,4vw,56px);
+}
+.indic__col{
+  padding:36px 36px;background:var(--white);
+  border:1px solid var(--hairline);border-radius:var(--r-lg);
+}
+.indic__col--warn{background:var(--bg-mist);border-color:var(--hairline-strong);}
+.indic__h{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--f-display);font-size:26px;font-weight:500;color:var(--ink);margin-bottom:18px;letter-spacing:-0.01em;
+}
+.indic__h i{width:26px;height:26px;color:var(--brand-green);}
+.indic__col--warn .indic__h i{color:var(--accent);}
+
+/* DOCTOR */
+.doctor{padding:clamp(80px,9vw,130px) 0;background:var(--bg-mist);}
+.doctor__card{
+  max-width:var(--container);margin:36px auto 0;
+  display:grid;grid-template-columns:1fr 1.4fr;gap:0;
+  background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-2xl);
+  overflow:hidden;box-shadow:var(--sh-2);
+}
+.doctor__photo{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--bg-mist);}
+.doctor__photo img{width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--e-soft);}
+.doctor__card:hover .doctor__photo img{transform:scale(1.03);}
+.doctor__photo::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 55%, rgba(18,24,18,0.45) 100%);
+}
+.doctor__chip{
+  position:absolute;top:20px;left:20px;z-index:2;
+  padding:8px 14px;background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);
+  border-radius:var(--r-pill);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--brand-green);font-weight:700;
+}
+.doctor__body{padding:clamp(32px,4vw,56px);display:flex;flex-direction:column;gap:14px;justify-content:center;}
+.doctor__role{font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sage-600);font-weight:700;}
+.doctor__name{font-family:var(--f-display);font-size:clamp(30px,3.5vw,44px);font-weight:500;color:var(--ink);letter-spacing:-0.02em;line-height:1.08;}
+.doctor__bio{font-size:15px;color:var(--ink-2);line-height:1.7;max-width:560px;}
+.doctor__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.doctor__tag{font-size:11px;padding:6px 12px;background:var(--bg-soft);color:var(--ink-3);border-radius:var(--r-pill);font-weight:500;letter-spacing:0.08em;}
+.doctor__actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+
+/* PRICING ACCORDION */
+.pricing{padding:clamp(80px,9vw,130px) 0;}
+.pricing__wrap{max-width:var(--container-narrow);margin:36px auto 0;padding:0 clamp(20px,4vw,56px);}
+.acc{
+  border:1px solid var(--hairline);border-radius:var(--r-lg);background:var(--white);
+  overflow:hidden;margin-bottom:10px;
+  transition:border-color 240ms, box-shadow 240ms;
+}
+.acc[open]{border-color:var(--sage-200);box-shadow:var(--sh-2);}
+.acc__head{
+  cursor:pointer;list-style:none;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 28px;user-select:none;
+}
+.acc__head::-webkit-details-marker{display:none;}
+.acc__cat{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--f-display);font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-0.01em;
+}
+.acc__cat-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;
+  background:var(--sage-50);color:var(--brand-green);
+  font-family:var(--f-sans);font-size:12px;font-weight:700;letter-spacing:0.04em;
+}
+.acc__chev{width:20px;height:20px;color:var(--ink-4);transition:transform 360ms var(--e-out);}
+.acc[open] .acc__chev{transform:rotate(180deg);color:var(--brand-green);}
+
+.acc__body{
+  max-height:0;overflow:hidden;
+  transition:max-height 460ms var(--e-out), opacity 320ms var(--e-out);
+  opacity:0;
+}
+.acc__inner{padding:4px 28px 22px;}
+.acc.is-open .acc__body{opacity:1;}
+.p-row{
+  display:grid;grid-template-columns:1fr auto auto;gap:14px 24px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--hairline);
+}
+.p-row:last-child{border-bottom:none;}
+.p-row__name{font-size:14.5px;color:var(--ink-2);line-height:1.5;}
+.p-row__price{font-family:var(--f-display);font-size:18px;color:var(--ink);font-weight:500;white-space:nowrap;}
+.p-row__pkg{
+  font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--brand-green);font-weight:700;white-space:nowrap;
+  padding:4px 10px;background:var(--sage-50);border-radius:var(--r-pill);
+}
+
+/* BEFORE/AFTER PREVIEW */
+.ba-preview{padding:clamp(80px,9vw,130px) 0;background:var(--bg-soft);}
+.ba-preview__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:var(--container);margin:36px auto 0;padding:0 clamp(20px,4vw,56px);
+}
+.bp{
+  position:relative;aspect-ratio:1/1;border-radius:var(--r-lg);overflow:hidden;
+  background:var(--bg-mist);border:1px solid var(--hairline);
+  transition:transform 500ms var(--e-out), box-shadow 500ms var(--e-out);
+  cursor:zoom-in;
+}
+.bp:hover{transform:translateY(-6px);box-shadow:var(--sh-3);}
+.bp__split{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;}
+.bp__split > div{position:relative;overflow:hidden;}
+.bp__split img{width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--e-soft);}
+.bp:hover img{transform:scale(1.04);}
+.bp__tag{
+  position:absolute;top:12px;left:12px;z-index:3;
+  padding:5px 11px;background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);
+  border-radius:var(--r-pill);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--brand-green);font-weight:700;
+}
+.bp__tag--after{left:auto;right:12px;background:var(--brand-green);color:var(--white);}
+.bp__caption{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  padding:16px 18px 18px;color:var(--white);
+  background:linear-gradient(180deg, transparent, rgba(18,24,18,0.78));
+  font-family:var(--f-display);font-size:18px;font-weight:500;letter-spacing:-0.01em;
+}
+
+/* FAQ */
+.faq{padding:clamp(80px,9vw,130px) 0;}
+.faq__wrap{max-width:var(--container-narrow);margin:36px auto 0;padding:0 clamp(20px,4vw,56px);}
+.faq__item{
+  border-bottom:1px solid var(--hairline);
+  transition:background 240ms;
+}
+.faq__item[open]{background:var(--bg-soft);border-radius:var(--r-md);border-bottom-color:transparent;}
+.faq__q{
+  cursor:pointer;list-style:none;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  padding:22px 20px;user-select:none;
+  font-family:var(--f-display);font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-0.01em;line-height:1.25;
+}
+.faq__q::-webkit-details-marker{display:none;}
+.faq__q-icon{
+  flex-shrink:0;width:32px;height:32px;border-radius:50%;
+  background:var(--sage-50);color:var(--brand-green);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:transform 360ms var(--e-out), background 240ms, color 240ms;
+}
+.faq__q-icon i{width:16px;height:16px;}
+.faq__item[open] .faq__q-icon{transform:rotate(45deg);background:var(--brand-green);color:var(--white);}
+.faq__a{padding:0 20px 22px;color:var(--ink-3);font-size:15px;line-height:1.75;max-width:680px;}
+
+@media (max-width:1200px){
+  .s-hero__inner{grid-template-columns:1fr;}
+  .s-hero__media{max-width:520px;margin:0 auto;aspect-ratio:5/4;}
+  .whatis__grid{grid-template-columns:1fr;}
+  .includes__grid{grid-template-columns:repeat(2,1fr);}
+  .indic__grid{grid-template-columns:1fr;}
+  .doctor__card{grid-template-columns:1fr;}
+  .doctor__photo{aspect-ratio:16/10;}
+  .ba-preview__grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+  .includes__grid{grid-template-columns:1fr;}
+  .ba-preview__grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body class="has-sidebar">
+
+<div class="preloader"><span class="preloader__mark">Талия</span><span class="preloader__line"></span></div>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a href="home-v2.html" class="topbar__logo"><img src="images/logo.svg" alt="Талия"></a>
+    <button class="topbar__burger" id="headerBurger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <a href="home-v2.html" class="sidebar__logo"><img src="images/logo.svg" alt="Талия"></a>
+  <nav class="sidebar__nav">
+    <ul class="sidebar__nav-list">
+      <li><a href="home-v2.html" class="sidebar__nav-link"><span>Главная</span></a></li>
+      <li><a href="about-v2.html" class="sidebar__nav-link"><span>О нас</span></a></li>
+      <li class="sidebar__nav-item--expandable sidebar__nav-item--open">
+        <a href="#" class="sidebar__nav-link"><span>Услуги</span><i data-lucide="chevron-down" class="sidebar__nav-caret"></i></a>
+        <ul class="sidebar__subnav">
+          <li><a href="service-v2.html" class="sidebar__subnav-link" style="color:var(--brand-green);border-color:var(--brand-green);">Врачебная косметология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Аппаратная косметология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Эстетическая косметология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Лечебные массажи</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Эндосфера-терапия</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Подология</a></li>
+          <li><a href="service-v2.html" class="sidebar__subnav-link">Маникюр и педикюр</a></li>
+        </ul>
+      </li>
+      <li><a href="team-v2.html" class="sidebar__nav-link"><span>Мастера</span></a></li>
+      <li><a href="gallery-v2.html" class="sidebar__nav-link"><span>Портфолио</span></a></li>
+      <li><a href="promotions-v2.html" class="sidebar__nav-link"><span>Акции</span></a></li>
+      <li><a href="contacts-v2.html" class="sidebar__nav-link"><span>Контакты</span></a></li>
+    </ul>
+  </nav>
+  <div class="sidebar__contacts">
+    <a href="tel:+79852200106" class="sidebar__phone">+7 (985) 220-01-06</a>
+    <a href="tel:+79852200107" class="sidebar__phone sidebar__phone--secondary">+7 (985) 220-01-07</a>
+    <p class="sidebar__address">г. Мытищи, ул. Мира, 35,<br>ЖК «Ярославский»</p>
+  </div>
+  <div class="sidebar__socials">
+    <a href="https://wa.me/79852200106" class="sidebar__social" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+    <a href="https://t.me/taliya_pro" class="sidebar__social" aria-label="Telegram"><i data-lucide="send"></i></a>
+    <a href="https://vk.com/estetictaliya" class="sidebar__social" aria-label="VK"><i data-lucide="users"></i></a>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<main class="page">
+
+  <!-- ===== SERVICE HERO ===== -->
+  <section class="s-hero">
+    <span class="s-hero__blob" data-parallax="0.1"></span>
+    <div class="s-hero__inner">
+      <div class="s-hero__content reveal">
+        <span class="s-hero__crumbs"><a href="home-v2.html">Главная</a> <span>/</span> <a href="#services">Услуги</a> <span>/</span> Врачебная косметология</span>
+        <span class="s-hero__eyebrow">
+          <span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Направление <b>ТалиЯ</b>
+        </span>
+        <h1 class="s-hero__title">Врачебная <em>косметология</em></h1>
+        <p class="s-hero__lead">Индивидуальный протокол эстетического преображения и&nbsp;процедуры превентивной медицины: InMode Lumecca, Morpheus8, СМАС-Ultraformer&nbsp;III, RF-лифтинг, плазмотерапия и&nbsp;капельницы красоты.</p>
+        <div class="s-hero__meta">
+          <span class="s-hero__chip"><i data-lucide="user-round"></i>Врачи-косметологи</span>
+          <span class="s-hero__chip"><i data-lucide="shield-check"></i>Медицинская лицензия</span>
+          <span class="s-hero__chip"><i data-lucide="clock"></i>30–90&nbsp;мин</span>
+        </div>
+        <div class="s-hero__actions">
+          <span class="magnetic"><a href="contacts-v2.html" class="btn btn--primary btn--lg"><i data-lucide="calendar-check"></i> Записаться</a></span>
+          <span class="magnetic"><a href="#pricing" class="btn btn--ghost btn--lg"><i data-lucide="wallet"></i> Цены</a></span>
+        </div>
+      </div>
+      <div class="s-hero__media reveal-clip">
+        <img src="uploads/1770361449483-332223.webp" alt="Врачебная косметология">
+        <span class="s-hero__discount">-50%</span>
+        <span class="s-hero__badge">Скидка до&nbsp;50%</span>
+        <span class="s-hero__glyph"><i data-lucide="activity"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IS ===== -->
+  <section class="whatis">
+    <div class="whatis__grid">
+      <div class="whatis__text reveal">
+        <span class="eyebrow">Что это</span>
+        <h2 class="section__title" style="text-align:left;margin:14px 0 22px;">Медицинская косметология&nbsp;— <em style="font-style:italic;color:var(--brand-green);">доказательный</em> подход</h2>
+        <p>Это не&nbsp;«уход просто так»&nbsp;— это медицинское направление, в&nbsp;котором работают врачи-дерматовенерологи. Мы&nbsp;ставим диагноз, подбираем протокол и&nbsp;ведём клиента до&nbsp;результата.</p>
+        <p>В&nbsp;центре работают два ведущих специалиста&nbsp;— с&nbsp;опытом 8&nbsp;и&nbsp;10+&nbsp;лет соответственно. В&nbsp;арсенале&nbsp;— оригинальные инъекционные препараты и&nbsp;топовое аппаратное оборудование InMode и&nbsp;Ultraformer.</p>
+        <p>Все процедуры выполняются в&nbsp;стерильных условиях с&nbsp;соблюдением САНПиН и&nbsp;Роспотребнадзора. Препараты&nbsp;— только оригинальные, с&nbsp;маркировкой «Честный знак».</p>
+      </div>
+      <aside class="whatis__card reveal">
+        <div class="whatis__card-h">Ключевые параметры</div>
+        <div class="whatis__kv"><span>Длительность</span><span class="whatis__kv-v">30–90&nbsp;мин</span></div>
+        <div class="whatis__kv"><span>Восстановление</span><span class="whatis__kv-v">0–3&nbsp;дня</span></div>
+        <div class="whatis__kv"><span>Курс</span><span class="whatis__kv-v">1–5&nbsp;процедур</span></div>
+        <div class="whatis__kv"><span>Эффект держится</span><span class="whatis__kv-v">до&nbsp;24&nbsp;мес</span></div>
+        <div class="whatis__kv"><span>Возраст</span><span class="whatis__kv-v">от&nbsp;18+</span></div>
+        <div class="whatis__kv"><span>Скидка</span><span class="whatis__kv-v">до&nbsp;-50%</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== INCLUDES ===== -->
+  <section class="includes">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Что входит в&nbsp;направление</span>
+        <h2 class="section__title">Полный спектр <em style="font-style:italic;color:var(--brand-green);">врачебной</em> эстетики</h2>
+        <p class="section__subtitle">Инъекционные техники, аппаратные методики, плазмотерапия и&nbsp;индивидуальные протоколы&nbsp;— в&nbsp;одном центре.</p>
+      </div>
+    </div>
+    <div class="includes__grid reveal-stagger">
+      <article class="inc"><span class="inc__icon"><i data-lucide="syringe"></i></span><h3 class="inc__title">Контурная пластика</h3><p class="inc__text">Коррекция губ, скул, овала лица филлерами на&nbsp;гиалуроновой кислоте. Miraline, Neuramis, QT&nbsp;Plus.</p></article>
+      <article class="inc"><span class="inc__icon"><i data-lucide="droplet"></i></span><h3 class="inc__title">Биоревитализация</h3><p class="inc__text">Восстановление гидробаланса кожи препаратами на&nbsp;основе гиалуроновой кислоты и&nbsp;пептидов.</p></article>
+      <article class="inc"><span class="inc__icon"><i data-lucide="zap"></i></span><h3 class="inc__title">Ботулинотерапия</h3><p class="inc__text">Разглаживание мимических морщин, коррекция гипергидроза и&nbsp;бруксизма препаратами экспертного класса.</p></article>
+      <article class="inc"><span class="inc__icon"><i data-lucide="sparkles"></i></span><h3 class="inc__title">Lumecca IPL</h3><p class="inc__text">Фотоомоложение, устранение пигмента и&nbsp;сосудистых проявлений на&nbsp;платформе InMode.</p></article>
+      <article class="inc"><span class="inc__icon"><i data-lucide="scan-line"></i></span><h3 class="inc__title">Morpheus8</h3><p class="inc__text">RF-микроигольный лифтинг для&nbsp;подтяжки, уплотнения кожи и&nbsp;работы с&nbsp;рубцами постакне.</p></article>
+      <article class="inc"><span class="inc__icon"><i data-lucide="focus"></i></span><h3 class="inc__title">Ultraformer III</h3><p class="inc__text">СМАС-лифтинг: подтяжка без&nbsp;разрезов, работа с&nbsp;овалом, двойным подбородком, шеей.</p></article>
+    </div>
+  </section>
+
+  <!-- ===== INDICATIONS ===== -->
+  <section class="indic">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Показания и&nbsp;противопоказания</span>
+        <h2 class="section__title">Когда процедуры <em style="font-style:italic;color:var(--brand-green);">работают</em></h2>
+        <p class="section__subtitle">На&nbsp;первичной консультации врач собирает анамнез и&nbsp;подбирает безопасный протокол.</p>
+      </div>
+    </div>
+    <div class="indic__grid reveal-stagger">
+      <div class="indic__col">
+        <div class="indic__h"><i data-lucide="check-circle-2"></i>Показания</div>
+        <ul class="list-leaves">
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Мимические и&nbsp;статические морщины</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Потеря объёма и&nbsp;чёткости контура лица</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Пигментация, постакне, рубцы</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Снижение упругости, птоз мягких тканей</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Обезвоженность и&nbsp;тусклый тон кожи</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Превентивная антивозрастная программа 30+</li>
+        </ul>
+      </div>
+      <div class="indic__col indic__col--warn">
+        <div class="indic__h"><i data-lucide="alert-triangle"></i>Противопоказания</div>
+        <ul class="list-leaves">
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Беременность и&nbsp;период лактации</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Острые инфекционные и&nbsp;вирусные заболевания</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Онкологические заболевания в&nbsp;активной фазе</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Нарушение свёртываемости крови</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Индивидуальная непереносимость компонентов</li>
+          <li><span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Кожные воспаления в&nbsp;зоне обработки</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOCTOR CARD ===== -->
+  <section class="doctor">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Ведёт направление</span>
+        <h2 class="section__title">Ваш <em style="font-style:italic;color:var(--brand-green);">врач-косметолог</em></h2>
+        <p class="section__subtitle">Направление ведёт основатель центра&nbsp;— с&nbsp;двумя специализациями и&nbsp;опытом&nbsp;8+ лет.</p>
+      </div>
+    </div>
+    <div class="doctor__card reveal">
+      <div class="doctor__photo">
+        <span class="doctor__chip">Основатель</span>
+        <img src="images/doctors/marina.svg" alt="Голубина Марина Владимировна">
+      </div>
+      <div class="doctor__body">
+        <span class="doctor__role">Врач-дерматовенеролог · Трихолог</span>
+        <h3 class="doctor__name">Голубина Марина Владимировна</h3>
+        <p class="doctor__bio">Ведущий специалист инъекционной и&nbsp;аппаратной косметологии. Постоянный участник международных конгрессов и&nbsp;сертифицированный мастер платформ InMode и&nbsp;Ultraformer. Автор индивидуальных протоколов в&nbsp;центре «ТалиЯ».</p>
+        <div class="doctor__tags">
+          <span class="doctor__tag">Инъекции</span>
+          <span class="doctor__tag">InMode Lumecca</span>
+          <span class="doctor__tag">Morpheus8</span>
+          <span class="doctor__tag">Ultraformer III</span>
+          <span class="doctor__tag">Трихология</span>
+        </div>
+        <div class="doctor__actions">
+          <span class="magnetic"><a href="contacts-v2.html" class="btn btn--primary"><i data-lucide="calendar-check"></i> Записаться</a></span>
+          <span class="magnetic"><a href="team-v2.html" class="btn btn--ghost"><i data-lucide="users"></i> Вся команда</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Цены и&nbsp;перечень услуг</span>
+        <h2 class="section__title">Прайс <em style="font-style:italic;color:var(--brand-green);">прозрачно</em></h2>
+        <p class="section__subtitle">Все цены&nbsp;— за&nbsp;одну процедуру. В&nbsp;колонке «Курс 5+» указана цена при покупке абонемента на&nbsp;пять посещений.</p>
+      </div>
+    </div>
+    <div class="pricing__wrap reveal">
+
+      <details class="acc" open>
+        <summary class="acc__head">
+          <span class="acc__cat"><span class="acc__cat-num">01</span>Контурная пластика</span>
+          <i data-lucide="chevron-down" class="acc__chev"></i>
+        </summary>
+        <div class="acc__body"><div class="acc__inner">
+          <div class="p-row"><span class="p-row__name">Miraline (1&nbsp;мл)</span><span class="p-row__price">17&nbsp;500&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 15&nbsp;000&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Neuramis (1&nbsp;мл)</span><span class="p-row__price">13&nbsp;990&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 11&nbsp;990&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">QT&nbsp;Plus филлер (1&nbsp;мл)</span><span class="p-row__price">19&nbsp;500&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 17&nbsp;500&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Коррекция губ, скул, подбородка</span><span class="p-row__price">от&nbsp;14&nbsp;990&nbsp;₽</span><span class="p-row__pkg">индив.</span></div>
+        </div></div>
+      </details>
+
+      <details class="acc">
+        <summary class="acc__head">
+          <span class="acc__cat"><span class="acc__cat-num">02</span>Биоревитализация и&nbsp;мезотерапия</span>
+          <i data-lucide="chevron-down" class="acc__chev"></i>
+        </summary>
+        <div class="acc__body"><div class="acc__inner">
+          <div class="p-row"><span class="p-row__name">Meso-Wharton P199</span><span class="p-row__price">18&nbsp;500&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 15&nbsp;500&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Meso-Xanthin F199</span><span class="p-row__price">16&nbsp;000&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 13&nbsp;500&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Hyalual 1.8% (1&nbsp;мл)</span><span class="p-row__price">9&nbsp;500&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 8&nbsp;000&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Пептидный коктейль Dermaheal</span><span class="p-row__price">7&nbsp;500&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;5+: 6&nbsp;500&nbsp;₽</span></div>
+        </div></div>
+      </details>
+
+      <details class="acc">
+        <summary class="acc__head">
+          <span class="acc__cat"><span class="acc__cat-num">03</span>Ботулинотерапия</span>
+          <i data-lucide="chevron-down" class="acc__chev"></i>
+        </summary>
+        <div class="acc__body"><div class="acc__inner">
+          <div class="p-row"><span class="p-row__name">Dysport (1&nbsp;ед)</span><span class="p-row__price">220&nbsp;₽</span><span class="p-row__pkg">пакет 50&nbsp;ед</span></div>
+          <div class="p-row"><span class="p-row__name">Xeomin (1&nbsp;ед)</span><span class="p-row__price">260&nbsp;₽</span><span class="p-row__pkg">пакет 50&nbsp;ед</span></div>
+          <div class="p-row"><span class="p-row__name">Лоб + межбровье</span><span class="p-row__price">от&nbsp;6&nbsp;500&nbsp;₽</span><span class="p-row__pkg">—</span></div>
+          <div class="p-row"><span class="p-row__name">Полная коррекция лица</span><span class="p-row__price">от&nbsp;14&nbsp;500&nbsp;₽</span><span class="p-row__pkg">—</span></div>
+        </div></div>
+      </details>
+
+      <details class="acc">
+        <summary class="acc__head">
+          <span class="acc__cat"><span class="acc__cat-num">04</span>Аппаратные процедуры InMode</span>
+          <i data-lucide="chevron-down" class="acc__chev"></i>
+        </summary>
+        <div class="acc__body"><div class="acc__inner">
+          <div class="p-row"><span class="p-row__name">Lumecca IPL (лицо)</span><span class="p-row__price">15&nbsp;000&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;4+: 12&nbsp;500&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Morpheus8 (лицо)</span><span class="p-row__price">38&nbsp;000&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;3+: 32&nbsp;000&nbsp;₽</span></div>
+          <div class="p-row"><span class="p-row__name">Ultraformer III (полный лифтинг)</span><span class="p-row__price">45&nbsp;000&nbsp;₽</span><span class="p-row__pkg">индив.</span></div>
+          <div class="p-row"><span class="p-row__name">Forma — RF-лифтинг</span><span class="p-row__price">8&nbsp;500&nbsp;₽</span><span class="p-row__pkg">Курс&nbsp;6+: 7&nbsp;000&nbsp;₽</span></div>
+        </div></div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ===== BEFORE/AFTER ===== -->
+  <section class="ba-preview">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Результаты</span>
+        <h2 class="section__title">Работы <em style="font-style:italic;color:var(--brand-green);">наших</em> врачей</h2>
+        <p class="section__subtitle">Примеры из&nbsp;портфолио. Публикуем только с&nbsp;согласия клиентов, без&nbsp;ретуши результата.</p>
+      </div>
+    </div>
+    <div class="ba-preview__grid reveal-stagger">
+
+      <a href="gallery-v2.html" class="bp">
+        <div class="bp__split">
+          <div><span class="bp__tag">До</span><img src="uploads/1770361328184-601460.jpg" alt="До"></div>
+          <div><span class="bp__tag bp__tag--after">После</span><img src="uploads/1770361449483-332223.webp" alt="После"></div>
+        </div>
+        <span class="bp__caption">Morpheus8 · 1&nbsp;сеанс</span>
+      </a>
+
+      <a href="gallery-v2.html" class="bp">
+        <div class="bp__split">
+          <div><span class="bp__tag">До</span><img src="uploads/1770361449483-332223.webp" alt="До"></div>
+          <div><span class="bp__tag bp__tag--after">После</span><img src="uploads/1770361328184-601460.jpg" alt="После"></div>
+        </div>
+        <span class="bp__caption">Lumecca · 2&nbsp;сеанса</span>
+      </a>
+
+      <a href="gallery-v2.html" class="bp">
+        <div class="bp__split">
+          <div><span class="bp__tag">До</span><img src="uploads/1770361328184-601460.jpg" alt="До"></div>
+          <div><span class="bp__tag bp__tag--after">После</span><img src="uploads/1770361449483-332223.webp" alt="После"></div>
+        </div>
+        <span class="bp__caption">Контурная пластика</span>
+      </a>
+
+    </div>
+    <div class="text-center" style="margin-top:40px;">
+      <span class="magnetic"><a href="gallery-v2.html" class="btn btn--ghost"><i data-lucide="image"></i> Все работы</a></span>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Частые вопросы</span>
+        <h2 class="section__title">Что спрашивают <em style="font-style:italic;color:var(--brand-green);">чаще&nbsp;всего</em></h2>
+      </div>
+    </div>
+    <div class="faq__wrap reveal">
+
+      <details class="faq__item" open>
+        <summary class="faq__q">Как проходит первая консультация?<span class="faq__q-icon"><i data-lucide="plus"></i></span></summary>
+        <div class="faq__a">Первичная консультация&nbsp;— бесплатная и&nbsp;ни&nbsp;к&nbsp;чему не&nbsp;обязывает. Врач проведёт осмотр, соберёт анамнез, обсудит ожидания и&nbsp;предложит оптимальный протокол с&nbsp;честной оценкой стоимости и&nbsp;сроков.</div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Сколько держится эффект?<span class="faq__q-icon"><i data-lucide="plus"></i></span></summary>
+        <div class="faq__a">Зависит от&nbsp;процедуры: ботулинотерапия&nbsp;— 4–6&nbsp;месяцев, филлеры на&nbsp;гиалуроновой кислоте&nbsp;— от&nbsp;8&nbsp;до&nbsp;18&nbsp;месяцев, Ultraformer&nbsp;III&nbsp;— до&nbsp;18–24&nbsp;месяцев, Morpheus8&nbsp;— до&nbsp;2&nbsp;лет с&nbsp;поддерживающими сеансами.</div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Больно&nbsp;ли делать процедуры?<span class="faq__q-icon"><i data-lucide="plus"></i></span></summary>
+        <div class="faq__a">Инъекционные процедуры выполняем после аппликационной анестезии&nbsp;— чувствительность минимальна. Morpheus8 и&nbsp;Ultraformer делаем под&nbsp;местной анестезией, чтобы процедура проходила комфортно.</div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Когда можно вернуться к&nbsp;привычному ритму?<span class="faq__q-icon"><i data-lucide="plus"></i></span></summary>
+        <div class="faq__a">В&nbsp;большинстве случаев&nbsp;— в&nbsp;этот&nbsp;же день. После аппаратных процедур (Morpheus8, Lumecca) возможны покраснения и&nbsp;отёчность в&nbsp;течение 1–3&nbsp;дней. Врач даст персональные рекомендации по&nbsp;уходу.</div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Используете ли&nbsp;оригинальные препараты?<span class="faq__q-icon"><i data-lucide="plus"></i></span></summary>
+        <div class="faq__a">Только оригинальные. Все препараты закупаем у&nbsp;официальных представителей, у&nbsp;каждой упаковки&nbsp;— маркировка «Честный знак». Документы можем показать по&nbsp;запросу.</div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Возможна ли&nbsp;рассрочка или&nbsp;оплата курса частями?<span class="faq__q-icon"><i data-lucide="plus"></i></span></summary>
+        <div class="faq__a">Да, работаем с&nbsp;рассрочкой 0% до&nbsp;6&nbsp;месяцев на&nbsp;курсы от&nbsp;30&nbsp;000&nbsp;₽. Также можно оплачивать отдельные процедуры пакета по&nbsp;мере их&nbsp;проведения.</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ===== CTA PANEL ===== -->
+  <section style="padding:0 20px clamp(60px,7vw,120px);">
+    <div class="cta-panel spotlight-host reveal">
+      <span class="spotlight"></span>
+      <span class="cta-panel__blob"></span>
+      <div class="cta-panel__inner">
+        <div>
+          <span class="eyebrow eyebrow--light">Начнём с&nbsp;консультации</span>
+          <h2 class="cta-panel__title">Врач подберёт <em>протокол</em> под&nbsp;ваши задачи</h2>
+          <p class="cta-panel__lead">Первичный приём&nbsp;— бесплатно. Обсудим цели, проведём осмотр, честно расскажем, что&nbsp;действительно нужно, а&nbsp;что&nbsp;— нет.</p>
+        </div>
+        <div class="cta-panel__cta">
+          <span class="magnetic"><a href="contacts-v2.html" class="btn btn--primary btn--lg"><i data-lucide="calendar-check"></i> Записаться</a></span>
+          <span class="magnetic"><a href="tel:+79852200106" class="btn btn--ghost-light btn--lg"><i data-lucide="phone"></i> Позвонить</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CALLBACK ===== -->
+  <section class="callback">
+    <div class="container reveal">
+      <div class="callback__card">
+        <span class="eyebrow">Обратный звонок</span>
+        <h2 class="callback__title">Перезвоним в&nbsp;течение <em style="font-style:italic;color:var(--brand-green);">15&nbsp;минут</em></h2>
+        <p class="callback__subtitle">Оставьте номер — менеджер свяжется с&nbsp;вами в&nbsp;рабочие часы: ежедневно с&nbsp;10:00 до&nbsp;22:00.</p>
+        <form class="callback__form" onsubmit="event.preventDefault();this.reset();alert('Это превью — форма не отправляется.');">
+          <input type="text" class="callback__input" placeholder="Ваше имя" required>
+          <input type="tel" class="callback__input" placeholder="+7 (___) ___-__-__" required>
+          <button type="submit" class="btn btn--primary"><i data-lucide="send"></i> Отправить</button>
+        </form>
+        <p class="callback__note">Нажимая «Отправить», вы&nbsp;соглашаетесь с&nbsp;политикой конфиденциальности.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__title">ТалиЯ</div>
+        <p class="footer__text">Центр эстетики тела и&nbsp;косметологии в&nbsp;Мытищах. Медицинская лицензия № Л041-01162-50/00622568.</p>
+      </div>
+      <div>
+        <span class="footer__h">Навигация</span>
+        <ul class="footer__list">
+          <li><a href="home-v2.html">Главная</a></li>
+          <li><a href="about-v2.html">О нас</a></li>
+          <li><a href="team-v2.html">Мастера</a></li>
+          <li><a href="gallery-v2.html">Портфолио</a></li>
+          <li><a href="promotions-v2.html">Акции</a></li>
+          <li><a href="contacts-v2.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer__h">Услуги</span>
+        <ul class="footer__list">
+          <li><a href="service-v2.html">Врачебная косметология</a></li>
+          <li><a href="service-v2.html">Эстетическая косметология</a></li>
+          <li><a href="service-v2.html">Массажи</a></li>
+          <li><a href="service-v2.html">Эндосфера-терапия</a></li>
+          <li><a href="service-v2.html">Подология</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer__h">Контакты</span>
+        <ul class="footer__list">
+          <li>+7 (985) 220-01-06</li>
+          <li>+7 (985) 220-01-07</li>
+          <li>г. Мытищи, ул. Мира, 35</li>
+          <li>Ежедневно, 10:00 – 22:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-current-year>2026</span> ООО «МЕДИКА+». Все права защищены.</span>
+      <span>Лицензия № Л041-01162-50/00622568</span>
+    </div>
+  </footer>
+</main>
+
+<span class="preview-tag">PREVIEW · v2 · service</span>
+
+<script src="js/v2.js"></script>
+<script>
+(function(){
+  const accs = document.querySelectorAll('.pricing__wrap .acc');
+  const openAcc = acc => {
+    const body = acc.querySelector('.acc__body');
+    acc.setAttribute('open','');
+    acc.classList.add('is-open');
+    body.style.maxHeight = '0px';
+    requestAnimationFrame(() => {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    });
+    const done = () => { if (acc.classList.contains('is-open')) body.style.maxHeight = 'none'; };
+    body.addEventListener('transitionend', done, { once:true });
+  };
+  const closeAcc = acc => {
+    const body = acc.querySelector('.acc__body');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    acc.classList.remove('is-open');
+    requestAnimationFrame(() => {
+      body.style.maxHeight = '0px';
+    });
+    body.addEventListener('transitionend', () => {
+      acc.removeAttribute('open');
+      body.style.maxHeight = '';
+    }, { once:true });
+  };
+  accs.forEach(acc => {
+    const body = acc.querySelector('.acc__body');
+    if (acc.hasAttribute('open')) {
+      acc.classList.add('is-open');
+      body.style.maxHeight = 'none';
+    }
+    acc.querySelector('summary').addEventListener('click', e => {
+      e.preventDefault();
+      const isOpen = acc.classList.contains('is-open');
+      accs.forEach(other => { if (other !== acc && other.classList.contains('is-open')) closeAcc(other); });
+      if (isOpen) closeAcc(acc); else openAcc(acc);
+    });
+  });
+})();
+</script>
+</body>
+</html>

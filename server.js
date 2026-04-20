@@ -196,10 +196,12 @@ app.get('/consent', (req, res) => {
 // Callback form submission
 app.post('/callback', (req, res) => {
   try {
-    const { name, phone, service, message } = req.body;
-    
+    const { name, phone, service, message, email, consent, source } = req.body;
+    const wantsJson = (req.get('accept') || '').includes('application/json') || req.xhr;
+
     if (!name || !phone) {
-      return res.status(400).json({ error: 'Имя и телефон обязательны' });
+      if (wantsJson) return res.status(400).json({ error: 'Имя и телефон обязательны' });
+      return res.redirect('back');
     }
 
     const callbacks = loadCallbacks();
@@ -207,16 +209,20 @@ app.post('/callback', (req, res) => {
       id: Date.now().toString(),
       name,
       phone,
+      email: email || '',
       service: service || '',
       message: message || '',
+      source: source || '',
+      consent: consent === 'on' || consent === 'true' || consent === '1',
       submittedAt: new Date().toISOString(),
       read: false
     };
 
     callbacks.push(newCallback);
     saveCallbacks(callbacks);
-    
-    res.json({ success: true, message: 'Заявка принята' });
+
+    if (wantsJson) return res.json({ success: true, message: 'Заявка принята' });
+    res.redirect((req.get('referer') || '/') + '#callback-sent');
   } catch (error) {
     console.error('Callback error:', error);
     res.status(500).json({ error: 'Ошибка при отправке заявки' });
@@ -361,13 +367,92 @@ app.get('/admin/hero', requireAuth, (req, res) => {
 
 app.post('/admin/hero', requireAuth, upload.single('image'), (req, res) => {
   const content = loadContent();
-  content.hero.title = req.body.title || content.hero.title;
-  content.hero.subtitle = req.body.subtitle || content.hero.subtitle;
-  content.hero.promoText = req.body.promoText || content.hero.promoText;
-  content.hero.promoNote = req.body.promoNote || content.hero.promoNote;
+  if (!content.hero) content.hero = {};
+  const b = req.body;
+
+  // Legacy simple fields
+  if (b.title !== undefined) content.hero.title = b.title;
+  if (b.subtitle !== undefined) content.hero.subtitle = b.subtitle;
+  if (b.promoText !== undefined) content.hero.promoText = b.promoText;
+  if (b.promoNote !== undefined) content.hero.promoNote = b.promoNote;
+
+  // New rich fields
+  if (b.eyebrow !== undefined) content.hero.eyebrow = b.eyebrow;
+  if (b.brand !== undefined) content.hero.brand = b.brand;
+  if (b.brandline !== undefined) content.hero.brandline = b.brandline;
+  if (b.titleItalicWord !== undefined) content.hero.titleItalicWord = b.titleItalicWord;
+  if (b.lead !== undefined) content.hero.lead = b.lead;
+
+  if (b.titleLines !== undefined) {
+    content.hero.titleLines = String(b.titleLines)
+      .split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  }
+  if (b.utp !== undefined) {
+    content.hero.utp = String(b.utp)
+      .split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  }
+
+  content.hero.ctaPrimary = {
+    text: b.ctaPrimaryText || '',
+    href: b.ctaPrimaryHref || '',
+    icon: b.ctaPrimaryIcon || ''
+  };
+  content.hero.ctaSecondary = {
+    text: b.ctaSecondaryText || '',
+    href: b.ctaSecondaryHref || '',
+    icon: b.ctaSecondaryIcon || ''
+  };
+
+  // Slides repeater
+  const toArr = v => v === undefined ? [] : (Array.isArray(v) ? v : [v]);
+  const imgs = toArr(b.slideImage);
+  const cIcons = toArr(b.slideChipIcon);
+  const cTexts = toArr(b.slideChipText);
+  const bIcons = toArr(b.slideBadgeIcon);
+  const bLabels = toArr(b.slideBadgeLabel);
+  const bVals = toArr(b.slideBadgeValue);
+  const max = Math.max(imgs.length, cIcons.length, cTexts.length, bIcons.length, bLabels.length, bVals.length);
+  const slides = [];
+  for (let i = 0; i < max; i++) {
+    const row = {
+      image: imgs[i] || '',
+      chipIcon: cIcons[i] || '',
+      chipText: cTexts[i] || '',
+      badgeIcon: bIcons[i] || '',
+      badgeLabel: bLabels[i] || '',
+      badgeValue: bVals[i] || ''
+    };
+    if (row.image || row.chipText || row.badgeValue) slides.push(row);
+  }
+  content.hero.slides = slides;
+
   if (req.file) content.hero.image = '/uploads/' + req.file.filename;
   saveContent(content);
   res.redirect('/admin/hero?saved=1');
+});
+
+// ===== TRUST (marquee) =====
+
+app.get('/admin/trust', requireAuth, (req, res) => {
+  res.render('admin/trust');
+});
+
+app.post('/admin/trust', requireAuth, (req, res) => {
+  const content = loadContent();
+  if (!content.trust) content.trust = {};
+  const toArr = v => v === undefined ? [] : (Array.isArray(v) ? v : [v]);
+  const icons = toArr(req.body.icons);
+  const texts = toArr(req.body.texts);
+  const items = [];
+  const max = Math.max(icons.length, texts.length);
+  for (let i = 0; i < max; i++) {
+    const row = { icon: icons[i] || '', text: texts[i] || '' };
+    if (row.text.trim()) items.push(row);
+  }
+  content.trust.items = items;
+  content.trust.enabled = req.body.enabled === 'on' || req.body.enabled === 'true';
+  saveContent(content);
+  res.redirect('/admin/trust?saved=1');
 });
 
 // ===== BENEFITS =====

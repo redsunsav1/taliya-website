@@ -1,305 +1,304 @@
-<% const pageTitle = service.name %>
-<%- include('../partials/header') %>
-
 <%
-  /* Determine whether any item has package pricing */
-  const hasPackage5  = service.items.some(item => item.pricePackage5  && item.pricePackage5.trim());
-  const hasPackage10 = service.items.some(item => item.pricePackage10 && item.pricePackage10.trim());
+  var pageTitle = service.name;
+  pageStyles = ['/css/service-v2.css'];
+
+  /* Group items by category if categories exist */
+  var categories = [];
+  var catMap = {};
+  (service.items || []).forEach(function(item) {
+    var cat = item.category || '';
+    if (!catMap[cat]) { catMap[cat] = []; categories.push(cat); }
+    catMap[cat].push(item);
+  });
+  var hasCategories = categories.length > 1 || (categories.length === 1 && categories[0] !== '');
 
   /* Other services: exclude current, take first 4 */
-  const otherServices = content.services.filter(s => s.slug !== service.slug).slice(0, 4);
+  var otherServices = (content.services || []).filter(function(s){ return s.slug !== service.slug; }).slice(0, 4);
+
+  /* Hero chips: prefer advantages titles, fallback to static */
+  var heroChips = [];
+  if (service.advantages && service.advantages.length) {
+    service.advantages.slice(0, 3).forEach(function(a){
+      heroChips.push({ icon: a.icon || 'check', text: a.title });
+    });
+  } else {
+    heroChips = [
+      { icon: 'shield-check', text: 'Медицинская лицензия' },
+      { icon: 'sparkles',     text: 'Стерильные условия' },
+      { icon: 'user-round',   text: 'Сертифицированные специалисты' }
+    ];
+  }
 %>
+<%- include('../partials/header') %>
 
-<!-- ===== SERVICE HERO BANNER ===== -->
-<section class="service-hero">
-  <img
-    src="<%= service.image %>"
-    alt="<%= service.name %>"
-    class="service-hero__bg"
-  >
-  <div class="service-hero__overlay"></div>
-
-  <div class="service-hero__content container">
-    <!-- Breadcrumb -->
-    <nav class="service-hero__breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Главная</a>
-      <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
-      <span>Услуги</span>
-      <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
-      <span><%= service.name %></span>
-    </nav>
-
-    <!-- Heading -->
-    <h1 class="service-hero__title"><%= service.name %></h1>
-
-    <!-- Description -->
-    <p class="service-hero__description"><%= service.description %></p>
-
-    <!-- Discount badge -->
-    <% if (service.discount) { %>
-      <span class="service-hero__badge">
-        <i data-lucide="percent" style="width:14px;height:14px;"></i>
-        Скидка на первый сеанс: <%= service.discount %>
-      </span>
-    <% } %>
-
-    <!-- CTA -->
-    <div class="service-hero__cta">
-      <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
-        <i data-lucide="calendar-check"></i>
-        Записаться
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== PRICE LIST SECTION ===== -->
-<section class="section service-price fade-in" id="price">
-  <div class="container">
-    <h2 class="section__title">Прайс-лист</h2>
-    <p class="section__subtitle"><%= service.name %></p>
-
-    <%
-      /* Group items by category if categories exist */
-      const categories = [];
-      const catMap = {};
-      service.items.forEach(function(item) {
-        const cat = item.category || '';
-        if (!catMap[cat]) {
-          catMap[cat] = [];
-          categories.push(cat);
-        }
-        catMap[cat].push(item);
-      });
-      const hasCategories = categories.length > 1 || (categories.length === 1 && categories[0] !== '');
-    %>
-
-    <% if (hasCategories) { %>
-      <div class="price-accordion">
-        <% categories.forEach(function(cat, catIdx) { %>
-          <div class="price-accordion__item<%= catIdx === 0 ? ' price-accordion__item--open' : '' %>">
-            <button type="button" class="price-accordion__header" onclick="togglePriceAccordion(this)">
-              <span class="price-accordion__title"><%= cat || 'Прочее' %></span>
-              <span class="price-accordion__count"><%= catMap[cat].length %></span>
-              <span class="price-accordion__icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-              </span>
-            </button>
-            <div class="price-accordion__body"<%= catIdx === 0 ? '' : ' style="display:none;"' %>>
-              <div class="price-table-wrapper">
-                <table class="price-table">
-                  <thead>
-                    <tr>
-                      <th>Услуга</th>
-                      <th>Длительность</th>
-                      <th>Цена</th>
-                      <% if (hasPackage5) { %><th>Абонемент</th><% } %>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% catMap[cat].forEach(function(item) { %>
-                      <tr>
-                        <td>
-                          <strong class="service-price__item-name"><%= item.name %></strong>
-                          <% if (item.description) { %>
-                            <span class="service-price__item-desc"><%= item.description %></span>
-                          <% } %>
-                        </td>
-                        <td><%= item.duration || '—' %></td>
-                        <td class="price-cell"><%= item.price %></td>
-                        <% if (hasPackage5) { %>
-                          <td class="price-cell price-cell--discount">
-                            <%= (item.pricePackage5 && item.pricePackage5.trim()) ? item.pricePackage5 : '—' %>
-                          </td>
-                        <% } %>
-                      </tr>
-                    <% }); %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        <% }); %>
-      </div>
-    <% } else { %>
-      <div class="price-table-wrapper">
-        <table class="price-table">
-          <thead>
-            <tr>
-              <th>Услуга</th>
-              <th>Длительность</th>
-              <th>Цена</th>
-              <% if (hasPackage5) { %><th>Абонемент 5</th><% } %>
-              <% if (hasPackage10) { %><th>Абонемент 10</th><% } %>
-            </tr>
-          </thead>
-          <tbody>
-            <% service.items.forEach(function(item) { %>
-              <tr>
-                <td>
-                  <strong class="service-price__item-name"><%= item.name %></strong>
-                  <% if (item.description) { %>
-                    <span class="service-price__item-desc"><%= item.description %></span>
-                  <% } %>
-                </td>
-                <td><%= item.duration || '—' %></td>
-                <td class="price-cell"><%= item.price %></td>
-                <% if (hasPackage5) { %>
-                  <td class="price-cell price-cell--discount">
-                    <%= (item.pricePackage5 && item.pricePackage5.trim()) ? item.pricePackage5 : '—' %>
-                  </td>
-                <% } %>
-                <% if (hasPackage10) { %>
-                  <td class="price-cell price-cell--discount">
-                    <%= (item.pricePackage10 && item.pricePackage10.trim()) ? item.pricePackage10 : '—' %>
-                  </td>
-                <% } %>
-              </tr>
+  <!-- ===== SERVICE HERO ===== -->
+  <section class="s-hero">
+    <span class="s-hero__blob" data-parallax="0.1"></span>
+    <div class="s-hero__inner">
+      <div class="s-hero__content reveal">
+        <span class="s-hero__crumbs">
+          <a href="/">Главная</a> <span>/</span>
+          <a href="/#services">Услуги</a> <span>/</span>
+          <%= service.name %>
+        </span>
+        <span class="s-hero__eyebrow">
+          <span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Направление <b>ТалиЯ</b>
+        </span>
+        <h1 class="s-hero__title"><%= service.name %></h1>
+        <% if (service.description) { %>
+          <p class="s-hero__lead"><%= service.description %></p>
+        <% } %>
+        <% if (heroChips.length) { %>
+          <div class="s-hero__meta">
+            <% heroChips.forEach(function(c){ %>
+              <span class="s-hero__chip"><i data-lucide="<%= c.icon %>"></i><%= c.text %></span>
             <% }); %>
-          </tbody>
-        </table>
-      </div>
-    <% } %>
-
-    <% if (service.discount) { %>
-      <p class="service-price__note">
-        <i data-lucide="info" style="width:16px;height:16px;vertical-align:middle;"></i>
-        Скидка на первый сеанс: <strong><%= service.discount %></strong>
-      </p>
-    <% } %>
-  </div>
-</section>
-
-
-<!-- ===== DETAILED DESCRIPTION + VIDEO ===== -->
-<% if (service.detailedDescription || service.videoUrl) { %>
-  <section class="section service-details fade-in">
-    <div class="container">
-      <% if (service.detailedDescription) { %>
-        <h2 class="section__title">Как это работает</h2>
-        <div class="service-details__text">
-          <p><%= service.detailedDescription %></p>
-        </div>
-      <% } %>
-
-      <% if (service.videoUrl) { %>
-        <div class="service-details__video">
-          <div class="video-wrapper">
-            <iframe
-              src="<%= service.videoUrl %>"
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
-              frameborder="0"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
           </div>
+        <% } %>
+        <div class="s-hero__actions">
+          <span class="magnetic"><a href="#price" class="btn btn--primary btn--lg"><i data-lucide="wallet"></i> Смотреть цены</a></span>
+          <% if (content.site.profsalon) { %>
+            <span class="magnetic"><a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="btn btn--ghost btn--lg"><i data-lucide="calendar-check"></i> Записаться онлайн</a></span>
+          <% } %>
         </div>
-      <% } %>
+      </div>
+      <div class="s-hero__media reveal-clip">
+        <% if (service.image) { %><img src="<%= service.image %>" alt="<%= service.name %>"><% } %>
+        <% if (service.discount) { %>
+          <span class="s-hero__discount"><%= service.discount %></span>
+          <span class="s-hero__badge">Скидка <%= service.discount %></span>
+        <% } %>
+        <span class="s-hero__glyph"><i data-lucide="<%= service.icon || 'sparkles' %>"></i></span>
+      </div>
     </div>
   </section>
-<% } %>
 
-
-<!-- ===== ADVANTAGES SECTION ===== -->
-<% if (service.advantages && service.advantages.length) { %>
-  <section class="section service-advantages fade-in">
-    <div class="container">
-      <h2 class="section__title">Наши преимущества</h2>
-      <p class="section__subtitle">Почему клиенты выбирают нас для <%= service.name.toLowerCase() %></p>
-
-      <div class="service-advantages__grid">
-        <% service.advantages.forEach(function(adv, i) { %>
-          <div class="advantage-card fade-in delay-<%= i + 1 %>">
-            <div class="advantage-card__icon">
-              <i data-lucide="<%= adv.icon %>"></i>
-            </div>
-            <div class="advantage-card__body">
-              <h3 class="advantage-card__title"><%= adv.title %></h3>
-              <p class="advantage-card__text"><%= adv.text %></p>
+  <!-- ===== DETAILED DESCRIPTION + VIDEO ===== -->
+  <% if (service.detailedDescription || service.videoUrl) { %>
+    <section class="s-details">
+      <div class="s-details__wrap">
+        <% if (service.detailedDescription) { %>
+          <div class="reveal">
+            <span class="eyebrow">О процедуре</span>
+            <h2 class="section__title" style="text-align:left;margin:14px 0 22px;">Как это <em style="font-style:italic;color:var(--brand-green);">работает</em></h2>
+            <div class="s-details__text">
+              <p><%= service.detailedDescription %></p>
             </div>
           </div>
+        <% } %>
+        <% if (service.videoUrl) { %>
+          <div class="s-details__video reveal">
+            <div class="video-wrapper">
+              <iframe
+                src="<%= service.videoUrl %>"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
+                allowfullscreen
+                loading="lazy"></iframe>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- ===== PRICING ===== -->
+  <% if (service.items && service.items.length) { %>
+    <%
+      var hasPackage5 = service.items.some(function(it){ return it.pricePackage5 && String(it.pricePackage5).trim(); });
+    %>
+    <section class="pricing" id="price">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Цены и&nbsp;перечень услуг</span>
+          <h2 class="section__title">Прайс <em style="font-style:italic;color:var(--brand-green);">прозрачно</em></h2>
+          <p class="section__subtitle">Все цены&nbsp;— за&nbsp;одну процедуру.<% if (hasPackage5) { %> В&nbsp;ячейке «Курс&nbsp;5+» указана цена при&nbsp;покупке абонемента.<% } %></p>
+        </div>
+      </div>
+      <div class="pricing__wrap reveal">
+        <div class="price-accordion">
+        <% if (hasCategories) { %>
+          <% categories.forEach(function(cat, catIdx){ %>
+            <details class="acc"<%= catIdx === 0 ? ' open' : '' %>>
+              <summary class="acc__head">
+                <span class="acc__cat">
+                  <span class="acc__cat-num"><%= String(catIdx + 1).padStart(2, '0') %></span>
+                  <%= cat || 'Прочее' %>
+                </span>
+                <i data-lucide="chevron-down" class="acc__chev"></i>
+              </summary>
+              <div class="acc__body"><div class="acc__inner">
+                <% catMap[cat].forEach(function(item){ %>
+                  <div class="p-row">
+                    <span class="p-row__name">
+                      <%= item.name %>
+                      <% if (item.description) { %><small><%= item.description %></small><% } %>
+                    </span>
+                    <% if (item.duration) { %><span class="p-row__dur"><%= item.duration %></span><% } else { %><span class="p-row__dur"></span><% } %>
+                    <span class="p-row__price"><%= item.price %></span>
+                    <% if (item.pricePackage5 && String(item.pricePackage5).trim()) { %>
+                      <span class="p-row__pkg">Курс&nbsp;5+: <%= item.pricePackage5 %></span>
+                    <% } %>
+                  </div>
+                <% }); %>
+              </div></div>
+            </details>
+          <% }); %>
+        <% } else { %>
+          <details class="acc" open>
+            <summary class="acc__head">
+              <span class="acc__cat"><span class="acc__cat-num">01</span>Перечень услуг</span>
+              <i data-lucide="chevron-down" class="acc__chev"></i>
+            </summary>
+            <div class="acc__body"><div class="acc__inner">
+              <% service.items.forEach(function(item){ %>
+                <div class="p-row">
+                  <span class="p-row__name">
+                    <%= item.name %>
+                    <% if (item.description) { %><small><%= item.description %></small><% } %>
+                  </span>
+                  <% if (item.duration) { %><span class="p-row__dur"><%= item.duration %></span><% } else { %><span class="p-row__dur"></span><% } %>
+                  <span class="p-row__price"><%= item.price %></span>
+                  <% if (item.pricePackage5 && String(item.pricePackage5).trim()) { %>
+                    <span class="p-row__pkg">Курс&nbsp;5+: <%= item.pricePackage5 %></span>
+                  <% } %>
+                </div>
+              <% }); %>
+            </div></div>
+          </details>
+        <% } %>
+        </div>
+        <% if (service.discount) { %>
+          <p class="pricing__note">
+            <i data-lucide="info"></i>
+            Скидка на&nbsp;первый сеанс: <strong><%= service.discount %></strong>
+          </p>
+        <% } %>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- ===== ADVANTAGES ===== -->
+  <% if (service.advantages && service.advantages.length) { %>
+    <section class="s-includes">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Почему нам доверяют</span>
+          <h2 class="section__title">Наши <em style="font-style:italic;color:var(--brand-green);">преимущества</em></h2>
+          <p class="section__subtitle">Что клиенты ценят в&nbsp;нашем подходе к&nbsp;процедурам направления.</p>
+        </div>
+      </div>
+      <div class="s-includes__grid reveal-stagger">
+        <% service.advantages.forEach(function(adv){ %>
+          <article class="advantage">
+            <span class="advantage__icon"><i data-lucide="<%= adv.icon || 'sparkles' %>"></i></span>
+            <h3 class="advantage__title"><%= adv.title %></h3>
+            <p class="advantage__text"><%= adv.text %></p>
+          </article>
         <% }); %>
       </div>
-    </div>
-  </section>
-<% } %>
+    </section>
+  <% } %>
 
-
-<!-- ===== DOCTORS SECTION ===== -->
-<% if (service.doctors && service.doctors.length) { %>
-  <section class="section service-doctors fade-in">
-    <div class="container">
-      <h2 class="section__title">Наши специалисты</h2>
-      <p class="section__subtitle">Опытные профессионалы, которым вы можете доверять</p>
-
-      <div class="service-doctors__grid">
-        <% service.doctors.forEach(function(doc, i) { %>
-          <div class="doctor-card fade-in delay-<%= i + 1 %>">
-            <div class="doctor-card__photo-wrapper">
-              <img
-                src="<%= doc.photo %>"
-                alt="<%= doc.name %>"
-                class="doctor-card__photo"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              >
-              <div class="doctor-card__placeholder" style="display:none;">
-                <i data-lucide="user" style="width:64px;height:64px;color:var(--color-warm-gray);"></i>
-              </div>
-            </div>
-            <h3 class="doctor-card__name"><%= doc.name %></h3>
-            <p class="doctor-card__role"><%= doc.role %></p>
-            <% if (doc.experience) { %>
-              <p class="doctor-card__experience">
-                <i data-lucide="award" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i>
-                <%= doc.experience %>
-              </p>
-            <% } %>
-            <p class="doctor-card__bio"><%= doc.bio %></p>
-          </div>
-        <% }); %>
+  <!-- ===== DOCTORS ===== -->
+  <% if (service.doctors && service.doctors.length) { %>
+    <section class="s-doctors">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Ведут направление</span>
+          <h2 class="section__title">Ваши <em style="font-style:italic;color:var(--brand-green);">специалисты</em></h2>
+          <p class="section__subtitle">Опытные профессионалы, которым вы&nbsp;можете доверять.</p>
+        </div>
       </div>
-    </div>
-  </section>
-<% } %>
-
-
-<!-- ===== CALLBACK FORM ===== -->
-<%- include('../partials/callback-form') %>
-
-
-<!-- ===== OTHER SERVICES SECTION ===== -->
-<% if (otherServices.length) { %>
-  <section class="section service-others bg-off-white fade-in">
-    <div class="container">
-      <h2 class="section__title">Другие услуги</h2>
-      <p class="section__subtitle">Ознакомьтесь с другими нашими направлениями</p>
-
-      <div class="services__grid">
-        <% otherServices.forEach(function(s, i) { %>
-          <a href="/service/<%= s.slug %>" class="service-card fade-in delay-<%= i + 1 %>">
-            <img
-              src="<%= s.image %>"
-              alt="<%= s.name %>"
-              class="service-card__image"
-              loading="lazy"
-            >
-            <div class="service-card__overlay">
-              <h3 class="service-card__name"><%= s.shortName %></h3>
-              <p class="service-card__brief"><%= s.description.substring(0, 80) %>...</p>
-              <% if (s.items.length) { %>
-                <span class="service-card__price"><%= s.items[0].price %></span>
+      <div class="s-doctors__grid reveal-stagger">
+        <% service.doctors.forEach(function(doc){ %>
+          <article class="doctor">
+            <div class="doctor__photo">
+              <% if (doc.role) { %><span class="doctor__badge"><%= doc.role.split(/[·,]/)[0].trim() %></span><% } %>
+              <% if (doc.photo) { %>
+                <img src="<%= doc.photo %>" alt="<%= doc.name %>" loading="lazy">
               <% } %>
             </div>
-            <div class="service-card__arrow">
-              <i data-lucide="arrow-right"></i>
+            <div class="doctor__body">
+              <% if (doc.role) { %><span class="doctor__role"><%= doc.role %></span><% } %>
+              <h3 class="doctor__name"><%= doc.name %></h3>
+              <% if (doc.experience) { %>
+                <span class="doctor__exp"><i data-lucide="award"></i><%= doc.experience %></span>
+              <% } %>
+              <% if (doc.bio) { %><p class="doctor__bio"><%= doc.bio %></p><% } %>
+            </div>
+          </article>
+        <% }); %>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- ===== CALLBACK ===== -->
+  <%- include('../partials/callback-form') %>
+
+  <!-- ===== OTHER SERVICES ===== -->
+  <% if (otherServices.length) { %>
+    <section class="s-others">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Ещё услуги</span>
+          <h2 class="section__title">Другие <em style="font-style:italic;color:var(--brand-green);">направления</em></h2>
+          <p class="section__subtitle">Ознакомьтесь с&nbsp;другими услугами центра.</p>
+        </div>
+      </div>
+      <div class="s-others__grid reveal-stagger">
+        <% otherServices.forEach(function(s){ %>
+          <a href="/service/<%= s.slug %>" class="service">
+            <div class="service__media">
+              <% if (s.discount) { %><span class="service__badge"><%= s.discount %></span><% } %>
+              <img src="<%= s.image || ('/images/services/' + s.slug + '.svg') %>" alt="<%= s.name %>" loading="lazy">
+            </div>
+            <div class="service__body">
+              <h3 class="service__name"><%= s.shortName || s.name %></h3>
+              <p class="service__brief"><%= s.brief || (s.description ? s.description.substring(0, 90) + (s.description.length > 90 ? '…' : '') : '') %></p>
+              <div class="service__bottom">
+                <span class="service__more">Подробнее</span>
+                <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+              </div>
             </div>
           </a>
         <% }); %>
       </div>
-    </div>
-  </section>
-<% } %>
+    </section>
+  <% } %>
+
+  <!-- ===== PRICING ACCORDION SCRIPT ===== -->
+  <script>
+  (function(){
+    var accs = document.querySelectorAll('.pricing__wrap .acc');
+    function openAcc(acc){
+      var body = acc.querySelector('.acc__body');
+      acc.setAttribute('open','');
+      acc.classList.add('is-open');
+      body.style.maxHeight = '0px';
+      requestAnimationFrame(function(){ body.style.maxHeight = body.scrollHeight + 'px'; });
+      body.addEventListener('transitionend', function(){ if (acc.classList.contains('is-open')) body.style.maxHeight = 'none'; }, { once:true });
+    }
+    function closeAcc(acc){
+      var body = acc.querySelector('.acc__body');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      acc.classList.remove('is-open');
+      requestAnimationFrame(function(){ body.style.maxHeight = '0px'; });
+      body.addEventListener('transitionend', function(){ acc.removeAttribute('open'); body.style.maxHeight = ''; }, { once:true });
+    }
+    accs.forEach(function(acc){
+      var body = acc.querySelector('.acc__body');
+      if (acc.hasAttribute('open')) { acc.classList.add('is-open'); body.style.maxHeight = 'none'; }
+      var summary = acc.querySelector('summary');
+      if (!summary) return;
+      summary.addEventListener('click', function(e){
+        e.preventDefault();
+        var isOpen = acc.classList.contains('is-open');
+        accs.forEach(function(o){ if (o !== acc && o.classList.contains('is-open')) closeAcc(o); });
+        if (isOpen) closeAcc(acc); else openAcc(acc);
+      });
+    });
+  })();
+  </script>
 
 <%- include('../partials/footer') %>
