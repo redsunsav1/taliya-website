@@ -8,7 +8,7 @@
     "phoneRaw2": "+79852200107",
     "address": "г. Мытищи, ул. Мира, 35, ЖК «Ярославский»",
     "hours": "Ежедневно 10:00–22:00",
-    "email": "",
+    "email": "info@taliya-mytishchi.ru",
     "vk": "https://vk.com/estetictaliya",
     "telegram": "https://t.me/taliya_pro",
     "whatsapp": "https://wa.me/79852200106",
@@ -16,7 +16,6 @@
     "license": "№ Л041-01162-50/00622568",
     "company": "ООО «МЕДИКА+»",
     "mapEmbed": "https://yandex.ru/map-widget/v1/?um=constructor%3A&source=constructorLink&ll=37.7647%2C55.9103&z=16&pt=37.7647%2C55.9103",
-    "maxChatUrl": "",
     "logo": "/images/logo.svg"
   },
   "hero": {
@@ -24,51 +23,23 @@
     "subtitle": "Медицинская косметология, инъекции красоты, массажи и подология — в одном центре",
     "promoText": "Скидка на первый сеанс до -50%",
     "promoNote": "*Уровень скидки зависит от услуги. Оставьте заявку и узнайте вашу выгоду.",
-    "image": "/images/hero-bg.svg",
+    "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
     "slides": [
       {
         "title": "Центр эстетики тела «Талия»",
         "subtitle": "Работаем с любовью, предвосхищая ожидания и сохраняем то, что забирает время!",
         "promoText": "Скидка на первый сеанс до -50%",
         "promoNote": "*Уровень скидки зависит от услуги. Оставьте заявку и узнайте вашу выгоду.",
-        "image": "/images/hero-bg.svg"
+        "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop"
       },
       {
         "title": "Косметология с медицинской лицензией",
         "subtitle": "Авторские методики и контроль доведения до результата. Только оригинальные препараты.",
         "promoText": "Консультация врача бесплатно",
         "promoNote": "*При записи на процедуру в день консультации.",
-        "image": "/images/hero-bg.svg"
+        "image": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop"
       }
-    ],
-    "eyebrow": "Центр эстетики тела и косметологии",
-    "brand": "ТалиЯ",
-    "brandline": "Мытищи · ЖК «Ярославский» · с 2019 года",
-    "titleLines": [
-      "Работаем с любовью,",
-      "предвосхищая ожидания",
-      "и сохраняем время."
-    ],
-    "titleItalicWord": "предвосхищая",
-    "lead": "Медицинская косметология, инъекции красоты, лечебные массажи и подология — в одном центре c действующей медицинской лицензией.",
-    "utp": [
-      "Аппаратная косметология",
-      "Инъекции красоты",
-      "Лечебные массажи",
-      "Коррекция фигуры",
-      "Подология и орто-стельки",
-      "Маникюр и педикюр"
-    ],
-    "ctaPrimary": {
-      "text": "Получить консультацию",
-      "href": "#callback",
-      "icon": "calendar-check"
-    },
-    "ctaSecondary": {
-      "text": "Узнать акции",
-      "href": "#promo",
-      "icon": "sparkles"
-    }
+    ]
   },
   "benefits": [
     {
@@ -105,11 +76,6 @@
       "icon": "badge-check",
       "title": "Честный знак",
       "text": "Все препараты промаркированы в системе «Честный знак» — гарантия подлинности и отслеживаемости."
-    },
-    {
-      "icon": "heart-handshake",
-      "title": "Индивидуальный подход",
-      "text": "Подбираем протокол под особенности кожи, образ жизни и цели каждого гостя"
     }
   ],
   "services": [
@@ -165,39 +131,39 @@
           "name": "Miraline (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "17 500 ₽",
-          "pricePackage5": "15 000 ₽",
+          "price": "22 000 ₽",
+          "pricePackage5": "20 500 ₽",
           "description": ""
         },
         {
           "name": "Neuramis (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "13 990 ₽",
-          "pricePackage5": "11 990 ₽",
+          "price": "17 900 ₽",
+          "pricePackage5": "16 200 ₽",
           "description": ""
         },
         {
           "name": "QT Plus филлер (1 мл)",
           "category": "Контурная пластика",
-          "duration": "",
-          "price": "19 500 ₽",
-          "pricePackage5": "17 500 ₽",
+          "duration": "45 мин",
+          "price": "22 500 ₽",
+          "pricePackage5": "20 500 ₽",
           "description": ""
         },
         {
           "name": "Stylage (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "13 990 ₽",
-          "pricePackage5": "20 500 ₽",
+          "price": "24 900 ₽",
+          "pricePackage5": "22 500 ₽",
           "description": ""
         },
         {
           "name": "Repart Supreme Medium (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "14 500 ₽",
+          "price": "19 000 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -205,31 +171,31 @@
           "name": "Repart Supreme Soft (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "14 500 ₽",
-          "pricePackage5": "",
+          "price": "19 500 ₽",
+          "pricePackage5": "18 000 ₽",
           "description": ""
         },
         {
           "name": "Revofil Soft (1 мл / от 2-х / от 3-х)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "13 900 ₽",
-          "pricePackage5": "12 000 ₽",
+          "price": "18 500 ₽",
+          "pricePackage5": "16 800 ₽",
           "description": ""
         },
         {
           "name": "Revofil Ultra (1 мл / от 2-х / от 3-х)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "13 900 ₽",
-          "pricePackage5": "12 000 ₽",
+          "price": "18 500 ₽",
+          "pricePackage5": "16 800 ₽",
           "description": ""
         },
         {
           "name": "Juvederm Ultra Smile (0,55 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "17 000 ₽",
+          "price": "32 000 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -237,7 +203,7 @@
           "name": "Juvederm 3, 4 (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "24 000 ₽",
+          "price": "34 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -245,24 +211,24 @@
           "name": "Belotero Soft (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "18 500 ₽",
-          "pricePackage5": "",
+          "price": "22 500 ₽",
+          "pricePackage5": "21 000 ₽",
           "description": ""
         },
         {
           "name": "Belotero Intense (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "19 500 ₽",
-          "pricePackage5": "",
+          "price": "24 800 ₽",
+          "pricePackage5": "23 000 ₽",
           "description": ""
         },
         {
           "name": "Belotero Balance (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
-          "price": "17 500 ₽",
-          "pricePackage5": "",
+          "price": "21 500 ₽",
+          "pricePackage5": "20 000 ₽",
           "description": ""
         },
         {
@@ -290,10 +256,82 @@
           "description": ""
         },
         {
+          "name": "Viscoline Balance (1 мл)",
+          "duration": "",
+          "price": "16 900 ₽",
+          "pricePackage5": "15 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Viscoline Volume (1 мл)",
+          "duration": "",
+          "price": "16 900 ₽",
+          "pricePackage5": "15 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Viscoline для зоны губ (1 мл)",
+          "duration": "",
+          "price": "15 500 ₽",
+          "pricePackage5": "13 900 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Repart Supreme Hard (1 мл)",
+          "duration": "",
+          "price": "19 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Revofil Extra (1 мл / от 2-х / от 3-х)",
+          "duration": "",
+          "price": "18 500 ₽",
+          "pricePackage5": "16 800 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Neauvia Интенсив (1 мл)",
+          "duration": "",
+          "price": "24 500 ₽",
+          "pricePackage5": "22 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Лонгидаза / лидаза",
+          "duration": "",
+          "price": "5 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
+          "name": "Канюля",
+          "duration": "",
+          "price": "1 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Контурная пластика"
+        },
+        {
           "name": "Гипергидроз, флакон 100 ед.",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "23 000 ₽",
+          "price": "26 900 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -301,7 +339,7 @@
           "name": "Точка голода — снятие переедания",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "5 500 ₽",
+          "price": "8 000 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -309,7 +347,7 @@
           "name": "Ботокс (1 ед.)",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "420 ₽",
+          "price": "630 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -317,7 +355,7 @@
           "name": "Ботокс (от 30 ед., 1 ед.)",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "395 ₽",
+          "price": "590 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -325,7 +363,7 @@
           "name": "Диспорт (1 ед.)",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "180 ₽",
+          "price": "230 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -333,41 +371,59 @@
           "name": "Диспорт (от 100 ед., 1 ед.)",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "160 ₽",
+          "price": "200 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
           "name": "Ботулакс (1 ед.)",
           "category": "Ботулинотерапия",
-          "duration": "",
-          "price": "от 395 ₽",
+          "duration": "40 мин",
+          "price": "460 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
           "name": "Ботулакс (от 30 ед., 1 ед.)",
           "category": "Ботулинотерапия",
-          "duration": "",
-          "price": "от 375 ₽",
+          "duration": "40 мин",
+          "price": "430 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Миотокс / Релатокс (1 ед.)",
+          "name": "Миотокс (1 ед.)",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "от 420 ₽",
+          "price": "520 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Миотокс / Релатокс (от 30 ед., 1 ед.)",
+          "name": "Миотокс (от 30 ед., 1 ед.)",
           "category": "Ботулинотерапия",
           "duration": "",
-          "price": "от 395 ₽",
+          "price": "485 ₽",
           "pricePackage5": "",
           "description": ""
+        },
+        {
+          "name": "Релатокс (1 ед.)",
+          "duration": "",
+          "price": "575 ₽",
+          "pricePackage5": "540 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Ботулинотерапия"
+        },
+        {
+          "name": "Релатокс (от 30 ед., 1 ед.)",
+          "duration": "",
+          "price": "540 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Ботулинотерапия"
         },
         {
           "name": "LAENNEK (1 ампула, капельница)",
@@ -394,19 +450,28 @@
           "description": ""
         },
         {
+          "name": "Капельница красоты и сияния «Золушка»",
+          "duration": "",
+          "price": "8 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Капельницы красоты"
+        },
+        {
           "name": "APRILINE SWISS HAIR (2,5 мл)",
           "category": "Мезотерапия",
           "duration": "",
-          "price": "7 900 ₽",
-          "pricePackage5": "6 500 ₽",
+          "price": "9 100 ₽",
+          "pricePackage5": "8 000 ₽",
           "description": ""
         },
         {
           "name": "Пепто хэйр комплекс (2,5 мл)",
           "category": "Мезотерапия",
           "duration": "",
-          "price": "6 500 ₽",
-          "pricePackage5": "5 300 ₽",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 200 ₽",
           "description": ""
         },
         {
@@ -429,49 +494,85 @@
           "name": "Анестезия (неинвазивная)",
           "category": "Мезотерапия",
           "duration": "",
-          "price": "500 ₽",
+          "price": "550 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
           "name": "Мезотерапия Mesoline Shine (2,5 мл)",
           "category": "Мезотерапия",
-          "duration": "",
-          "price": "5 500 ₽",
-          "pricePackage5": "4 500 ₽",
+          "duration": "45 мин",
+          "price": "6 500 ₽",
+          "pricePackage5": "5 300 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Mesoline Shine (5 мл)",
           "category": "Мезотерапия",
-          "duration": "",
-          "price": "6 900 ₽",
-          "pricePackage5": "5 600 ₽",
+          "duration": "45 мин",
+          "price": "8 900 ₽",
+          "pricePackage5": "7 700 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Mesoline Hair (2,5 мл)",
           "category": "Мезотерапия",
-          "duration": "",
-          "price": "5 500 ₽",
-          "pricePackage5": "4 500 ₽",
+          "duration": "45 мин",
+          "price": "6 500 ₽",
+          "pricePackage5": "5 200 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Mesoline Hair (5 мл)",
           "category": "Мезотерапия",
-          "duration": "",
-          "price": "6 900 ₽",
-          "pricePackage5": "5 600 ₽",
+          "duration": "45 мин",
+          "price": "8 700 ₽",
+          "pricePackage5": "7 700 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Mesoline Clear (2,5 мл)",
           "category": "Мезотерапия",
-          "duration": "",
-          "price": "5 500 ₽",
-          "pricePackage5": "4 500 ₽",
+          "duration": "45 мин",
+          "price": "6 400 ₽",
+          "pricePackage5": "5 300 ₽",
           "description": ""
+        },
+        {
+          "name": "Мезотерапия ДМАЭ (1 мл)",
+          "duration": "",
+          "price": "6 400 ₽",
+          "pricePackage5": "5 400 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Мезотерапия"
+        },
+        {
+          "name": "Мезотерапия кожи головы трихологическая Hair X",
+          "duration": "",
+          "price": "6 700 ₽",
+          "pricePackage5": "5 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Мезотерапия"
+        },
+        {
+          "name": "ПДРН-мезотерапия (3 мл)",
+          "duration": "",
+          "price": "7 990 ₽",
+          "pricePackage5": "6 700 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Мезотерапия"
+        },
+        {
+          "name": "Скинасил мезотерапия (2,5 мл)",
+          "duration": "",
+          "price": "6 990 ₽",
+          "pricePackage5": "5 800 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Мезотерапия"
         },
         {
           "name": "Пепто «Липо слим» (5 мл) — минус 3 см за сеанс при соблюдении протокола",
@@ -484,184 +585,585 @@
         {
           "name": "Мезотерапия Вектор (5 мл) — сосудисто-дренажная терапия",
           "category": "Липолитические коктейли",
-          "duration": "",
-          "price": "5 900 ₽",
-          "pricePackage5": "4 500 ₽",
+          "duration": "45 мин",
+          "price": "7 800 ₽",
+          "pricePackage5": "6 800 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Вазис (5 мл) — комплексный сосудистый препарат",
           "category": "Липолитические коктейли",
-          "duration": "",
-          "price": "4 500 ₽",
-          "pricePackage5": "3 800 ₽",
+          "duration": "45 мин",
+          "price": "6 800 ₽",
+          "pricePackage5": "5 800 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Бодиконтур (5 мл) — липолитик прямого действия",
           "category": "Липолитические коктейли",
-          "duration": "",
-          "price": "6 500 ₽",
-          "pricePackage5": "5 600 ₽",
+          "duration": "45 мин",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 400 ₽",
           "description": ""
         },
         {
           "name": "Мезотерапия Добифирм (5 мл) — липолитик косвенного действия",
           "category": "Липолитические коктейли",
-          "duration": "",
-          "price": "6 500 ₽",
-          "pricePackage5": "5 600 ₽",
+          "duration": "45 мин",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 400 ₽",
           "description": ""
         },
         {
-          "name": "Дерматоскопия",
-          "category": "Удаление образований",
+          "name": "Липолитик «Стройность» (флакон)",
           "duration": "",
-          "price": "1 390 ₽",
+          "price": "17 900 ₽",
+          "pricePackage5": "16 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Липолитические коктейли"
+        },
+        {
+          "name": "De Nucleo (2,5 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "9 000 ₽",
+          "pricePackage5": "7 700 ₽",
+          "description": ""
+        },
+        {
+          "name": "Neauvia Гидро Делюкс",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "24 500 ₽",
+          "pricePackage5": "23 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Коллост микро (5 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "24 000 ₽",
+          "pricePackage5": "21 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Nithya — коллагенотерапия (5 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "21 500 ₽",
+          "pricePackage5": "19 000 ₽",
+          "description": ""
+        },
+        {
+          "name": "Revi Силк / Стронг (1 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "17 500 ₽",
+          "pricePackage5": "15 900 ₽",
+          "description": ""
+        },
+        {
+          "name": "Revi eyes (1 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "20 300 ₽",
+          "pricePackage5": "19 000 ₽",
+          "description": ""
+        },
+        {
+          "name": "Анестезия (неинвазивная)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "650 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Кератома",
-          "category": "Удаление образований",
+          "name": "Ультракаин",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "800 ₽",
+          "price": "900 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Образование сложное",
-          "category": "Удаление образований",
+          "name": "Hyalrepair (ампула, 1 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "990 ₽",
+          "price": "4 200 ₽",
+          "pricePackage5": "3 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Hyalrepair (ампула, 2 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "7 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Папиллома маленькая",
-          "category": "Удаление образований",
+          "name": "Hyalrepair (ампула, 5 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "150 ₽",
+          "price": "9 800 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Папиллома средняя",
-          "category": "Удаление образований",
+          "name": "ПДРН Эксперт Айз (1 мл / 5 мл) — экстралифтинг зоны глаз",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "300 ₽",
+          "price": "5 500 / 9 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Удаление мардил цинк (до 5 мм)",
-          "category": "Удаление образований",
+          "name": "Meso-Wharton P199 (1,5 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "3 500 ₽",
+          "price": "21 900 ₽",
+          "pricePackage5": "19 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Meso Sculpt (1,5 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "21 900 ₽",
+          "pricePackage5": "19 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Mesoeye C71 (1,5 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "21 900 ₽",
+          "pricePackage5": "19 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Novacutan SBIO / YBIO (1,5 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "22 500 ₽",
+          "pricePackage5": "20 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Welle (1 мл / шприц)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "14 000 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Удаление мардил цинк (от 5 мм)",
-          "category": "Удаление образований",
+          "name": "Welle (2 мл / шприц)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "—",
+          "price": "17 900 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Фиброма",
-          "category": "Удаление образований",
+          "name": "Welle ампула (2 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "1 390 ₽",
+          "price": "9 800 ₽",
+          "pricePackage5": "8 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Juvederm Volite",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "26 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Консультация с назначением лечения",
-          "category": "Удаление образований",
+          "name": "Repart Active (1 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "950 ₽",
-          "pricePackage5": "",
+          "price": "8 500 ₽",
+          "pricePackage5": "7 200 ₽",
           "description": ""
         },
         {
-          "name": "Чистка комплексная врача-дерматолога",
-          "category": "Чистка лица",
+          "name": "Repart Active (2 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "4 600 ₽",
-          "pricePackage5": "",
+          "price": "10 800 ₽",
+          "pricePackage5": "9 000 ₽",
           "description": ""
         },
         {
-          "name": "Чистка механическая / энзимная",
-          "category": "Чистка лица",
+          "name": "Repart Active (5 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "3 100 ₽",
-          "pricePackage5": "",
+          "price": "16 100 ₽",
+          "pricePackage5": "15 500 ₽",
           "description": ""
         },
         {
-          "name": "Чистка спины",
-          "category": "Чистка лица",
+          "name": "Repart Aqua Balance (1 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "4 100 ₽",
-          "pricePackage5": "",
+          "price": "9 500 ₽",
+          "pricePackage5": "8 200 ₽",
           "description": ""
         },
         {
-          "name": "Чистка области декольте",
-          "category": "Чистка лица",
+          "name": "Repart Aqua Balance (2 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "1 800 ₽",
-          "pricePackage5": "",
+          "price": "13 900 ₽",
+          "pricePackage5": "12 300 ₽",
           "description": ""
         },
         {
-          "name": "Ультразвуковая чистка (комплекс)",
-          "category": "Чистка лица",
+          "name": "Repart Aqua Balance (5 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "2 900 ₽",
-          "pricePackage5": "",
+          "price": "19 550 ₽",
+          "pricePackage5": "17 900 ₽",
           "description": ""
         },
         {
-          "name": "Ультразвуковая чистка (дополнительно к программе)",
-          "category": "Чистка лица",
+          "name": "Repart Delicate (1 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "1 600 ₽",
-          "pricePackage5": "",
+          "price": "8 500 ₽",
+          "pricePackage5": "7 300 ₽",
           "description": ""
         },
         {
-          "name": "Сыворотка (дополнительно к процедурам)",
-          "category": "Чистка лица",
+          "name": "Repart Delicate (2 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "600 ₽",
-          "pricePackage5": "",
+          "price": "10 800 ₽",
+          "pricePackage5": "9 500 ₽",
           "description": ""
         },
         {
-          "name": "Чистка лица + пилинг по задаче (индивидуальный)",
-          "category": "Чистка лица",
+          "name": "Repart Delicate (5 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "5 000 ₽",
-          "pricePackage5": "",
+          "price": "16 300 ₽",
+          "pricePackage5": "14 900 ₽",
           "description": ""
         },
         {
-          "name": "Чистка «Бренд» премиальной космецевтики",
-          "category": "Чистка лица",
+          "name": "Hyalual 1,8% — сосудистая терапия, купероз (1 мл)",
+          "category": "Биоревитализация",
           "duration": "",
-          "price": "5 900 ₽",
-          "pricePackage5": "",
+          "price": "17 900 ₽",
+          "pricePackage5": "16 700 ₽",
           "description": ""
+        },
+        {
+          "name": "Hyalual 1,8% — сосудистая терапия, купероз (2 мл)",
+          "category": "Биоревитализация",
+          "duration": "",
+          "price": "22 500 ₽",
+          "pricePackage5": "19 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Profhilo (2 мл)",
+          "duration": "",
+          "price": "29 000 ₽",
+          "pricePackage5": "26 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Bellarti полинуклеотиды 7,5 (2 мл)",
+          "duration": "",
+          "price": "20 300 ₽",
+          "pricePackage5": "18 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Bellarti Амино (2 мл)",
+          "duration": "",
+          "price": "18 900 ₽",
+          "pricePackage5": "16 900 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Bellarti Вита плюс (2 мл)",
+          "duration": "",
+          "price": "22 500 ₽",
+          "pricePackage5": "20 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Bellarti — подтяжка и уплотнение кожи (2 мл)",
+          "duration": "",
+          "price": "20 300 ₽",
+          "pricePackage5": "18 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Bellarti Эстилла",
+          "duration": "",
+          "price": "26 500 ₽",
+          "pricePackage5": "24 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Collost 15% (1 мл)",
+          "duration": "",
+          "price": "24 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Novacutan Прима (2 мл)",
+          "duration": "",
+          "price": "29 900 ₽",
+          "pricePackage5": "26 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Plinest Экспресс",
+          "duration": "",
+          "price": "24 900 ₽",
+          "pricePackage5": "23 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Repart Aqua Balance, шприц (1,5 мл)",
+          "duration": "",
+          "price": "14 900 ₽",
+          "pricePackage5": "12 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Viscoline Био Аква Делюкс (1 мл)",
+          "duration": "",
+          "price": "14 900 ₽",
+          "pricePackage5": "12 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Viscoline Био активный — подтяжка и уплотнение (1 мл)",
+          "duration": "",
+          "price": "14 900 ₽",
+          "pricePackage5": "12 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Viscoline Био Аква Делюкс (2 мл)",
+          "duration": "",
+          "price": "18 500 ₽",
+          "pricePackage5": "17 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Экзосомы (6 мл)",
+          "duration": "",
+          "price": "19 500 ₽",
+          "pricePackage5": "18 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Сферогель М (0,5 мл)",
+          "duration": "",
+          "price": "15 000 ₽",
+          "pricePackage5": "13 600 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Hyalrepair 10 / 08 / 06 / 05 (2,5 мл)",
+          "duration": "",
+          "price": "9 900 ₽",
+          "pricePackage5": "8 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Corebanic (2 мл)",
+          "duration": "",
+          "price": "22 700 ₽",
+          "pricePackage5": "20 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Revi Силк (2 мл)",
+          "duration": "",
+          "price": "28 500 ₽",
+          "pricePackage5": "26 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "NCTF 135 (лаборатория Filorga, флакон)",
+          "duration": "",
+          "price": "15 500 ₽",
+          "pricePackage5": "14 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Nithya сияние / Nithya защита кожного барьера",
+          "duration": "",
+          "price": "18 000 ₽",
+          "pricePackage5": "16 800 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Aquashine BR",
+          "duration": "",
+          "price": "17 300 ₽",
+          "pricePackage5": "15 800 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Aquashine HA BR",
+          "duration": "",
+          "price": "17 300 ₽",
+          "pricePackage5": "16 800 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis базовый (2,5 мл)",
+          "duration": "",
+          "price": "6 900 ₽",
+          "pricePackage5": "6 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis насыщенный (2,5 мл) — терапия атонии кожи",
+          "duration": "",
+          "price": "7 900 ₽",
+          "pricePackage5": "7 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis VA (1,5 мл) — увлажнение кожи",
+          "duration": "",
+          "price": "6 900 ₽",
+          "pricePackage5": "6 100 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis VA+ (2,5 мл) — насыщенное увлажнение кожи",
+          "duration": "",
+          "price": "8 500 ₽",
+          "pricePackage5": "7 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis — подтяжка и контур овала лица (2,5 мл)",
+          "duration": "",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis для зоны глаз (2,5 мл)",
+          "duration": "",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis Био (2,5 мл) — регуляция коллагенеза",
+          "duration": "",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Refaltis Кислород (2,5 мл) — антиоксидант",
+          "duration": "",
+          "price": "7 500 ₽",
+          "pricePackage5": "6 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биоревитализация"
+        },
+        {
+          "name": "Плазмотерапия — 1 пробирка",
+          "duration": "",
+          "price": "6 400 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Плазмотерапия"
+        },
+        {
+          "name": "Плазмотерапия — 2 пробирки",
+          "duration": "",
+          "price": "10 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Плазмотерапия"
         },
         {
           "name": "Анестезия (неинвазивная)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "500 ₽",
+          "price": "550 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -669,39 +1171,39 @@
           "name": "Моно нити (1 шт. / от 15 шт.)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "1 100 ₽",
-          "pricePackage5": "850 ₽",
+          "price": "1 250 ₽",
+          "pricePackage5": "1 050 ₽",
           "description": ""
         },
         {
           "name": "Спиральные нити (1 шт. / от 15 шт.)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "1 350 ₽",
-          "pricePackage5": "1 100 ₽",
+          "price": "1 550 ₽",
+          "pricePackage5": "1 300 ₽",
           "description": ""
         },
         {
           "name": "Нити 4Д / с насечками (когтевые)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "от 2 700 ₽",
-          "pricePackage5": "",
+          "price": "6 300 ₽",
+          "pricePackage5": "5 600 ₽",
           "description": ""
         },
         {
           "name": "Полимолочные нити (1 шт.)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "от 2 990 ₽",
-          "pricePackage5": "",
+          "price": "3 400 ₽",
+          "pricePackage5": "2 800 ₽",
           "description": ""
         },
         {
           "name": "Нитевой лифтинг — акция (6 спиральных + 20 моно нитей)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "19 900 ₽",
+          "price": "26 900 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -709,7 +1211,7 @@
           "name": "«Мальтийский крест» (блокада аппетита)",
           "category": "Нитевой лифтинг",
           "duration": "",
-          "price": "11 900 ₽",
+          "price": "14 900 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -733,7 +1235,7 @@
           "name": "Векторный лифтинг Radiesse (1,5 мл)",
           "category": "Векторный лифтинг",
           "duration": "",
-          "price": "от 28 000 ₽",
+          "price": "33 000 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -770,252 +1272,463 @@
           "description": ""
         },
         {
-          "name": "De Nucleo (2,5 мл)",
-          "category": "Биоревитализация",
+          "name": "СМАС-лифтинг Ultraformer III — 500 линий",
           "duration": "",
-          "price": "7 800 ₽",
-          "pricePackage5": "от 6 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Neauvia Гидро Делюкс",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "25 000 ₽",
+          "price": "48 500 ₽",
           "pricePackage5": "",
-          "description": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "СМАС-лифтинг Ultraformer III"
         },
         {
-          "name": "Коллост микро (5 мл)",
-          "category": "Биоревитализация",
+          "name": "СМАС-лифтинг Ultraformer III — 800 линий",
+          "duration": "",
+          "price": "77 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "СМАС-лифтинг Ultraformer III"
+        },
+        {
+          "name": "СМАС-лифтинг Ultraformer III — 1000 линий",
+          "duration": "",
+          "price": "89 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "СМАС-лифтинг Ultraformer III"
+        },
+        {
+          "name": "Morpheus8 — лицо (картридж включён)",
+          "duration": "",
+          "price": "65 000 ₽",
+          "pricePackage5": "58 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппарат InMode Morpheus8 / Lumecca"
+        },
+        {
+          "name": "Morpheus8 — лицо + декольте (картридж включён)",
+          "duration": "",
+          "price": "80 000 ₽",
+          "pricePackage5": "70 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппарат InMode Morpheus8 / Lumecca"
+        },
+        {
+          "name": "Фототерапия Lumecca — лицо полностью",
+          "duration": "",
+          "price": "15 500 ₽",
+          "pricePackage5": "13 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппарат InMode Morpheus8 / Lumecca"
+        },
+        {
+          "name": "Фототерапия Lumecca — 1/3 зоны лица",
+          "duration": "",
+          "price": "9 500 ₽",
+          "pricePackage5": "8 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппарат InMode Morpheus8 / Lumecca"
+        },
+        {
+          "name": "Вагинальное омоложение InMode Forma V — насадка-картридж",
+          "duration": "",
+          "price": "14 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппарат InMode Morpheus8 / Lumecca"
+        },
+        {
+          "name": "Комплексное вагинальное омоложение InMode Forma V + внешний контур",
+          "duration": "",
+          "price": "30 000 ₽",
+          "pricePackage5": "25 000 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппарат InMode Morpheus8 / Lumecca"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (1 вспышка)",
+          "duration": "",
+          "price": "900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (до 2 см)",
+          "duration": "",
+          "price": "3 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (до 6 см)",
+          "duration": "",
+          "price": "7 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (лицо, 1/3)",
+          "duration": "",
+          "price": "9 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (лицо, 2/3)",
+          "duration": "",
+          "price": "11 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (лицо полностью)",
+          "duration": "",
+          "price": "13 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — сосудистые звёздочки и пигментация (тело, до 10 см)",
+          "duration": "",
+          "price": "15 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — терапия акне (1/3 лица)",
+          "duration": "",
+          "price": "9 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — терапия акне (лицо полностью)",
+          "duration": "",
+          "price": "13 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — фотоомоложение кистей рук",
+          "duration": "",
+          "price": "8 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — фотоомоложение, лицо + шея",
           "duration": "",
           "price": "19 500 ₽",
-          "pricePackage5": "18 000 ₽",
-          "description": ""
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
         },
         {
-          "name": "Nithya — коллагенотерапия (5 мл)",
-          "category": "Биоревитализация",
+          "name": "BBL — фотоомоложение, лицо + шея + декольте",
           "duration": "",
-          "price": "18 500 ₽",
-          "pricePackage5": "16 500 ₽",
-          "description": ""
+          "price": "26 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
         },
         {
-          "name": "Revi Силк / Стронг (1 мл)",
-          "category": "Биоревитализация",
+          "name": "BBL — фотоомоложение, лицо полностью",
           "duration": "",
-          "price": "15 000 ₽",
-          "pricePackage5": "14 000 ₽",
-          "description": ""
+          "price": "13 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
         },
         {
-          "name": "Revi eyes (1 мл)",
-          "category": "Биоревитализация",
+          "name": "BBL — фотоомоложение, лицо частично",
           "duration": "",
-          "price": "17 500 ₽",
-          "pricePackage5": "16 300 ₽",
-          "description": ""
+          "price": "8 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
         },
         {
-          "name": "Анестезия (неинвазивная)",
-          "category": "Биоревитализация",
+          "name": "BBL — фотоомоложение тела, зона мини A5",
           "duration": "",
-          "price": "500 ₽",
+          "price": "8 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — фотоомоложение тела, зона миди A6",
+          "duration": "",
+          "price": "12 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — фотоомоложение тела, зона макси A4",
+          "duration": "",
+          "price": "29 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "BBL — фотоомоложение, шея / декольте",
+          "duration": "",
+          "price": "9 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Фототерапия BBL"
+        },
+        {
+          "name": "Indiba — текар-терапия (30 минут)",
+          "duration": "30 мин",
+          "price": "4 300 ₽",
+          "pricePackage5": "3 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Текар-терапия Indiba"
+        },
+        {
+          "name": "Indiba — липолитическая терапия (30 минут)",
+          "duration": "30 мин",
+          "price": "4 300 ₽",
+          "pricePackage5": "3 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Текар-терапия Indiba"
+        },
+        {
+          "name": "Чистка комплексная врача-дерматолога",
+          "category": "Чистка лица",
+          "duration": "60 мин",
+          "price": "5 200 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Ультракаин",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "750 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Hyalrepair (ампула, 1 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
+          "name": "Чистка механическая / энзимная",
+          "category": "Чистка лица",
+          "duration": "60 мин",
           "price": "3 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Hyalrepair (ампула, 2 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "6 000 ₽",
+          "name": "Чистка спины",
+          "category": "Чистка лица",
+          "duration": "60 мин",
+          "price": "6 200 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Hyalrepair (ампула, 5 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "8 500 ₽",
+          "name": "Чистка области декольте",
+          "category": "Чистка лица",
+          "duration": "60 мин",
+          "price": "2 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "ПДРН Эксперт Айз (1 мл / 5 мл) — экстралифтинг зоны глаз",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "5 500 / 9 500 ₽",
+          "name": "Ультразвуковая чистка (комплекс)",
+          "category": "Чистка лица",
+          "duration": "60 мин",
+          "price": "3 900 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Meso-Wharton P199 (1,5 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "17 900 ₽",
-          "pricePackage5": "16 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Meso Sculpt (1,5 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "17 900 ₽",
-          "pricePackage5": "16 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Mesoeye C71 (1,5 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "17 900 ₽",
-          "pricePackage5": "16 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Novacutan SBIO / YBIO (1,5 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "17 900 ₽",
-          "pricePackage5": "16 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Welle (1 мл / шприц)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "12 000 ₽",
+          "name": "Ультразвуковая чистка (дополнительно к программе)",
+          "category": "Чистка лица",
+          "duration": "60 мин",
+          "price": "1 800 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Welle (2 мл / шприц)",
-          "category": "Биоревитализация",
+          "name": "Сыворотка (дополнительно к процедурам)",
+          "category": "Чистка лица",
           "duration": "",
-          "price": "15 500 ₽",
+          "price": "800 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Welle ампула (2 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "8 000 ₽",
-          "pricePackage5": "7 000 ₽",
-          "description": ""
-        },
-        {
-          "name": "Juvederm Volite",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "23 000 ₽",
+          "name": "Чистка лица + пилинг по задаче (индивидуальный)",
+          "category": "Чистка лица",
+          "duration": "50 мин",
+          "price": "7 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Active (1 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "7 000 ₽",
-          "pricePackage5": "6 300 ₽",
+          "name": "Чистка «Бренд» премиальной космецевтики",
+          "category": "Чистка лица",
+          "duration": "60 мин",
+          "price": "5 900 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Active (2 мл)",
-          "category": "Биоревитализация",
+          "name": "Эстетическая атравматичная / комбинированная чистка по типу кожи (комплекс)",
           "duration": "",
-          "price": "9 000 ₽",
-          "pricePackage5": "8 000 ₽",
+          "price": "4 100 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка медицинская при акне",
+          "duration": "",
+          "price": "6 650 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Аква-чистка лица атравматичная с гидропилингом",
+          "duration": "",
+          "price": "6 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Дермапен с сывороткой по задачам кожи",
+          "duration": "",
+          "price": "5 100 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Дерматоскопия",
+          "category": "Удаление образований",
+          "duration": "",
+          "price": "1 650 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Active (5 мл)",
-          "category": "Биоревитализация",
+          "name": "Кератома",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "14 000 ₽",
-          "pricePackage5": "12 500 ₽",
+          "price": "1 000 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Aqua Balance (1 мл)",
-          "category": "Биоревитализация",
+          "name": "Образование сложное",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "8 000 ₽",
-          "pricePackage5": "7 200 ₽",
+          "price": "1 150 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Aqua Balance (2 мл)",
-          "category": "Биоревитализация",
+          "name": "Папиллома маленькая",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "12 000 ₽",
-          "pricePackage5": "10 500 ₽",
+          "price": "180 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Aqua Balance (5 мл)",
-          "category": "Биоревитализация",
+          "name": "Папиллома средняя",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "17 000 ₽",
-          "pricePackage5": "15 300 ₽",
+          "price": "350 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Delicate (1 мл)",
-          "category": "Биоревитализация",
+          "name": "Удаление мардил цинк (до 5 мм)",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "7 000 ₽",
-          "pricePackage5": "6 300 ₽",
+          "price": "2 900 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Delicate (2 мл)",
-          "category": "Биоревитализация",
+          "name": "Удаление мардил цинк (от 5 мм)",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "9 000 ₽",
-          "pricePackage5": "8 000 ₽",
+          "price": "4 600 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Repart Delicate (5 мл)",
-          "category": "Биоревитализация",
+          "name": "Фиброма",
+          "category": "Удаление образований",
           "duration": "",
-          "price": "14 000 ₽",
-          "pricePackage5": "12 500 ₽",
+          "price": "1 600 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Hyalual 1,8% — сосудистая терапия, купероз (1 мл)",
-          "category": "Биоревитализация",
-          "duration": "",
-          "price": "15 500 ₽",
-          "pricePackage5": "14 000 ₽",
+          "name": "Консультация с назначением лечения",
+          "category": "Удаление образований",
+          "duration": "30 мин",
+          "price": "2 400 ₽",
+          "pricePackage5": "",
           "description": ""
         },
         {
-          "name": "Hyalual 1,8% — сосудистая терапия, купероз (2 мл)",
-          "category": "Биоревитализация",
+          "name": "Папиллома крупного размера",
           "duration": "",
-          "price": "19 500 ₽",
-          "pricePackage5": "18 000 ₽",
-          "description": ""
+          "price": "590 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Удаление образований"
+        },
+        {
+          "name": "Консультация базовая",
+          "duration": "",
+          "price": "1 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Удаление образований"
         },
         {
           "category": "Программы Full Face",
@@ -1130,7 +1843,7 @@
           "name": "Тест-драйв: Эндосфера терапия 75 мин + липо-обёртывание в подарок",
           "description": "",
           "duration": "75 мин",
-          "price": "5 000 ₽",
+          "price": "4 500 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1138,7 +1851,7 @@
           "name": "Эндосфера терапия — разовое посещение",
           "description": "",
           "duration": "75 мин",
-          "price": "7 000 ₽",
+          "price": "6 500 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1146,7 +1859,7 @@
           "name": "Эндосфера терапия — абонемент 6 сеансов + обёртывание",
           "description": "",
           "duration": "75 мин × 6",
-          "price": "37 000 ₽",
+          "price": "34 000 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1154,7 +1867,7 @@
           "name": "Эндосфера терапия — абонемент 12 сеансов + обёртывание",
           "description": "",
           "duration": "75 мин × 12",
-          "price": "59 900 ₽",
+          "price": "54 000 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1162,7 +1875,7 @@
           "name": "ТОП абонемент: 6 сеансов + 3 процедуры липомезотерапии 5 мл",
           "description": "",
           "duration": "курс",
-          "price": "46 000 ₽",
+          "price": "39 990 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1178,7 +1891,7 @@
           "name": "Бандажное обёртывание Nolla (дренаж / тонус / похудение)",
           "description": "",
           "duration": "",
-          "price": "3 500 ₽",
+          "price": "2 990 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1186,7 +1899,7 @@
           "name": "Двухэтапное Cellooe мегаскульптор",
           "description": "",
           "duration": "",
-          "price": "5 000 ₽",
+          "price": "3 900 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
         },
@@ -1310,27 +2023,27 @@
         {
           "name": "Массаж 1 час: классические техники (общий / релакс / снятие спазмов)",
           "duration": "60 мин",
-          "price": "3 300 ₽",
-          "pricePackage5": "3 000 ₽",
-          "pricePackage10": "2 800 ₽",
+          "price": "2 950 ₽",
+          "pricePackage5": "2 700 ₽",
+          "pricePackage10": "2 500 ₽",
           "description": "",
           "category": "Классические техники"
         },
         {
           "name": "Массаж 1,5 часа: классические техники",
           "duration": "90 мин",
-          "price": "4 900 ₽",
-          "pricePackage5": "4 650 ₽",
-          "pricePackage10": "4 300 ₽",
+          "price": "4 400 ₽",
+          "pricePackage5": "4 000 ₽",
+          "pricePackage10": "3 800 ₽",
           "description": "",
           "category": "Классические техники"
         },
         {
           "name": "Массаж 30 мин: классические техники",
           "duration": "30 мин",
-          "price": "2 300 ₽",
-          "pricePackage5": "1 950 ₽",
-          "pricePackage10": "1 550 ₽",
+          "price": "1 800 ₽",
+          "pricePackage5": "1 550 ₽",
+          "pricePackage10": "1 300 ₽",
           "description": "",
           "category": "Классические техники"
         },
@@ -1346,27 +2059,27 @@
         {
           "name": "Спецтехники / авторские (1 час): блейд (пластинчатый) / медовый / дренаж сосудистый / липопластика тела / коррекционные методики",
           "duration": "60 мин",
-          "price": "4 400 ₽",
-          "pricePackage5": "4 000 ₽",
-          "pricePackage10": "3 700 ₽",
+          "price": "3 900 ₽",
+          "pricePackage5": "3 600 ₽",
+          "pricePackage10": "3 300 ₽",
           "description": "",
           "category": "Спецтехники / Авторские"
         },
         {
           "name": "Спецтехники / авторские (30 мин): блейд (пластинчатый) / медовый / дренаж сосудистый / липопластика тела / коррекционные методики",
           "duration": "30 мин",
-          "price": "3 300 ₽",
-          "pricePackage5": "3 000 ₽",
-          "pricePackage10": "2 800 ₽",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 500 ₽",
+          "pricePackage10": "2 300 ₽",
           "description": "",
           "category": "Спецтехники / Авторские"
         },
         {
           "name": "Спецтехники / авторские (1,5 часа): блейд (пластинчатый) / медовый / дренаж сосудистый / липопластика тела / коррекционные методики",
           "duration": "90 мин",
-          "price": "5 500 ₽",
-          "pricePackage5": "5 200 ₽",
-          "pricePackage10": "4 900 ₽",
+          "price": "4 900 ₽",
+          "pricePackage5": "4 500 ₽",
+          "pricePackage10": "4 100 ₽",
           "description": "",
           "category": "Спецтехники / Авторские"
         },
@@ -1391,54 +2104,54 @@
         {
           "name": "Массаж «Бразильская попка»",
           "duration": "60 мин",
-          "price": "3 900 ₽",
-          "pricePackage5": "3 500 ₽",
-          "pricePackage10": "3 300 ₽",
+          "price": "3 200 ₽",
+          "pricePackage5": "2 900 ₽",
+          "pricePackage10": "2 700 ₽",
           "description": "",
           "category": "Коррекция тела"
         },
         {
           "name": "Массаж «Бразильская попка»",
           "duration": "30 мин",
-          "price": "2 900 ₽",
-          "pricePackage5": "2 500 ₽",
-          "pricePackage10": "2 200 ₽",
+          "price": "2 300 ₽",
+          "pricePackage5": "1 950 ₽",
+          "pricePackage10": "1 550 ₽",
           "description": "",
           "category": "Коррекция тела"
         },
         {
           "name": "Ручная липопластика тела авторская «Горячий комплекс» + обёртывание / липосыворотка в подарок",
           "duration": "90 мин",
-          "price": "7 500 ₽",
-          "pricePackage5": "7 000 ₽",
-          "pricePackage10": "6 500 ₽",
+          "price": "6 500 ₽",
+          "pricePackage5": "6 100 ₽",
+          "pricePackage10": "5 600 ₽",
           "description": "",
           "category": "Коррекция тела"
         },
         {
           "name": "Ручная липопластика тела авторская «Горячий комплекс» + обёртывание / липосыворотка в подарок",
           "duration": "120 мин",
-          "price": "9 000 ₽",
-          "pricePackage5": "8 700 ₽",
-          "pricePackage10": "8 200 ₽",
+          "price": "8 500 ₽",
+          "pricePackage5": "8 400 ₽",
+          "pricePackage10": "7 900 ₽",
           "description": "",
           "category": "Коррекция тела"
         },
         {
           "name": "Двухэтапное обёртывание «Мегаскульптор» + липомассаж / Velashape",
           "duration": "60 мин",
-          "price": "7 400 ₽",
-          "pricePackage5": "6 900 ₽",
-          "pricePackage10": "6 500 ₽",
+          "price": "6 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Коррекция тела"
         },
         {
           "name": "Мадейра-терапия (методика коррекции тела с применением деревянных инструментов)",
           "duration": "60 мин",
-          "price": "4 700 ₽",
-          "pricePackage5": "4 300 ₽",
-          "pricePackage10": "3 900 ₽",
+          "price": "4 200 ₽",
+          "pricePackage5": "3 900 ₽",
+          "pricePackage10": "3 600 ₽",
           "description": "",
           "category": "Коррекция тела"
         },
@@ -1454,9 +2167,9 @@
         {
           "name": "Липомоделирующий массаж с Cellooe",
           "duration": "60 мин",
-          "price": "5 500 ₽",
-          "pricePackage5": "5 100 ₽",
-          "pricePackage10": "4 800 ₽",
+          "price": "3 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Коррекция тела"
         },
@@ -1472,9 +2185,9 @@
         {
           "name": "Сеанс кавитации Velashape (к массажу)",
           "duration": "20 мин",
-          "price": "2 500 ₽",
-          "pricePackage5": "2 200 ₽",
-          "pricePackage10": "2 100 ₽",
+          "price": "2 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Аппаратные дополнения к массажу"
         },
@@ -1490,36 +2203,36 @@
         {
           "name": "Антицеллюлитный баночный массаж (в программе)",
           "duration": "20 мин",
-          "price": "1 200 ₽",
-          "pricePackage5": "1 000 ₽",
-          "pricePackage10": "800 ₽",
+          "price": "800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Аппаратные дополнения к массажу"
         },
         {
           "name": "Обёртывание по типу кожи (холодное / горячее / лифтинг), дополнительно к услуге",
           "duration": "60 мин",
-          "price": "1 500 ₽",
-          "pricePackage5": "1 200 ₽",
-          "pricePackage10": "1 100 ₽",
+          "price": "1 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Обёртывания и добавки"
         },
         {
           "name": "Бандажное обёртывание дренаж / антивозрастное Nolla",
           "duration": "30 мин",
-          "price": "3 500 ₽",
-          "pricePackage5": "3 200 ₽",
-          "pricePackage10": "3 100 ₽",
+          "price": "2 990 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Обёртывания и добавки"
         },
         {
           "name": "Двухэтапное Cellooe «Мегаскульптор»",
           "duration": "45 мин",
-          "price": "5 000 ₽",
-          "pricePackage5": "4 700 ₽",
-          "pricePackage10": "4 300 ₽",
+          "price": "3 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Обёртывания и добавки"
         },
@@ -1553,15 +2266,15 @@
         {
           "name": "Обёртывание ламинария живая",
           "duration": "",
-          "price": "3 800 ₽",
-          "pricePackage5": "3 500 ₽",
-          "pricePackage10": "3 200 ₽",
+          "price": "2 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Обёртывания и добавки"
         },
         {
           "name": "Пилинг тела (состав подбирается по типу кожи)",
-          "duration": "",
+          "duration": "50 мин",
           "price": "3 900 ₽",
           "pricePackage5": "3 600 ₽",
           "pricePackage10": "3 200 ₽",
@@ -1580,54 +2293,54 @@
         {
           "name": "Миофасциальный массаж",
           "duration": "45 мин",
-          "price": "3 500 ₽",
-          "pricePackage5": "3 200 ₽",
-          "pricePackage10": "3 000 ₽",
+          "price": "3 100 ₽",
+          "pricePackage5": "2 800 ₽",
+          "pricePackage10": "2 550 ₽",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Миофасциальный массаж",
           "duration": "30 мин",
-          "price": "3 300 ₽",
-          "pricePackage5": "3 000 ₽",
-          "pricePackage10": "2 800 ₽",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 700 ₽",
+          "pricePackage10": "2 500 ₽",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Шейно-воротниковая зона",
           "duration": "25 мин",
-          "price": "1 500 ₽",
-          "pricePackage5": "1 200 ₽",
-          "pricePackage10": "1 100 ₽",
+          "price": "1 300 ₽",
+          "pricePackage5": "1 000 ₽",
+          "pricePackage10": "900 ₽",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Массаж спины с мануальными техниками",
           "duration": "30 мин",
-          "price": "3 300 ₽",
-          "pricePackage5": "3 000 ₽",
-          "pricePackage10": "2 800 ₽",
+          "price": "2 700 ₽",
+          "pricePackage5": "2 300 ₽",
+          "pricePackage10": "",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Спина + шейно-воротниковая зона",
           "duration": "30 мин",
-          "price": "2 700 ₽",
-          "pricePackage5": "2 400 ₽",
-          "pricePackage10": "2 100 ₽",
+          "price": "2 300 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": "1 800 ₽",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Лечебный массаж спины",
           "duration": "30 мин",
-          "price": "2 400 ₽",
-          "pricePackage5": "2 100 ₽",
-          "pricePackage10": "1 900 ₽",
+          "price": "1 900 ₽",
+          "pricePackage5": "1 700 ₽",
+          "pricePackage10": "1 500 ₽",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
@@ -1643,9 +2356,9 @@
         {
           "name": "Мануальная терапия ПИР с массажем тела",
           "duration": "60 мин",
-          "price": "5 200 ₽",
-          "pricePackage5": "4 800 ₽",
-          "pricePackage10": "4 300 ₽",
+          "price": "4 500 ₽",
+          "pricePackage5": "4 000 ₽",
+          "pricePackage10": "",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
@@ -1661,27 +2374,27 @@
         {
           "name": "Массаж «Лёгкие ножки» (показания: варикоз, сосудистые звёздочки, отёчность)",
           "duration": "40 мин",
-          "price": "2 300 ₽",
-          "pricePackage5": "2 000 ₽",
-          "pricePackage10": "1 900 ₽",
+          "price": "1 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Шейно-воротниковая зона + голова",
           "duration": "45 мин",
-          "price": "2 500 ₽",
-          "pricePackage5": "2 200 ₽",
-          "pricePackage10": "2 100 ₽",
+          "price": "1 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
         {
           "name": "Релакс / снятие спазмов",
           "duration": "120 мин",
-          "price": "6 500 ₽",
-          "pricePackage5": "6 100 ₽",
-          "pricePackage10": "5 700 ₽",
+          "price": "5 500 ₽",
+          "pricePackage5": "4 900 ₽",
+          "pricePackage10": "",
           "description": "",
           "category": "Лечебный / Терапевтический"
         },
@@ -1693,6 +2406,33 @@
           "pricePackage10": "4 200 ₽",
           "description": "",
           "category": "Лечебный / Терапевтический"
+        },
+        {
+          "name": "Ознакомительный массаж «Тест-драйв»",
+          "duration": "25 мин",
+          "price": "1 100 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Классические техники"
+        },
+        {
+          "name": "Солевой массаж",
+          "duration": "60 мин",
+          "price": "4 300 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Спецтехники / Авторские"
+        },
+        {
+          "name": "Техника Access Bars — баланс ментального состояния по 32 точкам",
+          "duration": "60 мин",
+          "price": "6 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Спецтехники / Авторские"
         }
       ]
     },
@@ -1759,6 +2499,114 @@
           "price": "от 5 500 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
+        },
+        {
+          "name": "Velashape — 1 сеанс (30 минут)",
+          "duration": "30 мин",
+          "price": "2 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Velashape"
+        },
+        {
+          "name": "Velashape — 1 сеанс (50 минут)",
+          "duration": "50 мин",
+          "price": "4 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Velashape"
+        },
+        {
+          "name": "Velashape — абонемент 6 сеансов по 30 мин + 3 липомезотерапии 5 мл",
+          "duration": "",
+          "price": "22 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Velashape"
+        },
+        {
+          "name": "Velashape — абонемент 6 сеансов по 50 мин + 3 липомезотерапии 5 мл",
+          "duration": "",
+          "price": "33 300 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Velashape"
+        },
+        {
+          "name": "Кавитация Velashape (20 минут)",
+          "duration": "20 мин",
+          "price": "2 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Velashape"
+        },
+        {
+          "name": "Кавитация (дополнительно к услуге или абонементу, 20 минут)",
+          "duration": "20 мин",
+          "price": "1 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Velashape"
+        },
+        {
+          "name": "Аппарат БМС (45 минут)",
+          "duration": "45 мин",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 500 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Биостимуляция БМС"
+        },
+        {
+          "name": "Озонотерапия по телу — 1 зона",
+          "duration": "",
+          "price": "1 350 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Озонотерапия"
+        },
+        {
+          "name": "Озонотерапия по телу — 2 зоны",
+          "duration": "",
+          "price": "2 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Озонотерапия"
+        },
+        {
+          "name": "Термовоздействие по телу — 900 импульсов",
+          "duration": "",
+          "price": "250 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Термолифтинг"
+        },
+        {
+          "name": "Термовоздействие по телу — 1200 импульсов",
+          "duration": "",
+          "price": "230 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Термолифтинг"
+        },
+        {
+          "name": "Термовоздействие по телу — 2000 импульсов",
+          "duration": "",
+          "price": "295 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Термолифтинг"
         }
       ]
     },
@@ -1812,264 +2660,107 @@
       "items": [
         {
           "name": "Консультация",
-          "category": "Комплексные уходы",
-          "duration": "",
+          "duration": "30 мин",
           "price": "Бесплатно",
           "pricePackage5": "",
-          "description": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
         },
         {
-          "name": "Скульптура лица с пилингом и маской",
-          "category": "Комплексные уходы",
-          "duration": "",
-          "price": "6 800 ₽",
-          "pricePackage5": "6 200 ₽",
-          "description": ""
-        },
-        {
-          "name": "Супер увлажнение",
-          "category": "Комплексные уходы",
-          "duration": "",
-          "price": "3 900 ₽",
-          "pricePackage5": "3 300 ₽",
-          "description": ""
-        },
-        {
-          "name": "Янтарное омоложение",
-          "category": "Комплексные уходы",
-          "duration": "",
-          "price": "3 900 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Взгляд на миллион",
-          "category": "Комплексные уходы",
-          "duration": "35 мин",
-          "price": "2 900 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Жемчужное сияние кожи",
-          "category": "Комплексные уходы",
-          "duration": "45 мин",
-          "price": "5 700 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Уход «Фотошоп»",
-          "category": "Комплексные уходы",
-          "duration": "60 мин",
-          "price": "4 500 ₽",
-          "pricePackage5": "4 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Королевский уход GIGI",
-          "category": "Комплексные уходы",
-          "duration": "120 мин",
-          "price": "7 500 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "ВАУ-комплекс: ультразвуковая чистка + гидропилинг + альгинатный уход",
-          "category": "Комплексные уходы",
-          "duration": "",
-          "price": "5 990 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Гидропилинг H₂O₂ (всё лицо)",
-          "category": "Комплексные уходы",
-          "duration": "",
-          "price": "3 000 ₽",
-          "pricePackage5": "2 600 ₽",
-          "description": ""
-        },
-        {
-          "name": "Гидропилинг H₂O₂ (в составе процедуры)",
-          "category": "Комплексные уходы",
-          "duration": "",
-          "price": "2 500 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Программа коррекции фотостарения",
-          "category": "Уходы",
-          "duration": "",
-          "price": "5 500 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Клеточное омоложение Indiba + «фарфоровая куколка»",
-          "category": "Уходы",
-          "duration": "",
-          "price": "6 100 ₽",
-          "pricePackage5": "5 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Коррекция и окрашивание бровей",
-          "category": "Уходы",
-          "duration": "",
-          "price": "2 000 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Уход для проблемной кожи",
-          "category": "Уходы",
-          "duration": "",
-          "price": "5 400 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "«Фарфоровая куколка»",
-          "category": "Уходы",
-          "duration": "",
-          "price": "4 900 ₽",
-          "pricePackage5": "4 300 ₽",
-          "description": ""
-        },
-        {
-          "name": "Лифтинг-уход: антивозрастная терапия",
-          "category": "Уходы",
-          "duration": "",
-          "price": "5 800 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Уход-увлажнение для атоничной обезвоженной кожи",
-          "category": "Уходы",
-          "duration": "",
-          "price": "5 300 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Уход «Антистресс»",
-          "category": "Уходы",
-          "duration": "",
-          "price": "3 900 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Экспресс-уход «Вспышка красоты» (очищение, лифт-пилинг и маски)",
-          "category": "Уходы",
-          "duration": "",
-          "price": "3 900 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "Карбокситерапия + пилинг",
-          "category": "Уходы",
-          "duration": "",
-          "price": "6 900 ₽",
-          "pricePackage5": "",
-          "description": ""
-        },
-        {
-          "name": "ТОП! Ручная лепка овала лица + альгинатный уход",
-          "category": "Чистка лица",
-          "duration": "90 мин",
-          "price": "3 900 ₽",
-          "pricePackage5": "3 300 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж классический",
-          "category": "Чистка лица",
-          "duration": "30 мин",
-          "price": "1 300 ₽",
-          "pricePackage5": "1 150 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж авторский",
-          "category": "Чистка лица",
-          "duration": "40 мин",
-          "price": "от 2 900 ₽",
-          "pricePackage5": "от 2 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж лимфодренажный",
-          "category": "Чистка лица",
-          "duration": "40 мин",
-          "price": "2 000 ₽",
-          "pricePackage5": "1 800 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж моделирующий испанский",
-          "category": "Чистка лица",
-          "duration": "40–60 мин",
-          "price": "2 900 ₽",
-          "pricePackage5": "2 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Хиромассаж",
-          "category": "Чистка лица",
-          "duration": "30 мин",
-          "price": "2 500 ₽",
-          "pricePackage5": "2 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Скульптурно-буккальный массаж лица",
-          "category": "Чистка лица",
-          "duration": "",
-          "price": "3 500 ₽",
-          "pricePackage5": "3 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Скульптурно-буккальный массаж лица + альгинатная маска",
-          "category": "Чистка лица",
+          "name": "Эстетическая атравматичная / комбинированная чистка по типу кожи (комплекс)",
           "duration": "",
           "price": "4 100 ₽",
-          "pricePackage5": "3 600 ₽",
-          "description": ""
-        },
-        {
-          "name": "Гимнастика для лица / блейд (пластинчатый) массаж лица / скульптура лица",
-          "category": "Чистка лица",
-          "duration": "45 мин",
-          "price": "3 000 ₽",
-          "pricePackage5": "2 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Буккальный массаж",
-          "category": "Чистка лица",
-          "duration": "",
-          "price": "4 600 ₽",
-          "pricePackage5": "4 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Сыворотка лифтинг / ретинол / гиалурон (массажная)",
-          "category": "Чистка лица",
-          "duration": "",
-          "price": "500 ₽",
           "pricePackage5": "",
-          "description": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка механическая / энзимная",
+          "duration": "",
+          "price": "3 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка спины",
+          "duration": "",
+          "price": "6 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка области декольте",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Ультразвуковая чистка (комплекс)",
+          "duration": "",
+          "price": "3 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Ультразвуковая чистка (дополнительно к программе чистки)",
+          "duration": "",
+          "price": "1 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Сыворотка (дополнительно к процедурам)",
+          "duration": "",
+          "price": "800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка лица + пилинг по задаче (индивидуальный)",
+          "duration": "",
+          "price": "7 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка медицинская при акне",
+          "duration": "",
+          "price": "6 650 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
+        },
+        {
+          "name": "Чистка у врача-дерматолога",
+          "duration": "",
+          "price": "5 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Чистка лица"
         },
         {
           "name": "Яблочный пилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "5 900 ₽",
           "pricePackage5": "5 300 ₽",
           "description": ""
@@ -2077,7 +2768,7 @@
         {
           "name": "Фитопилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "4 200 ₽",
           "pricePackage5": "3 500 ₽",
           "description": ""
@@ -2085,7 +2776,7 @@
         {
           "name": "Мультипилинг / Макспилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "4 400 ₽",
           "pricePackage5": "3 900 ₽",
           "description": ""
@@ -2093,7 +2784,7 @@
         {
           "name": "Ботулопилинг / тензорный пилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "40 мин",
           "price": "3 950 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2117,23 +2808,23 @@
         {
           "name": "Ретиноевый (жёлтый) пилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "6 500 ₽",
-          "pricePackage5": "",
+          "pricePackage5": "5 900 ₽",
           "description": ""
         },
         {
           "name": "Пилинг Джесснера",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "5 700 ₽",
-          "pricePackage5": "",
+          "pricePackage5": "5 200 ₽",
           "description": ""
         },
         {
           "name": "Biorepeel — ремоделирующий пилинг (1 мл)",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "5 700 ₽",
           "pricePackage5": "5 100 ₽",
           "description": ""
@@ -2141,31 +2832,31 @@
         {
           "name": "Интимный пилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "5 900 ₽",
-          "pricePackage5": "",
+          "pricePackage5": "5 300 ₽",
           "description": ""
         },
         {
           "name": "Виноградный пилинг",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "3 700 ₽",
-          "pricePackage5": "",
+          "pricePackage5": "3 300 ₽",
           "description": ""
         },
         {
           "name": "Всесезонный пилинг PRX-T33 (0,5 мл, мини-зона)",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "4 100 ₽",
-          "pricePackage5": "",
+          "pricePackage5": "3 700 ₽",
           "description": ""
         },
         {
           "name": "Всесезонный пилинг PRX-T33 (1 мл, 1 зона)",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "6 300 ₽",
           "pricePackage5": "5 800 ₽",
           "description": ""
@@ -2173,7 +2864,7 @@
         {
           "name": "Всесезонный пилинг PRX-T33 (1,5 мл, лицо)",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "7 400 ₽",
           "pricePackage5": "6 900 ₽",
           "description": ""
@@ -2181,15 +2872,15 @@
         {
           "name": "Всесезонный пилинг PRX-T33 (2 мл, лицо + шея)",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "8 800 ₽",
-          "pricePackage5": "",
+          "pricePackage5": "8 100 ₽",
           "description": ""
         },
         {
           "name": "Лёгкий лифт-пилинг «На выход»",
           "category": "Пилинги",
-          "duration": "",
+          "duration": "50 мин",
           "price": "2 500 ₽",
           "pricePackage5": "2 100 ₽",
           "description": ""
@@ -2203,9 +2894,36 @@
           "description": ""
         },
         {
+          "name": "Карбоновый пилинг с применением неодимового лазера",
+          "duration": "",
+          "price": "5 900 ₽",
+          "pricePackage5": "5 300 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Пилинги"
+        },
+        {
+          "name": "Феруловый пилинг",
+          "duration": "",
+          "price": "4 300 ₽",
+          "pricePackage5": "3 900 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Пилинги"
+        },
+        {
+          "name": "Неинвазивная карбокситерапия",
+          "duration": "",
+          "price": "3 900 ₽",
+          "pricePackage5": "3 200 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Пилинги"
+        },
+        {
           "name": "Консультация",
           "category": "Массаж лица",
-          "duration": "",
+          "duration": "30 мин",
           "price": "Бесплатно",
           "pricePackage5": "",
           "description": ""
@@ -2299,9 +3017,213 @@
           "description": ""
         },
         {
+          "name": "Маска альгинатная / кремовая / постинъекционная",
+          "duration": "",
+          "price": "1 200 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маски"
+        },
+        {
+          "name": "Маска «Бренд» (включая очищение)",
+          "duration": "",
+          "price": "1 700 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маски"
+        },
+        {
+          "name": "Мультимаскинг",
+          "duration": "",
+          "price": "1 700 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маски"
+        },
+        {
+          "name": "Сыворотка GIGI",
+          "duration": "",
+          "price": "800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маски"
+        },
+        {
+          "name": "Консультация",
+          "category": "Комплексные уходы",
+          "duration": "30 мин",
+          "price": "Бесплатно",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Скульптура лица с пилингом и маской",
+          "category": "Комплексные уходы",
+          "duration": "50 мин",
+          "price": "6 800 ₽",
+          "pricePackage5": "6 200 ₽",
+          "description": ""
+        },
+        {
+          "name": "Супер увлажнение",
+          "category": "Комплексные уходы",
+          "duration": "",
+          "price": "3 900 ₽",
+          "pricePackage5": "3 300 ₽",
+          "description": ""
+        },
+        {
+          "name": "Янтарное омоложение",
+          "category": "Комплексные уходы",
+          "duration": "",
+          "price": "3 900 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Взгляд на миллион",
+          "category": "Комплексные уходы",
+          "duration": "35 мин",
+          "price": "2 900 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Жемчужное сияние кожи",
+          "category": "Комплексные уходы",
+          "duration": "45 мин",
+          "price": "5 700 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Уход «Фотошоп»",
+          "category": "Комплексные уходы",
+          "duration": "60 мин",
+          "price": "4 500 ₽",
+          "pricePackage5": "4 100 ₽",
+          "description": ""
+        },
+        {
+          "name": "Королевский уход GIGI",
+          "category": "Комплексные уходы",
+          "duration": "120 мин",
+          "price": "7 500 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "ВАУ-комплекс: ультразвуковая чистка + гидропилинг + альгинатный уход",
+          "category": "Комплексные уходы",
+          "duration": "50 мин",
+          "price": "5 990 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Гидропилинг H₂O₂ (всё лицо)",
+          "category": "Комплексные уходы",
+          "duration": "50 мин",
+          "price": "3 000 ₽",
+          "pricePackage5": "2 600 ₽",
+          "description": ""
+        },
+        {
+          "name": "Гидропилинг H₂O₂ (в составе процедуры)",
+          "category": "Комплексные уходы",
+          "duration": "50 мин",
+          "price": "2 500 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Программа коррекции фотостарения",
+          "category": "Уходы",
+          "duration": "",
+          "price": "5 500 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Клеточное омоложение Indiba + «фарфоровая куколка»",
+          "category": "Уходы",
+          "duration": "",
+          "price": "6 100 ₽",
+          "pricePackage5": "5 500 ₽",
+          "description": ""
+        },
+        {
+          "name": "Коррекция и окрашивание бровей",
+          "category": "Уходы",
+          "duration": "",
+          "price": "2 000 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Уход для проблемной кожи",
+          "category": "Уходы",
+          "duration": "",
+          "price": "5 400 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "«Фарфоровая куколка»",
+          "category": "Уходы",
+          "duration": "",
+          "price": "4 900 ₽",
+          "pricePackage5": "4 300 ₽",
+          "description": ""
+        },
+        {
+          "name": "Лифтинг-уход: антивозрастная терапия",
+          "category": "Уходы",
+          "duration": "",
+          "price": "5 800 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Уход-увлажнение для атоничной обезвоженной кожи",
+          "category": "Уходы",
+          "duration": "",
+          "price": "5 300 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Уход «Антистресс»",
+          "category": "Уходы",
+          "duration": "",
+          "price": "3 900 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Экспресс-уход «Вспышка красоты» (очищение, лифт-пилинг и маски)",
+          "category": "Уходы",
+          "duration": "50 мин",
+          "price": "3 900 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
+          "name": "Карбокситерапия + пилинг",
+          "category": "Уходы",
+          "duration": "50 мин",
+          "price": "6 900 ₽",
+          "pricePackage5": "",
+          "description": ""
+        },
+        {
           "name": "Чистка HydraFacial с гидропилингом",
           "category": "Аппаратная косметология",
-          "duration": "",
+          "duration": "50 мин",
           "price": "7 000 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2309,7 +3231,7 @@
         {
           "name": "Джет-пилинг (аква-чистка лица)",
           "category": "Аппаратная косметология",
-          "duration": "",
+          "duration": "50 мин",
           "price": "6 200 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2317,7 +3239,7 @@
         {
           "name": "Джет-пилинг (отдельно или к процедуре)",
           "category": "Аппаратная косметология",
-          "duration": "",
+          "duration": "50 мин",
           "price": "1 700 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2427,98 +3349,73 @@
           "description": ""
         },
         {
-          "name": "ТОП! Ручная лепка овала лица + альгинатный уход",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "90 мин",
-          "price": "3 900 ₽",
-          "pricePackage5": "3 300 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж классический",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "30 мин",
-          "price": "1 300 ₽",
-          "pricePackage5": "1 150 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж авторский",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "40 мин",
-          "price": "от 2 900 ₽",
-          "pricePackage5": "от 2 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж лимфодренажный",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "40 мин",
-          "price": "2 000 ₽",
-          "pricePackage5": "1 800 ₽",
-          "description": ""
-        },
-        {
-          "name": "Массаж моделирующий испанский",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "40–60 мин",
-          "price": "2 900 ₽",
-          "pricePackage5": "2 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Хиромассаж",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "30 мин",
-          "price": "2 500 ₽",
-          "pricePackage5": "2 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Скульптурно-буккальный массаж лица",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
+          "name": "Чистка с алмазным пилингом",
           "duration": "",
-          "price": "3 500 ₽",
-          "pricePackage5": "3 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Скульптурно-буккальный массаж лица + альгинатная маска",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "",
-          "price": "4 100 ₽",
-          "pricePackage5": "3 600 ₽",
-          "description": ""
-        },
-        {
-          "name": "Гимнастика для лица / блейд (пластинчатый) массаж лица / скульптура лица",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "45 мин",
-          "price": "3 000 ₽",
-          "pricePackage5": "2 500 ₽",
-          "description": ""
-        },
-        {
-          "name": "Буккальный массаж МАКСИ",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "",
-          "price": "4 600 ₽",
-          "pricePackage5": "4 100 ₽",
-          "description": ""
-        },
-        {
-          "name": "Сыворотка лифтинг / ретинол / гиалурон (массажная)",
-          "category": "Фототерапия LUMECCA + MORPHEUS8 RF",
-          "duration": "",
-          "price": "500 ₽",
+          "price": "6 000 ₽",
           "pricePackage5": "",
-          "description": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
+        },
+        {
+          "name": "Алмазный пилинг (к процедуре)",
+          "duration": "",
+          "price": "2 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
+        },
+        {
+          "name": "Фотодинамическая световая терапия лица (15 минут)",
+          "duration": "15 мин",
+          "price": "1 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
+        },
+        {
+          "name": "Ультразвуковая подтяжка лица (дополнительно к услуге)",
+          "duration": "",
+          "price": "1 700 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
+        },
+        {
+          "name": "Ультразвуковая подтяжка зоны глаз (дополнительно к услуге)",
+          "duration": "",
+          "price": "1 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
+        },
+        {
+          "name": "Текар-терапия Indiba (30 минут)",
+          "duration": "30 мин",
+          "price": "4 300 ₽",
+          "pricePackage5": "3 800 ₽",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
+        },
+        {
+          "name": "Indiba — липолитическая терапия (30 минут)",
+          "duration": "30 мин",
+          "price": "4 300 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Аппаратная косметология"
         },
         {
           "name": "СМАС 500 линий",
           "category": "СМАС-лифтинг ULTRAFORMER III",
           "duration": "",
-          "price": "38 000 ₽",
+          "price": "48 500 ₽",
           "pricePackage5": "",
           "description": ""
         },
@@ -2526,9 +3423,18 @@
           "name": "СМАС 800 линий",
           "category": "СМАС-лифтинг ULTRAFORMER III",
           "duration": "",
-          "price": "60 000 ₽",
+          "price": "77 500 ₽",
           "pricePackage5": "",
           "description": ""
+        },
+        {
+          "name": "СМАС 1000 линий",
+          "duration": "",
+          "price": "89 000 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "СМАС-лифтинг ULTRAFORMER III"
         },
         {
           "name": "Лицо / декольте (1 зона на выбор)",
@@ -2696,7 +3602,7 @@
         {
           "name": "Консультация и осмотр подолога (без дальнейшего лечения)",
           "category": "Консультация",
-          "duration": "",
+          "duration": "30 мин",
           "price": "950 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2704,7 +3610,7 @@
         {
           "name": "Консультация подолога с дальнейшим лечением",
           "category": "Консультация",
-          "duration": "",
+          "duration": "30 мин",
           "price": "Бесплатно",
           "pricePackage5": "",
           "description": ""
@@ -2712,7 +3618,7 @@
         {
           "name": "Лечение грибка ногтей (онихомикоза) лазером — 1 ноготь (состав №1)",
           "category": "Лечение грибка ногтей",
-          "duration": "",
+          "duration": "30 мин",
           "price": "1 350 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2720,7 +3626,7 @@
         {
           "name": "Лечение грибка ногтей неодимовым лазером (Nd-Yag)",
           "category": "Лечение грибка ногтей",
-          "duration": "",
+          "duration": "30 мин",
           "price": "2 100 ₽",
           "pricePackage5": "",
           "description": ""
@@ -2808,7 +3714,7 @@
         {
           "name": "Чистка ногтевой пластины при грибковой инфекции (онихомикозе, 1 ед.)",
           "category": "Лечение грибка ногтей",
-          "duration": "",
+          "duration": "60 мин",
           "price": "1 750 ₽",
           "pricePackage5": "",
           "description": ""
@@ -3248,6 +4154,51 @@
           "price": "от 15 000 ₽",
           "pricePackage5": "",
           "pricePackage10": ""
+        },
+        {
+          "name": "«Всем нужна Tali.Ya» — авторский протокол",
+          "duration": "",
+          "price": "23 600 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Курсы и абонементы"
+        },
+        {
+          "name": "Программа «АССОРТИ» — курс 10 сеансов на выбор",
+          "duration": "",
+          "price": "29 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Курсы и абонементы"
+        },
+        {
+          "name": "«Марафон к отпуску» — интенсивный протокол",
+          "duration": "",
+          "price": "46 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Курсы и абонементы"
+        },
+        {
+          "name": "«Курс на S Size»",
+          "duration": "",
+          "price": "74 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Курсы и абонементы"
+        },
+        {
+          "name": "«RE-форма» — протокол доведения до цели",
+          "duration": "",
+          "price": "52 400 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Курсы и абонементы"
         }
       ]
     },
@@ -3293,44 +4244,292 @@
       ],
       "items": [
         {
-          "name": "Маникюр классический",
-          "description": "Классический маникюр с покрытием",
-          "duration": "60 мин",
-          "price": "от 2 000 ₽",
+          "name": "Женский маникюр (обрезной / комбинированный / аппаратный)",
+          "duration": "",
+          "price": "1 500 ₽",
           "pricePackage5": "",
-          "pricePackage10": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
         },
         {
-          "name": "Маникюр аппаратный",
-          "description": "Аппаратный маникюр с покрытием гель-лак",
-          "duration": "90 мин",
-          "price": "от 2 500 ₽",
+          "name": "Мужской маникюр (обрезной / комбинированный / аппаратный)",
+          "duration": "",
+          "price": "1 700 ₽",
           "pricePackage5": "",
-          "pricePackage10": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
         },
         {
-          "name": "Японское восстановление ногтей",
-          "description": "Японская Мансура-процедура для восстановления ногтей",
-          "duration": "60 мин",
-          "price": "от 3 000 ₽",
+          "name": "Придание формы ногтям без маникюра",
+          "duration": "",
+          "price": "500 ₽",
           "pricePackage5": "",
-          "pricePackage10": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
         },
         {
-          "name": "Педикюр классический",
-          "description": "Классический педикюр с покрытием",
-          "duration": "90 мин",
-          "price": "от 2 500 ₽",
+          "name": "Снятие + форма ногтей",
+          "duration": "",
+          "price": "750 ₽",
           "pricePackage5": "",
-          "pricePackage10": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
         },
         {
-          "name": "Педикюр аппаратный",
-          "description": "Аппаратный педикюр с покрытием",
-          "duration": "90 мин",
-          "price": "от 3 000 ₽",
+          "name": "Детский маникюр (полировка ногтевой пластины и покрытие)",
+          "duration": "",
+          "price": "750 ₽",
           "pricePackage5": "",
-          "pricePackage10": ""
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Комплекс «Лак»",
+          "duration": "",
+          "price": "1 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Комплекс «Гель-лак»",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Комплекс «Макси»",
+          "duration": "",
+          "price": "2 990 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Покрытие гель-лак (отдельно)",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Японский маникюр P.Shine / Masura (женский)",
+          "duration": "",
+          "price": "1 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Японский маникюр P.Shine / Masura (мужской)",
+          "duration": "",
+          "price": "2 100 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Покрытие «Японский маникюр»",
+          "duration": "",
+          "price": "350 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Наращивание — полный комплекс с покрытием",
+          "duration": "",
+          "price": "4 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Коррекция наращивания",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Снятие «чужого» покрытия (1 визит)",
+          "duration": "",
+          "price": "350 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Ремонт 1 ногтя",
+          "duration": "",
+          "price": "100 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Дополнительное укрепление — акриловая пудра / гель / полигель",
+          "duration": "",
+          "price": "500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Дизайн: френч / лунный",
+          "duration": "",
+          "price": "60 ₽ / ед. · 500 ₽ комплексно",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Дизайн: градиент / штамп",
+          "duration": "",
+          "price": "60 ₽ / ед. · 500 ₽ комплексно",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Дизайн: фольга / поталь / блёстки",
+          "duration": "",
+          "price": "60 ₽ / ед. · 500 ₽ комплексно",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Маникюр"
+        },
+        {
+          "name": "Педикюр классический / аппаратный / комбинированный (без снятия и покрытия)",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Педикюр «Только пальчики»",
+          "duration": "",
+          "price": "1 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Педикюр мужской комбинированный",
+          "duration": "",
+          "price": "2 990 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Педикюр дисками (Smart System)",
+          "duration": "",
+          "price": "3 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Педикюр дисками (Smart System), мужской",
+          "duration": "",
+          "price": "3 500 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Кислотный атравматичный педикюр",
+          "duration": "",
+          "price": "2 800 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Комплекс «Лак» (педикюр + лак)",
+          "duration": "",
+          "price": "2 990 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Комплекс «Гель-лак» (педикюр)",
+          "duration": "",
+          "price": "3 400 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Комплекс «Пальчики + лак»",
+          "duration": "",
+          "price": "2 600 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Комплекс «Пальчики + гель-лак»",
+          "duration": "",
+          "price": "2 990 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Покрытие гель-лак (отдельно)",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
+        },
+        {
+          "name": "Педикюр дисками (Smart System) + гель-лак",
+          "duration": "",
+          "price": "4 100 ₽",
+          "pricePackage5": "",
+          "pricePackage10": "",
+          "description": "",
+          "category": "Педикюр"
         }
       ]
     }
@@ -3361,7 +4560,7 @@
         "text": "Специалисты с многолетним опытом и постоянным повышением квалификации"
       }
     ],
-    "image": "/images/about.svg"
+    "image": "https://images.unsplash.com/photo-1505944270255-72b8c68c6a70?w=1600&q=80&auto=format&fit=crop"
   },
   "team": {
     "title": "Команда опытных профессионалов",
@@ -3433,40 +4632,115 @@
     "title": "Галерея",
     "subtitle": "Наш центр и результаты работы",
     "categories": [
-      "Интерьер",
-      "Процедуры",
-      "Результаты"
+      {
+        "id": "interior",
+        "name": "Интерьер"
+      },
+      {
+        "id": "procedures",
+        "name": "Процедуры"
+      },
+      {
+        "id": "results",
+        "name": "Результаты"
+      }
     ],
     "images": [
       {
-        "url": "/images/gallery/interior-1.svg",
-        "alt": "Интерьер центра Талия",
-        "category": "Интерьер"
+        "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
+        "title": "Зона релакса в центре «ТалиЯ»",
+        "alt": "Зона релакса в центре «ТалиЯ»",
+        "category": "interior"
       },
       {
-        "url": "/images/gallery/interior-2.svg",
-        "alt": "Кабинет косметолога",
-        "category": "Интерьер"
+        "src": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1600&q=80&auto=format&fit=crop",
+        "title": "Уютная зона ожидания",
+        "alt": "Уютная зона ожидания",
+        "category": "interior"
       },
       {
-        "url": "/images/gallery/procedure-1.svg",
-        "alt": "Процедура эндосфера-терапии",
-        "category": "Процедуры"
+        "src": "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?w=1600&q=80&auto=format&fit=crop",
+        "title": "Косметологический кабинет",
+        "alt": "Косметологический кабинет",
+        "category": "interior"
       },
       {
-        "url": "/images/gallery/procedure-2.svg",
+        "src": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1600&q=80&auto=format&fit=crop",
+        "title": "Процедурная комната",
+        "alt": "Процедурная комната",
+        "category": "interior"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
+        "title": "Уходовая процедура для лица",
+        "alt": "Уходовая процедура для лица",
+        "category": "procedures"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80&auto=format&fit=crop",
+        "title": "Аппаратная косметология",
         "alt": "Аппаратная косметология",
-        "category": "Процедуры"
+        "category": "procedures"
       },
       {
-        "url": "/images/gallery/result-1.svg",
-        "alt": "Результат коррекции тела",
-        "category": "Результаты"
+        "src": "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1600&q=80&auto=format&fit=crop",
+        "title": "Эндосфера-терапия",
+        "alt": "Эндосфера-терапия",
+        "category": "procedures"
       },
       {
-        "url": "/images/gallery/result-2.svg",
-        "alt": "Результат омоложения",
-        "category": "Результаты"
+        "src": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=1600&q=80&auto=format&fit=crop",
+        "title": "Лечебный массаж",
+        "alt": "Лечебный массаж",
+        "category": "procedures"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop",
+        "title": "Безупречное состояние кожи",
+        "alt": "Безупречное состояние кожи",
+        "category": "results"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1600&q=80&auto=format&fit=crop",
+        "title": "Эффект омоложения",
+        "alt": "Эффект омоложения",
+        "category": "results"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1600&q=80&auto=format&fit=crop",
+        "title": "Маникюр и педикюр",
+        "alt": "Маникюр и педикюр",
+        "category": "results"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=1600&q=80&auto=format&fit=crop",
+        "thumb": "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=1600&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=1600&q=80&auto=format&fit=crop",
+        "title": "Уход за телом и кожей",
+        "alt": "Уход за телом и кожей",
+        "category": "results"
       }
     ]
   },
@@ -3478,19 +4752,55 @@
         "title": "Скидка до 50% на первый сеанс",
         "description": "Для новых гостей — скидка до 50% на первую процедуру. Уровень скидки зависит от выбранной услуги.",
         "badge": "Новым гостям",
-        "active": true
+        "active": true,
+        "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=80&auto=format&fit=crop",
+        "icon": "sparkles",
+        "link": "#callback",
+        "discount": "до -50%",
+        "note": "Уровень скидки зависит от выбранной услуги.",
+        "details": [
+          "Аппаратная косметология (RF, Lumecca, SMAS)",
+          "Инъекционные процедуры и биоревитализация",
+          "Лечебные и SPA-массажи",
+          "Эндосфера-терапия и коррекция фигуры"
+        ],
+        "validUntil": "31.12.2026"
       },
       {
         "title": "Приведи подругу — получи скидку",
         "description": "Приходите вместе с подругой или парой и получите скидку на совместное посещение.",
         "badge": "Для двоих",
-        "active": true
+        "active": true,
+        "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80&auto=format&fit=crop",
+        "icon": "users",
+        "link": "#callback",
+        "discount": "-15%",
+        "note": "Приходите вдвоём — скидка распространяется на обоих.",
+        "details": [
+          "Скидка действует на оба визита",
+          "Подходит подругам, маме с дочкой, парам",
+          "Можно выбрать разные процедуры",
+          "Бесплатная консультация косметолога"
+        ],
+        "validUntil": "31.12.2026"
       },
       {
         "title": "Абонементы на 5 и 10 процедур",
         "description": "Приобретайте абонементы на курс процедур и экономьте до 30% от стоимости разовых сеансов.",
         "badge": "Выгодно",
-        "active": true
+        "active": true,
+        "image": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
+        "icon": "package",
+        "link": "#callback",
+        "discount": "до -30%",
+        "note": "Доступны абонементы на 5 и 10 процедур.",
+        "details": [
+          "Абонемент на 5 процедур — экономия до 15%",
+          "Абонемент на 10 процедур — экономия до 30%",
+          "Сертификаты в подарок близким",
+          "Заморозка абонемента на время отпуска"
+        ],
+        "validUntil": "31.12.2026"
       }
     ]
   },
@@ -3521,70 +4831,5 @@
     "promotionsDescription": "Актуальные акции и специальные предложения центра «Талия». Скидки на первый визит, абонементы, программы лояльности.",
     "contactsTitle": "Контакты — Центр «Талия»",
     "contactsDescription": "Контакты центра эстетики тела «Талия» в Мытищах. Адрес, телефон, время работы, карта проезда. Запись онлайн."
-  },
-  "trust": {
-    "enabled": true,
-    "items": [
-      {
-        "icon": "badge-check",
-        "text": "Честный знак"
-      },
-      {
-        "icon": "shield-check",
-        "text": "Мед. лицензия"
-      },
-      {
-        "icon": "sparkles",
-        "text": "InMode Lumecca"
-      },
-      {
-        "icon": "droplet",
-        "text": "Morpheus8"
-      },
-      {
-        "icon": "zap",
-        "text": "Ultraformer III"
-      },
-      {
-        "icon": "leaf",
-        "text": "Endosphères"
-      },
-      {
-        "icon": "heart",
-        "text": "Juvederm · Neuramis"
-      },
-      {
-        "icon": "star",
-        "text": "Профессиональный сервис"
-      }
-    ]
-  },
-  "floating": {
-    "whatsapp": {
-      "enabled": true,
-      "href": "https://wa.me/79852200106"
-    },
-    "profsalon": {
-      "enabled": true,
-      "href": "https://profsalon.org/o/D6UNi3",
-      "text": "Записаться онлайн"
-    }
-  },
-  "footer": {
-    "tagline": "Центр эстетики тела и косметологии в Мытищах.",
-    "legal": [
-      {
-        "text": "Политика конфиденциальности",
-        "href": "/privacy"
-      },
-      {
-        "text": "Пользовательское соглашение",
-        "href": "/terms"
-      },
-      {
-        "text": "Согласие на обработку данных",
-        "href": "/consent"
-      }
-    ]
   }
 }
