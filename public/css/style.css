@@ -2717,8 +2717,7 @@ body.has-sidebar {
 .contacts-socials__card-icon i, .contacts-socials__card-icon svg { width: 22px; height: 22px; }
 .contacts-socials__card-label { font-weight: 600; font-size: var(--font-size-md); }
 .contacts-socials__card--vk .contacts-socials__card-icon { background: #0077FF; }
-.contacts-socials__card--telegram .contacts-socials__card-icon { background: #2AABEE; }
-.contacts-socials__card--whatsapp .contacts-socials__card-icon { background: #25D366; }
+.contacts-socials__card--max .contacts-socials__card-icon { background: var(--color-accent); }
 
 
 /* ===== CALLBACK FORM (new wrapper) ===== */

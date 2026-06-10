@@ -10,8 +10,6 @@
     "hours": "Ежедневно 10:00–22:00",
     "email": "info@taliya-mytishchi.ru",
     "vk": "https://vk.com/estetictaliya",
-    "telegram": "https://t.me/taliya_pro",
-    "whatsapp": "https://wa.me/79852200106",
     "profsalon": "https://profsalon.org/o/D6UNi3",
     "license": "№ Л041-01162-50/00622568",
     "company": "ООО «МЕДИКА+»",
@@ -22,7 +20,8 @@
     "kpp": "502901001",
     "legalAddress": "141008, Московская область, г. Мытищи, ул. Мира, д. 35, помещ. 7",
     "licenseIssuer": "Министерством здравоохранения Московской области",
-    "licenseDate": "26.10.2022 (бессрочно)"
+    "licenseDate": "26.10.2022 (бессрочно)",
+    "max": ""
   },
   "hero": {
     "title": "Центр эстетики тела «Талия»",
@@ -76,7 +75,7 @@
     {
       "icon": "calendar",
       "title": "Удобная запись",
-      "text": "Записывайтесь с 10 до 22 по телефону, ватсап, телеграм"
+      "text": "Записывайтесь с 10 до 22 по телефону, в МАКСе или онлайн"
     },
     {
       "icon": "badge-check",

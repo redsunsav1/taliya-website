@@ -75,16 +75,10 @@
                 <span>ВКонтакте</span>
               </a>
             <% } %>
-            <% if (content.site.telegram) { %>
-              <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="footer__social" aria-label="Телеграм">
-                <i data-lucide="send"></i>
-                <span>Телеграм</span>
-              </a>
-            <% } %>
-            <% if (content.site.whatsapp) { %>
-              <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="footer__social" aria-label="Ватсап">
+            <% if (content.site.max) { %>
+              <a href="<%= content.site.max %>" target="_blank" rel="noopener" class="footer__social" aria-label="МАКС">
                 <i data-lucide="message-circle"></i>
-                <span>Ватсап</span>
+                <span>МАКС</span>
               </a>
             <% } %>
           </div>
@@ -121,9 +115,9 @@
 
   <!-- ===== FLOATING BUTTONS ===== -->
 
-  <!-- WhatsApp floating button (bottom-left) -->
-  <% if (content.site.whatsapp) { %>
-    <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Написать в Ватсап">
+  <!-- MAX messenger floating button (bottom-left) -->
+  <% if (content.site.max) { %>
+    <a href="<%= content.site.max %>" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Написать в МАКС">
       <i data-lucide="message-circle"></i>
     </a>
   <% } %>

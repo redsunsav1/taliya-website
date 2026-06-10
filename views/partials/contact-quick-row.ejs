@@ -1,20 +1,15 @@
 <div class="contact-quick-row">
-  <% if (typeof maxChatUrl !== 'undefined' && maxChatUrl) { %>
-    <a href="<%= maxChatUrl %>" target="_blank" rel="noopener" class="contact-quick-row__btn" title="Написать в МАКСе">
+  <% var maxUrl = content.site.max || (typeof maxChatUrl !== 'undefined' && maxChatUrl) || ''; %>
+  <% if (maxUrl) { %>
+    <a href="<%= maxUrl %>" target="_blank" rel="noopener" class="contact-quick-row__btn" title="Написать в МАКСе">
       <i data-lucide="message-circle"></i>
       <span>МАКС</span>
     </a>
   <% } %>
-  <% if (content.site.whatsapp) { %>
-    <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="contact-quick-row__btn" title="Ватсап (WhatsApp)">
-      <i data-lucide="send"></i>
-      <span>Ватсап</span>
-    </a>
-  <% } %>
-  <% if (content.site.telegram) { %>
-    <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="contact-quick-row__btn" title="Телеграм (Telegram)">
-      <i data-lucide="send"></i>
-      <span>Телеграм</span>
+  <% if (content.site.vk) { %>
+    <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="contact-quick-row__btn" title="ВКонтакте">
+      <i data-lucide="users"></i>
+      <span>ВКонтакте</span>
     </a>
   <% } %>
   <% if (content.site.phoneRaw) { %>

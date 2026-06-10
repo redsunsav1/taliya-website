@@ -56,7 +56,7 @@
     "image": "<%= content.site.url %>/images/logo.svg",
     "priceRange": "$$",
     "areaServed": { "@type": "City", "name": "Мытищи" },
-    "sameAs": [ "<%= content.site.vk %>", "<%= content.site.telegram %>", "<%= content.site.whatsapp %>" ],
+    "sameAs": [ "<%= content.site.vk %>"<% if (content.site.max) { %>, "<%= content.site.max %>"<% } %> ],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Service",
@@ -159,14 +159,9 @@
 
       <!-- Socials -->
       <div class="sidebar__socials">
-        <% if (content.site.whatsapp) { %>
-          <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="Ватсап">
+        <% if (content.site.max) { %>
+          <a href="<%= content.site.max %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="МАКС">
             <i data-lucide="message-circle"></i>
-          </a>
-        <% } %>
-        <% if (content.site.telegram) { %>
-          <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="Телеграм">
-            <i data-lucide="send"></i>
           </a>
         <% } %>
         <% if (content.site.vk) { %>

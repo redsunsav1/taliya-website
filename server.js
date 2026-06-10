@@ -523,7 +523,7 @@ app.get('/admin/settings', requireAuth, (req, res) => {
 
 app.post('/admin/settings', requireAuth, upload.fields([{name: 'logo', maxCount: 1}, {name: 'favicon', maxCount: 1}]), optimizeUploads, (req, res) => {
   const content = loadContent();
-  const fields = ['name', 'tagline', 'phone', 'phoneRaw', 'address', 'hours', 'email', 'vk', 'telegram', 'whatsapp', 'profsalon', 'license', 'company', 'mapEmbed', 'profsalonWidget', 'maxChatUrl'];
+  const fields = ['name', 'tagline', 'phone', 'phoneRaw', 'address', 'hours', 'email', 'vk', 'max', 'profsalon', 'license', 'company', 'mapEmbed', 'profsalonWidget', 'maxChatUrl'];
   fields.forEach(f => {
     if (req.body[f] !== undefined) content.site[f] = req.body[f];
   });
