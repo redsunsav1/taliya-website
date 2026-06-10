@@ -6,39 +6,45 @@
   <title>Акции — Панель управления</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
-    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #F7F7F5; color: #1A1A1A; }
+    .admin-header { background: #6B7A3F; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
     .admin-header h1 { font-size: 20px; font-weight: 600; }
-    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; }
     .admin-header a:hover { color: white; }
-    .admin-body { max-width: 1000px; margin: 0 auto; padding: 24px; }
-    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-body { max-width: 1060px; margin: 0 auto; padding: 24px; }
+    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .admin-back { display: inline-block; margin-bottom: 20px; color: #6B7A3F; text-decoration: none; font-size: 14px; }
     .admin-back:hover { text-decoration: underline; }
-    .promotion-item { background: #f9faf7; border: 1px solid #e0e4da; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
-    .promotion-item__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #e0e4da; padding-bottom: 12px; }
-    .promotion-item__title { font-size: 16px; font-weight: 600; color: #333; }
-    .promotion-item__status { font-size: 12px; padding: 4px 8px; border-radius: 4px; background: #e0e4da; color: #596341; }
-    .promotion-item__status.active { background: #d4f1d4; color: #2d5a2d; }
-    .btn-remove { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
-    .btn-remove:hover { background: #dbb5a8; }
-    .form-group { margin-bottom: 16px; }
-    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
-    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
-    .form-input:focus, .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .checkbox-group { display: flex; align-items: center; gap: 8px; }
-    .form-checkbox { width: 18px; height: 18px; cursor: pointer; }
-    .btn-add-promotion { padding: 12px 20px; background: #dce1d3; color: #596341; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
-    .btn-add-promotion:hover { background: #ccd4c3; }
-    .form-actions { display: flex; gap: 12px; margin-top: 24px; }
-    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
-    .btn-save:hover { background: #4a5236; }
-    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
-    .btn-cancel:hover { background: #ccc; }
-    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
-    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .section-head { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #EEE; }
+    .section-head h2 { font-size: 18px; font-weight: 600; color: #1A1A1A; }
+    .section-head p { color: #6E6E68; font-size: 13px; margin-top: 4px; }
+    .promotion-item { background: #F7F7F5; border: 1px solid #E8E8E3; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+    .promotion-item__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #E8E8E3; padding-bottom: 12px; gap: 12px; flex-wrap: wrap; }
+    .promotion-item__title { font-size: 16px; font-weight: 600; color: #1A1A1A; flex: 1; }
+    .promotion-item__status { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #E8E8E3; color: #6E6E68; }
+    .promotion-item__status.active { background: #E8EDDF; color: #4A5730; }
+    .btn-remove { padding: 6px 12px; background: #FBEDE5; color: #C85A35; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .btn-remove:hover { background: #F6D5C2; }
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; color: #1A1A1A; text-transform: uppercase; letter-spacing: 0.04em; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 14px; border: 1px solid #E0E0DB; border-radius: 8px; font-family: inherit; font-size: 14px; background: white; }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: #6B7A3F; box-shadow: 0 0 0 3px rgba(107,122,63,0.12); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    @media (max-width: 640px) { .form-row, .form-row-3 { grid-template-columns: 1fr; } }
+    .checkbox-group { display: flex; align-items: center; gap: 8px; padding-top: 24px; }
+    .form-checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: #6B7A3F; }
+    .btn-add { padding: 12px 20px; background: #E8EDDF; color: #4A5730; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; margin-bottom: 20px; }
+    .btn-add:hover { background: #CFD9BC; }
+    .form-actions { display: flex; gap: 12px; margin-top: 24px; border-top: 1px solid #EEE; padding-top: 24px; }
+    .btn-save { padding: 12px 28px; background: #6B7A3F; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save:hover { background: #4A5730; }
+    .btn-cancel { padding: 12px 28px; background: #F0F0EB; color: #1A1A1A; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-cancel:hover { background: #E0E0DB; }
+    .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; }
+    .alert-success { background: #E8EDDF; color: #4A5730; border: 1px solid #CFD9BC; }
+    .hint { font-size: 12px; color: #6E6E68; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -51,21 +57,43 @@
 </div>
 <div class="admin-body">
   <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
-  
+
   <% if (typeof message !== 'undefined' && message) { %>
     <div class="alert alert-success"><%= message %></div>
   <% } %>
-  
+
   <form class="admin-form" method="POST" action="/admin/promotions">
-    <button type="button" class="btn-add-promotion" onclick="addPromotion()">+ Добавить акцию</button>
+
+    <div class="section-head">
+      <h2>Общие настройки раздела</h2>
+      <p>Отображаются в блоке с каруселью на главной и на странице «Акции».</p>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Заголовок раздела</label>
+        <input type="text" name="promoTitle" class="form-input" value="<%= typeof promoTitle !== 'undefined' ? promoTitle : '' %>" placeholder="Например: Акции и выгодные предложения">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Подзаголовок</label>
+        <input type="text" name="promoSubtitle" class="form-input" value="<%= typeof promoSubtitle !== 'undefined' ? promoSubtitle : '' %>" placeholder="Например: Выгодные условия для гостей">
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top: 24px;">
+      <h2>Список акций</h2>
+      <p>На главной странице показываются только активные акции. Переключаются автоматически каждые 6 секунд.</p>
+    </div>
+
+    <button type="button" class="btn-add" onclick="addPromotion()">+ Добавить акцию</button>
 
     <div id="promotions">
-      <% (promotions || []).forEach((promo, index) => { %>
+      <% (promotions || []).forEach(function(promo, index) { %>
         <div class="promotion-item" data-index="<%= index %>">
           <div class="promotion-item__header">
             <div class="promotion-item__title"><%= promo.title || 'Новая акция' %></div>
             <div style="display: flex; gap: 8px; align-items: center;">
-              <span class="promotion-item__status <%= promo.active ? 'active' : '' %>">
+              <span class="promotion-item__status<%= promo.active ? ' active' : '' %>">
                 <%= promo.active ? 'Активна' : 'Неактивна' %>
               </span>
               <button type="button" class="btn-remove" onclick="removePromotion(this)">Удалить</button>
@@ -74,24 +102,41 @@
 
           <div class="form-group">
             <label class="form-label">Название акции</label>
-            <input type="text" name="promotions[<%= index %>][title]" class="form-input" value="<%= promo.title || '' %>" placeholder="Название" onchange="updatePromoTitle(this)">
+            <input type="text" name="promotions[<%= index %>][title]" class="form-input" value="<%= promo.title || '' %>" placeholder="Например: Скидка 50% на первый сеанс" onchange="updatePromoTitle(this)">
           </div>
 
           <div class="form-group">
             <label class="form-label">Описание</label>
-            <textarea name="promotions[<%= index %>][description]" class="form-textarea" placeholder="Описание акции"><%= promo.description || '' %></textarea>
+            <textarea name="promotions[<%= index %>][description]" class="form-textarea" placeholder="Подробности акции"><%= promo.description || '' %></textarea>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label class="form-label">Бейдж (плашка)</label>
+              <input type="text" name="promotions[<%= index %>][badge]" class="form-input" value="<%= promo.badge || '' %>" placeholder="Например: -50%">
+              <div class="hint">Яркая оранжевая плашка</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Иконка (lucide)</label>
+              <input type="text" name="promotions[<%= index %>][icon]" class="form-input" value="<%= promo.icon || '' %>" placeholder="sparkles">
+              <div class="hint">Если нет картинки</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ссылка (необязательно)</label>
+              <input type="text" name="promotions[<%= index %>][link]" class="form-input" value="<%= promo.link || '' %>" placeholder="/promotions или https://...">
+            </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Бейдж (ярлык)</label>
-              <input type="text" name="promotions[<%= index %>][badge]" class="form-input" value="<%= promo.badge || '' %>" placeholder="Например: -20%">
+              <label class="form-label">URL картинки (необязательно)</label>
+              <input type="text" name="promotions[<%= index %>][image]" class="form-input" value="<%= promo.image || '' %>" placeholder="/uploads/promo1.jpg">
             </div>
             <div class="form-group">
-              <label class="form-label">Активна</label>
-              <div class="checkbox-group">
+              <label class="form-label">Статус</label>
+              <div class="checkbox-group" style="padding-top: 0;">
                 <input type="checkbox" name="promotions[<%= index %>][active]" class="form-checkbox" value="true" <%= promo.active ? 'checked' : '' %> onchange="updatePromoStatus(this)">
-                <label style="margin: 0; font-weight: normal;">Показывать на сайте</label>
+                <label style="margin: 0; font-weight: 500; font-size: 14px; text-transform: none; letter-spacing: 0;">Показывать на сайте</label>
               </div>
             </div>
           </div>
@@ -107,66 +152,84 @@
 </div>
 
 <script>
-let promoCount = <%= (promotions || []).length %>;
+var promoCount = <%= (promotions || []).length %>;
 
 function addPromotion() {
-  const container = document.getElementById('promotions');
-  const newPromo = document.createElement('div');
-  newPromo.className = 'promotion-item';
-  newPromo.data-index = promoCount;
-  newPromo.innerHTML = `
-    <div class="promotion-item__header">
-      <div class="promotion-item__title">Новая акция</div>
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <span class="promotion-item__status">Неактивна</span>
-        <button type="button" class="btn-remove" onclick="removePromotion(this)">Удалить</button>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Название акции</label>
-      <input type="text" name="promotions[${promoCount}][title]" class="form-input" placeholder="Название" onchange="updatePromoTitle(this)">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Описание</label>
-      <textarea name="promotions[${promoCount}][description]" class="form-textarea" placeholder="Описание акции"></textarea>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Бейдж (ярлык)</label>
-        <input type="text" name="promotions[${promoCount}][badge]" class="form-input" placeholder="Например: -20%">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Активна</label>
-        <div class="checkbox-group">
-          <input type="checkbox" name="promotions[${promoCount}][active]" class="form-checkbox" value="true" onchange="updatePromoStatus(this)">
-          <label style="margin: 0; font-weight: normal;">Показывать на сайте</label>
-        </div>
-      </div>
-    </div>
-  `;
-  container.appendChild(newPromo);
+  var container = document.getElementById('promotions');
+  var i = promoCount;
+  var wrapper = document.createElement('div');
+  wrapper.className = 'promotion-item';
+  wrapper.setAttribute('data-index', i);
+  wrapper.innerHTML =
+    '<div class="promotion-item__header">' +
+      '<div class="promotion-item__title">Новая акция</div>' +
+      '<div style="display: flex; gap: 8px; align-items: center;">' +
+        '<span class="promotion-item__status">Неактивна</span>' +
+        '<button type="button" class="btn-remove" onclick="removePromotion(this)">Удалить</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<label class="form-label">Название акции</label>' +
+      '<input type="text" name="promotions[' + i + '][title]" class="form-input" placeholder="Название" onchange="updatePromoTitle(this)">' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<label class="form-label">Описание</label>' +
+      '<textarea name="promotions[' + i + '][description]" class="form-textarea" placeholder="Подробности акции"></textarea>' +
+    '</div>' +
+    '<div class="form-row-3">' +
+      '<div class="form-group">' +
+        '<label class="form-label">Бейдж</label>' +
+        '<input type="text" name="promotions[' + i + '][badge]" class="form-input" placeholder="-50%">' +
+      '</div>' +
+      '<div class="form-group">' +
+        '<label class="form-label">Иконка (lucide)</label>' +
+        '<input type="text" name="promotions[' + i + '][icon]" class="form-input" placeholder="sparkles">' +
+      '</div>' +
+      '<div class="form-group">' +
+        '<label class="form-label">Ссылка</label>' +
+        '<input type="text" name="promotions[' + i + '][link]" class="form-input" placeholder="/promotions">' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-row">' +
+      '<div class="form-group">' +
+        '<label class="form-label">URL картинки</label>' +
+        '<input type="text" name="promotions[' + i + '][image]" class="form-input" placeholder="/uploads/promo.jpg">' +
+      '</div>' +
+      '<div class="form-group">' +
+        '<label class="form-label">Статус</label>' +
+        '<div class="checkbox-group" style="padding-top: 0;">' +
+          '<input type="checkbox" name="promotions[' + i + '][active]" class="form-checkbox" value="true" onchange="updatePromoStatus(this)">' +
+          '<label style="margin: 0; font-weight: 500; font-size: 14px; text-transform: none; letter-spacing: 0;">Показывать на сайте</label>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  container.appendChild(wrapper);
   promoCount++;
 }
 
-function removePromotion(button) {
-  button.closest('.promotion-item').remove();
+function removePromotion(btn) {
+  var el = btn.closest('.promotion-item');
+  if (el) el.remove();
 }
 
 function updatePromoTitle(input) {
-  const promoDiv = input.closest('.promotion-item');
-  const titleDisplay = promoDiv.querySelector('.promotion-item__title');
-  titleDisplay.textContent = input.value || 'Новая акция';
+  var card = input.closest('.promotion-item');
+  if (!card) return;
+  var titleEl = card.querySelector('.promotion-item__title');
+  if (titleEl) titleEl.textContent = input.value || 'Новая акция';
 }
 
 function updatePromoStatus(checkbox) {
-  const promoDiv = checkbox.closest('.promotion-item');
-  const statusDisplay = promoDiv.querySelector('.promotion-item__status');
+  var card = checkbox.closest('.promotion-item');
+  if (!card) return;
+  var statusEl = card.querySelector('.promotion-item__status');
+  if (!statusEl) return;
   if (checkbox.checked) {
-    statusDisplay.textContent = 'Активна';
-    statusDisplay.classList.add('active');
+    statusEl.textContent = 'Активна';
+    statusEl.classList.add('active');
   } else {
-    statusDisplay.textContent = 'Неактивна';
-    statusDisplay.classList.remove('active');
+    statusEl.textContent = 'Неактивна';
+    statusEl.classList.remove('active');
   }
 }
 </script>

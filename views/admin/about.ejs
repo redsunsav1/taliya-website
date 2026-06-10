@@ -7,20 +7,20 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
-    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header { background: #8FA86E; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
     .admin-header h1 { font-size: 20px; font-weight: 600; }
     .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
     .admin-header a:hover { color: white; }
     .admin-body { max-width: 900px; margin: 0 auto; padding: 24px; }
     .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #8FA86E; text-decoration: none; font-size: 14px; }
     .admin-back:hover { text-decoration: underline; }
     .form-group { margin-bottom: 20px; }
     .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
     .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
-    .form-input:focus, .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: #8FA86E; box-shadow: 0 0 0 3px rgba(143, 168, 110, 0.1); }
     .form-textarea { resize: vertical; min-height: 120px; }
-    .file-input-label { display: inline-block; padding: 10px 16px; background: #e8ede0; color: #596341; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+    .file-input-label { display: inline-block; padding: 10px 16px; background: #e8ede0; color: #8FA86E; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
     .file-input-label:hover { background: #dce1d3; }
     .form-input[type="file"] { display: none; }
     .image-preview { max-width: 200px; max-height: 200px; margin-top: 10px; border-radius: 6px; }
@@ -32,10 +32,10 @@
     .btn-remove { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
     .btn-remove:hover { background: #dbb5a8; }
     .value-item input, .value-item textarea { margin-bottom: 8px; }
-    .btn-add-value { padding: 10px 16px; background: #dce1d3; color: #596341; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-add-value { padding: 10px 16px; background: #dce1d3; color: #8FA86E; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
     .btn-add-value:hover { background: #ccd4c3; }
     .form-actions { display: flex; gap: 12px; margin-top: 24px; }
-    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save { padding: 12px 24px; background: #8FA86E; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
     .btn-save:hover { background: #4a5236; }
     .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
     .btn-cancel:hover { background: #ccc; }
@@ -79,6 +79,9 @@
       <label class="form-label">Фотография</label>
       <label class="file-input-label">Выбрать файл</label>
       <input type="file" name="image" class="form-input" accept="image/*">
+      <div style="font-size:12px;color:#888;margin-top:6px;">
+        Вертикальная <strong>4:5</strong> (800×1000 px) или горизонтальная <strong>4:3</strong>. JPG / WebP. Большие файлы сожмутся автоматически.
+      </div>
       <% if (about?.image) { %>
         <img src="<%= about.image %>" alt="<%= about.title %>" class="image-preview">
       <% } %>

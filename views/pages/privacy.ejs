@@ -99,10 +99,15 @@
         <h2>10. Контактная информация</h2>
         <p>Если у вас есть вопросы о настоящей Политике конфиденциальности или о том, как мы обрабатываем ваши персональные данные, пожалуйста, свяжитесь с нами:</p>
         <ul>
-          <li><strong>Компания:</strong> ООО «МЕДИКА+»</li>
-          <li><strong>Адрес:</strong> <%= content.site.address ? content.site.address : '[Адрес Компании]' %></li>
+          <li><strong>Оператор персональных данных:</strong> <%= content.site.company %></li>
+          <% if (content.site.inn) { %><li><strong>ИНН:</strong> <%= content.site.inn %></li><% } %>
+          <% if (content.site.ogrn) { %><li><strong>ОГРН:</strong> <%= content.site.ogrn %></li><% } %>
+          <% if (content.site.legalAddress) { %><li><strong>Юридический адрес:</strong> <%= content.site.legalAddress %></li><% } %>
+          <li><strong>Адрес оказания услуг:</strong> <%= content.site.address ? content.site.address : '[Адрес Компании]' %></li>
           <li><strong>Телефон:</strong> <%= content.site.phone ? content.site.phone : '[Номер телефона]' %></li>
           <li><strong>Электронная почта:</strong> <%= content.site.email ? content.site.email : '[Эл. почта не указана]' %></li>
+          <% if (content.site.pdnResponsible) { %><li><strong>Ответственный за обработку персональных данных:</strong> <%= content.site.pdnResponsible %></li><% } %>
+          <% if (content.site.rknRegistryNumber) { %><li><strong>Регистрационный номер в реестре операторов ПДн (Роскомнадзор):</strong> <%= content.site.rknRegistryNumber %></li><% } %>
         </ul>
 
         <h2>11. Уведомления об изменениях</h2>

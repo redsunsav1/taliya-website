@@ -16,7 +16,7 @@
 
     .admin-sidebar {
       width: 260px;
-      background: linear-gradient(180deg, #596341 0%, #454d33 100%);
+      background: linear-gradient(180deg, #8FA86E 0%, #6E8A4F 100%);
       color: #fff; flex-shrink: 0; position: fixed;
       top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100;
     }
@@ -39,7 +39,7 @@
     .admin-content { flex: 1; margin-left: 260px; padding: 32px 40px; min-height: 100vh; }
     .admin-content__header { margin-bottom: 32px; }
     .admin-content__breadcrumb { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
-    .admin-content__breadcrumb a { color: #596341; text-decoration: none; }
+    .admin-content__breadcrumb a { color: #8FA86E; text-decoration: none; }
     .admin-content__breadcrumb a:hover { text-decoration: underline; }
     .admin-content__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #333; }
 
@@ -59,17 +59,17 @@
       font-size: 0.9rem; font-family: 'Montserrat', sans-serif; transition: border-color 0.2s;
     }
     .admin-form__input:focus, .admin-form__textarea:focus {
-      outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89,99,65,0.1);
+      outline: none; border-color: #8FA86E; box-shadow: 0 0 0 3px rgba(143,168,110,0.1);
     }
     .admin-form__textarea { min-height: 80px; resize: vertical; }
     .admin-form__hint { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
 
     .admin-form__btn {
-      display: inline-block; padding: 12px 32px; background: #596341; color: #fff;
+      display: inline-block; padding: 12px 32px; background: #8FA86E; color: #fff;
       border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
       font-family: 'Montserrat', sans-serif; cursor: pointer; transition: background 0.2s;
     }
-    .admin-form__btn:hover { background: #7a4f5c; }
+    .admin-form__btn:hover { background: #6E8A4F; }
 
     .admin-alert {
       padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem;
@@ -82,7 +82,7 @@
       padding: 10px 14px; border: 2px dashed #ddd; border-radius: 8px;
       background: #fafafa; cursor: pointer; transition: border-color 0.2s;
     }
-    .admin-form__file-input:hover { border-color: #596341; }
+    .admin-form__file-input:hover { border-color: #8FA86E; }
 
     .admin-form__image-preview {
       margin-top: 12px; max-width: 300px; border-radius: 8px; overflow: hidden;
@@ -91,7 +91,7 @@
     .admin-form__image-preview img { width: 100%; height: auto; display: block; }
 
     .admin-form__back-link {
-      display: inline-block; margin-bottom: 20px; color: #596341;
+      display: inline-block; margin-bottom: 20px; color: #8FA86E;
       text-decoration: none; font-size: 0.88rem; font-weight: 500;
     }
     .admin-form__back-link:hover { text-decoration: underline; }
@@ -119,7 +119,7 @@
     .item-row__number {
       font-weight: 600;
       font-size: 0.82rem;
-      color: #596341;
+      color: #8FA86E;
     }
     .item-row__remove {
       background: none;
@@ -187,15 +187,15 @@
     }
     .item-row__field-input:focus {
       outline: none;
-      border-color: #596341;
+      border-color: #8FA86E;
     }
 
     .admin-form__add-btn {
       display: inline-block;
       padding: 10px 24px;
       background: #fff;
-      color: #596341;
-      border: 2px dashed #596341;
+      color: #8FA86E;
+      border: 2px dashed #8FA86E;
       border-radius: 8px;
       font-size: 0.88rem;
       font-weight: 600;
@@ -205,7 +205,7 @@
       margin-bottom: 24px;
     }
     .admin-form__add-btn:hover {
-      background: #596341;
+      background: #8FA86E;
       color: #fff;
     }
 
@@ -305,8 +305,138 @@
           </div>
 
           <div class="admin-form__group">
-            <label class="admin-form__label" for="discount">Скидка / акция</label>
-            <input class="admin-form__input" type="text" id="discount" name="discount" value="<%= service.discount %>" placeholder="например: до -50%">
+            <label class="admin-form__label" for="discount">Скидка / акция (старый бейдж)</label>
+            <input class="admin-form__input" type="text" id="discount" name="discount" value="<%= service.discount || '' %>" placeholder="например: до -50%">
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="offerBadge">Текст оранжевого бейджа (акция на hero)</label>
+            <input class="admin-form__input" type="text" id="offerBadge" name="offerBadge" value="<%= service.offerBadge || '' %>" placeholder="Тест-драйв стоимостью 5000 ₽ и обёртывание в подарок">
+            <div class="admin-form__hint">Если заполнено — заменяет поле «Скидка / акция» на странице услуги.</div>
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="benefitsTitle">Заголовок блока «Преимущества»</label>
+            <input class="admin-form__input" type="text" id="benefitsTitle" name="benefitsTitle" value="<%= service.benefitsTitle || '' %>" placeholder="Наши преимущества">
+            <div class="admin-form__hint">Например: «Что вы получите от процедур эндосфера терапии»</div>
+          </div>
+        </div>
+
+        <!-- Tezisy (top bullets) -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Тезисы (карточки в верхней части страницы)</h2>
+          <p class="admin-form__hint" style="margin-bottom: 14px;">Короткие тезисы-буллеты, например: «Оригинальный аппарат», «Результат с 1 сеанса».</p>
+          <input type="hidden" name="tezisyEnabled" value="1">
+          <div id="tezisyContainer">
+            <% (service.tezisy || []).forEach(function(tez, i) { %>
+              <div class="item-row">
+                <div class="item-row__header">
+                  <span class="item-row__number">Тезис #<%= i + 1 %></span>
+                  <button type="button" class="item-row__remove" onclick="this.closest('.item-row').remove()">Удалить</button>
+                </div>
+                <div class="item-row__fields">
+                  <div>
+                    <div class="item-row__field-label">Иконка Lucide</div>
+                    <input class="item-row__field-input" type="text" name="tezisyIcons[]" value="<%= tez.icon || 'star' %>" placeholder="badge-check">
+                  </div>
+                  <div>
+                    <div class="item-row__field-label">Текст</div>
+                    <input class="item-row__field-input" type="text" name="tezisyTexts[]" value="<%= tez.text || '' %>">
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+          <button type="button" class="admin-form__add-btn" onclick="addTezisRow()">+ Добавить тезис</button>
+        </div>
+
+        <!-- Media Gallery -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Галерея — фото и видео аппарата</h2>
+          <div class="admin-form__group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" name="mediaEnabled" value="1" <% if (service.mediaGallery && service.mediaGallery.enabled) { %>checked<% } %>>
+              <span>Показывать блок с галереей</span>
+            </label>
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="mediaTitle">Заголовок блока</label>
+            <input class="admin-form__input" type="text" id="mediaTitle" name="mediaTitle" value="<%= (service.mediaGallery && service.mediaGallery.title) || '' %>" placeholder="Аппарат Endosphères Therapy">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="mediaVideoUrl">Ссылка на видео (VK / Rutube / embed)</label>
+            <input class="admin-form__input" type="text" id="mediaVideoUrl" name="mediaVideoUrl" value="<%= (service.mediaGallery && service.mediaGallery.videoUrl) || '' %>" placeholder="https://vk.com/video_ext.php?...">
+            <div class="admin-form__hint">Вставьте ссылку на iframe embed (VK Video, Rutube, YouTube). Если пусто — видео не покажется.</div>
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Фотографии (пути к файлам)</label>
+            <div id="mediaPhotosContainer">
+              <% ((service.mediaGallery && service.mediaGallery.photos) || []).forEach(function(p) { %>
+                <div style="display:flex; gap:8px; margin-bottom:8px;">
+                  <input class="admin-form__input" type="text" name="mediaPhotos[]" value="<%= p %>" placeholder="/uploads/apparatus-1.jpg">
+                  <button type="button" class="item-row__remove" onclick="this.parentElement.remove()">×</button>
+                </div>
+              <% }); %>
+            </div>
+            <button type="button" class="admin-form__add-btn" onclick="addPhotoRow()">+ Добавить фото</button>
+            <div class="admin-form__hint">Сначала загрузите фото через вкладку «Галерея», затем вставьте сюда путь.</div>
+          </div>
+        </div>
+
+        <!-- SanPiN marquee -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Анимированный баннер (перед ценами)</h2>
+          <div class="admin-form__group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" name="sanpinEnabled" value="1" <% if (service.sanpinBanner && service.sanpinBanner.enabled) { %>checked<% } %>>
+              <span>Показывать баннер</span>
+            </label>
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="sanpinText">Текст баннера</label>
+            <input class="admin-form__input" type="text" id="sanpinText" name="sanpinText" value="<%= (service.sanpinBanner && service.sanpinBanner.text) || '' %>" placeholder="Аппарат работает по СанПиН и строго согласно протоколам">
+          </div>
+        </div>
+
+        <!-- Personal Protocol -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Блок «Персональный протокол» (после «Как это работает»)</h2>
+          <div class="admin-form__group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" name="protocolEnabled" value="1" <% if (service.personalProtocol && service.personalProtocol.enabled) { %>checked<% } %>>
+              <span>Показывать блок</span>
+            </label>
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="protocolTitle">Заголовок</label>
+            <input class="admin-form__input" type="text" id="protocolTitle" name="protocolTitle" value="<%= (service.personalProtocol && service.personalProtocol.title) || '' %>" placeholder="Персональный протокол">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="protocolText">Текст</label>
+            <textarea class="admin-form__textarea" id="protocolText" name="protocolText" rows="4"><%= (service.personalProtocol && service.personalProtocol.text) || '' %></textarea>
+          </div>
+        </div>
+
+        <!-- Booking CTA -->
+        <div class="admin-card">
+          <h2 class="admin-card__title">Блок записи после цен</h2>
+          <div class="admin-form__group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" name="bookingCtaEnabled" value="1" <% if (service.bookingCta && service.bookingCta.enabled) { %>checked<% } %>>
+              <span>Показывать блок</span>
+            </label>
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="bookingCtaTitle">Заголовок</label>
+            <input class="admin-form__input" type="text" id="bookingCtaTitle" name="bookingCtaTitle" value="<%= (service.bookingCta && service.bookingCta.title) || '' %>" placeholder="Записаться на первый сеанс со скидкой и подарочным обёртыванием">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="bookingCtaHighlight">Выделенный текст (оранжевый)</label>
+            <input class="admin-form__input" type="text" id="bookingCtaHighlight" name="bookingCtaHighlight" value="<%= (service.bookingCta && service.bookingCta.highlight) || '' %>" placeholder="Стоимостью 5000 ₽!">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="bookingCtaSubtitle">Подзаголовок</label>
+            <textarea class="admin-form__textarea" id="bookingCtaSubtitle" name="bookingCtaSubtitle" rows="2"><%= (service.bookingCta && service.bookingCta.subtitle) || '' %></textarea>
           </div>
         </div>
 
@@ -317,7 +447,10 @@
           <div class="admin-form__group">
             <label class="admin-form__label" for="image">Загрузить новое изображение</label>
             <input class="admin-form__file-input" type="file" id="image" name="image" accept="image/*">
-            <div class="admin-form__hint">JPG, PNG, WebP. Максимум 10 МБ. Оставьте пустым, чтобы сохранить текущее.</div>
+            <div class="admin-form__hint">
+              <strong>Рекомендуется:</strong> JPG или WebP, соотношение <strong>4:3</strong> (например 1200×900 px).<br>
+              Любой размер подойдёт — картинка автоматически сожмётся до 1920 px и впишется в рамку (обрежется по центру). Максимум 10 МБ.
+            </div>
           </div>
 
           <% if (service.image) { %>
@@ -333,7 +466,7 @@
 
         <!-- Service Items -->
         <div class="admin-card">
-          <h2 class="admin-card__title">Позиции прайса (<span id="itemCount"><%= service.items ? service.items.length : 0 %></span>)</h2>
+          <h2 class="admin-card__title">Список услуг и цен (<span id="itemCount"><%= service.items ? service.items.length : 0 %></span>)</h2>
 
           <div id="itemsContainer">
             <% if (service.items && service.items.length > 0) { %>
@@ -685,6 +818,42 @@
     function removeDocRow(btn) {
       btn.closest('.item-row').remove();
       updateDocNumbers();
+    }
+
+    // Tezisy
+    function addTezisRow() {
+      var container = document.getElementById('tezisyContainer');
+      var count = container.querySelectorAll('.item-row').length + 1;
+      var div = document.createElement('div');
+      div.className = 'item-row';
+      div.innerHTML =
+        '<div class="item-row__header">' +
+          '<span class="item-row__number">Тезис #' + count + '</span>' +
+          '<button type="button" class="item-row__remove" onclick="this.closest(\'.item-row\').remove()">Удалить</button>' +
+        '</div>' +
+        '<div class="item-row__fields">' +
+          '<div>' +
+            '<div class="item-row__field-label">Иконка Lucide</div>' +
+            '<input class="item-row__field-input" type="text" name="tezisyIcons[]" value="star" placeholder="badge-check">' +
+          '</div>' +
+          '<div>' +
+            '<div class="item-row__field-label">Текст</div>' +
+            '<input class="item-row__field-input" type="text" name="tezisyTexts[]" value="">' +
+          '</div>' +
+        '</div>';
+      container.appendChild(div);
+      div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Media photos
+    function addPhotoRow() {
+      var container = document.getElementById('mediaPhotosContainer');
+      var div = document.createElement('div');
+      div.style.cssText = 'display:flex; gap:8px; margin-bottom:8px;';
+      div.innerHTML =
+        '<input class="admin-form__input" type="text" name="mediaPhotos[]" value="" placeholder="/uploads/apparatus-1.jpg">' +
+        '<button type="button" class="item-row__remove" onclick="this.parentElement.remove()">×</button>';
+      container.appendChild(div);
     }
   </script>
 </body>

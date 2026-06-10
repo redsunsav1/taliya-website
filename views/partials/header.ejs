@@ -1,21 +1,26 @@
-<%
-var cp = (typeof currentPath !== 'undefined' ? currentPath : (typeof res !== 'undefined' && res.locals ? res.locals.currentPath : '/')) || '/';
-function navClass(path){ return 'sidebar__nav-link' + (cp === path ? ' sidebar__nav-link--active' : ''); }
-%><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<%= content.site.name %> — <%= content.site.tagline %>. <%= content.site.address %>. Лицензия <%= content.site.license %>">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#A3A282">
   <meta name="keywords" content="косметология Мытищи, эстетика тела, центр красоты, массаж, лазерная эпиляция, эндосфера-терапия">
   <meta name="robots" content="index, follow">
   <meta name="author" content="<%= content.site.company %>">
 
   <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= typeof pageUrl !== 'undefined' ? pageUrl : content.site.url %>">
   <meta property="og:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %>">
   <meta property="og:description" content="<%= content.site.name %> — <%= content.site.tagline %>. <%= content.site.address %>.">
+  <meta property="og:image" content="<%= content.site.url %>/images/og-image.jpg">
   <meta property="og:locale" content="ru_RU">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="<%= typeof pageUrl !== 'undefined' ? pageUrl : content.site.url %>">
+  <meta property="twitter:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %>">
+  <meta property="twitter:description" content="<%= content.site.name %> — <%= content.site.tagline %>">
+  <meta property="twitter:image" content="<%= content.site.url %>/images/og-image.jpg">
 
   <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %> — <%= content.site.tagline %></title>
 
@@ -23,10 +28,7 @@ function navClass(path){ return 'sidebar__nav-link' + (cp === path ? ' sidebar__
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/v2.css">
-  <% if (typeof pageStyles !== 'undefined' && Array.isArray(pageStyles)) { pageStyles.forEach(function(href){ %>
-    <link rel="stylesheet" href="<%= href %>">
-  <% }); } %>
+  <link rel="stylesheet" href="/css/style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script type="application/ld+json">
@@ -35,92 +37,148 @@ function navClass(path){ return 'sidebar__nav-link' + (cp === path ? ' sidebar__
     "@type": "LocalBusiness",
     "name": "<%= content.site.name %>",
     "description": "<%= content.site.tagline %>",
+    "url": "<%= content.site.url %>",
     "telephone": "<%= content.site.phoneRaw %>",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "<%= content.site.address %>",
       "addressLocality": "Мытищи",
       "addressRegion": "Московская область",
+      "postalCode": "141006",
       "addressCountry": "RU"
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "10:00",
       "closes": "22:00"
     },
+    "image": "<%= content.site.url %>/images/logo.svg",
     "priceRange": "$$",
-    "sameAs": [
-      "<%= content.site.vk %>",
-      "<%= content.site.telegram %>",
-      "<%= content.site.whatsapp %>"
-    ],
+    "areaServed": { "@type": "City", "name": "Мытищи" },
+    "sameAs": [ "<%= content.site.vk %>", "<%= content.site.telegram %>", "<%= content.site.whatsapp %>" ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "telephone": "<%= content.site.phoneRaw %>",
+      "availableLanguage": ["Russian"]
+    },
     "license": "<%= content.site.license %>"
   }
   </script>
 </head>
 <body class="has-sidebar">
 
-  <!-- Mobile top bar -->
-  <header class="topbar">
+  <!-- ===== MOBILE TOP BAR ===== -->
+  <header class="topbar" id="topbar">
     <div class="topbar__inner">
       <a href="/" class="topbar__logo">
-        <img src="<%= content.site.logo || '/images/logo.svg' %>" alt="<%= content.site.name %>">
+        <% if (content.site.logo) { %>
+          <img src="<%= content.site.logo %>" alt="<%= content.site.name %>">
+        <% } else { %>
+          <span class="topbar__logo-name"><%= content.site.name %></span>
+        <% } %>
       </a>
-      <button class="topbar__burger" id="headerBurger" aria-expanded="false" aria-label="Меню">
+      <button class="topbar__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- Sidebar (horizontal header) -->
+  <!-- ===== SIDEBAR (DESKTOP + MOBILE OVERLAY) ===== -->
   <aside class="sidebar" id="sidebar">
-    <a href="/" class="sidebar__logo">
-      <img src="<%= content.site.logo || '/images/logo.svg' %>" alt="<%= content.site.name %>">
-    </a>
+    <div class="sidebar__inner">
 
-    <nav class="sidebar__nav">
-      <ul class="sidebar__nav-list">
-        <li><a href="/" class="<%= navClass('/') %>"><span>Главная</span></a></li>
-        <li><a href="/about" class="<%= navClass('/about') %>"><span>О нас</span></a></li>
-        <li class="sidebar__nav-item--expandable">
-          <a href="#services" class="sidebar__nav-link<%= cp.indexOf('/service') === 0 ? ' sidebar__nav-link--active' : '' %>">
-            <span>Услуги</span>
-            <i data-lucide="chevron-down" class="sidebar__nav-caret"></i>
+      <!-- Logo -->
+      <a href="/" class="sidebar__logo">
+        <% if (content.site.logo) { %>
+          <img src="<%= content.site.logo %>" alt="<%= content.site.name %>" class="sidebar__logo-img">
+        <% } else { %>
+          <div class="sidebar__logo-text">
+            <span class="sidebar__logo-name"><%= content.site.name %></span>
+            <span class="sidebar__logo-tagline">Центр красоты</span>
+          </div>
+        <% } %>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="sidebar__nav" aria-label="Основная навигация">
+        <ul class="sidebar__nav-list">
+          <li>
+            <a href="/" class="sidebar__nav-link<%= currentPath === '/' ? ' sidebar__nav-link--active' : '' %>">
+              <span>Главная</span>
+            </a>
+          </li>
+          <li>
+            <a href="/about" class="sidebar__nav-link<%= currentPath === '/about' ? ' sidebar__nav-link--active' : '' %>">
+              <span>О нас</span>
+            </a>
+          </li>
+          <li class="sidebar__nav-item--expandable">
+            <a href="#services" class="sidebar__nav-link">
+              <span>Услуги</span>
+              <i data-lucide="chevron-down" class="sidebar__nav-caret"></i>
+            </a>
+            <ul class="sidebar__subnav">
+              <% content.services.forEach(function(s) { %>
+                <li><a href="/service/<%= s.slug %>" class="sidebar__subnav-link"><%= s.shortName %></a></li>
+              <% }); %>
+            </ul>
+          </li>
+          <li>
+            <a href="/team" class="sidebar__nav-link<%= currentPath === '/team' ? ' sidebar__nav-link--active' : '' %>">
+              <span>Мастера</span>
+            </a>
+          </li>
+          <li>
+            <a href="/gallery" class="sidebar__nav-link<%= currentPath === '/gallery' ? ' sidebar__nav-link--active' : '' %>">
+              <span>Портфолио</span>
+            </a>
+          </li>
+          <li>
+            <a href="/promotions" class="sidebar__nav-link<%= currentPath === '/promotions' ? ' sidebar__nav-link--active' : '' %>">
+              <span>Акции</span>
+            </a>
+          </li>
+          <li>
+            <a href="/contacts" class="sidebar__nav-link<%= currentPath === '/contacts' ? ' sidebar__nav-link--active' : '' %>">
+              <span>Контакты</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Contacts block -->
+      <div class="sidebar__contacts">
+        <a href="tel:<%= content.site.phoneRaw %>" class="sidebar__phone"><%= content.site.phone %></a>
+        <% if (content.site.phone2) { %>
+          <a href="tel:<%= content.site.phoneRaw2 %>" class="sidebar__phone sidebar__phone--secondary"><%= content.site.phone2 %></a>
+        <% } %>
+        <p class="sidebar__address"><%= content.site.address %></p>
+      </div>
+
+      <!-- Socials -->
+      <div class="sidebar__socials">
+        <% if (content.site.whatsapp) { %>
+          <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="Ватсап">
+            <i data-lucide="message-circle"></i>
           </a>
-          <ul class="sidebar__subnav">
-            <% (content.services || []).forEach(function(s){ %>
-              <li><a href="/service/<%= s.slug %>" class="sidebar__subnav-link"><%= s.shortName || s.name %></a></li>
-            <% }); %>
-          </ul>
-        </li>
-        <li><a href="/team" class="<%= navClass('/team') %>"><span>Мастера</span></a></li>
-        <li><a href="/gallery" class="<%= navClass('/gallery') %>"><span>Портфолио</span></a></li>
-        <li><a href="/promotions" class="<%= navClass('/promotions') %>"><span>Акции</span></a></li>
-        <li><a href="/contacts" class="<%= navClass('/contacts') %>"><span>Контакты</span></a></li>
-      </ul>
-    </nav>
-
-    <div class="sidebar__contacts">
-      <a href="tel:<%= content.site.phoneRaw %>" class="sidebar__phone"><%= content.site.phone %></a>
-      <% if (content.site.phone2) { %>
-        <a href="tel:<%= content.site.phoneRaw2 %>" class="sidebar__phone sidebar__phone--secondary"><%= content.site.phone2 %></a>
-      <% } %>
-      <p class="sidebar__address"><%= content.site.address %></p>
-    </div>
-
-    <div class="sidebar__socials">
-      <% if (content.site.whatsapp) { %>
-        <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
-      <% } %>
-      <% if (content.site.telegram) { %>
-        <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="Telegram"><i data-lucide="send"></i></a>
-      <% } %>
-      <% if (content.site.vk) { %>
-        <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="VK"><i data-lucide="users"></i></a>
-      <% } %>
+        <% } %>
+        <% if (content.site.telegram) { %>
+          <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="Телеграм">
+            <i data-lucide="send"></i>
+          </a>
+        <% } %>
+        <% if (content.site.vk) { %>
+          <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="sidebar__social" aria-label="ВКонтакте">
+            <i data-lucide="users"></i>
+          </a>
+        <% } %>
+      </div>
     </div>
   </aside>
+
+  <!-- Sidebar backdrop (mobile) -->
   <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-  <main class="page">
+  <main class="page" id="page">

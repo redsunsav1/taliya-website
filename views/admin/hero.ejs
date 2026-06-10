@@ -7,55 +7,98 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Montserrat', sans-serif; background: #f5f1ee; color: #333; min-height: 100vh; }
+
     .admin-layout { display: flex; min-height: 100vh; }
-    .admin-sidebar { width: 260px; background: linear-gradient(180deg, #596341 0%, #454d33 100%); color: #fff; flex-shrink: 0; position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100; }
+
+    .admin-sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, #8FA86E 0%, #6E8A4F 100%);
+      color: #fff; flex-shrink: 0; position: fixed;
+      top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100;
+    }
     .admin-sidebar__brand { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
     .admin-sidebar__brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; display: block; }
     .admin-sidebar__brand-sub { font-size: 0.7rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
     .admin-sidebar__nav { padding: 16px 0; }
-    .admin-sidebar__link { display: flex; align-items: center; gap: 10px; padding: 12px 24px; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent; }
+    .admin-sidebar__link {
+      display: flex; align-items: center; gap: 10px; padding: 12px 24px;
+      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem;
+      font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent;
+    }
     .admin-sidebar__link:hover { background: rgba(255,255,255,0.1); color: #fff; }
     .admin-sidebar__link--active { background: rgba(255,255,255,0.12); color: #fff; border-left-color: #fff; }
     .admin-sidebar__link--danger { color: rgba(255,200,200,0.8); }
+    .admin-sidebar__link--danger:hover { color: #fcc; background: rgba(255,100,100,0.15); }
     .admin-sidebar__separator { height: 1px; background: rgba(255,255,255,0.12); margin: 8px 24px; }
     .admin-sidebar__link-icon { width: 18px; text-align: center; font-style: normal; }
+
     .admin-content { flex: 1; margin-left: 260px; padding: 32px 40px; min-height: 100vh; }
-    .admin-content__header { margin-bottom: 32px; }
+    .admin-content__header { margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
     .admin-content__breadcrumb { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
-    .admin-content__breadcrumb a { color: #596341; text-decoration: none; }
+    .admin-content__breadcrumb a { color: #8FA86E; text-decoration: none; }
+    .admin-content__breadcrumb a:hover { text-decoration: underline; }
     .admin-content__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #333; }
-    .admin-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 28px; margin-bottom: 24px; }
-    .admin-card__title { font-size: 1rem; font-weight: 600; color: #555; margin-bottom: 16px; }
-    .admin-form__group { margin-bottom: 20px; }
-    .admin-form__label { display: block; font-size: 0.8rem; font-weight: 600; color: #555; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .admin-form__input, .admin-form__textarea { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; }
-    .admin-form__textarea { min-height: 90px; resize: vertical; }
-    .admin-form__input:focus, .admin-form__textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89,99,65,0.1); }
-    .admin-form__hint { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
-    .admin-form__btn { display: inline-block; padding: 12px 32px; background: #596341; color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; font-family: 'Montserrat', sans-serif; cursor: pointer; }
-    .admin-form__btn:hover { background: #7a4f5c; }
-    .admin-alert { padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem; }
+
+    .admin-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 24px 28px; margin-bottom: 20px;
+      position: relative;
+    }
+    .admin-card__title { font-size: 1rem; font-weight: 600; color: #555; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .admin-card__index { font-size: 0.75rem; color: #8FA86E; background: #f0f6e8; padding: 4px 10px; border-radius: 999px; }
+
+    .admin-form__group { margin-bottom: 16px; }
+    .admin-form__label {
+      display: block; font-size: 0.78rem; font-weight: 600; color: #555;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .admin-form__input, .admin-form__textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+      font-size: 0.9rem; font-family: 'Montserrat', sans-serif; transition: border-color 0.2s;
+    }
+    .admin-form__input:focus, .admin-form__textarea:focus {
+      outline: none; border-color: #8FA86E; box-shadow: 0 0 0 3px rgba(143,168,110,0.1);
+    }
+    .admin-form__hint { font-size: 0.72rem; color: #aaa; margin-top: 4px; }
+
+    .admin-form__btn {
+      display: inline-block; padding: 12px 32px; background: #8FA86E; color: #fff;
+      border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif; cursor: pointer; transition: background 0.2s;
+    }
+    .admin-form__btn:hover { background: #6E8A4F; }
+    .admin-btn--ghost {
+      background: transparent; color: #8FA86E; border: 1px dashed #b7c596;
+    }
+    .admin-btn--ghost:hover { background: #f0f6e8; color: #6E8A4F; }
+    .admin-btn--danger {
+      background: transparent; color: #c0534f; border: 1px solid #e2b7b5;
+      font-size: 0.8rem; padding: 6px 14px;
+    }
+    .admin-btn--danger:hover { background: #fce8e7; }
+
+    .admin-alert {
+      padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem;
+    }
     .admin-alert--success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
-    .admin-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .admin-form__row--3 { grid-template-columns: 1fr 1fr 1fr; }
-    .admin-form__file-input { padding: 10px 14px; border: 2px dashed #ddd; border-radius: 8px; background: #fafafa; cursor: pointer; }
-    .admin-form__image-preview { margin-top: 12px; max-width: 400px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+    .admin-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .admin-form__image-preview {
+      margin-top: 10px; max-width: 260px; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
     .admin-form__image-preview img { width: 100%; height: auto; display: block; }
-    .slide-row { background: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-    .slide-row__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-    .slide-row__number { font-weight: 600; font-size: 0.85rem; color: #596341; }
-    .slide-row__remove { background: none; border: 1px solid #e5e5e5; color: #999; padding: 4px 12px; border-radius: 6px; font-size: 0.78rem; cursor: pointer; font-family: 'Montserrat', sans-serif; }
-    .slide-row__remove:hover { background: #fef2f2; border-color: #fca5a5; color: #b91c1c; }
-    .slide-row__fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .slide-row__field-label { font-size: 0.72rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; }
-    .slide-row__field-input { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; font-family: 'Montserrat', sans-serif; }
-    .admin-form__add-btn { display: inline-block; padding: 10px 24px; background: #fff; color: #596341; border: 2px dashed #596341; border-radius: 8px; font-size: 0.88rem; font-weight: 600; font-family: 'Montserrat', sans-serif; cursor: pointer; margin-bottom: 24px; }
-    .admin-form__add-btn:hover { background: #596341; color: #fff; }
-    @media (max-width: 768px) { .admin-sidebar { width: 220px; } .admin-content { margin-left: 220px; padding: 24px 20px; } .admin-form__row, .admin-form__row--3, .slide-row__fields { grid-template-columns: 1fr; } }
+    .slide-card__actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+    .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+
+    @media (max-width: 768px) {
+      .admin-sidebar { width: 220px; }
+      .admin-content { margin-left: 220px; padding: 24px 20px; }
+      .admin-form__row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -66,24 +109,43 @@
         <span class="admin-sidebar__brand-sub">Админ-панель</span>
       </div>
       <nav class="admin-sidebar__nav">
-        <a href="/admin" class="admin-sidebar__link"><span class="admin-sidebar__link-icon">&#9776;</span> Главная панель</a>
-        <a href="/admin/settings" class="admin-sidebar__link"><span class="admin-sidebar__link-icon">&#9881;</span> Настройки сайта</a>
-        <a href="/admin/hero" class="admin-sidebar__link admin-sidebar__link--active"><span class="admin-sidebar__link-icon">&#9733;</span> Главный экран</a>
-        <a href="/admin/trust" class="admin-sidebar__link"><span class="admin-sidebar__link-icon">&#10148;</span> Бегущая строка</a>
-        <a href="/admin/benefits" class="admin-sidebar__link"><span class="admin-sidebar__link-icon">&#10004;</span> Преимущества</a>
-        <a href="/admin/services" class="admin-sidebar__link"><span class="admin-sidebar__link-icon">&#9998;</span> Разделы услуг</a>
+        <a href="/admin" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9776;</span> Главная панель
+        </a>
+        <a href="/admin/settings" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9881;</span> Настройки сайта
+        </a>
+        <a href="/admin/hero" class="admin-sidebar__link admin-sidebar__link--active">
+          <span class="admin-sidebar__link-icon">&#9733;</span> Главный экран
+        </a>
+        <a href="/admin/benefits" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#10004;</span> Преимущества
+        </a>
+        <a href="/admin/services" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#9998;</span> Разделы услуг
+        </a>
         <div class="admin-sidebar__separator"></div>
-        <a href="/admin/password" class="admin-sidebar__link"><span class="admin-sidebar__link-icon">&#128274;</span> Сменить пароль</a>
-        <a href="/admin/logout" class="admin-sidebar__link admin-sidebar__link--danger"><span class="admin-sidebar__link-icon">&#10140;</span> Выход</a>
+        <a href="/admin/password" class="admin-sidebar__link">
+          <span class="admin-sidebar__link-icon">&#128274;</span> Сменить пароль
+        </a>
+        <a href="/admin/logout" class="admin-sidebar__link admin-sidebar__link--danger">
+          <span class="admin-sidebar__link-icon">&#10140;</span> Выход
+        </a>
         <div class="admin-sidebar__separator"></div>
-        <a href="/" class="admin-sidebar__link" target="_blank"><span class="admin-sidebar__link-icon">&#127760;</span> Вернуться на сайт</a>
+        <a href="/" class="admin-sidebar__link" target="_blank">
+          <span class="admin-sidebar__link-icon">&#127760;</span> Вернуться на сайт
+        </a>
       </nav>
     </aside>
 
     <main class="admin-content">
       <div class="admin-content__header">
-        <div class="admin-content__breadcrumb"><a href="/admin">Админ-панель</a> / Главный экран</div>
-        <h1 class="admin-content__title">Главный экран (Hero)</h1>
+        <div>
+          <div class="admin-content__breadcrumb">
+            <a href="/admin">Админ-панель</a> / Главный экран
+          </div>
+          <h1 class="admin-content__title">Hero-слайдер главной страницы</h1>
+        </div>
       </div>
 
       <script>
@@ -96,213 +158,154 @@
       </script>
 
       <div class="admin-alert admin-alert--success" id="savedAlert" style="display:none;">
-        Главный экран успешно обновлён.
+        Hero-слайдер успешно обновлён.
       </div>
 
-      <% var hero = content.hero || {}; %>
+      <%
+        var slides = (content.hero.slides && content.hero.slides.length > 0) ? content.hero.slides : [{
+          title: content.hero.title || '',
+          subtitle: content.hero.subtitle || '',
+          promoText: content.hero.promoText || '',
+          promoNote: content.hero.promoNote || '',
+          image: content.hero.image || ''
+        }];
+      %>
 
-      <form method="POST" action="/admin/hero" enctype="multipart/form-data" class="admin-form">
+      <form method="POST" action="/admin/hero" class="admin-form" id="heroForm">
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px; line-height: 1.6;">
+          Слайды будут сменяться автоматически каждые 7 секунд. Первый — это основной экран, который видят все. Можно добавить сколько угодно. Картинки заливайте через раздел «<a href="/admin/gallery" style="color: #8FA86E;">Галерея</a>» или «Главный экран (старый аплоад)» и вставляйте путь сюда.
+        </p>
 
-        <div class="admin-card">
-          <h2 class="admin-card__title">Верхняя строка и заголовок</h2>
+        <div id="slidesContainer">
+          <% slides.forEach(function(s, i) { %>
+            <div class="admin-card slide-card" data-slide>
+              <h2 class="admin-card__title">
+                <span>Слайд</span>
+                <span class="admin-card__index" data-slide-index-label>№ <%= i + 1 %></span>
+              </h2>
 
-          <div class="admin-form__row">
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="eyebrow">Надзаголовок (eyebrow)</label>
-              <input class="admin-form__input" type="text" id="eyebrow" name="eyebrow" value="<%= hero.eyebrow || '' %>" placeholder="Эстетика тела">
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="brand">Бренд (bold в eyebrow)</label>
-              <input class="admin-form__input" type="text" id="brand" name="brand" value="<%= hero.brand || '' %>" placeholder="Талия">
-            </div>
-          </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Заголовок</label>
+                <input class="admin-form__input" type="text" name="slides[<%= i %>][title]" value="<%= s.title || '' %>">
+              </div>
 
-          <div class="admin-form__group">
-            <label class="admin-form__label" for="brandline">Строка бренда (первое слово выделяется жирным)</label>
-            <input class="admin-form__input" type="text" id="brandline" name="brandline" value="<%= hero.brandline || '' %>" placeholder="Студия косметологии в Мытищах">
-          </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Подзаголовок</label>
+                <input class="admin-form__input" type="text" name="slides[<%= i %>][subtitle]" value="<%= s.subtitle || '' %>">
+              </div>
 
-          <div class="admin-form__group">
-            <label class="admin-form__label" for="titleLines">Строки заголовка (по одной на строку)</label>
-            <textarea class="admin-form__textarea" id="titleLines" name="titleLines" rows="4" placeholder="Красота&#10;в каждом&#10;движении"><%= (hero.titleLines || []).join('\n') %></textarea>
-            <div class="admin-form__hint">Каждая новая строка — отдельная строка заголовка.</div>
-          </div>
-
-          <div class="admin-form__row">
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="titleItalicWord">Курсивное слово в заголовке</label>
-              <input class="admin-form__input" type="text" id="titleItalicWord" name="titleItalicWord" value="<%= hero.titleItalicWord || '' %>" placeholder="движении">
-              <div class="admin-form__hint">Если слово найдено в строках — будет выделено курсивом.</div>
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="title">Заголовок (fallback, плоский)</label>
-              <input class="admin-form__input" type="text" id="title" name="title" value="<%= hero.title || '' %>">
-            </div>
-          </div>
-
-          <div class="admin-form__group">
-            <label class="admin-form__label" for="lead">Ведущий абзац (lead)</label>
-            <textarea class="admin-form__textarea" id="lead" name="lead" rows="3"><%= hero.lead || '' %></textarea>
-          </div>
-
-          <div class="admin-form__group">
-            <label class="admin-form__label" for="subtitle">Подзаголовок (fallback)</label>
-            <input class="admin-form__input" type="text" id="subtitle" name="subtitle" value="<%= hero.subtitle || '' %>">
-          </div>
-
-          <div class="admin-form__group">
-            <label class="admin-form__label" for="utp">УТП (по одному на строку)</label>
-            <textarea class="admin-form__textarea" id="utp" name="utp" rows="4" placeholder="Сертифицированные специалисты&#10;Европейское оборудование&#10;Индивидуальный подход"><%= (hero.utp || []).join('\n') %></textarea>
-          </div>
-        </div>
-
-        <div class="admin-card">
-          <h2 class="admin-card__title">Кнопки (CTA)</h2>
-
-          <h3 style="font-size:0.8rem; font-weight:600; color:#596341; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Основная кнопка</h3>
-          <div class="admin-form__row--3" style="display:grid;gap:20px;">
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="ctaPrimaryText">Текст</label>
-              <input class="admin-form__input" type="text" id="ctaPrimaryText" name="ctaPrimaryText" value="<%= (hero.ctaPrimary && hero.ctaPrimary.text) || '' %>" placeholder="Записаться онлайн">
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="ctaPrimaryHref">Ссылка</label>
-              <input class="admin-form__input" type="text" id="ctaPrimaryHref" name="ctaPrimaryHref" value="<%= (hero.ctaPrimary && hero.ctaPrimary.href) || '' %>" placeholder="#callback">
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="ctaPrimaryIcon">Иконка Lucide</label>
-              <input class="admin-form__input" type="text" id="ctaPrimaryIcon" name="ctaPrimaryIcon" value="<%= (hero.ctaPrimary && hero.ctaPrimary.icon) || '' %>" placeholder="calendar-check">
-            </div>
-          </div>
-
-          <h3 style="font-size:0.8rem; font-weight:600; color:#596341; text-transform:uppercase; letter-spacing:0.5px; margin:18px 0 10px;">Вторичная кнопка</h3>
-          <div class="admin-form__row--3" style="display:grid;gap:20px;">
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="ctaSecondaryText">Текст</label>
-              <input class="admin-form__input" type="text" id="ctaSecondaryText" name="ctaSecondaryText" value="<%= (hero.ctaSecondary && hero.ctaSecondary.text) || '' %>" placeholder="Смотреть услуги">
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="ctaSecondaryHref">Ссылка</label>
-              <input class="admin-form__input" type="text" id="ctaSecondaryHref" name="ctaSecondaryHref" value="<%= (hero.ctaSecondary && hero.ctaSecondary.href) || '' %>" placeholder="#services">
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="ctaSecondaryIcon">Иконка Lucide</label>
-              <input class="admin-form__input" type="text" id="ctaSecondaryIcon" name="ctaSecondaryIcon" value="<%= (hero.ctaSecondary && hero.ctaSecondary.icon) || '' %>" placeholder="arrow-right">
-            </div>
-          </div>
-
-          <div class="admin-form__row">
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="promoText">Промо-текст (legacy)</label>
-              <input class="admin-form__input" type="text" id="promoText" name="promoText" value="<%= hero.promoText || '' %>">
-            </div>
-            <div class="admin-form__group">
-              <label class="admin-form__label" for="promoNote">Примечание промо</label>
-              <input class="admin-form__input" type="text" id="promoNote" name="promoNote" value="<%= hero.promoNote || '' %>">
-            </div>
-          </div>
-        </div>
-
-        <div class="admin-card">
-          <h2 class="admin-card__title">Слайды карусели (<span id="slideCount"><%= (hero.slides || []).length %></span>)</h2>
-          <div class="admin-form__hint" style="margin-bottom:20px;">URL изображения, иконки и метки чипа / бейджа. Можно загружать файлы через «Настройки сайта» → «Галерея» или вставлять готовые пути.</div>
-
-          <div id="slidesContainer">
-            <% (hero.slides || []).forEach(function(slide, i) { %>
-              <div class="slide-row">
-                <div class="slide-row__header">
-                  <span class="slide-row__number">Слайд #<span class="slide-num"><%= i + 1 %></span></span>
-                  <button type="button" class="slide-row__remove" onclick="removeSlide(this)">Удалить</button>
+              <div class="admin-form__row">
+                <div class="admin-form__group">
+                  <label class="admin-form__label">Промо-текст (оранжевая плашка)</label>
+                  <input class="admin-form__input" type="text" name="slides[<%= i %>][promoText]" value="<%= s.promoText || '' %>">
                 </div>
-                <div class="slide-row__fields">
-                  <div>
-                    <div class="slide-row__field-label">Изображение (URL)</div>
-                    <input class="slide-row__field-input" type="text" name="slideImage[]" value="<%= slide.image || '' %>" placeholder="/uploads/...">
-                  </div>
-                  <div>
-                    <div class="slide-row__field-label">Иконка чипа</div>
-                    <input class="slide-row__field-input" type="text" name="slideChipIcon[]" value="<%= slide.chipIcon || '' %>" placeholder="sparkles">
-                  </div>
-                  <div>
-                    <div class="slide-row__field-label">Текст чипа</div>
-                    <input class="slide-row__field-input" type="text" name="slideChipText[]" value="<%= slide.chipText || '' %>" placeholder="Комплекс &laquo;Леди&raquo;">
-                  </div>
-                  <div>
-                    <div class="slide-row__field-label">Иконка бейджа</div>
-                    <input class="slide-row__field-input" type="text" name="slideBadgeIcon[]" value="<%= slide.badgeIcon || '' %>" placeholder="tag">
-                  </div>
-                  <div>
-                    <div class="slide-row__field-label">Метка бейджа</div>
-                    <input class="slide-row__field-input" type="text" name="slideBadgeLabel[]" value="<%= slide.badgeLabel || '' %>" placeholder="Скидка">
-                  </div>
-                  <div>
-                    <div class="slide-row__field-label">Значение бейджа</div>
-                    <input class="slide-row__field-input" type="text" name="slideBadgeValue[]" value="<%= slide.badgeValue || '' %>" placeholder="20%">
-                  </div>
+                <div class="admin-form__group">
+                  <label class="admin-form__label">Сноска под кнопками</label>
+                  <input class="admin-form__input" type="text" name="slides[<%= i %>][promoNote]" value="<%= s.promoNote || '' %>">
                 </div>
               </div>
-            <% }); %>
-          </div>
 
-          <button type="button" class="admin-form__add-btn" onclick="addSlide()">+ Добавить слайд</button>
-        </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Путь к изображению</label>
+                <input class="admin-form__input" type="text" name="slides[<%= i %>][image]" value="<%= s.image || '' %>" placeholder="/uploads/... или /images/...">
+                <div class="admin-form__hint">Путь на сайте, например <code>/uploads/hero-1.jpg</code>. Загрузить файл можно через <a href="/admin/gallery" style="color: #8FA86E;">раздел «Галерея»</a>.</div>
+                <% if (s.image) { %>
+                  <div class="admin-form__image-preview">
+                    <img src="<%= s.image %>" alt="Slide image">
+                  </div>
+                <% } %>
+              </div>
 
-        <div class="admin-card">
-          <h2 class="admin-card__title">Фоновое изображение (legacy)</h2>
-          <div class="admin-form__group">
-            <label class="admin-form__label" for="image">Загрузить новое изображение</label>
-            <input class="admin-form__file-input" type="file" id="image" name="image" accept="image/*">
-            <div class="admin-form__hint">JPG, PNG, WebP. Максимум 10 МБ.</div>
-          </div>
-          <% if (hero.image) { %>
-            <div class="admin-form__group">
-              <label class="admin-form__label">Текущее изображение</label>
-              <div class="admin-form__image-preview"><img src="<%= hero.image %>" alt="Hero"></div>
-              <div class="admin-form__hint">Путь: <%= hero.image %></div>
+              <div class="slide-card__actions">
+                <button type="button" class="admin-form__btn admin-btn--danger" data-remove-slide>Удалить слайд</button>
+              </div>
             </div>
-          <% } %>
+          <% }); %>
         </div>
 
-        <button type="submit" class="admin-form__btn">Сохранить изменения</button>
+        <div class="btn-row">
+          <button type="button" class="admin-form__btn admin-btn--ghost" id="addSlideBtn">+ Добавить слайд</button>
+          <button type="submit" class="admin-form__btn">Сохранить изменения</button>
+        </div>
       </form>
+
     </main>
   </div>
 
+  <!-- Template for a new slide -->
+  <template id="slideTemplate">
+    <div class="admin-card slide-card" data-slide>
+      <h2 class="admin-card__title">
+        <span>Слайд</span>
+        <span class="admin-card__index" data-slide-index-label>№ ?</span>
+      </h2>
+      <div class="admin-form__group">
+        <label class="admin-form__label">Заголовок</label>
+        <input class="admin-form__input" type="text" data-field="title" value="">
+      </div>
+      <div class="admin-form__group">
+        <label class="admin-form__label">Подзаголовок</label>
+        <input class="admin-form__input" type="text" data-field="subtitle" value="">
+      </div>
+      <div class="admin-form__row">
+        <div class="admin-form__group">
+          <label class="admin-form__label">Промо-текст (оранжевая плашка)</label>
+          <input class="admin-form__input" type="text" data-field="promoText" value="">
+        </div>
+        <div class="admin-form__group">
+          <label class="admin-form__label">Сноска под кнопками</label>
+          <input class="admin-form__input" type="text" data-field="promoNote" value="">
+        </div>
+      </div>
+      <div class="admin-form__group">
+        <label class="admin-form__label">Путь к изображению</label>
+        <input class="admin-form__input" type="text" data-field="image" value="" placeholder="/uploads/... или /images/...">
+        <div class="admin-form__hint">Путь на сайте, например <code>/uploads/hero-1.jpg</code>.</div>
+      </div>
+      <div class="slide-card__actions">
+        <button type="button" class="admin-form__btn admin-btn--danger" data-remove-slide>Удалить слайд</button>
+      </div>
+    </div>
+  </template>
+
   <script>
-    function updateSlideNumbers() {
-      var rows = document.querySelectorAll('#slidesContainer .slide-row');
-      rows.forEach(function(row, idx) {
-        var num = row.querySelector('.slide-num');
-        if (num) num.textContent = idx + 1;
+    (function () {
+      const container = document.getElementById('slidesContainer');
+      const addBtn = document.getElementById('addSlideBtn');
+      const tpl = document.getElementById('slideTemplate');
+
+      function reindex() {
+        const cards = container.querySelectorAll('[data-slide]');
+        cards.forEach((card, i) => {
+          const label = card.querySelector('[data-slide-index-label]');
+          if (label) label.textContent = '№ ' + (i + 1);
+          card.querySelectorAll('[data-field]').forEach((inp) => {
+            const field = inp.getAttribute('data-field');
+            inp.name = 'slides[' + i + '][' + field + ']';
+          });
+          // fix existing named inputs too (for items rendered on server)
+          card.querySelectorAll('input[name^="slides["]').forEach((inp) => {
+            const match = inp.name.match(/^slides\[\d+\]\[(\w+)\]$/);
+            if (match) inp.name = 'slides[' + i + '][' + match[1] + ']';
+          });
+        });
+      }
+
+      addBtn.addEventListener('click', () => {
+        const frag = tpl.content.cloneNode(true);
+        container.appendChild(frag);
+        reindex();
       });
-      var counter = document.getElementById('slideCount');
-      if (counter) counter.textContent = rows.length;
-    }
-    function addSlide() {
-      var container = document.getElementById('slidesContainer');
-      var count = container.querySelectorAll('.slide-row').length;
-      var div = document.createElement('div');
-      div.className = 'slide-row';
-      div.innerHTML =
-        '<div class="slide-row__header">' +
-          '<span class="slide-row__number">Слайд #<span class="slide-num">' + (count + 1) + '</span></span>' +
-          '<button type="button" class="slide-row__remove" onclick="removeSlide(this)">Удалить</button>' +
-        '</div>' +
-        '<div class="slide-row__fields">' +
-          '<div><div class="slide-row__field-label">Изображение (URL)</div><input class="slide-row__field-input" type="text" name="slideImage[]" value=""></div>' +
-          '<div><div class="slide-row__field-label">Иконка чипа</div><input class="slide-row__field-input" type="text" name="slideChipIcon[]" value=""></div>' +
-          '<div><div class="slide-row__field-label">Текст чипа</div><input class="slide-row__field-input" type="text" name="slideChipText[]" value=""></div>' +
-          '<div><div class="slide-row__field-label">Иконка бейджа</div><input class="slide-row__field-input" type="text" name="slideBadgeIcon[]" value=""></div>' +
-          '<div><div class="slide-row__field-label">Метка бейджа</div><input class="slide-row__field-input" type="text" name="slideBadgeLabel[]" value=""></div>' +
-          '<div><div class="slide-row__field-label">Значение бейджа</div><input class="slide-row__field-input" type="text" name="slideBadgeValue[]" value=""></div>' +
-        '</div>';
-      container.appendChild(div);
-      updateSlideNumbers();
-    }
-    function removeSlide(btn) {
-      btn.closest('.slide-row').remove();
-      updateSlideNumbers();
-    }
+
+      container.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-remove-slide]');
+        if (!btn) return;
+        if (!confirm('Удалить этот слайд?')) return;
+        const card = btn.closest('[data-slide]');
+        if (card) card.remove();
+        reindex();
+      });
+    })();
   </script>
 </body>
 </html>

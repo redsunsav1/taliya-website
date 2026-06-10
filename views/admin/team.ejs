@@ -6,166 +6,338 @@
   <title>Специалисты — Панель управления</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
-    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #263022; }
+    .admin-header { background: #8FA86E; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .admin-header h1 { font-size: 20px; font-weight: 600; }
-    .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+    .admin-header a { color: rgba(255,255,255,0.86); text-decoration: none; font-size: 14px; }
     .admin-header a:hover { color: white; }
-    .admin-body { max-width: 1000px; margin: 0 auto; padding: 24px; }
-    .admin-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
-    .admin-back:hover { text-decoration: underline; }
-    .team-member { background: #f9faf7; border: 1px solid #e0e4da; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
-    .team-member__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #e0e4da; padding-bottom: 12px; }
-    .team-member__name { font-size: 16px; font-weight: 600; color: #333; }
-    .btn-remove { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
-    .btn-remove:hover { background: #dbb5a8; }
-    .form-group { margin-bottom: 16px; }
-    .form-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
-    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; }
-    .form-input:focus, .form-textarea:focus { outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89, 99, 65, 0.1); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .file-input-label { display: inline-block; padding: 10px 16px; background: #e8ede0; color: #596341; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
-    .file-input-label:hover { background: #dce1d3; }
+    .admin-body { max-width: 1160px; margin: 0 auto; padding: 24px; }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #647a45; text-decoration: none; font-size: 14px; }
+    .admin-form { display: flex; flex-direction: column; gap: 20px; }
+    .settings-card, .team-card-admin { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e4e8dc; }
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .section-manager { display: grid; gap: 10px; margin-top: 14px; }
+    .section-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px; background: #fbfcf8; border: 1px solid #e0e4da; border-radius: 9px; }
+    .team-list { display: grid; gap: 16px; }
+    .team-card-admin__header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .team-card-admin__name { font-size: 16px; font-weight: 700; color: #263022; }
+    .team-card-admin__body { display: grid; grid-template-columns: 160px 1fr; gap: 18px; align-items: start; }
+    .photo-box { display: flex; flex-direction: column; gap: 10px; }
+    .image-preview { width: 140px; height: 175px; object-fit: cover; border-radius: 10px; background: #edf1e7; border: 1px solid #dde4d3; }
+    .image-preview--empty { display: flex; align-items: center; justify-content: center; color: #8a9380; font-size: 12px; text-align: center; padding: 12px; }
+    .member-fields { display: grid; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 13px; font-weight: 700; color: #3d4636; }
+    .form-hint { font-size: 12px; color: #7e8775; line-height: 1.45; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #d8ded0; border-radius: 7px; font-family: inherit; font-size: 14px; background: white; color: #263022; }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: #8FA86E; box-shadow: 0 0 0 3px rgba(143, 168, 110, 0.13); }
+    .form-textarea { resize: vertical; min-height: 104px; }
     .form-input[type="file"] { display: none; }
-    .image-preview { max-width: 120px; max-height: 120px; margin-top: 10px; border-radius: 6px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .btn-add-member { padding: 12px 20px; background: #dce1d3; color: #596341; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
-    .btn-add-member:hover { background: #ccd4c3; }
-    .form-actions { display: flex; gap: 12px; margin-top: 24px; }
-    .btn-save { padding: 12px 24px; background: #596341; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
-    .btn-save:hover { background: #4a5236; }
-    .btn-cancel { padding: 12px 24px; background: #ddd; color: #333; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; }
-    .btn-cancel:hover { background: #ccc; }
-    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
-    .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
+    .file-input-label { display: inline-flex; justify-content: center; padding: 10px 12px; background: #e8ede0; color: #647a45; border-radius: 7px; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .section-checks { display: flex; flex-wrap: wrap; gap: 8px; }
+    .section-check { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; background: #f4f7ef; border: 1px solid #dbe3d1; border-radius: 999px; font-size: 13px; font-weight: 600; color: #3d4636; }
+    .section-check input { accent-color: #8FA86E; }
+    .actions-row, .form-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { border: none; border-radius: 7px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-save { padding: 13px 24px; background: #8FA86E; color: white; }
+    .btn-save:hover { background: #647a45; }
+    .btn-add { padding: 10px 16px; background: #dfe8d4; color: #53663a; }
+    .btn-add:hover { background: #d2dfc4; }
+    .btn-remove { padding: 8px 12px; background: #f2ddd5; color: #934a2c; font-size: 12px; }
+    .btn-remove:hover { background: #e8c8bd; }
+    .btn-cancel { padding: 13px 24px; background: #e3e3e3; color: #333; }
+    .form-actions { position: sticky; bottom: 0; justify-content: flex-end; padding: 16px 0 0; background: linear-gradient(180deg, rgba(245,247,245,0), #f5f7f5 34%); }
+    .alert { padding: 12px 16px; border-radius: 7px; margin-bottom: 16px; }
+    .alert-success { background: #dff2d7; color: #315d2f; border: 1px solid #b9dda9; }
+    @media (max-width: 760px) {
+      .settings-grid, .form-row, .team-card-admin__body { grid-template-columns: 1fr; }
+      .section-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+<%
+  const sectionTitles = (sections || []).map(section => section.title).filter(Boolean);
+  const members = Array.isArray(team.members) ? team.members : [];
+  const memberSections = function(member) {
+    return (Array.isArray(member.sections) && member.sections.length)
+      ? member.sections
+      : [member.section || member.category || sectionTitles[0] || 'Специалисты'];
+  };
+%>
 <div class="admin-header">
   <h1>Специалисты</h1>
   <div>
-    <a href="/" target="_blank">Открыть сайт</a> &nbsp;|&nbsp;
+    <a href="/team" target="_blank">Открыть раздел</a> &nbsp;|&nbsp;
     <a href="/admin/logout">Выйти</a>
   </div>
 </div>
+
 <div class="admin-body">
   <a href="/admin" class="admin-back">← Вернуться в панель управления</a>
-  
+
   <% if (typeof message !== 'undefined' && message) { %>
     <div class="alert alert-success"><%= message %></div>
   <% } %>
-  
+
   <form class="admin-form" method="POST" action="/admin/team" enctype="multipart/form-data">
-    <button type="button" class="btn-add-member" onclick="addTeamMember()">+ Добавить специалиста</button>
-
-    <div id="team-members">
-      <% (team || []).forEach((member, index) => { %>
-        <div class="team-member" data-index="<%= index %>">
-          <div class="team-member__header">
-            <div class="team-member__name"><%= member.name || 'Новый специалист' %></div>
-            <button type="button" class="btn-remove" onclick="removeMember(this)">Удалить</button>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Имя</label>
-            <input type="text" name="team[<%= index %>][name]" class="form-input" value="<%= member.name || '' %>" placeholder="Полное имя" onchange="updateName(this)">
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Должность</label>
-              <input type="text" name="team[<%= index %>][role]" class="form-input" value="<%= member.role || '' %>" placeholder="Например: Косметолог">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Опыт (лет)</label>
-              <input type="number" name="team[<%= index %>][experience]" class="form-input" value="<%= member.experience || '' %>" placeholder="Количество лет опыта">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Биография</label>
-            <textarea name="team[<%= index %>][bio]" class="form-textarea" placeholder="Краткая биография и достижения"><%= member.bio || '' %></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Фотография</label>
-            <label class="file-input-label">Выбрать файл</label>
-            <input type="file" name="team[<%= index %>][photo]" class="form-input" accept="image/*">
-            <% if (member.photo) { %>
-              <img src="<%= member.photo %>" alt="<%= member.name %>" class="image-preview">
-            <% } %>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Специализации (через запятую)</label>
-            <input type="text" name="team[<%= index %>][specialties]" class="form-input" value="<%= (member.specialties || []).join(', ') %>" placeholder="Например: Омоложение, Инъекции, Чистка">
-          </div>
+    <section class="settings-card">
+      <div class="settings-grid">
+        <div class="form-group">
+          <label class="form-label">Заголовок страницы</label>
+          <input type="text" name="title" class="form-input" value="<%= team.title || '' %>">
         </div>
+        <div class="form-group">
+          <label class="form-label">Подзаголовок</label>
+          <input type="text" name="subtitle" class="form-input" value="<%= team.subtitle || '' %>">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:18px;">
+        <label class="form-label">Разделы на сайте</label>
+        <div class="form-hint">Разделы можно переименовывать. У каждого специалиста ниже отметьте один или несколько разделов.</div>
+        <div class="section-manager" id="section-manager">
+          <% sectionTitles.forEach((title, index) => { %>
+            <div class="section-row" data-section-row>
+              <input type="text" class="form-input js-section-title" name="sections[<%= index %>][title]" value="<%= title %>" oninput="syncSectionCheckboxes()">
+              <button type="button" class="btn btn-remove" onclick="removeSection(this)">Удалить</button>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <button type="button" class="btn btn-add" onclick="addSection()">+ Добавить раздел</button>
+    </section>
+
+    <div class="actions-row">
+      <button type="button" class="btn btn-add" onclick="addMember()">+ Добавить специалиста</button>
+    </div>
+
+    <div class="team-list" id="team-list">
+      <% members.forEach((member, index) => { const selectedSections = memberSections(member); %>
+        <article class="team-card-admin" data-member data-selected-sections="<%= selectedSections.join('||') %>">
+          <div class="team-card-admin__header">
+            <div class="team-card-admin__name"><%= member.name || 'Новый специалист' %></div>
+            <button type="button" class="btn btn-remove" onclick="removeMember(this)">Удалить специалиста</button>
+          </div>
+
+          <div class="team-card-admin__body">
+            <div class="photo-box">
+              <% if (member.photo) { %>
+                <img src="<%= member.photo %>" alt="<%= member.name || 'Фото специалиста' %>" class="image-preview">
+              <% } else { %>
+                <div class="image-preview image-preview--empty">Фото не загружено</div>
+              <% } %>
+              <label class="file-input-label">
+                Загрузить фото
+                <input type="file" data-name="photo" name="members[<%= index %>][photo]" accept="image/*">
+              </label>
+              <input type="hidden" data-name="photoExisting" name="members[<%= index %>][photoExisting]" value="<%= member.photo || '' %>">
+              <div class="form-hint">Если новое фото не выбрать, останется текущее.</div>
+            </div>
+
+            <div class="member-fields">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Имя</label>
+                  <input type="text" data-name="name" name="members[<%= index %>][name]" class="form-input js-member-name" value="<%= member.name || '' %>" oninput="updateName(this)">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Должность</label>
+                  <input type="text" data-name="role" name="members[<%= index %>][role]" class="form-input" value="<%= member.role || '' %>">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Опыт</label>
+                  <input type="text" data-name="experience" name="members[<%= index %>][experience]" class="form-input" value="<%= member.experience || '' %>">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Специализации</label>
+                  <input type="text" data-name="specialties" name="members[<%= index %>][specialties]" class="form-input" value="<%= (member.specialties || []).join(', ') %>" placeholder="Через запятую">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Показывать в разделах</label>
+                <div class="section-checks" data-section-checks></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Описание</label>
+                <textarea data-name="bio" name="members[<%= index %>][bio]" class="form-textarea"><%= member.bio || '' %></textarea>
+              </div>
+            </div>
+          </div>
+        </article>
       <% }); %>
     </div>
 
     <div class="form-actions">
-      <button type="submit" class="btn-save">Сохранить</button>
-      <a href="/admin" class="btn-cancel">Отмена</a>
+      <a href="/admin" class="btn btn-cancel">Отмена</a>
+      <button type="submit" class="btn btn-save">Сохранить специалистов</button>
     </div>
   </form>
 </div>
 
-<script>
-let memberCount = <%= (team || []).length %>;
+<template id="section-template">
+  <div class="section-row" data-section-row>
+    <input type="text" class="form-input js-section-title" placeholder="Новый раздел" oninput="syncSectionCheckboxes()">
+    <button type="button" class="btn btn-remove" onclick="removeSection(this)">Удалить</button>
+  </div>
+</template>
 
-function addTeamMember() {
-  const container = document.getElementById('team-members');
-  const newMember = document.createElement('div');
-  newMember.className = 'team-member';
-  newMember.data-index = memberCount;
-  newMember.innerHTML = `
-    <div class="team-member__header">
-      <div class="team-member__name">Новый специалист</div>
-      <button type="button" class="btn-remove" onclick="removeMember(this)">Удалить</button>
+<template id="member-template">
+  <article class="team-card-admin" data-member data-selected-sections="">
+    <div class="team-card-admin__header">
+      <div class="team-card-admin__name">Новый специалист</div>
+      <button type="button" class="btn btn-remove" onclick="removeMember(this)">Удалить специалиста</button>
     </div>
-    <div class="form-group">
-      <label class="form-label">Имя</label>
-      <input type="text" name="team[${memberCount}][name]" class="form-input" placeholder="Полное имя" onchange="updateName(this)">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Должность</label>
-        <input type="text" name="team[${memberCount}][role]" class="form-input" placeholder="Например: Косметолог">
+    <div class="team-card-admin__body">
+      <div class="photo-box">
+        <div class="image-preview image-preview--empty">Фото не загружено</div>
+        <label class="file-input-label">
+          Загрузить фото
+          <input type="file" data-name="photo" accept="image/*">
+        </label>
+        <input type="hidden" data-name="photoExisting" value="">
+        <div class="form-hint">Если новое фото не выбрать, останется текущее.</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Опыт (лет)</label>
-        <input type="number" name="team[${memberCount}][experience]" class="form-input" placeholder="Количество лет опыта">
+      <div class="member-fields">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input type="text" data-name="name" class="form-input js-member-name" oninput="updateName(this)">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Должность</label>
+            <input type="text" data-name="role" class="form-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Опыт</label>
+            <input type="text" data-name="experience" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Специализации</label>
+            <input type="text" data-name="specialties" class="form-input" placeholder="Через запятую">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Показывать в разделах</label>
+          <div class="section-checks" data-section-checks></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Описание</label>
+          <textarea data-name="bio" class="form-textarea"></textarea>
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Биография</label>
-      <textarea name="team[${memberCount}][bio]" class="form-textarea" placeholder="Краткая биография и достижения"></textarea>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Фотография</label>
-      <label class="file-input-label">Выбрать файл</label>
-      <input type="file" name="team[${memberCount}][photo]" class="form-input" accept="image/*">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Специализации (через запятую)</label>
-      <input type="text" name="team[${memberCount}][specialties]" class="form-input" placeholder="Например: Омоложение, Инъекции, Чистка">
-    </div>
-  `;
-  container.appendChild(newMember);
-  memberCount++;
+  </article>
+</template>
+
+<script>
+function getSectionTitles() {
+  return Array.from(document.querySelectorAll('.js-section-title'))
+    .map(input => input.value.trim())
+    .filter(Boolean);
+}
+
+function addSection() {
+  document.getElementById('section-manager')
+    .appendChild(document.getElementById('section-template').content.cloneNode(true));
+  reindexTeamForm();
+}
+
+function removeSection(button) {
+  if (confirm('Удалить раздел? Специалисты не удалятся, но галочка этого раздела у них снимется.')) {
+    button.closest('[data-section-row]').remove();
+    syncSectionCheckboxes();
+    reindexTeamForm();
+  }
+}
+
+function addMember() {
+  const node = document.getElementById('member-template').content.cloneNode(true);
+  document.getElementById('team-list').appendChild(node);
+  const member = document.querySelector('#team-list [data-member]:last-child');
+  const firstSection = getSectionTitles()[0] || '';
+  member.dataset.selectedSections = firstSection;
+  reindexTeamForm();
 }
 
 function removeMember(button) {
-  button.closest('.team-member').remove();
+  button.closest('[data-member]').remove();
+  reindexTeamForm();
 }
 
 function updateName(input) {
-  const memberDiv = input.closest('.team-member');
-  const nameDisplay = memberDiv.querySelector('.team-member__name');
-  nameDisplay.textContent = input.value || 'Новый специалист';
+  const member = input.closest('[data-member]');
+  member.querySelector('.team-card-admin__name').textContent = input.value || 'Новый специалист';
 }
+
+function syncSectionCheckboxes() {
+  const titles = getSectionTitles();
+  document.querySelectorAll('[data-member]').forEach((member, memberIndex) => {
+    const selected = new Set((member.dataset.selectedSections || '').split('||').filter(Boolean));
+    const selectedIndexes = new Set(Array.from(member.querySelectorAll('[data-section-checkbox]:checked'))
+      .map(input => Number(input.value))
+      .filter(index => Number.isInteger(index)));
+    member.querySelectorAll('[data-section-checkbox]').forEach(input => {
+      if (input.checked) selected.add(input.dataset.sectionTitle);
+      else selected.delete(input.dataset.sectionTitle);
+    });
+
+    const box = member.querySelector('[data-section-checks]');
+    box.innerHTML = '';
+    titles.forEach((title, sectionIndex) => {
+      const label = document.createElement('label');
+      label.className = 'section-check';
+      label.innerHTML = `
+        <input type="checkbox" data-section-checkbox data-section-title="${escapeHtml(title)}" name="members[${memberIndex}][sectionIndexes][]" value="${sectionIndex}">
+        <span>${escapeHtml(title)}</span>
+      `;
+      const input = label.querySelector('input');
+      input.checked = selectedIndexes.has(sectionIndex) || selected.has(title) || (!selected.size && !selectedIndexes.size && sectionIndex === 0);
+      input.addEventListener('change', () => {
+        const current = new Set((member.dataset.selectedSections || '').split('||').filter(Boolean));
+        if (input.checked) current.add(title);
+        else current.delete(title);
+        member.dataset.selectedSections = Array.from(current).join('||');
+      });
+      box.appendChild(label);
+    });
+    member.dataset.selectedSections = Array.from(box.querySelectorAll('input:checked')).map(input => input.dataset.sectionTitle).join('||');
+  });
+}
+
+function reindexTeamForm() {
+  document.querySelectorAll('[data-section-row]').forEach((row, index) => {
+    row.querySelector('.js-section-title').name = `sections[${index}][title]`;
+  });
+
+  document.querySelectorAll('[data-member]').forEach((member, memberIndex) => {
+    member.querySelectorAll('[data-name]').forEach(field => {
+      field.name = `members[${memberIndex}][${field.dataset.name}]`;
+    });
+  });
+
+  syncSectionCheckboxes();
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  }[char]));
+}
+
+reindexTeamForm();
 </script>
 </body>
 </html>

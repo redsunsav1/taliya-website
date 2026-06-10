@@ -132,10 +132,14 @@
         <h2>11. Контактная информация Оператора</h2>
         <p>По всем вопросам, связанным с обработкой персональных данных, вы можете обратиться к Оператору:</p>
         <ul>
-          <li><strong>Компания:</strong> ООО «МЕДИКА+»</li>
-          <li><strong>Адрес:</strong> <%= content.site.address ? content.site.address : '[Адрес Компании]' %></li>
+          <li><strong>Оператор:</strong> <%= content.site.company %></li>
+          <% if (content.site.inn) { %><li><strong>ИНН:</strong> <%= content.site.inn %></li><% } %>
+          <% if (content.site.ogrn) { %><li><strong>ОГРН:</strong> <%= content.site.ogrn %></li><% } %>
+          <% if (content.site.legalAddress) { %><li><strong>Юридический адрес:</strong> <%= content.site.legalAddress %></li><% } %>
+          <li><strong>Адрес оказания услуг:</strong> <%= content.site.address ? content.site.address : '[Адрес Компании]' %></li>
           <li><strong>Телефон:</strong> <%= content.site.phone ? content.site.phone : '[Номер телефона]' %></li>
           <li><strong>Электронная почта:</strong> <%= content.site.email ? content.site.email : '[Эл. почта не указана]' %></li>
+          <% if (content.site.pdnResponsible) { %><li><strong>Ответственный за обработку персональных данных:</strong> <%= content.site.pdnResponsible %></li><% } %>
         </ul>
 
         <h2>12. Заключительные положения</h2>

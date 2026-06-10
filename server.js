@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
+const sharp = require('sharp');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,24 @@ app.set('trust proxy', 1);
 // View engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Legacy v2 preview URLs are no longer canonical. Keep old links from opening
+// a different design by routing them to the live EJS pages.
+const legacyPreviewRedirects = {
+  '/home-v2.html': '/',
+  '/about-v2.html': '/about',
+  '/service-v2.html': '/service/vrachebnaya-kosmetologiya',
+  '/team-v2.html': '/team',
+  '/gallery-v2.html': '/gallery',
+  '/promotions-v2.html': '/promotions',
+  '/contacts-v2.html': '/contacts'
+};
+
+app.use((req, res, next) => {
+  const target = legacyPreviewRedirects[req.path];
+  if (target) return res.redirect(301, target);
+  next();
+});
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -58,6 +77,52 @@ const upload = multer({
   }
 });
 
+// Post-upload image optimization: resize big images (>1920px) and recompress.
+// Skips SVG (vector) and GIF (may be animated).
+async function optimizeFile(file) {
+  if (!file || !file.path) return;
+  const ext = path.extname(file.path).toLowerCase();
+  if (ext === '.svg' || ext === '.gif') return;
+  try {
+    const img = sharp(file.path, { failOn: 'none' });
+    const meta = await img.metadata();
+    const MAX_W = 1920;
+    const needsResize = meta.width && meta.width > MAX_W;
+    let pipeline = img.rotate(); // respect EXIF orientation
+    if (needsResize) pipeline = pipeline.resize({ width: MAX_W, withoutEnlargement: true });
+
+    if (ext === '.jpg' || ext === '.jpeg') {
+      pipeline = pipeline.jpeg({ quality: 82, mozjpeg: true });
+    } else if (ext === '.png') {
+      pipeline = pipeline.png({ compressionLevel: 9, palette: true });
+    } else if (ext === '.webp') {
+      pipeline = pipeline.webp({ quality: 82 });
+    } else {
+      return;
+    }
+
+    const tmp = file.path + '.tmp';
+    await pipeline.toFile(tmp);
+    fs.renameSync(tmp, file.path);
+  } catch (err) {
+    console.error('optimizeFile failed for', file.path, err.message);
+  }
+}
+
+// Express middleware: runs after multer and optimizes req.file / req.files
+function optimizeUploads(req, res, next) {
+  const tasks = [];
+  if (req.file) tasks.push(optimizeFile(req.file));
+  if (Array.isArray(req.files)) {
+    req.files.forEach(f => tasks.push(optimizeFile(f)));
+  } else if (req.files && typeof req.files === 'object') {
+    Object.values(req.files).forEach(arr => {
+      (Array.isArray(arr) ? arr : [arr]).forEach(f => tasks.push(optimizeFile(f)));
+    });
+  }
+  Promise.all(tasks).then(() => next()).catch(() => next());
+}
+
 // Helper: load/save data
 function loadContent() {
   try {
@@ -98,6 +163,88 @@ function saveContent(data) {
   fs.writeFileSync(path.join(__dirname, 'data/content.json'), JSON.stringify(data, null, 2), 'utf8');
 }
 
+function toArray(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  if (typeof value !== 'object') return [value];
+  return Object.keys(value)
+    .sort((a, b) => Number(a) - Number(b))
+    .map(key => value[key]);
+}
+
+function getMemberSections(member = {}) {
+  const rawSections = Array.isArray(member.sections) && member.sections.length
+    ? member.sections
+    : [member.section || member.category || 'Специалисты'];
+  return rawSections
+    .map(section => (section || '').trim())
+    .filter(Boolean);
+}
+
+function normalizeTeamSections(team = {}) {
+  const members = Array.isArray(team.members) ? team.members : [];
+  const sectionTitles = Array.isArray(team.sections) && team.sections.length
+    ? team.sections
+    : [];
+  const sections = [];
+  const byTitle = {};
+
+  function ensureSection(title) {
+    const cleanTitle = (title || 'Специалисты').trim() || 'Специалисты';
+    if (!byTitle[cleanTitle]) {
+      byTitle[cleanTitle] = { title: cleanTitle, members: [] };
+      sections.push(byTitle[cleanTitle]);
+    }
+    return byTitle[cleanTitle];
+  }
+
+  sectionTitles.forEach(title => ensureSection(title));
+  members.forEach(member => {
+    getMemberSections(member).forEach(title => ensureSection(title).members.push(member));
+  });
+
+  if (!sections.length) {
+    ensureSection('Врачебная косметология');
+    ensureSection('Эстетическая косметология');
+    ensureSection('Массаж и коррекция тела');
+    ensureSection('Подология и ногтевой сервис');
+  }
+
+  return sections;
+}
+
+function syncTeamIntoServiceDoctors(content) {
+  const members = Array.isArray(content.team && content.team.members)
+    ? content.team.members
+    : [];
+  const byName = new Map(members.map(member => [
+    (member.name || '').trim().toLowerCase(),
+    member
+  ]).filter(([name]) => name));
+
+  if (!Array.isArray(content.services)) return content;
+
+  content.services = content.services.map(service => {
+    if (!Array.isArray(service.doctors)) return service;
+    const doctors = service.doctors
+      .map(doctor => {
+        const member = byName.get((doctor.name || '').trim().toLowerCase());
+        if (!member) return null;
+        return {
+          name: member.name,
+          role: member.role || doctor.role || '',
+          experience: member.experience || doctor.experience || '',
+          bio: member.bio || doctor.bio || '',
+          photo: member.photo || doctor.photo || '/images/doctors/default.svg'
+        };
+      })
+      .filter(Boolean);
+    return { ...service, doctors };
+  });
+
+  return content;
+}
+
 function loadAdmin() {
   try {
     return JSON.parse(fs.readFileSync(path.join(__dirname, 'data/admin.json'), 'utf8'));
@@ -119,7 +266,26 @@ function loadCallbacks() {
 }
 
 function saveCallbacks(data) {
-  fs.writeFileSync(path.join(__dirname, 'data/callbacks.json'), JSON.stringify(data, null, 2), 'utf8');
+  const filePath = path.join(__dirname, 'data/callbacks.json');
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+  // Restrict file permissions (owner read/write only) — 152-ФЗ защита ПД
+  try { fs.chmodSync(filePath, 0o600); } catch (_) {}
+}
+
+// Auto-purge заявок старше N дней (срок хранения ПД по 152-ФЗ)
+const CALLBACK_RETENTION_DAYS = 180;
+function purgeOldCallbacks() {
+  const callbacks = loadCallbacks();
+  const cutoff = Date.now() - CALLBACK_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+  const kept = callbacks.filter(c => {
+    const t = c.submittedAt ? new Date(c.submittedAt).getTime() : Date.now();
+    return t >= cutoff;
+  });
+  if (kept.length !== callbacks.length) {
+    saveCallbacks(kept);
+    console.log('purgeOldCallbacks: removed', callbacks.length - kept.length, 'old entries');
+  }
+  return kept;
 }
 
 // Auth middleware
@@ -180,49 +346,63 @@ app.get('/promotions', (req, res) => {
 // Legal pages
 app.get('/privacy', (req, res) => {
   const content = loadContent();
-  res.render('pages/privacy', { content: content.legal.privacy });
+  res.render('pages/privacy', { content });
 });
 
 app.get('/terms', (req, res) => {
   const content = loadContent();
-  res.render('pages/terms', { content: content.legal.terms });
+  res.render('pages/terms', { content });
 });
 
 app.get('/consent', (req, res) => {
   const content = loadContent();
-  res.render('pages/consent', { content: content.legal.consent });
+  res.render('pages/consent', { content });
+});
+
+app.get('/offer', (req, res) => {
+  const content = loadContent();
+  res.render('pages/offer', { content });
 });
 
 // Callback form submission
 app.post('/callback', (req, res) => {
   try {
-    const { name, phone, service, message, email, consent, source } = req.body;
-    const wantsJson = (req.get('accept') || '').includes('application/json') || req.xhr;
+    const { name, phone, service, message, consent } = req.body;
 
     if (!name || !phone) {
-      if (wantsJson) return res.status(400).json({ error: 'Имя и телефон обязательны' });
-      return res.redirect('back');
+      return res.status(400).json({ error: 'Имя и телефон обязательны' });
     }
+    if (!consent) {
+      return res.status(400).json({ error: 'Необходимо согласие на обработку персональных данных' });
+    }
+
+    // IP (учитываем trust proxy)
+    const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.ip || req.socket.remoteAddress || '';
+    const userAgent = (req.headers['user-agent'] || '').slice(0, 300);
 
     const callbacks = loadCallbacks();
     const newCallback = {
       id: Date.now().toString(),
       name,
       phone,
-      email: email || '',
       service: service || '',
       message: message || '',
-      source: source || '',
-      consent: consent === 'on' || consent === 'true' || consent === '1',
       submittedAt: new Date().toISOString(),
-      read: false
+      read: false,
+      // Метаданные согласия для 152-ФЗ (доказательство факта согласия)
+      consent: {
+        given: true,
+        ip,
+        userAgent,
+        timestamp: new Date().toISOString(),
+        policyUrl: '/consent'
+      }
     };
 
     callbacks.push(newCallback);
     saveCallbacks(callbacks);
 
-    if (wantsJson) return res.json({ success: true, message: 'Заявка принята' });
-    res.redirect((req.get('referer') || '/') + '#callback-sent');
+    res.json({ success: true, message: 'Заявка принята' });
   } catch (error) {
     console.error('Callback error:', error);
     res.status(500).json({ error: 'Ошибка при отправке заявки' });
@@ -341,9 +521,9 @@ app.get('/admin/settings', requireAuth, (req, res) => {
   res.render('admin/settings');
 });
 
-app.post('/admin/settings', requireAuth, upload.fields([{name: 'logo', maxCount: 1}, {name: 'favicon', maxCount: 1}]), (req, res) => {
+app.post('/admin/settings', requireAuth, upload.fields([{name: 'logo', maxCount: 1}, {name: 'favicon', maxCount: 1}]), optimizeUploads, (req, res) => {
   const content = loadContent();
-  const fields = ['name', 'tagline', 'phone', 'phoneRaw', 'address', 'hours', 'email', 'vk', 'telegram', 'whatsapp', 'profsalon', 'license', 'company', 'mapEmbed', 'profsalonWidget'];
+  const fields = ['name', 'tagline', 'phone', 'phoneRaw', 'address', 'hours', 'email', 'vk', 'telegram', 'whatsapp', 'profsalon', 'license', 'company', 'mapEmbed', 'profsalonWidget', 'maxChatUrl'];
   fields.forEach(f => {
     if (req.body[f] !== undefined) content.site[f] = req.body[f];
   });
@@ -365,94 +545,46 @@ app.get('/admin/hero', requireAuth, (req, res) => {
   res.render('admin/hero');
 });
 
-app.post('/admin/hero', requireAuth, upload.single('image'), (req, res) => {
+app.post('/admin/hero', requireAuth, upload.single('image'), optimizeUploads, (req, res) => {
   const content = loadContent();
-  if (!content.hero) content.hero = {};
-  const b = req.body;
 
-  // Legacy simple fields
-  if (b.title !== undefined) content.hero.title = b.title;
-  if (b.subtitle !== undefined) content.hero.subtitle = b.subtitle;
-  if (b.promoText !== undefined) content.hero.promoText = b.promoText;
-  if (b.promoNote !== undefined) content.hero.promoNote = b.promoNote;
+  // Multi-slide mode (new)
+  if (req.body.slides) {
+    const raw = req.body.slides;
+    let entries = [];
+    if (Array.isArray(raw)) entries = raw;
+    else if (typeof raw === 'object') entries = Object.keys(raw).map(k => raw[k]);
 
-  // New rich fields
-  if (b.eyebrow !== undefined) content.hero.eyebrow = b.eyebrow;
-  if (b.brand !== undefined) content.hero.brand = b.brand;
-  if (b.brandline !== undefined) content.hero.brandline = b.brandline;
-  if (b.titleItalicWord !== undefined) content.hero.titleItalicWord = b.titleItalicWord;
-  if (b.lead !== undefined) content.hero.lead = b.lead;
+    const slides = entries
+      .filter(s => s && ((s.title || '').trim() || (s.image || '').trim()))
+      .map(s => ({
+        title: (s.title || '').trim(),
+        subtitle: (s.subtitle || '').trim(),
+        promoText: (s.promoText || '').trim(),
+        promoNote: (s.promoNote || '').trim(),
+        image: (s.image || '').trim()
+      }));
 
-  if (b.titleLines !== undefined) {
-    content.hero.titleLines = String(b.titleLines)
-      .split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    content.hero.slides = slides;
+    // Sync legacy fields to first slide for back-compat
+    if (slides.length > 0) {
+      content.hero.title = slides[0].title || content.hero.title;
+      content.hero.subtitle = slides[0].subtitle || content.hero.subtitle;
+      content.hero.promoText = slides[0].promoText;
+      content.hero.promoNote = slides[0].promoNote;
+      content.hero.image = slides[0].image || content.hero.image;
+    }
+  } else {
+    // Legacy single-slide fallback
+    content.hero.title = req.body.title || content.hero.title;
+    content.hero.subtitle = req.body.subtitle || content.hero.subtitle;
+    content.hero.promoText = req.body.promoText || content.hero.promoText;
+    content.hero.promoNote = req.body.promoNote || content.hero.promoNote;
+    if (req.file) content.hero.image = '/uploads/' + req.file.filename;
   }
-  if (b.utp !== undefined) {
-    content.hero.utp = String(b.utp)
-      .split(/\r?\n/).map(s => s.trim()).filter(Boolean);
-  }
 
-  content.hero.ctaPrimary = {
-    text: b.ctaPrimaryText || '',
-    href: b.ctaPrimaryHref || '',
-    icon: b.ctaPrimaryIcon || ''
-  };
-  content.hero.ctaSecondary = {
-    text: b.ctaSecondaryText || '',
-    href: b.ctaSecondaryHref || '',
-    icon: b.ctaSecondaryIcon || ''
-  };
-
-  // Slides repeater
-  const toArr = v => v === undefined ? [] : (Array.isArray(v) ? v : [v]);
-  const imgs = toArr(b.slideImage);
-  const cIcons = toArr(b.slideChipIcon);
-  const cTexts = toArr(b.slideChipText);
-  const bIcons = toArr(b.slideBadgeIcon);
-  const bLabels = toArr(b.slideBadgeLabel);
-  const bVals = toArr(b.slideBadgeValue);
-  const max = Math.max(imgs.length, cIcons.length, cTexts.length, bIcons.length, bLabels.length, bVals.length);
-  const slides = [];
-  for (let i = 0; i < max; i++) {
-    const row = {
-      image: imgs[i] || '',
-      chipIcon: cIcons[i] || '',
-      chipText: cTexts[i] || '',
-      badgeIcon: bIcons[i] || '',
-      badgeLabel: bLabels[i] || '',
-      badgeValue: bVals[i] || ''
-    };
-    if (row.image || row.chipText || row.badgeValue) slides.push(row);
-  }
-  content.hero.slides = slides;
-
-  if (req.file) content.hero.image = '/uploads/' + req.file.filename;
   saveContent(content);
   res.redirect('/admin/hero?saved=1');
-});
-
-// ===== TRUST (marquee) =====
-
-app.get('/admin/trust', requireAuth, (req, res) => {
-  res.render('admin/trust');
-});
-
-app.post('/admin/trust', requireAuth, (req, res) => {
-  const content = loadContent();
-  if (!content.trust) content.trust = {};
-  const toArr = v => v === undefined ? [] : (Array.isArray(v) ? v : [v]);
-  const icons = toArr(req.body.icons);
-  const texts = toArr(req.body.texts);
-  const items = [];
-  const max = Math.max(icons.length, texts.length);
-  for (let i = 0; i < max; i++) {
-    const row = { icon: icons[i] || '', text: texts[i] || '' };
-    if (row.text.trim()) items.push(row);
-  }
-  content.trust.items = items;
-  content.trust.enabled = req.body.enabled === 'on' || req.body.enabled === 'true';
-  saveContent(content);
-  res.redirect('/admin/trust?saved=1');
 });
 
 // ===== BENEFITS =====
@@ -488,7 +620,7 @@ app.get('/admin/services/:slug', requireAuth, (req, res) => {
   res.render('admin/service-edit', { service });
 });
 
-app.post('/admin/services/:slug', requireAuth, upload.single('image'), (req, res) => {
+app.post('/admin/services/:slug', requireAuth, upload.single('image'), optimizeUploads, (req, res) => {
   const content = loadContent();
   const idx = content.services.findIndex(s => s.slug === req.params.slug);
   if (idx === -1) return res.redirect('/admin/services');
@@ -497,8 +629,60 @@ app.post('/admin/services/:slug', requireAuth, upload.single('image'), (req, res
   service.name = req.body.name || service.name;
   service.shortName = req.body.shortName || service.shortName;
   service.description = req.body.description || service.description;
-  service.discount = req.body.discount || service.discount;
+  service.discount = req.body.discount !== undefined ? req.body.discount : service.discount;
+  service.offerBadge = req.body.offerBadge !== undefined ? req.body.offerBadge : (service.offerBadge || '');
+  service.benefitsTitle = req.body.benefitsTitle !== undefined ? req.body.benefitsTitle : (service.benefitsTitle || '');
   if (req.file) service.image = '/uploads/' + req.file.filename;
+
+  // Tezisy (array of {icon, text})
+  if (req.body.tezisyTexts) {
+    const tIcons = Array.isArray(req.body.tezisyIcons) ? req.body.tezisyIcons : [req.body.tezisyIcons];
+    const tTexts = Array.isArray(req.body.tezisyTexts) ? req.body.tezisyTexts : [req.body.tezisyTexts];
+    service.tezisy = tTexts.map((text, i) => ({
+      icon: tIcons[i] || 'star',
+      text: text || ''
+    })).filter(t => t.text.trim());
+  } else if (req.body.tezisyEnabled !== undefined) {
+    service.tezisy = [];
+  }
+
+  // Media gallery
+  if (req.body.mediaEnabled !== undefined) {
+    service.mediaGallery = service.mediaGallery || {};
+    service.mediaGallery.enabled = req.body.mediaEnabled === '1' || req.body.mediaEnabled === 'on';
+    service.mediaGallery.title = req.body.mediaTitle || service.mediaGallery.title || '';
+    service.mediaGallery.videoUrl = req.body.mediaVideoUrl || '';
+    service.mediaGallery.photos = service.mediaGallery.photos || [];
+    if (Array.isArray(req.body.mediaPhotos)) {
+      service.mediaGallery.photos = req.body.mediaPhotos.filter(p => p && p.trim());
+    } else if (req.body.mediaPhotos) {
+      service.mediaGallery.photos = [req.body.mediaPhotos];
+    }
+  }
+
+  // SanPiN marquee
+  if (req.body.sanpinText !== undefined || req.body.sanpinEnabled !== undefined) {
+    service.sanpinBanner = service.sanpinBanner || {};
+    service.sanpinBanner.enabled = req.body.sanpinEnabled === '1' || req.body.sanpinEnabled === 'on';
+    service.sanpinBanner.text = req.body.sanpinText || '';
+  }
+
+  // Personal protocol
+  if (req.body.protocolText !== undefined || req.body.protocolEnabled !== undefined) {
+    service.personalProtocol = service.personalProtocol || {};
+    service.personalProtocol.enabled = req.body.protocolEnabled === '1' || req.body.protocolEnabled === 'on';
+    service.personalProtocol.title = req.body.protocolTitle || '';
+    service.personalProtocol.text = req.body.protocolText || '';
+  }
+
+  // Booking CTA
+  if (req.body.bookingCtaTitle !== undefined || req.body.bookingCtaEnabled !== undefined) {
+    service.bookingCta = service.bookingCta || {};
+    service.bookingCta.enabled = req.body.bookingCtaEnabled === '1' || req.body.bookingCtaEnabled === 'on';
+    service.bookingCta.title = req.body.bookingCtaTitle || '';
+    service.bookingCta.highlight = req.body.bookingCtaHighlight || '';
+    service.bookingCta.subtitle = req.body.bookingCtaSubtitle || '';
+  }
 
   // Update items
   if (req.body.itemNames) {
@@ -625,27 +809,66 @@ app.post('/admin/about', requireAuth, (req, res) => {
 
 app.get('/admin/team', requireAuth, (req, res) => {
   const content = loadContent();
-  res.render('admin/team', { team: content.team || { title: '', members: [] } });
+  const team = content.team || { title: '', subtitle: '', members: [] };
+  res.render('admin/team', {
+    team,
+    sections: normalizeTeamSections(team),
+    message: req.query.saved ? 'Изменения сохранены' : null
+  });
 });
 
-app.post('/admin/team', requireAuth, (req, res) => {
+app.post('/admin/team', requireAuth, upload.any(), optimizeUploads, (req, res) => {
   const content = loadContent();
-  const { names, roles, bios, photos } = req.body;
-  
-  let members = [];
-  if (Array.isArray(names)) {
-    members = names.map((name, i) => ({
-      name: name || '',
-      role: (Array.isArray(roles) ? roles[i] : roles) || '',
-      bio: (Array.isArray(bios) ? bios[i] : bios) || '',
-      photo: (Array.isArray(photos) ? photos[i] : photos) || '/images/team/default.svg'
-    })).filter(m => m.name.trim());
-  }
+  const uploadedByField = {};
+  (Array.isArray(req.files) ? req.files : []).forEach(file => {
+    uploadedByField[file.fieldname] = '/uploads/' + file.filename;
+  });
+
+  const sections = toArray(req.body.sections)
+    .map(sectionInput => ((sectionInput && sectionInput.title) || '').trim())
+    .filter(Boolean);
+  const fallbackSections = sections.length ? sections : ['Специалисты'];
+
+  const members = toArray(req.body.members)
+    .map((memberInput, memberIndex) => {
+      const name = ((memberInput && memberInput.name) || '').trim();
+      if (!name) return null;
+
+      const sectionIndexes = toArray(memberInput.sectionIndexes)
+        .map(index => Number(index))
+        .filter(index => Number.isInteger(index) && fallbackSections[index]);
+      const memberSections = sectionIndexes.length
+        ? sectionIndexes.map(index => fallbackSections[index])
+        : [fallbackSections[0]];
+
+      const photoField = `members[${memberIndex}][photo]`;
+      const photo = uploadedByField[photoField] ||
+        (memberInput.photoExisting || '').trim() ||
+        '/images/team/default.svg';
+
+      return {
+        name,
+        role: ((memberInput.role || '')).trim(),
+        experience: ((memberInput.experience || '')).trim(),
+        bio: ((memberInput.bio || '')).trim(),
+        photo,
+        specialties: (memberInput.specialties || '')
+          .split(',')
+          .map(item => item.trim())
+          .filter(Boolean),
+        sections: memberSections,
+        section: memberSections[0]
+      };
+    })
+    .filter(Boolean);
 
   content.team = {
-    title: req.body.title || '',
+    title: (req.body.title || '').trim(),
+    subtitle: (req.body.subtitle || '').trim(),
+    sections: fallbackSections,
     members
   };
+  syncTeamIntoServiceDoctors(content);
   saveContent(content);
   res.redirect('/admin/team?saved=1');
 });
@@ -657,7 +880,7 @@ app.get('/admin/gallery', requireAuth, (req, res) => {
   res.render('admin/gallery', { gallery: content.gallery || { title: '', images: [] } });
 });
 
-app.post('/admin/gallery', requireAuth, upload.array('images', 20), (req, res) => {
+app.post('/admin/gallery', requireAuth, upload.array('images', 20), optimizeUploads, (req, res) => {
   const content = loadContent();
   let images = content.gallery?.images || [];
 
@@ -692,25 +915,39 @@ app.post('/admin/gallery', requireAuth, upload.array('images', 20), (req, res) =
 
 app.get('/admin/promotions', requireAuth, (req, res) => {
   const content = loadContent();
-  res.render('admin/promotions', { promotions: content.promotions || { title: '', items: [] } });
+  const promotions = content.promotions || { title: '', subtitle: '', items: [] };
+  res.render('admin/promotions', {
+    promoTitle: promotions.title || '',
+    promoSubtitle: promotions.subtitle || '',
+    promotions: Array.isArray(promotions.items) ? promotions.items : [],
+    message: req.query.saved ? 'Изменения сохранены' : null
+  });
 });
 
 app.post('/admin/promotions', requireAuth, (req, res) => {
   const content = loadContent();
-  const { titles, descriptions, codes, discounts } = req.body;
-  
-  let items = [];
-  if (Array.isArray(titles)) {
-    items = titles.map((title, i) => ({
-      title: title || '',
-      description: (Array.isArray(descriptions) ? descriptions[i] : descriptions) || '',
-      code: (Array.isArray(codes) ? codes[i] : codes) || '',
-      discount: (Array.isArray(discounts) ? discounts[i] : discounts) || ''
-    })).filter(item => item.title.trim());
-  }
+
+  // Express with extended:true parses promotions[0][title] into an object/array
+  const submitted = req.body.promotions || {};
+  const entries = Array.isArray(submitted)
+    ? submitted
+    : Object.keys(submitted).sort((a, b) => Number(a) - Number(b)).map(k => submitted[k]);
+
+  const items = entries
+    .filter(p => p && (p.title || '').trim())
+    .map(p => ({
+      title: (p.title || '').trim(),
+      description: (p.description || '').trim(),
+      badge: (p.badge || '').trim(),
+      icon: (p.icon || '').trim(),
+      image: (p.image || '').trim(),
+      link: (p.link || '').trim(),
+      active: p.active === 'true' || p.active === 'on' || p.active === true
+    }));
 
   content.promotions = {
-    title: req.body.promoTitle || '',
+    title: (req.body.promoTitle || '').trim() || (content.promotions && content.promotions.title) || 'Акции и специальные предложения',
+    subtitle: (req.body.promoSubtitle || '').trim() || (content.promotions && content.promotions.subtitle) || '',
     items
   };
   saveContent(content);
@@ -801,16 +1038,42 @@ app.post('/admin/pages', requireAuth, (req, res) => {
 // ===== CALLBACKS =====
 
 app.get('/admin/callbacks', requireAuth, (req, res) => {
-  const callbacks = loadCallbacks();
-  // Sort by date, newest first
+  // Автоочистка старых заявок при каждом заходе в админку
+  const callbacks = purgeOldCallbacks();
   callbacks.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
-  res.render('admin/callbacks', { callbacks });
+  res.render('admin/callbacks', { callbacks, retentionDays: CALLBACK_RETENTION_DAYS });
 });
 
 app.post('/admin/callbacks/:id/delete', requireAuth, (req, res) => {
   const callbacks = loadCallbacks();
   const filtered = callbacks.filter(c => c.id !== req.params.id);
   saveCallbacks(filtered);
+  res.redirect('/admin/callbacks?deleted=1');
+});
+
+// Совместимость со старой формой (body.callbackId)
+app.post('/admin/callbacks/delete', requireAuth, (req, res) => {
+  const id = req.body.callbackId;
+  const callbacks = loadCallbacks();
+  const filtered = callbacks.filter(c => c.id !== id);
+  saveCallbacks(filtered);
+  res.redirect('/admin/callbacks?deleted=1');
+});
+
+app.post('/admin/callbacks/status', requireAuth, (req, res) => {
+  const { callbackId, status } = req.body;
+  const callbacks = loadCallbacks();
+  const cb = callbacks.find(c => c.id === callbackId);
+  if (cb) {
+    cb.status = status;
+    saveCallbacks(callbacks);
+  }
+  res.redirect('/admin/callbacks');
+});
+
+// Массовое удаление всех заявок (для очистки ПД)
+app.post('/admin/callbacks/purge-all', requireAuth, (req, res) => {
+  saveCallbacks([]);
   res.redirect('/admin/callbacks?deleted=1');
 });
 
@@ -851,7 +1114,7 @@ app.post('/admin/password', requireAuth, async (req, res) => {
 
 // ===== FILE UPLOAD API =====
 
-app.post('/admin/upload', requireAuth, upload.single('file'), (req, res) => {
+app.post('/admin/upload', requireAuth, upload.single('file'), optimizeUploads, (req, res) => {
   if (!req.file) return res.json({ error: 'No file' });
   res.json({ url: '/uploads/' + req.file.filename });
 });

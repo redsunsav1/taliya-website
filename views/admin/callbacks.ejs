@@ -7,12 +7,12 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7f5; color: #333; }
-    .admin-header { background: #596341; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .admin-header { background: #8FA86E; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
     .admin-header h1 { font-size: 20px; font-weight: 600; }
     .admin-header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
     .admin-header a:hover { color: white; }
     .admin-body { max-width: 1200px; margin: 0 auto; padding: 24px; }
-    .admin-back { display: inline-block; margin-bottom: 24px; color: #596341; text-decoration: none; font-size: 14px; }
+    .admin-back { display: inline-block; margin-bottom: 24px; color: #8FA86E; text-decoration: none; font-size: 14px; }
     .admin-back:hover { text-decoration: underline; }
     .table-container { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; }
@@ -21,7 +21,7 @@
     td { padding: 16px; border-bottom: 1px solid #e0e4da; font-size: 14px; }
     tr:hover { background: #fafbf9; }
     .status { font-size: 12px; padding: 4px 8px; border-radius: 4px; display: inline-block; }
-    .status.new { background: #dce1d3; color: #596341; }
+    .status.new { background: #dce1d3; color: #8FA86E; }
     .status.called { background: #d4f1d4; color: #2d5a2d; }
     .status.missed { background: #f1d4d4; color: #5a2d2d; }
     .date { color: #999; font-size: 13px; }
@@ -34,8 +34,8 @@
     .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
     .alert-success { background: #d4f1d4; color: #2d5a2d; border: 1px solid #a8e6a8; }
     .filter-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-    .filter-btn { padding: 8px 16px; background: #e0e4da; color: #596341; border: 1px solid #d0d4ca; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
-    .filter-btn.active { background: #596341; color: white; border-color: #596341; }
+    .filter-btn { padding: 8px 16px; background: #e0e4da; color: #8FA86E; border: 1px solid #d0d4ca; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+    .filter-btn.active { background: #8FA86E; color: white; border-color: #8FA86E; }
     .filter-btn:hover { background: #dce1d3; }
     .filter-btn.active:hover { background: #4a5236; }
   </style>
@@ -63,6 +63,15 @@
       <button class="filter-btn" onclick="filterStatus('missed')">Не обзвонены</button>
     </div>
 
+    <div style="background:#eef4e2;border:1px solid #c5d5a0;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#3d4f1f;">
+      <strong>🔒 Защита персональных данных (152-ФЗ):</strong>
+      заявки хранятся <%= typeof retentionDays !== 'undefined' ? retentionDays : 180 %> дней и удаляются автоматически.
+      Файл доступен только владельцу сервера (chmod 600). Для каждой заявки сохраняется IP, дата и факт согласия — как доказательство.
+      <form method="POST" action="/admin/callbacks/purge-all" style="display:inline;margin-left:12px;" onsubmit="return confirm('Удалить ВСЕ заявки? Действие необратимо.');">
+        <button type="submit" class="btn-delete">Удалить все заявки</button>
+      </form>
+    </div>
+
     <div class="table-container">
       <table>
         <thead>
@@ -72,20 +81,29 @@
             <th>Телефон</th>
             <th>Услуга</th>
             <th>Сообщение</th>
+            <th>Согласие</th>
             <th>Статус</th>
             <th>Действие</th>
           </tr>
         </thead>
         <tbody>
           <% callbacks.forEach((cb, index) => { %>
+            <% var submitted = cb.submittedAt || cb.date; %>
             <tr class="callback-row" data-status="<%= cb.status || 'new' %>">
               <td>
-                <div class="date"><%= new Date(cb.date).toLocaleString('ru-RU') %></div>
+                <div class="date"><%= submitted ? new Date(submitted).toLocaleString('ru-RU') : '—' %></div>
               </td>
               <td><%= cb.name %></td>
               <td class="phone"><%= cb.phone %></td>
               <td><%= cb.service || '—' %></td>
               <td class="message" title="<%= cb.message %>"><%= cb.message ? cb.message.substring(0, 50) + (cb.message.length > 50 ? '...' : '') : '—' %></td>
+              <td style="font-size:12px;color:#666;">
+                <% if (cb.consent && cb.consent.given) { %>
+                  ✅ <span title="IP: <%= cb.consent.ip %>&#10;UA: <%= cb.consent.userAgent || '' %>&#10;Время: <%= cb.consent.timestamp %>"><%= cb.consent.ip || '' %></span>
+                <% } else { %>
+                  —
+                <% } %>
+              </td>
               <td>
                 <form method="POST" action="/admin/callbacks/status" style="display: inline;">
                   <input type="hidden" name="callbackId" value="<%= cb.id %>">

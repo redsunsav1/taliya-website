@@ -4,3 +4,6 @@ node_modules/
 public/uploads/*
 !public/uploads/.gitkeep
 *.log
+.backups/
+backups/
+data/callbacks.json

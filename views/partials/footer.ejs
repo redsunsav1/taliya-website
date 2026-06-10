@@ -1,93 +1,178 @@
+  </main>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <div class="footer__grid">
-      <div>
-        <p class="footer__title"><%= content.site.name %></p>
-        <p class="footer__text"><%= (content.footer && content.footer.tagline) || content.site.tagline %></p>
-        <p class="footer__text" style="margin-top:10px;"><%= content.site.company %></p>
-        <% if (content.site.license) { %>
-          <p class="footer__text" style="font-size:12px;">Лицензия: <%= content.site.license %></p>
-        <% } %>
+    <div class="footer__container container">
+      <div class="footer__grid">
+
+        <!-- Column 1: About -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Талия</h3>
+          <p class="footer__tagline"><%= content.site.tagline %></p>
+          <p class="footer__company"><%= content.site.company %></p>
+          <% if (content.site.inn) { %>
+            <p class="footer__requisites">ИНН <%= content.site.inn %><% if (content.site.ogrn) { %> · ОГРН <%= content.site.ogrn %><% } %><% if (content.site.kpp) { %> · КПП <%= content.site.kpp %><% } %></p>
+          <% } %>
+          <% if (content.site.legalAddress) { %>
+            <p class="footer__requisites">Юр. адрес: <%= content.site.legalAddress %></p>
+          <% } %>
+          <p class="footer__license">
+            Лицензия: <%= content.site.license %><% if (content.site.licenseIssuer) { %>,
+            выдана <%= content.site.licenseIssuer %><% } %><% if (content.site.licenseDate) { %> <%= content.site.licenseDate %><% } %>
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Navigation -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Навигация</h3>
+          <ul class="footer__links">
+            <li>
+              <a href="/about" class="footer__link">О нас</a>
+            </li>
+            <li>
+              <a href="/team" class="footer__link">Специалисты</a>
+            </li>
+            <li>
+              <a href="/gallery" class="footer__link">Галерея</a>
+            </li>
+            <li>
+              <a href="/promotions" class="footer__link">Акции</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contacts -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Контакты</h3>
+          <ul class="footer__contacts">
+            <li class="footer__contact-item">
+              <i data-lucide="map-pin" class="footer__contact-icon"></i>
+              <span><%= content.site.address %></span>
+            </li>
+            <li class="footer__contact-item">
+              <i data-lucide="phone" class="footer__contact-icon"></i>
+              <span>
+                <a href="tel:<%= content.site.phoneRaw %>" class="footer__link"><%= content.site.phone %></a>
+                <% if (content.site.phone2) { %>
+                  <br><a href="tel:<%= content.site.phoneRaw2 %>" class="footer__link"><%= content.site.phone2 %></a>
+                <% } %>
+              </span>
+            </li>
+            <li class="footer__contact-item">
+              <i data-lucide="clock" class="footer__contact-icon"></i>
+              <span><%= content.site.hours %></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Social -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Мы в соцсетях</h3>
+          <div class="footer__socials">
+            <% if (content.site.vk) { %>
+              <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="footer__social" aria-label="ВКонтакте">
+                <i data-lucide="users"></i>
+                <span>ВКонтакте</span>
+              </a>
+            <% } %>
+            <% if (content.site.telegram) { %>
+              <a href="<%= content.site.telegram %>" target="_blank" rel="noopener" class="footer__social" aria-label="Телеграм">
+                <i data-lucide="send"></i>
+                <span>Телеграм</span>
+              </a>
+            <% } %>
+            <% if (content.site.whatsapp) { %>
+              <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="footer__social" aria-label="Ватсап">
+                <i data-lucide="message-circle"></i>
+                <span>Ватсап</span>
+              </a>
+            <% } %>
+          </div>
+        </div>
+
       </div>
-      <div>
-        <span class="footer__h">Навигация</span>
-        <ul class="footer__list">
-          <li><a href="/about">О нас</a></li>
-          <li><a href="/team">Специалисты</a></li>
-          <li><a href="/gallery">Галерея</a></li>
-          <li><a href="/promotions">Акции</a></li>
-        </ul>
+
+      <!-- Medical disclaimer (ФЗ-38 «О рекламе», ст. 24) -->
+      <div class="footer__disclaimer">
+        <p class="med-disclaimer med-disclaimer--footer">Имеются противопоказания. Необходима консультация специалиста.</p>
+        <p class="footer__authorities">
+          Контролирующие органы:
+          <a href="https://roszdravnadzor.gov.ru" target="_blank" rel="noopener">Росздравнадзор</a> 8 (800) 550-99-03 ·
+          <a href="https://rospotrebnadzor.ru" target="_blank" rel="noopener">Роспотребнадзор</a> 8 (800) 555-49-43 ·
+          <a href="https://mz.mosreg.ru" target="_blank" rel="noopener">Минздрав МО</a> 8 (495) 777-73-72
+        </p>
       </div>
-      <div>
-        <span class="footer__h">Контакты</span>
-        <ul class="footer__list">
-          <% if (content.site.phone) { %>
-            <li><a href="tel:<%= content.site.phoneRaw %>"><%= content.site.phone %></a></li>
-          <% } %>
-          <% if (content.site.phone2) { %>
-            <li><a href="tel:<%= content.site.phoneRaw2 %>"><%= content.site.phone2 %></a></li>
-          <% } %>
-          <% if (content.site.address) { %>
-            <li><%= content.site.address %></li>
-          <% } %>
-          <% if (content.site.hours) { %>
-            <li><%= content.site.hours %></li>
-          <% } %>
-        </ul>
+
+      <!-- Bottom bar -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; <%= new Date().getFullYear() %> <%= content.site.company %>. Все права защищены.
+          <span class="footer__age-mark" title="Информация не предназначена для лиц младше 18 лет">18+</span>
+        </p>
+        <div class="footer__legal-links">
+          <a href="/privacy" class="footer__legal-link">Политика конфиденциальности</a>
+          <a href="/terms" class="footer__legal-link">Пользовательское соглашение</a>
+          <a href="/consent" class="footer__legal-link">Согласие на обработку данных</a>
+          <a href="/offer" class="footer__legal-link">Договор оферты</a>
+        </div>
       </div>
-      <div>
-        <span class="footer__h">Мы в соцсетях</span>
-        <ul class="footer__list">
-          <% if (content.site.vk) { %>
-            <li><a href="<%= content.site.vk %>" target="_blank" rel="noopener">ВКонтакте</a></li>
-          <% } %>
-          <% if (content.site.telegram) { %>
-            <li><a href="<%= content.site.telegram %>" target="_blank" rel="noopener">Телеграм</a></li>
-          <% } %>
-          <% if (content.site.whatsapp) { %>
-            <li><a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener">Ватсап</a></li>
-          <% } %>
-          <% if (content.site.profsalon) { %>
-            <li><a href="<%= content.site.profsalon %>" target="_blank" rel="noopener">Онлайн-запись</a></li>
-          <% } %>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>© <%= new Date().getFullYear() %> <%= content.site.company %>. Все права защищены.</span>
-      <span class="footer__legal">
-        <% var legal = (content.footer && content.footer.legal) || [
-            { text: 'Политика конфиденциальности', href: '/privacy' },
-            { text: 'Пользовательское соглашение', href: '/terms' },
-            { text: 'Согласие на обработку данных', href: '/consent' }
-        ]; %>
-        <% legal.forEach(function(l){ %>
-          <a href="<%= l.href %>"><%= l.text %></a>
-        <% }); %>
-      </span>
     </div>
   </footer>
 
-  </main>
-
   <!-- ===== FLOATING BUTTONS ===== -->
-  <% var fw = (content.floating && content.floating.whatsapp) || {}; %>
-  <% var fp = (content.floating && content.floating.profsalon) || {}; %>
-  <% if (fw.enabled && (fw.href || content.site.whatsapp)) { %>
-    <a href="<%= fw.href || content.site.whatsapp %>" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Написать в Ватсап">
+
+  <!-- WhatsApp floating button (bottom-left) -->
+  <% if (content.site.whatsapp) { %>
+    <a href="<%= content.site.whatsapp %>" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Написать в Ватсап">
       <i data-lucide="message-circle"></i>
     </a>
   <% } %>
-  <% if (fp.enabled && (fp.href || content.site.profsalon)) { %>
-    <a href="<%= fp.href || content.site.profsalon %>" target="_blank" rel="noopener" class="booking-float">
+
+  <!-- ProfSalon booking button (bottom-right) -->
+  <% if (content.site.profsalon) { %>
+    <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="booking-float">
       <i data-lucide="calendar-check"></i>
-      <span><%= fp.text || 'Записаться онлайн' %></span>
+      <span>Записаться онлайн</span>
     </a>
   <% } %>
 
-  <script src="/js/v2.js"></script>
+  <!-- ProfSalon Widget -->
+  <% if (content.site.profsalonWidget) { %>
+    <%- content.site.profsalonWidget %>
+  <% } %>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner" style="display:none;">
+    <div class="cookie-banner__content">
+      <p>Наш сайт использует файлы куки (cookies) для улучшения работы сайта и анализа трафика. Подробнее — в <a href="/privacy" class="link-inline">Политике конфиденциальности</a>.</p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn" id="cookieAccept">Принять</button>
+        <button class="cookie-banner__btn cookie-banner__btn--ghost" id="cookieDecline">Отклонить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
   <script>
-    if (window.lucide) { lucide.createIcons(); }
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Cookie consent (accept / decline)
+    (function() {
+      var banner = document.getElementById('cookieBanner');
+      var btnAccept = document.getElementById('cookieAccept');
+      var btnDecline = document.getElementById('cookieDecline');
+      if (!localStorage.getItem('cookieConsent')) {
+        banner.style.display = 'flex';
+      }
+      function close(value) {
+        localStorage.setItem('cookieConsent', value);
+        banner.style.display = 'none';
+      }
+      btnAccept.addEventListener('click', function() { close('accepted'); });
+      btnDecline.addEventListener('click', function() { close('declined'); });
+    })();
   </script>
 </body>
 </html>

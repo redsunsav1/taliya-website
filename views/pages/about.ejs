@@ -1,47 +1,92 @@
 <% var pageTitle = 'О нас'; %>
 <%- include('../partials/header') %>
 
+<%
+  var aboutTitle = (content.about && content.about.title) || 'О компании';
+  var aboutSubtitle = (content.about && content.about.subtitle) || 'Ваш надёжный партнёр в мире красоты и здоровья';
+  var aboutImage = (content.about && content.about.image) || '/images/about.svg';
+  var aboutText = (content.about && content.about.text) || '';
+  var aboutValues = (content.about && content.about.values && Array.isArray(content.about.values)) ? content.about.values : [];
+  var galleryImages = (content.gallery && content.gallery.images && Array.isArray(content.gallery.images)) ? content.gallery.images : [];
+  var interiorImages = galleryImages.filter(function(g){ return (g.category || '').toLowerCase().indexOf('интерьер') >= 0; });
+  var salonImages = interiorImages.length ? interiorImages : galleryImages.slice(0, 6);
+  var paragraphs = aboutText.split('\n').map(function(p){ return p.trim(); }).filter(Boolean);
+  var firstParas = paragraphs.slice(0, Math.ceil(paragraphs.length / 2));
+  var restParas = paragraphs.slice(Math.ceil(paragraphs.length / 2));
+%>
+
 <main>
-  <!-- Герой-баннер -->
-  <section class="section section--hero">
-    <div class="container">
-      <div class="hero-content fade-in">
-        <h1 class="section__title">О компании</h1>
-        <p class="section__subtitle">Ваш надежный партнер в мире красоты и здоровья</p>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">
+        <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+        О нашем центре
+      </p>
+      <h1 class="page-hero__title"><%= aboutTitle %></h1>
+      <p class="page-hero__subtitle"><%= aboutSubtitle %></p>
+    </div>
+  </section>
+
+  <!-- ===== STATS STRIP ===== -->
+  <section class="about-stats">
+    <div class="about-stats__inner">
+      <div class="about-stat fade-in">
+        <span class="about-stat__num">5+</span>
+        <span class="about-stat__label">лет<br>на рынке</span>
+      </div>
+      <div class="about-stat fade-in delay-1">
+        <span class="about-stat__num">3000+</span>
+        <span class="about-stat__label">довольных<br>клиентов</span>
+      </div>
+      <div class="about-stat fade-in delay-2">
+        <span class="about-stat__num">15+</span>
+        <span class="about-stat__label">направлений<br>процедур</span>
+      </div>
+      <div class="about-stat fade-in delay-3">
+        <span class="about-stat__num">100%</span>
+        <span class="about-stat__label">медицинская<br>лицензия</span>
       </div>
     </div>
   </section>
 
-  <!-- Основной текст -->
-  <section class="section">
-    <div class="container">
-      <div class="content-block fade-in">
-        <h2 class="section__title">Наша история</h2>
-        <% if (content.about && content.about.text) { %>
-          <% var paragraphs = content.about.text.split('\n'); %>
-          <% paragraphs.forEach(function(para) { %>
-            <% if (para.trim()) { %>
-              <p class="text-block"><%= para.trim() %></p>
-            <% } %>
-          <% }); %>
-        <% } %>
+  <!-- ===== STORY: text left, image right ===== -->
+  <section class="section about-story">
+    <div class="about-split">
+      <div class="about-split__text fade-in">
+        <span class="about-split__eyebrow">Наша история</span>
+        <h2 class="about-split__title">Место, где красота рождается в деталях</h2>
+        <% firstParas.forEach(function(para) { %>
+          <p class="about-split__para"><%= para %></p>
+        <% }); %>
+      </div>
+      <div class="about-split__media fade-in delay-2">
+        <img src="<%= aboutImage %>" alt="<%= aboutTitle %>" loading="lazy">
+        <div class="about-split__badge">
+          <i data-lucide="shield-check" style="width:16px;height:16px;"></i>
+          <span>Медицинская лицензия</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Сетка ценностей -->
-  <% if (content.about && content.about.values && Array.isArray(content.about.values)) { %>
-    <section class="section section--values">
+  <!-- ===== VALUES ===== -->
+  <% if (aboutValues.length > 0) { %>
+    <section class="section about-values">
       <div class="container">
-        <h2 class="section__title fade-in">Наши ценности</h2>
+        <div class="section__heading fade-in">
+          <span class="section__eyebrow">Что нас отличает</span>
+          <h2 class="section__title">Наши ценности</h2>
+        </div>
         <div class="values-grid fade-in">
-          <% content.about.values.forEach(function(value) { %>
-            <div class="value-card">
+          <% aboutValues.forEach(function(value, i) { %>
+            <div class="value-card fade-in delay-<%= (i % 4) + 1 %>">
               <div class="value-card__icon">
-                <i class="lucide" data-icon="<%= value.icon || 'star' %>"></i>
+                <i data-lucide="<%= value.icon || 'star' %>"></i>
               </div>
               <h3 class="value-card__title"><%= value.title %></h3>
-              <p class="value-card__description"><%= value.description %></p>
+              <p class="value-card__description"><%= value.description || value.text || '' %></p>
             </div>
           <% }); %>
         </div>
@@ -49,30 +94,86 @@
     </section>
   <% } %>
 
-  <!-- Информация о компании -->
-  <section class="section section--info">
+  <!-- ===== STORY PART 2 ===== -->
+  <% if (restParas.length > 0) { %>
+    <section class="section about-story about-story--alt">
+      <div class="about-split about-split--reverse">
+        <div class="about-split__text fade-in">
+          <span class="about-split__eyebrow">Наш подход</span>
+          <h2 class="about-split__title">Технологии и забота в равных долях</h2>
+          <% restParas.forEach(function(para) { %>
+            <p class="about-split__para"><%= para %></p>
+          <% }); %>
+          <a href="/team" class="btn btn--ghost">
+            Познакомиться с командой
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <div class="about-split__media fade-in delay-2">
+          <% if (salonImages[0]) { %>
+            <img src="<%= salonImages[0].url %>" alt="<%= salonImages[0].alt || aboutTitle %>" loading="lazy">
+          <% } else { %>
+            <img src="<%= aboutImage %>" alt="<%= aboutTitle %>" loading="lazy">
+          <% } %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- ===== SALON GALLERY ===== -->
+  <% if (salonImages.length > 0) { %>
+    <section class="section about-gallery">
+      <div class="container">
+        <div class="section__heading fade-in">
+          <span class="section__eyebrow">Загляните к нам</span>
+          <h2 class="section__title">Наш салон</h2>
+          <p class="section__subtitle">Комфортные кабинеты, современное оборудование и внимание к атмосфере</p>
+        </div>
+        <div class="about-gallery__grid fade-in">
+          <% salonImages.forEach(function(img, i) { %>
+            <div class="about-gallery__item about-gallery__item--<%= (i % 5) %>">
+              <img src="<%= img.url %>" alt="<%= img.alt || 'Салон Талия' %>" loading="lazy">
+            </div>
+          <% }); %>
+        </div>
+        <div class="about-gallery__cta fade-in">
+          <a href="/gallery" class="btn btn--ghost">
+            Посмотреть всю галерею
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- ===== COMPANY INFO ===== -->
+  <section class="section about-info">
     <div class="container">
-      <div class="info-block fade-in">
+      <div class="section__heading fade-in">
+        <span class="section__eyebrow">Документы</span>
         <h2 class="section__title">Реквизиты компании</h2>
-        <div class="info-grid">
-          <div class="info-item">
-            <h3>Название</h3>
-            <p>ООО «МЕДИКА+»</p>
-          </div>
-          <div class="info-item">
-            <h3>Лицензия</h3>
-            <p><%= content.about && content.about.license ? content.about.license : 'Лицензия МЗ РФ' %></p>
-          </div>
-          <div class="info-item">
-            <h3>Сертификаты</h3>
-            <p><%= content.about && content.about.certificates ? content.about.certificates : 'Все специалисты имеют необходимые сертификаты' %></p>
-          </div>
+      </div>
+      <div class="about-info__grid fade-in">
+        <div class="about-info__card">
+          <div class="about-info__icon"><i data-lucide="building-2"></i></div>
+          <h3 class="about-info__title">Организация</h3>
+          <p class="about-info__text"><%= (content.site && content.site.company) || 'ООО «МЕДИКА+»' %></p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__icon"><i data-lucide="shield-check"></i></div>
+          <h3 class="about-info__title">Лицензия</h3>
+          <p class="about-info__text"><%= (content.about && content.about.license) || (content.site && content.site.license) || 'Лицензия МЗ РФ' %></p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__icon"><i data-lucide="award"></i></div>
+          <h3 class="about-info__title">Сертификаты</h3>
+          <p class="about-info__text"><%= (content.about && content.about.certificates) || 'Все специалисты имеют необходимые сертификаты' %></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Форма обратной связи -->
+  <!-- ===== CALLBACK FORM ===== -->
   <section class="section section--callback">
     <div class="container">
       <%- include('../partials/callback-form') %>

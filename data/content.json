@@ -16,7 +16,13 @@
     "license": "№ Л041-01162-50/00622568",
     "company": "ООО «МЕДИКА+»",
     "mapEmbed": "https://yandex.ru/map-widget/v1/?um=constructor%3A&source=constructorLink&ll=37.7647%2C55.9103&z=16&pt=37.7647%2C55.9103",
-    "logo": "/images/logo.svg"
+    "logo": "/images/logo.svg",
+    "inn": "5029270538",
+    "ogrn": "1225000067478",
+    "kpp": "502901001",
+    "legalAddress": "141008, Московская область, г. Мытищи, ул. Мира, д. 35, помещ. 7",
+    "licenseIssuer": "Министерством здравоохранения Московской области",
+    "licenseDate": "26.10.2022 (бессрочно)"
   },
   "hero": {
     "title": "Центр эстетики тела «Талия»",
@@ -144,7 +150,7 @@
           "description": ""
         },
         {
-          "name": "QT Plus филлер (1 мл)",
+          "name": "QT+ / QT Plus препарат контурной пластики (1 мл)",
           "category": "Контурная пластика",
           "duration": "45 мин",
           "price": "22 500 ₽",
@@ -160,7 +166,7 @@
           "description": ""
         },
         {
-          "name": "Repart Supreme Medium (1 мл)",
+          "name": "Repart Supreme Medium / супер медиум (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
           "price": "19 000 ₽",
@@ -168,7 +174,7 @@
           "description": ""
         },
         {
-          "name": "Repart Supreme Soft (1 мл)",
+          "name": "Repart Supreme Soft / супер мягкий Soft (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
           "price": "19 500 ₽",
@@ -216,7 +222,7 @@
           "description": ""
         },
         {
-          "name": "Belotero Intense (1 мл)",
+          "name": "Belotero Intense / интенсив (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
           "price": "24 800 ₽",
@@ -224,7 +230,7 @@
           "description": ""
         },
         {
-          "name": "Belotero Balance (1 мл)",
+          "name": "Belotero Balance / баланс (1 мл)",
           "category": "Контурная пластика",
           "duration": "",
           "price": "21 500 ₽",
@@ -283,7 +289,7 @@
           "category": "Контурная пластика"
         },
         {
-          "name": "Repart Supreme Hard (1 мл)",
+          "name": "Repart Supreme Hard / супер максимальный Hard (1 мл)",
           "duration": "",
           "price": "19 000 ₽",
           "pricePackage5": "",
@@ -321,7 +327,7 @@
         {
           "name": "Канюля",
           "duration": "",
-          "price": "1 200 ₽",
+          "price": "1 000 ₽",
           "pricePackage5": "",
           "pricePackage10": "",
           "description": "",
@@ -459,7 +465,7 @@
           "category": "Капельницы красоты"
         },
         {
-          "name": "APRILINE SWISS HAIR (2,5 мл)",
+          "name": "APRILINE Swiss мезотерапия кожи головы (2,5 мл)",
           "category": "Мезотерапия",
           "duration": "",
           "price": "9 100 ₽",
@@ -467,7 +473,7 @@
           "description": ""
         },
         {
-          "name": "Пепто хэйр комплекс (2,5 мл)",
+          "name": "Aurevitelli пепто комплекс для кожи головы (2,5 мл)",
           "category": "Мезотерапия",
           "duration": "",
           "price": "7 500 ₽",
@@ -531,7 +537,7 @@
           "description": ""
         },
         {
-          "name": "Мезотерапия Mesoline Clear (2,5 мл)",
+          "name": "Мезотерапия Mesoline для кожи с несовершенствами (2,5 мл)",
           "category": "Мезотерапия",
           "duration": "45 мин",
           "price": "6 400 ₽",
@@ -712,7 +718,7 @@
           "description": ""
         },
         {
-          "name": "ПДРН Эксперт Айз (1 мл / 5 мл) — экстралифтинг зоны глаз",
+          "name": "PDRN Эксперт зона глаз (1 мл / 5 мл)",
           "category": "Биоревитализация",
           "duration": "",
           "price": "5 500 / 9 500 ₽",
@@ -744,7 +750,7 @@
           "description": ""
         },
         {
-          "name": "Novacutan SBIO / YBIO (1,5 мл)",
+          "name": "Novacutan SBIO / YBIO (сбио / юбио)",
           "category": "Биоревитализация",
           "duration": "",
           "price": "22 500 ₽",
@@ -776,7 +782,7 @@
           "description": ""
         },
         {
-          "name": "Juvederm Volite",
+          "name": "Juvederm Volite / Волайт",
           "category": "Биоревитализация",
           "duration": "",
           "price": "26 500 ₽",
@@ -1224,7 +1230,7 @@
           "description": ""
         },
         {
-          "name": "Полимолочный лифтинг",
+          "name": "Подтяжка кожи препаратом полимолочной кислоты (PLLA) / полимолочный лифтинг",
           "category": "Векторный лифтинг",
           "duration": "",
           "price": "39 000 ₽",
@@ -1264,7 +1270,7 @@
           "description": ""
         },
         {
-          "name": "AestheFill (200 мг)",
+          "name": "Aestefill / AestheFill полимолочная кислота (PLLA)",
           "category": "Векторный лифтинг",
           "duration": "",
           "price": "46 000 ₽",
@@ -1973,13 +1979,6 @@
       "discount": "до -50%",
       "doctors": [
         {
-          "name": "Илья Владимирович",
-          "role": "Специалист по лечебным массажам",
-          "experience": "Стаж 25 лет",
-          "bio": "Мастер ручных техник массажа и авторских программ коррекции тела",
-          "photo": "/images/doctors/ilya.svg"
-        },
-        {
           "name": "Ольга Серик",
           "role": "Массажист, автор программы коррекции тела",
           "experience": "",
@@ -2102,7 +2101,7 @@
           "category": "Спецтехники / Авторские"
         },
         {
-          "name": "Массаж «Бразильская попка»",
+          "name": "Массаж «Бразильская попка» (1 час)",
           "duration": "60 мин",
           "price": "3 200 ₽",
           "pricePackage5": "2 900 ₽",
@@ -2111,7 +2110,7 @@
           "category": "Коррекция тела"
         },
         {
-          "name": "Массаж «Бразильская попка»",
+          "name": "Массаж «Бразильская попка» (30 минут)",
           "duration": "30 мин",
           "price": "2 300 ₽",
           "pricePackage5": "1 950 ₽",
@@ -2147,7 +2146,7 @@
           "category": "Коррекция тела"
         },
         {
-          "name": "Мадейра-терапия (методика коррекции тела с применением деревянных инструментов)",
+          "name": "МАДЕЙРА / мадейра-терапия",
           "duration": "60 мин",
           "price": "4 200 ₽",
           "pricePackage5": "3 900 ₽",
@@ -2291,7 +2290,7 @@
           "category": "Обёртывания и добавки"
         },
         {
-          "name": "Миофасциальный массаж",
+          "name": "Лечебный массаж спины миофасциальный (45 минут)",
           "duration": "45 мин",
           "price": "3 100 ₽",
           "pricePackage5": "2 800 ₽",
@@ -2300,7 +2299,7 @@
           "category": "Лечебный / Терапевтический"
         },
         {
-          "name": "Миофасциальный массаж",
+          "name": "Лечебный массаж спины миофасциальный (30 минут)",
           "duration": "30 мин",
           "price": "2 900 ₽",
           "pricePackage5": "2 700 ₽",
@@ -2318,7 +2317,7 @@
           "category": "Лечебный / Терапевтический"
         },
         {
-          "name": "Массаж спины с мануальными техниками",
+          "name": "Массаж спины с мануальными техниками (30 минут)",
           "duration": "30 мин",
           "price": "2 700 ₽",
           "pricePackage5": "2 300 ₽",
@@ -2381,7 +2380,7 @@
           "category": "Лечебный / Терапевтический"
         },
         {
-          "name": "Шейно-воротниковая зона + голова",
+          "name": "ШВЗ + голова (45 минут)",
           "duration": "45 мин",
           "price": "1 900 ₽",
           "pricePackage5": "",
@@ -3009,7 +3008,7 @@
           "description": ""
         },
         {
-          "name": "Гимнастика для лица / блейд (пластинчатый) массаж лица / скульптура лица",
+          "name": "Фейс-фитнес / боди-блейд массаж лица / скульптура лица (45 минут)",
           "category": "Массаж лица",
           "duration": "45 мин",
           "price": "3 500 ₽",
@@ -3061,7 +3060,7 @@
           "description": ""
         },
         {
-          "name": "Скульптура лица с пилингом и маской",
+          "name": "FACE SCULPTOR с пилингом и маской",
           "category": "Комплексные уходы",
           "duration": "50 мин",
           "price": "6 800 ₽",
@@ -3101,7 +3100,7 @@
           "description": ""
         },
         {
-          "name": "Уход «Фотошоп»",
+          "name": "Уход «Фотошоп» / ровный тон и сияние",
           "category": "Комплексные уходы",
           "duration": "60 мин",
           "price": "4 500 ₽",
@@ -3181,7 +3180,7 @@
           "description": ""
         },
         {
-          "name": "Лифтинг-уход: антивозрастная терапия",
+          "name": "Уход для зрелой кожи / лифтинг-уход",
           "category": "Уходы",
           "duration": "",
           "price": "5 800 ₽",
@@ -3237,7 +3236,7 @@
           "description": ""
         },
         {
-          "name": "Джет-пилинг (отдельно или к процедуре)",
+          "name": "Газожидкостный пилинг / джет-пилинг (отдельно или к процедуре)",
           "category": "Аппаратная косметология",
           "duration": "50 мин",
           "price": "1 700 ₽",
@@ -3253,7 +3252,7 @@
           "description": ""
         },
         {
-          "name": "Криомассаж",
+          "name": "Криомассаж / световая терапия ФДТ",
           "category": "Аппаратная косметология",
           "duration": "15 мин",
           "price": "1 500 ₽",
@@ -3531,6 +3530,15 @@
           "price": "29 000 ₽",
           "pricePackage5": "26 000 ₽",
           "description": ""
+        },
+        {
+          "name": "RF-фракционный лифтинг: лицо полностью / шея / декольте",
+          "category": "Фракционный радиоволновой лифтинг RF",
+          "description": "Позиция из прайса: отдельная зона лицо полностью / шея / декольте.",
+          "duration": "",
+          "price": "22 500 ₽",
+          "pricePackage5": "19 500 ₽",
+          "pricePackage10": ""
         },
         {
           "name": "Лицо полностью / шея / декольте",
@@ -4028,50 +4036,353 @@
       "items": [
         {
           "name": "Всё тело «Стандарт»",
-          "description": "Голени + колени, бикини (любое), подмышечные впадины + малая зона",
+          "category": "Комплексы",
+          "description": "Голени + колени, бикини классика, подмышечные впадины",
           "duration": "",
-          "price": "от 4 500 ₽",
-          "pricePackage5": "от 2 900 ₽",
+          "price": "4 500 ₽",
+          "pricePackage5": "2 900 ₽",
           "pricePackage10": ""
         },
         {
           "name": "Всё тело «Оптимал»",
-          "description": "Ноги полностью, бикини (любое), подмышечные впадины, руки до локтя",
+          "category": "Комплексы",
+          "description": "Ноги полностью, бикини любое, подмышечные впадины",
           "duration": "",
-          "price": "от 5 900 ₽",
-          "pricePackage5": "от 3 900 ₽",
+          "price": "5 900 ₽",
+          "pricePackage5": "3 900 ₽",
           "pricePackage10": ""
         },
         {
           "name": "Всё тело «Тотал»",
-          "description": "Руки чуть выше локтя, ноги полностью, бикини тотал, подмышечные впадины, зона на лице",
+          "category": "Комплексы",
+          "description": "Ноги полностью, руки полностью, бикини с межъягодичной областью, ягодицы, живот и подмышечные впадины",
           "duration": "",
-          "price": "от 7 900 ₽",
-          "pricePackage5": "от 5 900 ₽",
+          "price": "7 900 ₽",
+          "pricePackage5": "5 900 ₽",
           "pricePackage10": ""
         },
         {
-          "name": "Зоны мини",
-          "description": "Верхняя губа, подбородок, уши, нос, межбровные, лоб, щёки, височная область, бакенбарды, кисти рук, пальцы рук, подмышечные впадины, ореолы сосков, белая линия живота, межъягодичная зона, фаланги пальцев, колени, подъём ног",
+          "name": "Верхняя губа",
+          "category": "Зоны мини",
+          "description": "",
           "duration": "",
-          "price": "от 1 300 ₽",
-          "pricePackage5": "от 990 ₽",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
           "pricePackage10": ""
         },
         {
-          "name": "Зоны миди",
-          "description": "Руки до / выше локтя, плечи, грудь, декольте, живот, спина нижняя треть и крестец, ягодицы, классическое бикини, бёдра (передняя / внутренняя / задняя часть)",
+          "name": "Подбородок",
+          "category": "Зоны мини",
+          "description": "",
           "duration": "",
-          "price": "от 2 500 ₽",
-          "pricePackage5": "от 2 000 ₽",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
           "pricePackage10": ""
         },
         {
-          "name": "Зоны макси",
-          "description": "Лицо полностью, руки полностью, спина полностью, глубокое бикини, голени, бёдра полностью",
+          "name": "Уши",
+          "category": "Зоны мини",
+          "description": "",
           "duration": "",
-          "price": "от 2 900 ₽",
-          "pricePackage5": "от 2 200 ₽",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Нос",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Межбровье",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Височная область",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Бакенбарды",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Шея передняя и задняя часть",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Лоб",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Щёки",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Кисти рук",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Пальцы рук",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Подмышечные впадины",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Ореолы сосков",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Белая линия живота",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Межъягодичная зона",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Фаланги пальцев",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Колени",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Подъём ног",
+          "category": "Зоны мини",
+          "description": "",
+          "duration": "",
+          "price": "1 300 ₽",
+          "pricePackage5": "990 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Руки до локтя",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Руки выше локтя",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Плечи",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Грудь полностью",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Декольте",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Живот полностью",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Спина нижняя треть и крестец",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Ягодицы",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Классическое бикини",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Бёдра: передняя + внутренняя часть",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Бёдра: задняя + внутренняя часть",
+          "category": "Зоны миди",
+          "description": "",
+          "duration": "",
+          "price": "2 500 ₽",
+          "pricePackage5": "2 000 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Лицо полностью",
+          "category": "Зоны макси",
+          "description": "",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 200 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Руки полностью",
+          "category": "Зоны макси",
+          "description": "",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 200 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Спина полностью",
+          "category": "Зоны макси",
+          "description": "",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 200 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Глубокое бикини",
+          "category": "Зоны макси",
+          "description": "",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 200 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Голени",
+          "category": "Зоны макси",
+          "description": "",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 200 ₽",
+          "pricePackage10": ""
+        },
+        {
+          "name": "Бёдра полностью",
+          "category": "Зоны макси",
+          "description": "",
+          "duration": "",
+          "price": "2 900 ₽",
+          "pricePackage5": "2 200 ₽",
           "pricePackage10": ""
         }
       ]
@@ -4092,13 +4403,6 @@
           "experience": "Стаж более 10 лет",
           "bio": "Ведущий специалист естественных методик омоложения",
           "photo": "/images/doctors/elena.svg"
-        },
-        {
-          "name": "Илья Владимирович",
-          "role": "Специалист по лечебным массажам",
-          "experience": "Стаж 25 лет",
-          "bio": "Мастер ручных техник массажа и авторских программ коррекции тела",
-          "photo": "/images/doctors/ilya.svg"
         },
         {
           "name": "Голубина Марина Владимировна",
@@ -4199,6 +4503,15 @@
           "pricePackage10": "",
           "description": "",
           "category": "Курсы и абонементы"
+        },
+        {
+          "name": "Блокатор аппетита — дополнение к протоколу",
+          "category": "Курсы и абонементы",
+          "description": "Нитевой тредлифтинг как дополнение к протоколу коррекции.",
+          "duration": "",
+          "price": "11 900 ₽",
+          "pricePackage5": "",
+          "pricePackage10": ""
         }
       ]
     },
@@ -4576,6 +4889,10 @@
           "Инъекционная косметология",
           "Аппаратная косметология",
           "Трихология"
+        ],
+        "section": "Врачебная косметология",
+        "sections": [
+          "Врачебная косметология"
         ]
       },
       {
@@ -4588,18 +4905,10 @@
           "Эстетическая косметология",
           "Массаж лица",
           "Уходовые процедуры"
-        ]
-      },
-      {
-        "name": "Илья Владимирович",
-        "role": "Специалист по лечебным массажам",
-        "experience": "Стаж 25 лет",
-        "bio": "Мастер ручных техник массажа и авторских программ коррекции тела. Разработал уникальные методики восстановления и расслабления.",
-        "photo": "/images/doctors/ilya.svg",
-        "specialties": [
-          "Лечебный массаж",
-          "Коррекция тела",
-          "Мануальная терапия"
+        ],
+        "section": "Эстетическая косметология",
+        "sections": [
+          "Эстетическая косметология"
         ]
       },
       {
@@ -4612,6 +4921,10 @@
           "Коррекция тела",
           "Антицеллюлитный массаж",
           "Моделирование фигуры"
+        ],
+        "section": "Массаж и коррекция тела",
+        "sections": [
+          "Массаж и коррекция тела"
         ]
       },
       {
@@ -4624,8 +4937,18 @@
           "Подология",
           "Медицинский педикюр",
           "Ортопедические стельки"
+        ],
+        "section": "Подология и ногтевой сервис",
+        "sections": [
+          "Подология и ногтевой сервис"
         ]
       }
+    ],
+    "sections": [
+      "Врачебная косметология",
+      "Эстетическая косметология",
+      "Массаж и коррекция тела",
+      "Подология и ногтевой сервис"
     ]
   },
   "gallery": {

@@ -16,7 +16,7 @@
 
     .admin-sidebar {
       width: 260px;
-      background: linear-gradient(180deg, #596341 0%, #454d33 100%);
+      background: linear-gradient(180deg, #8FA86E 0%, #6E8A4F 100%);
       color: #fff;
       flex-shrink: 0;
       position: fixed;
@@ -43,7 +43,7 @@
     .admin-content { flex: 1; margin-left: 260px; padding: 32px 40px; min-height: 100vh; }
     .admin-content__header { margin-bottom: 32px; }
     .admin-content__breadcrumb { font-size: 0.78rem; color: #999; margin-bottom: 6px; }
-    .admin-content__breadcrumb a { color: #596341; text-decoration: none; }
+    .admin-content__breadcrumb a { color: #8FA86E; text-decoration: none; }
     .admin-content__breadcrumb a:hover { text-decoration: underline; }
     .admin-content__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #333; }
 
@@ -63,17 +63,17 @@
       font-size: 0.9rem; font-family: 'Montserrat', sans-serif; transition: border-color 0.2s;
     }
     .admin-form__input:focus, .admin-form__textarea:focus {
-      outline: none; border-color: #596341; box-shadow: 0 0 0 3px rgba(89,99,65,0.1);
+      outline: none; border-color: #8FA86E; box-shadow: 0 0 0 3px rgba(143,168,110,0.1);
     }
     .admin-form__textarea { min-height: 100px; resize: vertical; }
     .admin-form__hint { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
 
     .admin-form__btn {
-      display: inline-block; padding: 12px 32px; background: #596341; color: #fff;
+      display: inline-block; padding: 12px 32px; background: #8FA86E; color: #fff;
       border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
       font-family: 'Montserrat', sans-serif; cursor: pointer; transition: background 0.2s;
     }
-    .admin-form__btn:hover { background: #7a4f5c; }
+    .admin-form__btn:hover { background: #6E8A4F; }
 
     .admin-alert {
       padding: 12px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.88rem;
@@ -251,6 +251,12 @@
               <label class="admin-form__label" for="profsalon">ПрофСалон (Profsalon)</label>
               <input class="admin-form__input" type="url" id="profsalon" name="profsalon" value="<%= content.site.profsalon %>" placeholder="https://profsalon.org/...">
             </div>
+          </div>
+
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="maxChatUrl">Чат в Max (кнопка на всех услугах)</label>
+            <input class="admin-form__input" type="url" id="maxChatUrl" name="maxChatUrl" value="<%= content.site.maxChatUrl || '' %>" placeholder="https://max.ru/...">
+            <div class="admin-form__hint">Ссылка на чат в Max. Отображается как вторая кнопка на каждой странице услуги.</div>
           </div>
         </div>
 

@@ -1,359 +1,375 @@
 <% var pageTitle = ''; %>
 <%- include('../partials/header') %>
 
-  <!-- ===== HERO ===== -->
-  <% var hero = content.hero || {}; %>
-  <% var slides = hero.slides || []; %>
-  <% var utp = hero.utp || []; %>
-  <% var titleLines = hero.titleLines || []; %>
-  <% var italicWord = hero.titleItalicWord || ''; %>
-  <% var ctaPrimary = hero.ctaPrimary || { text: 'Получить консультацию', href: '#callback', icon: 'calendar-check' }; %>
-  <% var ctaSecondary = hero.ctaSecondary || { text: 'Узнать акции', href: '#promo', icon: 'sparkles' }; %>
-  <section class="hero" id="hero">
-    <span class="hero__bg-blob" data-parallax="0.15"></span>
-    <span class="hero__bg-blob hero__bg-blob--2" data-parallax="-0.12"></span>
+<!-- ===== SPLIT HERO ===== -->
+<%
+  var activePromos = (content.promotions && content.promotions.items ? content.promotions.items : []).filter(function(p) { return p.active !== false; });
+  var heroSlides = (content.hero.slides && content.hero.slides.length > 0) ? content.hero.slides : [{
+    title: content.hero.title,
+    subtitle: content.hero.subtitle,
+    promoText: content.hero.promoText,
+    promoNote: content.hero.promoNote,
+    image: content.hero.image
+  }];
+  var heroTotal = heroSlides.length;
+  var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+%>
+<section class="hero-split" id="hero" data-hero-slider>
+  <div class="hero-split__grid">
 
-    <div class="hero__grid">
-      <div class="hero__text">
-        <% if (hero.eyebrow) { %>
-        <span class="hero__eyebrow">
-          <span class="leaf-bullet"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <%= hero.eyebrow %> <% if (hero.brand) { %><b><%= hero.brand %></b><% } %>
+    <!-- Left: green card -->
+    <div class="hero-split__card fade-in">
+      <div class="hero-split__card-top">
+        <span class="hero-split__eyebrow">
+          <i data-lucide="leaf" style="width: 14px; height: 14px;"></i>
+          <%= content.site.tagline %>
         </span>
-        <% } %>
+      </div>
 
-        <% if (hero.brandline) { %>
-        <span class="hero__brandline"><%- hero.brandline.replace(/^(\S+)/, '<b>$1</b>') %></span>
-        <% } %>
+      <div class="hero-split__heading">
+        <h1 class="hero-split__brand">ТАЛИЯ</h1>
+        <p class="hero-split__subbrand">Мед. лицензия № Л041-01162-50/00622568</p>
+      </div>
 
-        <h1 class="hero__title">
-          <% if (titleLines.length) { titleLines.forEach(function(line){ %>
-            <span class="reveal-line"><span><%
-              if (italicWord && line.indexOf(italicWord) !== -1) {
-                var parts = line.split(italicWord);
-                %><%= parts[0] %><em class="hero__italic"><%= italicWord %></em><%= parts.slice(1).join(italicWord) %><%
-              } else { %><%= line %><% }
-            %></span></span>
-          <% }); } else { %>
-            <span class="reveal-line"><span><%= hero.title || 'Центр эстетики тела «Талия»' %></span></span>
+      <p class="hero-split__positioning"><%= content.hero.subtitle %></p>
+
+      <ul class="hero-utp">
+        <li><span class="hero-utp__dot"></span>Аппаратная косметология</li>
+        <li><span class="hero-utp__dot"></span>Инъекции красоты</li>
+        <li><span class="hero-utp__dot"></span>Лечебные массажи</li>
+        <li><span class="hero-utp__dot"></span>Программы коррекции фигуры</li>
+        <li><span class="hero-utp__dot"></span>Подология и орто-стельки</li>
+        <li><span class="hero-utp__dot"></span>Маникюр и педикюр</li>
+      </ul>
+
+      <div class="hero-split__slides-text" data-hero-text-track>
+        <% heroSlides.forEach(function(slide, i) { %>
+          <div class="hero-split__slide-text<%= i === 0 ? ' is-active' : '' %>" data-hero-slide-text="<%= i %>">
+            <% if (slide.promoText) { %>
+              <div class="hero-split__promo">
+                <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                <span><%= slide.promoText %></span>
+              </div>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+
+      <div class="hero-split__cta">
+        <a href="#callback" class="btn btn--accent btn--lg">
+          <i data-lucide="calendar-check"></i>
+          Записаться
+        </a>
+        <% if (activePromos && activePromos.length > 0) { %>
+          <a href="#promoCarousel" class="btn btn--ghost-light btn--lg">
+            <i data-lucide="tag"></i>
+            <span>Узнать акции</span>
+          </a>
+        <% } else { %>
+          <a href="/promotions" class="btn btn--ghost-light btn--lg">
+            <i data-lucide="tag"></i>
+            <span>Узнать акции</span>
+          </a>
+        <% } %>
+      </div>
+
+      <div class="hero-social hero-social--icons">
+        <% if (content.site.vk) { %>
+          <a href="<%= content.site.vk %>" target="_blank" rel="noopener" class="hero-social__btn" aria-label="ВКонтакте" title="ВКонтакте">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.4 5.5h3.3c.18 1.78 1 4.06 2.55 5.5V5.5H11v3.7c1.55-.05 3.05-2.13 3.55-3.7h3.1c-.6 2.05-2.05 4.1-3.4 5 1.55.7 3.25 2.5 3.95 5h-3.45c-.6-1.85-2-3.3-3.75-3.3v3.3h-.4C5.85 15.5 2.7 11.85 2.4 5.5z"/></svg>
+          </a>
+        <% } %>
+        <% if (content.site.max) { %>
+          <a href="<%= content.site.max %>" target="_blank" rel="noopener" class="hero-social__btn" aria-label="MAX мессенджер" title="MAX">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 16V8.5l5 5 5-5V16"/></svg>
+          </a>
+        <% } %>
+      </div>
+
+      <div class="hero-split__notes" data-hero-notes>
+        <% heroSlides.forEach(function(slide, i) { %>
+          <% if (slide.promoNote) { %>
+            <p class="hero-split__note<%= i === 0 ? ' is-active' : '' %>" data-hero-slide-note="<%= i %>"><%= slide.promoNote %></p>
+          <% } else { %>
+            <p class="hero-split__note<%= i === 0 ? ' is-active' : '' %>" data-hero-slide-note="<%= i %>">&nbsp;</p>
           <% } %>
-        </h1>
-
-        <% if (hero.lead) { %>
-          <p class="hero__lead"><%= hero.lead %></p>
-        <% } else if (hero.subtitle) { %>
-          <p class="hero__lead"><%= hero.subtitle %></p>
-        <% } %>
-
-        <% if (utp.length) { %>
-        <ul class="hero__utp">
-          <% utp.forEach(function(u){ %>
-            <li><span class="hero__utp-leaf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M17.2 2.9c-7.4-.1-13.3 5-14.3 13.2 8.2-.8 13.4-5.8 14.3-13.2zM5.1 15.6c2.7-4.7 6.5-7.7 10.6-9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><%= u %></li>
-          <% }); %>
-        </ul>
-        <% } %>
-
-        <div class="hero__cta">
-          <span class="magnetic"><a href="<%= ctaPrimary.href %>" class="btn btn--primary btn--lg"><i data-lucide="<%= ctaPrimary.icon || 'calendar-check' %>"></i> <%= ctaPrimary.text %></a></span>
-          <span class="magnetic"><a href="<%= ctaSecondary.href %>" class="btn btn--ghost btn--lg"><i data-lucide="<%= ctaSecondary.icon || 'sparkles' %>"></i> <%= ctaSecondary.text %></a></span>
-        </div>
+        <% }); %>
       </div>
 
-      <div class="hero__media" data-hero-media>
-        <div class="hero__progress" aria-hidden="true"><div class="hero__progress-bar" data-hero-progress></div></div>
+      <p class="med-disclaimer med-disclaimer--dark">Имеются противопоказания. Необходима консультация специалиста.</p>
 
-        <div class="hero__slides">
-          <% if (slides.length) { slides.forEach(function(sl, i){ %>
-            <article class="hero__slide<%= i === 0 ? ' is-active' : '' %>" data-hero-slide>
-              <% if (sl.image) { %><img src="<%= sl.image %>" alt=""><% } %>
-              <div class="hero__slide-overlay"></div>
-              <% if (sl.chipText) { %>
-                <span class="hero__slide-chip"><i data-lucide="<%= sl.chipIcon || 'sparkles' %>"></i> <%= sl.chipText %></span>
-              <% } %>
-              <% if (sl.badgeLabel || sl.badgeValue) { %>
-                <div class="hero__slide-badge">
-                  <span class="hero__slide-badge-icon"><i data-lucide="<%= sl.badgeIcon || 'percent' %>"></i></span>
-                  <span>
-                    <% if (sl.badgeLabel) { %><span class="hero__slide-badge-label"><%= sl.badgeLabel %></span><% } %>
-                    <% if (sl.badgeValue) { %><span class="hero__slide-badge-value"><%= sl.badgeValue %></span><% } %>
-                  </span>
-                </div>
-              <% } %>
-            </article>
-          <% }); } %>
-        </div>
-
-        <% if (slides.length > 1) { %>
-        <div class="hero__counter" aria-hidden="true">
-          <span class="hero__counter-num" id="heroCounter">01</span>
-          <span class="hero__counter-sep">/</span>
-          <span class="hero__counter-total" id="heroCounterTotal">0<%= slides.length %></span>
-        </div>
-        <div class="hero__arrows">
-          <button class="hero__arrow" id="heroPrev" aria-label="Назад"><i data-lucide="arrow-left"></i></button>
-          <button class="hero__arrow" id="heroNext" aria-label="Вперёд"><i data-lucide="arrow-right"></i></button>
-        </div>
-        <% } %>
+      <% if (heroTotal > 1) { %>
+      <div class="hero-split__arrows">
+        <button type="button" class="hero-split__arrow" data-hero-prev aria-label="Предыдущий слайд">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <button type="button" class="hero-split__arrow" data-hero-next aria-label="Следующий слайд">
+          <i data-lucide="arrow-right"></i>
+        </button>
       </div>
+      <% } %>
 
-      <div class="hero__meta">
-        <% if (content.site.address) { %>
-          <span class="hero__meta-item"><i data-lucide="map-pin"></i><%= content.site.address %></span>
-        <% } %>
-        <% if (content.site.hours) { %>
-          <span class="hero__meta-dot"></span>
-          <span class="hero__meta-item"><i data-lucide="clock"></i><%= content.site.hours %></span>
-        <% } %>
-        <% if (content.site.license) { %>
-          <span class="hero__meta-dot"></span>
-          <span class="hero__meta-item"><i data-lucide="shield-check"></i>Лицензия <%= content.site.license %></span>
+      <div class="hero-split__meta">
+        <div class="hero-split__meta-item">
+          <span class="hero-split__meta-label">Адрес</span>
+          <span class="hero-split__meta-value"><%= content.site.address %></span>
+        </div>
+        <div class="hero-split__meta-item">
+          <span class="hero-split__meta-label">Режим</span>
+          <span class="hero-split__meta-value"><%= content.site.hours %></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: photo -->
+    <div class="hero-split__media fade-in delay-2">
+      <div class="hero-split__media-inner" data-hero-media-track>
+        <% heroSlides.forEach(function(slide, i) { %>
+          <img src="<%= slide.image %>" alt="<%= slide.title || content.site.name %>" class="hero-split__image<%= i === 0 ? ' is-active' : '' %>" data-hero-slide-image="<%= i %>">
+        <% }); %>
+        <div class="hero-split__tag">
+          <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
+          <span>Медицинская лицензия</span>
+        </div>
+        <% if (heroTotal > 1) { %>
+        <div class="hero-split__media-counter" aria-hidden="true">
+          <span class="hero-split__media-counter-num" data-hero-counter>01</span>
+          <span class="hero-split__media-counter-sep">/</span>
+          <span class="hero-split__media-counter-total"><%= pad(heroTotal) %></span>
+        </div>
         <% } %>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== TRUST MARQUEE ===== -->
-  <% var trust = content.trust || {}; %>
-  <% if (trust.enabled && trust.items && trust.items.length) { %>
-  <section class="trust">
-    <div class="trust__track">
-      <% for (var loop = 0; loop < 2; loop++) { %>
-        <% trust.items.forEach(function(t){ %>
-          <span class="trust__item"><i data-lucide="<%= t.icon || 'sparkles' %>"></i> <%= t.text %></span><span class="trust__dot"></span>
-        <% }); %>
+
+<!-- ===== PROMO CAROUSEL ===== -->
+<% if (activePromos.length > 0) { %>
+<section class="promo-carousel" id="promoCarousel" aria-label="Специальные предложения">
+  <div class="promo-carousel__inner">
+    <div class="promo-carousel__header">
+      <div class="promo-carousel__heading">
+        <span class="eyebrow">Специальные предложения</span>
+        <h2 class="promo-carousel__title"><%= content.promotions.title || 'Акции и выгодные предложения' %></h2>
+        <% if (content.promotions && content.promotions.subtitle) { %>
+          <p class="promo-carousel__subtitle"><%= content.promotions.subtitle %></p>
+        <% } %>
+      </div>
+      <% if (activePromos.length > 1) { %>
+      <div class="promo-carousel__controls">
+        <button type="button" class="promo-carousel__btn" data-promo-prev aria-label="Предыдущая акция">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <button type="button" class="promo-carousel__btn" data-promo-next aria-label="Следующая акция">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
       <% } %>
     </div>
-  </section>
-  <% } %>
 
-  <!-- ===== BENEFITS ===== -->
-  <% if (content.benefits && content.benefits.length) { %>
-  <section class="benefits section">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Преимущества</span>
-        <h2 class="section__title">Почему нам доверяют</h2>
-        <p class="section__subtitle">Мы создаём пространство, где забота о себе становится удовольствием — с вниманием к деталям и уважением ко времени.</p>
-      </div>
-
-      <div class="benefits__grid reveal reveal-stagger">
-        <% content.benefits.forEach(function(b, i){ %>
-          <article class="benefit">
-            <span class="benefit__num"><%= (i+1).toString().padStart(2,'0') %></span>
-            <span class="benefit__icon"><i data-lucide="<%= b.icon || 'star' %>"></i></span>
-            <h3 class="benefit__title"><%= b.title %></h3>
-            <p class="benefit__text"><%= b.text %></p>
-          </article>
+    <div class="promo-carousel__viewport">
+      <div class="promo-carousel__track" data-promo-track>
+        <% activePromos.forEach(function(promo, i) { %>
+          <div class="promo-slide" data-promo-slide>
+            <article class="promo-card">
+              <div class="promo-card__media">
+                <% if (promo.image) { %>
+                  <img src="<%= promo.image %>" alt="<%= promo.title %>" class="promo-card__image">
+                <% } else { %>
+                  <div class="promo-card__icon">
+                    <i data-lucide="<%= promo.icon || 'sparkles' %>"></i>
+                  </div>
+                <% } %>
+              </div>
+              <div class="promo-card__body">
+                <% if (promo.badge) { %>
+                  <span class="promo-card__badge"><%= promo.badge %></span>
+                <% } %>
+                <h3 class="promo-card__title"><%= promo.title %></h3>
+                <p class="promo-card__description"><%= promo.description %></p>
+                <a href="<%= promo.link || content.site.profsalon || '/promotions' %>" <%= promo.link && promo.link.indexOf('http') === 0 ? 'target="_blank" rel="noopener"' : '' %> class="btn btn--primary btn--sm" style="align-self: flex-start; margin-top: var(--space-sm);">
+                  <i data-lucide="calendar-check"></i>
+                  Воспользоваться
+                </a>
+              </div>
+            </article>
+          </div>
         <% }); %>
       </div>
     </div>
-  </section>
-  <% } %>
 
-  <!-- ===== SERVICES ===== -->
-  <% if (content.services && content.services.length) { %>
-  <section class="services section" id="services">
-    <div class="services__head reveal">
-      <div class="services__head-text">
-        <span class="eyebrow">Что мы предлагаем</span>
-        <h2 class="section__title">Стоимость и перечень услуг</h2>
-        <p class="section__subtitle">Широкий спектр процедур для вашей красоты и здоровья — от инъекций красоты до деликатной подологии.</p>
-      </div>
-      <div class="services__head-cta">
-        <span class="magnetic"><a href="#callback" class="btn btn--ghost btn--sm">Записаться <i data-lucide="arrow-up-right"></i></a></span>
-      </div>
+    <% if (activePromos.length > 1) { %>
+    <div class="promo-carousel__dots" data-promo-dots>
+      <% activePromos.forEach(function(_, i) { %>
+        <button type="button" class="promo-carousel__dot<%= i === 0 ? ' promo-carousel__dot--active' : '' %>" data-promo-dot="<%= i %>" aria-label="Слайд <%= i + 1 %>"></button>
+      <% }); %>
+    </div>
+    <% } %>
+  </div>
+</section>
+<% } %>
+
+
+<!-- ===== BENEFITS SECTION ===== -->
+<section class="benefits section" id="benefits">
+  <div class="container">
+    <div class="section__header">
+      <span class="eyebrow fade-in">Преимущества</span>
+      <h2 class="section__title fade-in">Почему нам доверяют</h2>
+      <p class="section__subtitle fade-in">Мы создаём пространство, где забота о себе становится удовольствием</p>
     </div>
 
-    <div class="services__grid reveal reveal-stagger">
-      <% content.services.slice(0, 9).forEach(function(s){ %>
-        <a href="/service/<%= s.slug %>" class="service">
-          <div class="service__media">
-            <% if (s.discount) { %><span class="service__badge"><%= s.discount %></span><% } %>
-            <img src="<%= s.image || ('/images/services/' + s.slug + '.svg') %>" alt="<%= s.name %>">
+    <div class="benefits__grid">
+      <% content.benefits.forEach(function(b, i) { %>
+        <div class="benefit-card fade-in delay-<%= Math.min(i + 1, 6) %>">
+          <div class="benefit-card__icon">
+            <i data-lucide="<%= b.icon %>"></i>
           </div>
-          <div class="service__body">
-            <h3 class="service__name"><%= s.shortName || s.name %></h3>
-            <p class="service__brief"><%= s.brief || s.description || '' %></p>
-            <div class="service__bottom">
-              <span class="service__more">Подробнее</span>
-              <span class="service__arrow"><i data-lucide="arrow-right"></i></span>
+          <div class="benefit-card__body">
+            <h3 class="benefit-card__title"><%= b.title %></h3>
+            <p class="benefit-card__text"><%= b.text %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SERVICES SECTION ===== -->
+<section class="services-section section" id="services">
+  <div class="container">
+    <div class="section__header">
+      <span class="eyebrow fade-in">Что мы предлагаем</span>
+      <h2 class="section__title fade-in">Стоимость и перечень услуг</h2>
+      <p class="section__subtitle fade-in">Широкий спектр процедур для вашей красоты и здоровья</p>
+    </div>
+
+    <div class="services__grid">
+      <% content.services.forEach(function(s, i) { %>
+        <a href="/service/<%= s.slug %>" class="service-card fade-in delay-<%= Math.min(i + 1, 6) %>">
+          <div class="service-card__image-wrap">
+            <img
+              data-src="<%= s.image %>"
+              src="<%= s.image %>"
+              alt="<%= s.name %>"
+              class="service-card__image"
+              loading="lazy"
+            >
+          </div>
+          <div class="service-card__body">
+            <% if (s.offerBadge || s.discount) { %>
+              <span class="service-card__discount"><%= s.offerBadge || s.discount %></span>
+            <% } %>
+            <h3 class="service-card__name"><%= s.shortName || s.name %></h3>
+            <p class="service-card__brief"><%= s.description ? s.description.substring(0, 110) + (s.description.length > 110 ? '...' : '') : '' %></p>
+            <div class="service-card__bottom">
+              <span class="service-card__more">Подробнее</span>
+              <span class="service-card__arrow">
+                <i data-lucide="arrow-right"></i>
+              </span>
             </div>
           </div>
         </a>
       <% }); %>
     </div>
-  </section>
-  <% } %>
+  </div>
+</section>
 
-  <!-- ===== STATS ===== -->
-  <section class="stats">
-    <div class="container">
-      <div class="stats__grid reveal reveal-stagger">
-        <div class="stat">
-          <div class="stat__value" data-count="7" data-suffix="+">0</div>
-          <div class="stat__label">Лет заботы</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value" data-count="12400" data-suffix="+">0</div>
-          <div class="stat__label">Счастливых клиентов</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value" data-count="38">0</div>
-          <div class="stat__label">Видов процедур</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value" data-count="5" data-suffix=".0">0</div>
-          <div class="stat__label">Рейтинг в отзывах</div>
-        </div>
+
+<!-- ===== ABOUT / CTA SECTION ===== -->
+<section class="about-cta section" id="about">
+  <div class="container">
+    <div class="about-cta__panel fade-in">
+      <span class="eyebrow eyebrow--light">О центре</span>
+      <h2 class="section__title section__title--light">Работаем с любовью, предвосхищая ожидания</h2>
+      <p class="about-cta__text">
+        <%= content.site.name %> — это центр эстетики тела и косметологии, где каждая процедура
+        выполняется с вниманием к деталям. Наши специалисты подбирают индивидуальные программы,
+        учитывая особенности каждого клиента, чтобы результат превосходил ожидания.
+      </p>
+      <div class="about-cta__chip">
+        <i data-lucide="shield-check"></i>
+        <span>Только оригинальные препараты</span>
+      </div>
+      <div class="about-cta__actions">
+        <a href="<%= content.site.profsalon %>" target="_blank" rel="noopener" class="btn btn--accent btn--lg">
+          <i data-lucide="calendar-check"></i>
+          Записаться на процедуру
+        </a>
+        <a href="/about" class="btn btn--ghost-light btn--lg">
+          О нас подробнее
+          <i data-lucide="arrow-right"></i>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== ABOUT / CTA ===== -->
-  <% var about = content.about || {}; %>
-  <section class="about-cta" id="about">
-    <div class="about-cta__panel spotlight-host">
-      <span class="spotlight" id="spotlight"></span>
-      <span class="about-cta__blob about-cta__blob--1"></span>
-      <span class="about-cta__blob about-cta__blob--2"></span>
 
-      <div class="about-cta__content reveal">
-        <span class="eyebrow eyebrow--light">О центре</span>
-        <h2 class="about-cta__title"><%= about.title || 'Не просто процедуры — бережный путь к форме, в которой вам спокойно.' %></h2>
-        <p class="about-cta__text"><%= about.text || about.subtitle || '«Талия» — центр эстетики тела и косметологии, где каждая процедура выполняется с вниманием к деталям.' %></p>
-        <div class="about-cta__chips">
-          <span class="about-cta__chip"><i data-lucide="shield-check"></i> Только оригинальные препараты</span>
-          <span class="about-cta__chip"><i data-lucide="leaf"></i> Натуральный результат</span>
-          <span class="about-cta__chip"><i data-lucide="heart"></i> С заботой о вас</span>
-        </div>
-        <div class="about-cta__actions">
-          <span class="magnetic"><a href="#callback" class="btn btn--accent btn--lg"><i data-lucide="calendar-check"></i> Записаться на процедуру</a></span>
-          <span class="magnetic"><a href="/about" class="btn btn--ghost-light btn--lg">О нас подробнее <i data-lucide="arrow-right"></i></a></span>
-        </div>
-      </div>
-
-      <div class="about-cta__aside reveal">
-        <div class="about-cta__card">
-          <h3 class="about-cta__card-title">Первый визит</h3>
-          <p class="about-cta__card-text">Бесплатная консультация врача-косметолога и индивидуальный план процедур.</p>
-          <div class="about-cta__card-row"><span class="about-cta__card-k">Длительность</span><span class="about-cta__card-v">45–60 мин</span></div>
-          <div class="about-cta__card-row"><span class="about-cta__card-k">Формат</span><span class="about-cta__card-v">Очно в центре</span></div>
-          <div class="about-cta__card-row"><span class="about-cta__card-k">Стоимость</span><span class="about-cta__card-v">Бесплатно*</span></div>
-        </div>
-        <div class="about-cta__card">
-          <h3 class="about-cta__card-title">График и локация</h3>
-          <div class="about-cta__card-row"><span class="about-cta__card-k">Адрес</span><span class="about-cta__card-v" style="font-size:13px;"><%= content.site.address %></span></div>
-          <div class="about-cta__card-row"><span class="about-cta__card-k">Часы</span><span class="about-cta__card-v" style="font-size:13px;"><%= content.site.hours %></span></div>
-          <div class="about-cta__card-row"><span class="about-cta__card-k">Без выходных</span><span class="about-cta__card-v" style="font-size:13px;">7 / 7</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROMO ===== -->
-  <% var promoItems = (content.promotions && content.promotions.items) ? content.promotions.items.slice(0, 3) : []; %>
-  <% if (promoItems.length) { %>
-  <section class="promo section" id="promo">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Специальное предложение</span>
-        <h2 class="section__title">Акции и выгодные предложения</h2>
-        <p class="section__subtitle">Мы регулярно обновляем программы — и готовы подсветить для вас самое актуальное.</p>
-      </div>
-
-      <div class="promo__grid reveal reveal-stagger">
-        <% promoItems.forEach(function(pr){ %>
-          <div class="promo__card">
-            <div class="promo__media">
-              <span class="promo__media-label"><%= pr.discount || pr.code || '' %></span>
-              <span class="promo__media-glyph"><i data-lucide="sparkles"></i></span>
-            </div>
-            <div class="promo__body">
-              <% if (pr.badge) { %><span class="promo__badge"><%= pr.badge %></span><% } %>
-              <h3 class="promo__title"><%= pr.title %></h3>
-              <p class="promo__desc"><%= pr.description %></p>
-              <div class="promo__actions">
-                <span class="magnetic"><a href="<%= content.site.profsalon || '#callback' %>" target="_blank" rel="noopener" class="btn btn--primary"><i data-lucide="calendar-check"></i> Воспользоваться</a></span>
-              </div>
-            </div>
-          </div>
-        <% }); %>
-      </div>
-    </div>
-  </section>
-  <% } %>
-
-  <!-- ===== CONTACTS ===== -->
-  <section class="contacts section" id="contacts">
-    <div class="section__head reveal">
-      <span class="eyebrow">Контакты</span>
-      <h2 class="section__title">Как нас найти</h2>
-      <p class="section__subtitle">Будем рады видеть вас в нашем центре.</p>
+<!-- ===== CONTACT PREVIEW SECTION ===== -->
+<section class="contact-preview section" id="contact-preview">
+  <div class="container">
+    <div class="section__header">
+      <span class="eyebrow fade-in">Контакты</span>
+      <h2 class="section__title fade-in">Как нас найти</h2>
+      <p class="section__subtitle fade-in">Будем рады видеть вас в нашем центре</p>
     </div>
 
-    <div class="contacts__grid reveal reveal-stagger">
-      <div class="contact">
-        <span class="contact__icon"><i data-lucide="map-pin"></i></span>
-        <div>
-          <p class="contact__label">Адрес</p>
-          <p class="contact__value"><%= content.site.address %></p>
+    <div class="contact-preview__grid fade-in">
+
+      <div class="contact-card">
+        <div class="contact-card__icon">
+          <i data-lucide="map-pin"></i>
+        </div>
+        <div class="contact-card__body">
+          <p class="contact-card__label">Адрес</p>
+          <p class="contact-card__value"><%= content.site.address %></p>
         </div>
       </div>
-      <div class="contact">
-        <span class="contact__icon"><i data-lucide="phone"></i></span>
-        <div>
-          <p class="contact__label">Телефон</p>
-          <p class="contact__value">
+
+      <div class="contact-card">
+        <div class="contact-card__icon">
+          <i data-lucide="phone"></i>
+        </div>
+        <div class="contact-card__body">
+          <p class="contact-card__label">Телефон</p>
+          <p class="contact-card__value">
             <a href="tel:<%= content.site.phoneRaw %>"><%= content.site.phone %></a>
-            <% if (content.site.phone2) { %><br><a href="tel:<%= content.site.phoneRaw2 %>"><%= content.site.phone2 %></a><% } %>
+            <% if (content.site.phone2) { %>
+              <br><a href="tel:<%= content.site.phoneRaw2 %>"><%= content.site.phone2 %></a>
+            <% } %>
           </p>
         </div>
       </div>
-      <div class="contact">
-        <span class="contact__icon"><i data-lucide="clock"></i></span>
-        <div>
-          <p class="contact__label">Часы работы</p>
-          <p class="contact__value"><%= content.site.hours %></p>
+
+      <div class="contact-card">
+        <div class="contact-card__icon">
+          <i data-lucide="clock"></i>
+        </div>
+        <div class="contact-card__body">
+          <p class="contact-card__label">Часы работы</p>
+          <p class="contact-card__value"><%= content.site.hours %></p>
         </div>
       </div>
+
     </div>
 
-    <div class="contacts__footer reveal">
-      <div class="contacts__rating">
-        <i data-lucide="star"></i>
-        5.0 — Отличное место
+    <div class="contact-preview__footer fade-in">
+      <div class="contact-preview__rating">
+        <i data-lucide="star" style="width: 16px; height: 16px;"></i>
+        <span>5.0 — Отличное место</span>
       </div>
-      <span class="magnetic"><a href="/contacts" class="btn btn--primary btn--sm"><i data-lucide="map"></i> Контакты и карта</a></span>
+      <a href="/contacts" class="btn btn--primary">
+        <i data-lucide="map"></i>
+        Контакты и карта
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== CALLBACK ===== -->
-  <section class="callback" id="callback">
-    <div class="container">
-      <div class="callback__card reveal">
-        <span class="eyebrow" style="justify-content:center;">Запись</span>
-        <h2 class="callback__title">Запишитесь на консультацию</h2>
-        <p class="callback__subtitle">Наши специалисты ответят на все ваши вопросы — перезвоним за 10 минут.</p>
-        <form class="callback__form" method="POST" action="/callback">
-          <input type="hidden" name="source" value="home">
-          <input class="callback__input" type="text" name="name" placeholder="Ваше имя *" required minlength="2">
-          <input class="callback__input" type="tel" name="phone" placeholder="+7 (___) ___-__-__ *" required>
-          <input class="callback__input" type="email" name="email" placeholder="Адрес электронной почты">
-          <select class="callback__input callback__select" name="service">
-            <option value="">Интересующая услуга</option>
-            <% (content.services || []).forEach(function(s){ %>
-              <option value="<%= s.slug %>"><%= s.shortName || s.name %></option>
-            <% }); %>
-          </select>
-          <textarea class="callback__input callback__textarea" name="message" rows="3" placeholder="Сообщение — расскажите о пожеланиях" maxlength="1000"></textarea>
-          <label class="callback__consent">
-            <input type="checkbox" name="consent" required>
-            <span>Нажимая «Отправить», я даю согласие на обработку персональных данных согласно <a href="/privacy" style="text-decoration:underline;">Политике конфиденциальности</a>.</span>
-          </label>
-          <span class="magnetic callback__submit-wrap"><button type="submit" class="btn btn--primary btn--lg"><i data-lucide="send"></i> Отправить</button></span>
-        </form>
-      </div>
-    </div>
-  </section>
+<!-- ===== CALLBACK FORM ===== -->
+<%- include('../partials/callback-form') %>
 
 <%- include('../partials/footer') %>
