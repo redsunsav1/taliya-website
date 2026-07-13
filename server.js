@@ -35,8 +35,16 @@ app.use((req, res, next) => {
 });
 
 // Static files
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+// HTML — всегда перепроверять на сервере (защита от отравленного кэша),
+// статика — кэшировать сутки (версии в query решают обновления)
+app.use((req, res, next) => {
+  if (!/\.(css|js|woff2?|ttf|jpe?g|png|gif|webp|svg|ico)$/i.test(req.path)) {
+    res.set('Cache-Control', 'no-cache');
+  }
+  next();
+});
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads'), { maxAge: '1d' }));
 
 // Body parsing
 app.use(express.urlencoded({ extended: true }));
