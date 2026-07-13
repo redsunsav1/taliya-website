@@ -1839,10 +1839,16 @@ body.has-sidebar {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out);
+  /* Страховка: если JS не сработал, контент всё равно проявится через 2.5s */
+  animation: fadeInFallback 900ms var(--ease-out) 2.5s forwards;
 }
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+  animation: none;
+}
+@keyframes fadeInFallback {
+  to { opacity: 1; transform: translateY(0); }
 }
 .service-price.fade-in {
   opacity: 1;

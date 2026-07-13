@@ -149,8 +149,10 @@
   <!-- Scripts -->
   <script src="/js/main.js"></script>
   <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
+    // Initialize Lucide icons (script is deferred — wait for it)
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide) { try { lucide.createIcons(); } catch (e) {} }
+    });
 
     // Cookie consent (accept / decline)
     (function() {
