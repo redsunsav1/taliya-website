@@ -155,17 +155,25 @@
       if (window.lucide) { try { lucide.createIcons(); } catch (e) {} }
     });
 
-    // Cookie consent (accept / decline)
+    // Уведомление о куки. Ключ версионный: при изменении текста уведомления
+    // поднимаем версию, чтобы посетители увидели новую редакцию и ответили заново.
     (function() {
+      var STORAGE_KEY = 'tlyNoticeAck.v2';
       var banner = document.getElementById('tlyNotice');
       var btnAccept = document.getElementById('tlyNoticeYes');
       var btnDecline = document.getElementById('tlyNoticeNo');
-      if (!localStorage.getItem('cookieConsent')) {
-        banner.style.display = 'flex';
+      if (!banner || !btnAccept || !btnDecline) return;
+
+      var answered;
+      try { answered = localStorage.getItem(STORAGE_KEY); } catch (e) { answered = null; }
+
+      if (!answered) {
+        // important — чтобы косметические фильтры блокировщиков не перебили показ
+        banner.style.setProperty('display', 'flex', 'important');
       }
       function close(value) {
-        localStorage.setItem('cookieConsent', value);
-        banner.style.display = 'none';
+        try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
+        banner.style.setProperty('display', 'none', 'important');
       }
       btnAccept.addEventListener('click', function() { close('accepted'); });
       btnDecline.addEventListener('click', function() { close('declined'); });
