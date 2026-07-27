@@ -373,9 +373,41 @@ app.get('/offer', (req, res) => {
 });
 
 // Callback form submission
+// Антиспам: счётчик заявок по IP (сбрасывается раз в час)
+const callbackRateLimit = new Map();
+setInterval(() => callbackRateLimit.clear(), 60 * 60 * 1000);
+
+// Признаки спам-заявки: реклама казино/наркологии, ссылки, латиница в имени
+const SPAM_PATTERNS = [
+  /https?:\/\/|www\.|\.(ru|com|net|org|xyz|top)\b/i,
+  /mostbet|1win|vavada|casino|kazino|bet|zapoy|zapoya|нарколог|chicken.?road|MiCA|crypto|бонус.?код|промокод/i,
+  /\[url|\[link|<a\s+href/i
+];
+
+function looksLikeSpam({ name, message, service }) {
+  const haystack = [name, message, service].filter(Boolean).join(' ');
+  if (SPAM_PATTERNS.some(re => re.test(haystack))) return true;
+  // Имя без единой кириллической буквы — почти всегда бот
+  if (name && !/[А-Яа-яЁё]/.test(name)) return true;
+  // Хвост вида "_kQxz" — типовая подпись спам-ботов
+  if (name && /_[a-zA-Z]{3,6}$/.test(name.trim())) return true;
+  return false;
+}
+
 app.post('/callback', (req, res) => {
   try {
-    const { name, phone, service, message, consent } = req.body;
+    const { name, phone, email, service, message, consent, website, formLoadedAt } = req.body;
+
+    // Ловушка 1: скрытое поле заполнено — это бот
+    if (website) {
+      return res.json({ success: true, message: 'Заявка принята' });
+    }
+
+    // Ловушка 2: форма отправлена быстрее, чем за 3 секунды
+    const elapsed = Date.now() - Number(formLoadedAt || 0);
+    if (formLoadedAt && elapsed < 3000) {
+      return res.json({ success: true, message: 'Заявка принята' });
+    }
 
     if (!name || !phone) {
       return res.status(400).json({ error: 'Имя и телефон обязательны' });
@@ -384,15 +416,28 @@ app.post('/callback', (req, res) => {
       return res.status(400).json({ error: 'Необходимо согласие на обработку персональных данных' });
     }
 
+    // Ловушка 3: рекламный текст в полях
+    if (looksLikeSpam({ name, message, service })) {
+      return res.json({ success: true, message: 'Заявка принята' });
+    }
+
     // IP (учитываем trust proxy)
     const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.ip || req.socket.remoteAddress || '';
     const userAgent = (req.headers['user-agent'] || '').slice(0, 300);
+
+    // Ловушка 4: не больше 3 заявок с одного адреса в час
+    const sent = callbackRateLimit.get(ip) || 0;
+    if (sent >= 3) {
+      return res.json({ success: true, message: 'Заявка принята' });
+    }
+    callbackRateLimit.set(ip, sent + 1);
 
     const callbacks = loadCallbacks();
     const newCallback = {
       id: Date.now().toString(),
       name,
       phone,
+      email: email || '',
       service: service || '',
       message: message || '',
       submittedAt: new Date().toISOString(),
@@ -503,14 +548,36 @@ app.get('/admin/login', (req, res) => {
   res.render('admin/login', { error: null });
 });
 
+// Защита админки от подбора пароля (152-ФЗ ст. 19 — меры защиты ПДн)
+const loginAttempts = new Map();
+const LOGIN_MAX_ATTEMPTS = 5;
+const LOGIN_BLOCK_MS = 15 * 60 * 1000;
+
 app.post('/admin/login', async (req, res) => {
   const admin = loadAdmin();
   const { username, password } = req.body;
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.ip || '';
+
+  const record = loginAttempts.get(ip);
+  if (record && record.count >= LOGIN_MAX_ATTEMPTS && Date.now() - record.first < LOGIN_BLOCK_MS) {
+    const minutesLeft = Math.ceil((LOGIN_BLOCK_MS - (Date.now() - record.first)) / 60000);
+    return res.render('admin/login', {
+      error: `Слишком много попыток входа. Попробуйте через ${minutesLeft} мин.`
+    });
+  }
 
   if (username === admin.username && await bcrypt.compare(password, admin.password)) {
+    loginAttempts.delete(ip);
     req.session.authenticated = true;
     return res.redirect('/admin');
   }
+
+  if (!record || Date.now() - record.first >= LOGIN_BLOCK_MS) {
+    loginAttempts.set(ip, { count: 1, first: Date.now() });
+  } else {
+    record.count += 1;
+  }
+  console.warn(`Неудачный вход в админку с ${ip}`);
   res.render('admin/login', { error: 'Неверный логин или пароль' });
 });
 

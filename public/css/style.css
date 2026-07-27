@@ -1834,6 +1834,17 @@ body.has-sidebar {
 }
 .link-inline { color: var(--color-sage-ink); text-decoration: underline; }
 
+/* Антиспам-приманка: скрыта от людей, видна ботам */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ===== 18. FADE-IN ANIMATIONS ===== */
 .fade-in {
   opacity: 0;
