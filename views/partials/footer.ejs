@@ -135,19 +135,20 @@
     <%- content.site.profsalonWidget %>
   <% } %>
 
-  <!-- Cookie Consent Banner -->
-  <div class="cookie-banner" id="cookieBanner" style="display:none;">
-    <div class="cookie-banner__content">
+  <!-- Уведомление о файлах куки (имена классов нейтральные: блокировщики рекламы
+       скрывают элементы с «cookie»/«consent» в названии) -->
+  <div class="tly-notice" id="tlyNotice" style="display:none;">
+    <div class="tly-notice__content">
       <p>Мы используем файлы куки (cookies), необходимые для работы сайта и сохранения ваших настроек. Сторонние счётчики и рекламные трекеры не используются. Подробнее — в <a href="/privacy" class="link-inline">Политике конфиденциальности</a>.</p>
-      <div class="cookie-banner__actions">
-        <button class="cookie-banner__btn" id="cookieAccept">Принять</button>
-        <button class="cookie-banner__btn cookie-banner__btn--ghost" id="cookieDecline">Отклонить</button>
+      <div class="tly-notice__actions">
+        <button class="tly-notice__btn" id="tlyNoticeYes">Принять</button>
+        <button class="tly-notice__btn tly-notice__btn--ghost" id="tlyNoticeNo">Отклонить</button>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="/js/main.js?v=20260714"></script>
+  <script src="/js/main.js?v=20260727"></script>
   <script>
     // Initialize Lucide icons (script is deferred — wait for it)
     document.addEventListener('DOMContentLoaded', function() {
@@ -156,9 +157,9 @@
 
     // Cookie consent (accept / decline)
     (function() {
-      var banner = document.getElementById('cookieBanner');
-      var btnAccept = document.getElementById('cookieAccept');
-      var btnDecline = document.getElementById('cookieDecline');
+      var banner = document.getElementById('tlyNotice');
+      var btnAccept = document.getElementById('tlyNoticeYes');
+      var btnDecline = document.getElementById('tlyNoticeNo');
       if (!localStorage.getItem('cookieConsent')) {
         banner.style.display = 'flex';
       }
