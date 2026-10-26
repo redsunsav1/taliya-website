@@ -28,21 +28,21 @@
     "subtitle": "Работаем с любовью, предвосхищая ожидания и сохраняем то, что забирает время!",
     "promoText": "Скидки на первый сеанс до -20%",
     "promoNote": "*Уровень скидки зависит от услуги. Оставьте заявку и узнайте вашу выгоду.",
-    "image": "https://static.tildacdn.com/tild3239-3666-4466-b435-653665316233/WhatsApp_Image_2023-.jpeg",
+    "image": "/uploads/interior-zona-ozhidaniya.jpg",
     "slides": [
       {
         "title": "Центр эстетики тела «Талия»",
         "subtitle": "Работаем с любовью, предвосхищая ожидания и сохраняем то, что забирает время!",
         "promoText": "Скидки на первый сеанс до -20%",
         "promoNote": "*Уровень скидки зависит от услуги. Оставьте заявку и узнайте вашу выгоду.",
-        "image": "https://static.tildacdn.com/tild3239-3666-4466-b435-653665316233/WhatsApp_Image_2023-.jpeg"
+        "image": "/uploads/interior-zona-ozhidaniya.jpg"
       },
       {
         "title": "Косметология с медицинской лицензией",
         "subtitle": "Авторские методики и контроль доведения до результата. Только оригинальные препараты.",
         "promoText": "Консультация врача бесплатно",
         "promoNote": "*При записи на процедуру в день консультации.",
-        "image": "https://static.tildacdn.com/tild3161-3733-4131-a130-373133313966/original_63028c2efbb.jpg"
+        "image": "/uploads/interior-resepshen.jpg"
       }
     ]
   },
@@ -5171,7 +5171,7 @@
         "text": "Специалисты с многолетним опытом и постоянным повышением квалификации"
       }
     ],
-    "image": "https://images.unsplash.com/photo-1505944270255-72b8c68c6a70?w=1600&q=80&auto=format&fit=crop"
+    "image": "/uploads/interior-resepshen.jpg"
   },
   "team": {
     "title": "Команда опытных профессионалов",
@@ -5268,68 +5268,44 @@
     ],
     "images": [
       {
-        "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop",
-        "title": "Зона релакса в центре «ТалиЯ»",
-        "alt": "Зона релакса в центре «ТалиЯ»",
+        "src": "/uploads/interior-zona-ozhidaniya.jpg",
+        "thumb": "/uploads/interior-zona-ozhidaniya-thumb.jpg",
+        "url": "/uploads/interior-zona-ozhidaniya.jpg",
+        "title": "Зона ожидания и ресепшен",
+        "alt": "Зона ожидания и ресепшен — центр «Талия», Мытищи",
         "category": "interior"
       },
       {
-        "src": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1600&q=80&auto=format&fit=crop",
-        "title": "Уютная зона ожидания",
-        "alt": "Уютная зона ожидания",
+        "src": "/uploads/interior-resepshen.jpg",
+        "thumb": "/uploads/interior-resepshen-thumb.jpg",
+        "url": "/uploads/interior-resepshen.jpg",
+        "title": "Ресепшен центра «Талия»",
+        "alt": "Ресепшен центра «Талия» — центр «Талия», Мытищи",
         "category": "interior"
       },
       {
-        "src": "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?w=1600&q=80&auto=format&fit=crop",
-        "title": "Косметологический кабинет",
-        "alt": "Косметологический кабинет",
+        "src": "/uploads/interior-kabinet-kosmetologa.jpg",
+        "thumb": "/uploads/interior-kabinet-kosmetologa-thumb.jpg",
+        "url": "/uploads/interior-kabinet-kosmetologa.jpg",
+        "title": "Кабинет косметолога",
+        "alt": "Кабинет косметолога — центр «Талия», Мытищи",
         "category": "interior"
       },
       {
-        "src": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1600&q=80&auto=format&fit=crop",
-        "title": "Процедурная комната",
-        "alt": "Процедурная комната",
+        "src": "/uploads/interior-kabinet-podologa.jpg",
+        "thumb": "/uploads/interior-kabinet-podologa-thumb.jpg",
+        "url": "/uploads/interior-kabinet-podologa.jpg",
+        "title": "Кабинет подолога",
+        "alt": "Кабинет подолога — центр «Талия», Мытищи",
         "category": "interior"
       },
       {
-        "src": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80&auto=format&fit=crop",
-        "title": "Уходовая процедура для лица",
-        "alt": "Уходовая процедура для лица",
-        "category": "procedures"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80&auto=format&fit=crop",
-        "title": "Аппаратная косметология",
-        "alt": "Аппаратная косметология",
-        "category": "procedures"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1600&q=80&auto=format&fit=crop",
-        "title": "Эндосфера-терапия",
-        "alt": "Эндосфера-терапия",
-        "category": "procedures"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=1600&q=80&auto=format&fit=crop",
-        "title": "Лечебный массаж",
-        "alt": "Лечебный массаж",
-        "category": "procedures"
+        "src": "/uploads/interior-vhod-v-centr.jpg",
+        "thumb": "/uploads/interior-vhod-v-centr-thumb.jpg",
+        "url": "/uploads/interior-vhod-v-centr.jpg",
+        "title": "Вход в центр «Талия», ЖК «Ярославский»",
+        "alt": "Вход в центр «Талия», ЖК «Ярославский» — центр «Талия», Мытищи",
+        "category": "interior"
       },
       {
         "src": "/uploads/podologiya-titanovaya-nit-1.jpg",
@@ -5346,38 +5322,6 @@
         "title": "Подология: коррекция деформированного ногтя титановой нитью",
         "alt": "Подология: коррекция деформированного ногтя титановой нитью — подология в центре «Талия», Мытищи",
         "category": "results"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop",
-        "title": "Безупречное состояние кожи",
-        "alt": "Безупречное состояние кожи",
-        "category": "results"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1600&q=80&auto=format&fit=crop",
-        "title": "Эффект омоложения",
-        "alt": "Эффект омоложения",
-        "category": "results"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1600&q=80&auto=format&fit=crop",
-        "title": "Маникюр и педикюр",
-        "alt": "Маникюр и педикюр",
-        "category": "results"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=1600&q=80&auto=format&fit=crop",
-        "thumb": "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=1600&q=80&auto=format&fit=crop",
-        "url": "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=1600&q=80&auto=format&fit=crop",
-        "title": "Уход за телом и кожей",
-        "alt": "Уход за телом и кожей",
-        "category": "results"
       }
     ]
   },
@@ -5390,7 +5334,7 @@
         "description": "Для новых гостей — скидка до 20% на первую процедуру. Уровень скидки зависит от выбранной услуги.",
         "badge": "Новым гостям",
         "icon": "sparkles",
-        "image": "https://static.tildacdn.com/tild3834-3262-4535-b739-393166623762/original_63028c2efbb.jpg",
+        "image": "/uploads/interior-kabinet-kosmetologa.jpg",
         "link": "#callback",
         "active": true
       },
@@ -5399,7 +5343,7 @@
         "description": "Приходите вместе с подругой или парой и получите скидку на совместное посещение.",
         "badge": "Для двоих",
         "icon": "users",
-        "image": "https://static.tildacdn.com/tild3238-6436-4466-a431-393237663266/original_63028c2efbb.jpg",
+        "image": "/uploads/interior-kabinet-podologa.jpg",
         "link": "#callback",
         "active": true
       },
@@ -5408,7 +5352,7 @@
         "description": "Приобретайте абонементы на курс процедур и экономьте до 30% от стоимости разовых сеансов.",
         "badge": "Выгодно",
         "icon": "package",
-        "image": "https://static.tildacdn.com/tild3331-3364-4238-b030-326335346566/original_63028c2efbb.jpg",
+        "image": "/uploads/interior-vhod-v-centr.jpg",
         "link": "#callback",
         "active": true
       }
