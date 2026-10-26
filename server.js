@@ -37,6 +37,15 @@ app.use((req, res, next) => {
 // Static files
 // HTML — всегда перепроверять на сервере (защита от отравленного кэша),
 // статика — кэшировать сутки (версии в query решают обновления)
+// SEO: один основной адрес сайта — www.tali-ya.ru → tali-ya.ru (301)
+app.use((req, res, next) => {
+  const host = req.headers.host || '';
+  if (/^www\./i.test(host)) {
+    return res.redirect(301, 'https://' + host.replace(/^www\./i, '') + req.originalUrl);
+  }
+  next();
+});
+
 app.use((req, res, next) => {
   if (!/\.(css|js|woff2?|ttf|jpe?g|png|gif|webp|svg|ico)$/i.test(req.path)) {
     res.set('Cache-Control', 'no-cache');
@@ -323,7 +332,7 @@ app.get('/contacts', (req, res) => {
 app.get('/service/:slug', (req, res) => {
   const content = loadContent();
   const service = content.services.find(s => s.slug === req.params.slug);
-  if (!service) return res.status(404).render('pages/404');
+  if (!service) return res.status(404).render('pages/404', { noindex: true });
   res.render('pages/service', { service });
 });
 
@@ -950,40 +959,115 @@ app.post('/admin/team', requireAuth, upload.any(), optimizeUploads, (req, res) =
 
 // ===== GALLERY PAGE =====
 
+const GALLERY_DEFAULT_CATEGORIES = [
+  { id: 'interior', name: 'Интерьер' },
+  { id: 'procedures', name: 'Процедуры' },
+  { id: 'results', name: 'Результаты' }
+];
+
+// Галерея всегда хранится целиком: заголовок, подзаголовок, рубрики и фото
+function getGallery(content) {
+  const g = content.gallery || {};
+  if (!Array.isArray(g.categories) || !g.categories.length) g.categories = GALLERY_DEFAULT_CATEGORIES.slice();
+  if (!Array.isArray(g.images)) g.images = [];
+  // Старые записи из админки хранили только url — приводим к формату сайта
+  g.images.forEach(img => {
+    if (!img.src && img.url) img.src = img.url;
+    if (!img.thumb && img.src) img.thumb = img.src;
+    if (!img.title && img.caption) img.title = img.caption;
+  });
+  content.gallery = g;
+  return g;
+}
+
+// Превью для сетки галереи (ширина 720px), рядом с оригиналом: имя-thumb.jpg
+async function makeGalleryThumb(file) {
+  const ext = path.extname(file.filename).toLowerCase();
+  if (ext === '.svg' || ext === '.gif') return '/uploads/' + file.filename;
+  const thumbName = path.basename(file.filename, ext) + '-thumb' + ext;
+  try {
+    let pipeline = sharp(file.path, { failOn: 'none' }).rotate().resize({ width: 720, withoutEnlargement: true });
+    if (ext === '.png') pipeline = pipeline.png({ compressionLevel: 9, palette: true });
+    else if (ext === '.webp') pipeline = pipeline.webp({ quality: 80 });
+    else pipeline = pipeline.jpeg({ quality: 80, mozjpeg: true });
+    await pipeline.toFile(path.join(path.dirname(file.path), thumbName));
+    return '/uploads/' + thumbName;
+  } catch (err) {
+    console.error('gallery thumb failed for', file.path, err.message);
+    return '/uploads/' + file.filename;
+  }
+}
+
 app.get('/admin/gallery', requireAuth, (req, res) => {
   const content = loadContent();
-  res.render('admin/gallery', { gallery: content.gallery || { title: '', images: [] } });
+  const gallery = getGallery(content);
+  const key = req.query.saved ? 'saved' : req.query.uploaded ? 'uploaded' : req.query.deleted ? 'deleted' : '';
+  const messages = { saved: 'Сохранено', uploaded: 'Фото добавлены', deleted: 'Фото удалено', nofile: 'Файл не выбран или формат не поддерживается (нужен JPG, PNG или WebP до 10 МБ)' };
+  res.render('admin/gallery', {
+    gallery,
+    message: messages[key] || '',
+    error: req.query.error ? messages[req.query.error] || 'Ошибка' : ''
+  });
 });
 
-app.post('/admin/gallery', requireAuth, upload.array('images', 20), optimizeUploads, (req, res) => {
+// Загрузка новых фото (одно или несколько сразу)
+app.post('/admin/gallery', requireAuth, upload.array('images', 20), optimizeUploads, async (req, res) => {
+  const files = req.files || [];
+  if (!files.length) return res.redirect('/admin/gallery?error=nofile');
   const content = loadContent();
-  let images = content.gallery?.images || [];
+  const gallery = getGallery(content);
+  const category = gallery.categories.some(c => c.id === req.body.category) ? req.body.category : gallery.categories[0].id;
+  const title = String(req.body.title || '').replace(/\s+/g, ' ').trim();
 
-  // Add new uploads
-  if (req.files && req.files.length > 0) {
-    req.files.forEach(file => {
-      images.push({
-        url: '/uploads/' + file.filename,
-        caption: ''
-      });
-    });
+  const added = [];
+  for (const file of files) {
+    const src = '/uploads/' + file.filename;
+    const thumb = await makeGalleryThumb(file);
+    added.push({ src, thumb, url: src, title, alt: title, category });
   }
+  // Новые фото — первыми в своей рубрике
+  const at = gallery.images.findIndex(img => img.category === category);
+  gallery.images.splice(at === -1 ? gallery.images.length : at, 0, ...added);
 
-  // Update captions if provided
-  if (req.body.captions) {
-    const captions = Array.isArray(req.body.captions) ? req.body.captions : [req.body.captions];
-    images = images.map((img, i) => ({
-      ...img,
-      caption: captions[i] || img.caption || ''
-    }));
-  }
+  saveContent(content);
+  res.redirect('/admin/gallery?uploaded=1');
+});
 
-  content.gallery = {
-    title: req.body.title || '',
-    images
-  };
+// Изменение заголовков страницы, подписей, рубрик и порядка фото
+app.post('/admin/gallery/update', requireAuth, (req, res) => {
+  const content = loadContent();
+  const gallery = getGallery(content);
+  const clean = (v) => String(v || '').replace(/\s+/g, ' ').trim();
+  if (req.body.galleryTitle !== undefined) gallery.title = clean(req.body.galleryTitle);
+  if (req.body.gallerySubtitle !== undefined) gallery.subtitle = clean(req.body.gallerySubtitle);
+
+  const items = Array.isArray(req.body.items) ? req.body.items : Object.values(req.body.items || {});
+  const bySrc = new Map(gallery.images.map(img => [img.src, img]));
+  const ordered = [];
+  items.forEach(it => {
+    const img = bySrc.get(it.src);
+    if (!img) return;
+    bySrc.delete(it.src);
+    img.title = clean(it.title);
+    img.alt = clean(it.title) || img.alt || '';
+    if (gallery.categories.some(c => c.id === it.category)) img.category = it.category;
+    ordered.push({ img, order: Number(it.order) || 0 });
+  });
+  ordered.sort((x, y) => x.order - y.order);
+  // Фото, которых не было в форме (например, добавленные параллельно), остаются в конце
+  gallery.images = ordered.map(o => o.img).concat(Array.from(bySrc.values()));
+
   saveContent(content);
   res.redirect('/admin/gallery?saved=1');
+});
+
+// Удаление фото из галереи (файл на диске остаётся — на случай ошибки)
+app.post('/admin/gallery/delete', requireAuth, (req, res) => {
+  const content = loadContent();
+  const gallery = getGallery(content);
+  gallery.images = gallery.images.filter(img => img.src !== req.body.src);
+  saveContent(content);
+  res.redirect('/admin/gallery?deleted=1');
 });
 
 // ===== PROMOTIONS PAGE =====
@@ -1056,25 +1140,47 @@ app.post('/admin/legal', requireAuth, (req, res) => {
 
 // ===== SEO SETTINGS =====
 
+const SEO_PAGES = [
+  { key: 'home', label: 'Главная', path: '/' },
+  { key: 'about', label: 'О нас', path: '/about' },
+  { key: 'team', label: 'Мастера', path: '/team' },
+  { key: 'gallery', label: 'Портфолио', path: '/gallery' },
+  { key: 'promotions', label: 'Акции', path: '/promotions' },
+  { key: 'contacts', label: 'Контакты', path: '/contacts' }
+];
+
 app.get('/admin/seo', requireAuth, (req, res) => {
   const content = loadContent();
-  res.render('admin/seo', { 
-    seo: content.seo || {
-      title: 'Талия',
-      description: 'Центр эстетики тела и косметологии'
-    }
+  res.render('admin/seo', {
+    seo: content.seo || {},
+    seoPages: SEO_PAGES,
+    services: content.services || [],
+    message: req.query.saved ? 'Сохранено' : ''
   });
 });
 
 app.post('/admin/seo', requireAuth, (req, res) => {
   const content = loadContent();
   if (!content.seo) content.seo = {};
-  
-  content.seo.title = req.body.title || '';
-  content.seo.description = req.body.description || '';
-  content.seo.keywords = req.body.keywords || '';
-  content.seo.canonical = req.body.canonical || '';
-  
+  const clean = (v) => String(v || '').replace(/\s+/g, ' ').trim();
+
+  SEO_PAGES.forEach(({ key }) => {
+    ['Title', 'Description', 'Keywords'].forEach(field => {
+      const name = key + field;
+      if (req.body[name] !== undefined) content.seo[name] = clean(req.body[name]);
+    });
+  });
+  if (req.body.canonical !== undefined) content.seo.canonical = clean(req.body.canonical);
+  if (req.body.ogImage !== undefined) content.seo.ogImage = clean(req.body.ogImage);
+
+  (content.services || []).forEach(service => {
+    const f = (req.body.services || {})[service.slug];
+    if (!f) return;
+    service.seoTitle = clean(f.title);
+    service.seoDescription = clean(f.description);
+    service.seoKeywords = clean(f.keywords);
+  });
+
   saveContent(content);
   res.redirect('/admin/seo?saved=1');
 });
@@ -1197,7 +1303,7 @@ app.post('/admin/upload', requireAuth, upload.single('file'), optimizeUploads, (
 // ===== 404 =====
 
 app.use((req, res) => {
-  res.status(404).render('pages/404');
+  res.status(404).render('pages/404', { noindex: true });
 });
 
 // Initialize admin password if placeholder

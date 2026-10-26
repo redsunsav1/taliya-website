@@ -3,67 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="<%= content.site.name %> — <%= content.site.tagline %>. <%= content.site.address %>. Лицензия <%= content.site.license %>">
+<%
+  /* ===== SEO: заголовок, описание и ссылки страницы =====
+     Значения берутся из «Админка → SEO» (content.seo), для услуг — из полей seoTitle/seoDescription услуги.
+     Если поле пустое — используется прежний вариант, чтобы ничего не сломать. */
+  const seoData = content.seo || {};
+  const seoPath = (typeof currentPath !== 'undefined' && currentPath) ? currentPath : '/';
+  const seoKey = seoPath === '/' ? 'home' : seoPath.replace(/^\/+/, '').split('/')[0];
+  const seoService = (typeof service !== 'undefined' && service) ? service : null;
+  const seoLegal = {
+    privacy: 'Политика обработки персональных данных',
+    terms: 'Условия использования сайта',
+    consent: 'Согласие на обработку персональных данных',
+    offer: 'Договор-оферта на медицинские услуги'
+  };
+  const seoClean = (v) => String(v || '').replace(/\s+/g, ' ').trim();
+  const seoCut = (v, n) => { v = seoClean(v); return v.length > n ? v.slice(0, n - 1).replace(/[\s,.;:—-]+[^\s]*$/, '') + '…' : v; };
+  const defaultDesc = content.site.name + ' — ' + content.site.tagline + '. ' + content.site.address + '. Лицензия ' + content.site.license;
+  let metaTitle = '', metaDesc = '', metaKeywords = '';
+  if (seoService) {
+    metaTitle = seoClean(seoService.seoTitle) || (seoService.name + ' в Мытищах — цены | ' + content.site.name);
+    metaDesc = seoClean(seoService.seoDescription) || seoCut(seoService.description, 160);
+    metaKeywords = seoClean(seoService.seoKeywords);
+  } else {
+    metaTitle = seoClean(seoData[seoKey + 'Title']) || (seoLegal[seoKey] ? seoLegal[seoKey] + ' | ' + content.site.name : '');
+    metaDesc = seoClean(seoData[seoKey + 'Description']);
+    metaKeywords = seoClean(seoData[seoKey + 'Keywords']);
+  }
+  const noindexPage = typeof noindex !== 'undefined' && noindex;
+  if (noindexPage) metaTitle = 'Страница не найдена | ' + content.site.name;
+  if (!metaTitle) metaTitle = content.site.name + ' — ' + content.site.tagline;
+  if (!metaDesc) metaDesc = defaultDesc;
+  if (!metaKeywords) metaKeywords = seoClean(seoData.homeKeywords) || 'косметология Мытищи, эстетика тела, центр красоты, массаж, лазерная эпиляция, эндосфера-терапия';
+  const siteUrl = (seoClean(seoData.canonical) || seoClean(content.site.url) || 'https://tali-ya.ru').replace(/\/+$/, '');
+  const canonicalUrl = siteUrl + seoPath;
+  const heroImg = content.hero && (content.hero.image || (content.hero.slides && content.hero.slides[0] && content.hero.slides[0].image));
+  let ogImage = seoClean(seoData.ogImage) || seoClean(heroImg) || '/images/logo.svg';
+  if (ogImage.startsWith('/')) ogImage = siteUrl + ogImage;
+%>
+  <meta name="description" content="<%= metaDesc %>">
   <meta name="theme-color" content="#A3A282">
-  <meta name="keywords" content="косметология Мытищи, эстетика тела, центр красоты, массаж, лазерная эпиляция, эндосфера-терапия">
-  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="<%= metaKeywords %>">
+  <meta name="robots" content="<%= noindexPage ? 'noindex, follow' : 'index, follow' %>">
   <meta name="author" content="<%= content.site.company %>">
+  <% if (!noindexPage) { %><link rel="canonical" href="<%= canonicalUrl %>"><% } %>
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="<%= typeof pageUrl !== 'undefined' ? pageUrl : content.site.url %>">
-  <meta property="og:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %>">
-  <meta property="og:description" content="<%= content.site.name %> — <%= content.site.tagline %>. <%= content.site.address %>.">
-  <meta property="og:image" content="<%= content.site.url %>/images/og-image.jpg">
+  <meta property="og:site_name" content="<%= content.site.name %>">
+  <meta property="og:url" content="<%= canonicalUrl %>">
+  <meta property="og:title" content="<%= metaTitle %>">
+  <meta property="og:description" content="<%= metaDesc %>">
+  <meta property="og:image" content="<%= ogImage %>">
   <meta property="og:locale" content="ru_RU">
 
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="<%= typeof pageUrl !== 'undefined' ? pageUrl : content.site.url %>">
-  <meta property="twitter:title" content="<%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %>">
-  <meta property="twitter:description" content="<%= content.site.name %> — <%= content.site.tagline %>">
-  <meta property="twitter:image" content="<%= content.site.url %>/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="<%= canonicalUrl %>">
+  <meta name="twitter:title" content="<%= metaTitle %>">
+  <meta name="twitter:description" content="<%= metaDesc %>">
+  <meta name="twitter:image" content="<%= ogImage %>">
 
-  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %><%= content.site.name %> — <%= content.site.tagline %></title>
+  <title><%= metaTitle %></title>
 
   <link rel="icon" href="<%= content.site.favicon || '/images/favicon.svg' %>" type="image/svg+xml">
   <link rel="stylesheet" href="/fonts/fonts.css?v=20260908">
   <link rel="stylesheet" href="/css/style.css?v=20260908">
   <script src="/js/lucide.min.js?v=20260908" defer></script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "LocalBusiness",
-    "name": "<%= content.site.name %>",
-    "description": "<%= content.site.tagline %>",
-    "url": "<%= content.site.url %>",
-    "telephone": "<%= content.site.phoneRaw %>",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "<%= content.site.address %>",
-      "addressLocality": "Мытищи",
-      "addressRegion": "Московская область",
-      "postalCode": "141006",
-      "addressCountry": "RU"
+<%
+  const ldBusiness = {
+    '@context': 'https://schema.org',
+    '@type': ['MedicalBusiness', 'BeautySalon'],
+    '@id': siteUrl + '/#organization',
+    name: content.site.name,
+    alternateName: 'ТалиЯ',
+    description: content.site.tagline + ' в Мытищах',
+    url: siteUrl + '/',
+    logo: siteUrl + (content.site.logo || '/images/logo.svg'),
+    image: ogImage,
+    telephone: [content.site.phoneRaw, content.site.phoneRaw2].filter(Boolean),
+    email: content.site.email || undefined,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'ул. Мира, 35, ЖК «Ярославский»',
+      addressLocality: 'Мытищи',
+      addressRegion: 'Московская область',
+      postalCode: '141008',
+      addressCountry: 'RU'
     },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "10:00",
-      "closes": "22:00"
+    geo: { '@type': 'GeoCoordinates', latitude: 55.9103, longitude: 37.7647 },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '10:00',
+      closes: '22:00'
     },
-    "image": "<%= content.site.url %>/images/logo.svg",
-    "priceRange": "$$",
-    "areaServed": { "@type": "City", "name": "Мытищи" },
-    "sameAs": [ "<%= content.site.vk %>"<% if (content.site.max) { %>, "<%= content.site.max %>"<% } %> ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "Customer Service",
-      "telephone": "<%= content.site.phoneRaw %>",
-      "availableLanguage": ["Russian"]
-    },
-    "license": "<%= content.site.license %>"
-  }
-  </script>
+    priceRange: '₽₽',
+    areaServed: { '@type': 'City', name: 'Мытищи' },
+    sameAs: [content.site.vk, content.site.max].filter(Boolean),
+    legalName: content.site.company || undefined,
+    taxID: content.site.inn || undefined
+  };
+  const ldJson = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
+%>
+  <script type="application/ld+json"><%- ldJson(ldBusiness) %></script>
+  <% if (seoService) { %>
+  <script type="application/ld+json"><%- ldJson({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: seoService.name, item: canonicalUrl }
+    ]
+  }) %></script>
+  <% } %>
 </head>
 <body class="has-sidebar">
 
