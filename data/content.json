@@ -90,7 +90,7 @@
       "name": "Врачебная косметология",
       "shortName": "Врачебная косметология",
       "description": "Индивидуальный протокол эстетического преображения и процедуры превентивной медицины. ИнМод Люмекка (InMode Lumecca), Морфеус (Morpheus), СМАС Ультраформер III, РФ-лифтинг, плазмотерапия и капельницы красоты",
-      "image": "/uploads/1781095847301-732969.svg",
+      "image": "/uploads/oblozhka-vrachebnaya-kosmetologiya.jpg",
       "icon": "activity",
       "discount": "10%",
       "doctors": [
@@ -5459,6 +5459,54 @@
         "url": "/uploads/procedury-lechebnyj-massazh-4.jpg",
         "title": "Лечебный массаж",
         "alt": "Лечебный массаж — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-konturnaya-plastika-gub.jpg",
+        "thumb": "/uploads/procedury-konturnaya-plastika-gub-thumb.jpg",
+        "url": "/uploads/procedury-konturnaya-plastika-gub.jpg",
+        "title": "Контурная пластика губ: процедура у врача-косметолога",
+        "alt": "Контурная пластика губ: процедура у врача-косметолога — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-biorevitalizaciya.jpg",
+        "thumb": "/uploads/procedury-biorevitalizaciya-thumb.jpg",
+        "url": "/uploads/procedury-biorevitalizaciya.jpg",
+        "title": "Биоревитализация: подготовка к процедуре",
+        "alt": "Биоревитализация: подготовка к процедуре — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-inekcii-5.jpg",
+        "thumb": "/uploads/procedury-inekcii-5-thumb.jpg",
+        "url": "/uploads/procedury-inekcii-5.jpg",
+        "title": "Инъекционная процедура для лица",
+        "alt": "Инъекционная процедура для лица — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-endosfera-2.jpg",
+        "thumb": "/uploads/procedury-endosfera-2-thumb.jpg",
+        "url": "/uploads/procedury-endosfera-2.jpg",
+        "title": "Эндосфера-терапия",
+        "alt": "Эндосфера-терапия — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-endosfera-3.jpg",
+        "thumb": "/uploads/procedury-endosfera-3-thumb.jpg",
+        "url": "/uploads/procedury-endosfera-3.jpg",
+        "title": "Эндосфера-терапия",
+        "alt": "Эндосфера-терапия — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-endosfera-4.jpg",
+        "thumb": "/uploads/procedury-endosfera-4-thumb.jpg",
+        "url": "/uploads/procedury-endosfera-4.jpg",
+        "title": "Эндосфера-терапия",
+        "alt": "Эндосфера-терапия — центр «Талия», Мытищи",
         "category": "procedures"
       },
       {
