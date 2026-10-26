@@ -5308,6 +5308,160 @@
         "category": "interior"
       },
       {
+        "src": "/uploads/interior-logo-zona-ozhidaniya.jpg",
+        "thumb": "/uploads/interior-logo-zona-ozhidaniya-thumb.jpg",
+        "url": "/uploads/interior-logo-zona-ozhidaniya.jpg",
+        "title": "Зона ожидания с логотипом центра «Талия»",
+        "alt": "Зона ожидания с логотипом центра «Талия» — Мытищи",
+        "category": "interior"
+      },
+      {
+        "src": "/uploads/interior-kofe-zona-ozhidaniya.jpg",
+        "thumb": "/uploads/interior-kofe-zona-ozhidaniya-thumb.jpg",
+        "url": "/uploads/interior-kofe-zona-ozhidaniya.jpg",
+        "title": "Кофе для гостей в зоне ожидания",
+        "alt": "Кофе для гостей в зоне ожидания центра «Талия», Мытищи",
+        "category": "interior"
+      },
+      {
+        "src": "/uploads/interior-kabinet-apparatnyh-metodik.jpg",
+        "thumb": "/uploads/interior-kabinet-apparatnyh-metodik-thumb.jpg",
+        "url": "/uploads/interior-kabinet-apparatnyh-metodik.jpg",
+        "title": "Кабинет аппаратных методик",
+        "alt": "Кабинет аппаратных методик — центр «Талия», Мытищи",
+        "category": "interior"
+      },
+      {
+        "src": "/uploads/procedury-inekcii-1.jpg",
+        "thumb": "/uploads/procedury-inekcii-1-thumb.jpg",
+        "url": "/uploads/procedury-inekcii-1.jpg",
+        "title": "Инъекционная косметология: процедура у врача-косметолога",
+        "alt": "Инъекционная косметология: процедура у врача-косметолога — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-inekcii-2.jpg",
+        "thumb": "/uploads/procedury-inekcii-2-thumb.jpg",
+        "url": "/uploads/procedury-inekcii-2.jpg",
+        "title": "Инъекционная косметология в кабинете врача",
+        "alt": "Инъекционная косметология в кабинете врача — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-inekcii-3.jpg",
+        "thumb": "/uploads/procedury-inekcii-3-thumb.jpg",
+        "url": "/uploads/procedury-inekcii-3.jpg",
+        "title": "Инъекционная процедура для лица",
+        "alt": "Инъекционная процедура для лица — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-endosfera-1.jpg",
+        "thumb": "/uploads/procedury-endosfera-1-thumb.jpg",
+        "url": "/uploads/procedury-endosfera-1.jpg",
+        "title": "Эндосфера-терапия",
+        "alt": "Эндосфера-терапия — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-uhod-za-licom-1.jpg",
+        "thumb": "/uploads/procedury-uhod-za-licom-1-thumb.jpg",
+        "url": "/uploads/procedury-uhod-za-licom-1.jpg",
+        "title": "Уход за лицом: нанесение маски",
+        "alt": "Уход за лицом: нанесение маски — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-inekcii-4.jpg",
+        "thumb": "/uploads/procedury-inekcii-4-thumb.jpg",
+        "url": "/uploads/procedury-inekcii-4.jpg",
+        "title": "Инъекционная косметология: процедура у врача",
+        "alt": "Инъекционная косметология: процедура у врача — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-massazh-lica.jpg",
+        "thumb": "/uploads/procedury-massazh-lica-thumb.jpg",
+        "url": "/uploads/procedury-massazh-lica.jpg",
+        "title": "Массаж и уход за лицом",
+        "alt": "Массаж и уход за лицом — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "type": "video",
+        "src": "/uploads/procedury-relaks-terapiya-tela.mp4",
+        "thumb": "/uploads/procedury-relaks-terapiya-tela-thumb.jpg",
+        "poster": "/uploads/procedury-relaks-terapiya-tela-poster.jpg",
+        "url": "/uploads/procedury-relaks-terapiya-tela.mp4",
+        "title": "Релакс-терапия тела (видео)",
+        "alt": "Релакс-терапия тела — видео из центра «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-podologiya-1.jpg",
+        "thumb": "/uploads/procedury-podologiya-1-thumb.jpg",
+        "url": "/uploads/procedury-podologiya-1.jpg",
+        "title": "Подология: медицинский педикюр",
+        "alt": "Подология: медицинский педикюр — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-massazh-lica-2.jpg",
+        "thumb": "/uploads/procedury-massazh-lica-2-thumb.jpg",
+        "url": "/uploads/procedury-massazh-lica-2.jpg",
+        "title": "Массаж лица",
+        "alt": "Массаж лица — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-massazh-lica-3.jpg",
+        "thumb": "/uploads/procedury-massazh-lica-3-thumb.jpg",
+        "url": "/uploads/procedury-massazh-lica-3.jpg",
+        "title": "Массаж лица",
+        "alt": "Массаж лица — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-uhod-za-licom-2.jpg",
+        "thumb": "/uploads/procedury-uhod-za-licom-2-thumb.jpg",
+        "url": "/uploads/procedury-uhod-za-licom-2.jpg",
+        "title": "Уход за лицом",
+        "alt": "Уход за лицом — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-lechebnyj-massazh-1.jpg",
+        "thumb": "/uploads/procedury-lechebnyj-massazh-1-thumb.jpg",
+        "url": "/uploads/procedury-lechebnyj-massazh-1.jpg",
+        "title": "Лечебный массаж",
+        "alt": "Лечебный массаж — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-lechebnyj-massazh-2.jpg",
+        "thumb": "/uploads/procedury-lechebnyj-massazh-2-thumb.jpg",
+        "url": "/uploads/procedury-lechebnyj-massazh-2.jpg",
+        "title": "Лечебный массаж",
+        "alt": "Лечебный массаж — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-lechebnyj-massazh-3.jpg",
+        "thumb": "/uploads/procedury-lechebnyj-massazh-3-thumb.jpg",
+        "url": "/uploads/procedury-lechebnyj-massazh-3.jpg",
+        "title": "Лечебный массаж",
+        "alt": "Лечебный массаж — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
+        "src": "/uploads/procedury-lechebnyj-massazh-4.jpg",
+        "thumb": "/uploads/procedury-lechebnyj-massazh-4-thumb.jpg",
+        "url": "/uploads/procedury-lechebnyj-massazh-4.jpg",
+        "title": "Лечебный массаж",
+        "alt": "Лечебный массаж — центр «Талия», Мытищи",
+        "category": "procedures"
+      },
+      {
         "src": "/uploads/podologiya-titanovaya-nit-1.jpg",
         "thumb": "/uploads/podologiya-titanovaya-nit-1-thumb.jpg",
         "url": "/uploads/podologiya-titanovaya-nit-1.jpg",
@@ -5321,6 +5475,14 @@
         "url": "/uploads/podologiya-titanovaya-nit-2.jpg",
         "title": "Подология: коррекция деформированного ногтя титановой нитью",
         "alt": "Подология: коррекция деформированного ногтя титановой нитью — подология в центре «Талия», Мытищи",
+        "category": "results"
+      },
+      {
+        "src": "/uploads/rezultaty-konturnaya-plastika-gub.jpg",
+        "thumb": "/uploads/rezultaty-konturnaya-plastika-gub-thumb.jpg",
+        "url": "/uploads/rezultaty-konturnaya-plastika-gub.jpg",
+        "title": "Контурная пластика губ",
+        "alt": "Контурная пластика губ — центр «Талия», Мытищи",
         "category": "results"
       }
     ]
