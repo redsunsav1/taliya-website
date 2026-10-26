@@ -32,14 +32,21 @@
       <div class="container">
         <div class="gallery-grid fade-in" id="gallery-grid">
           <% content.gallery.images.forEach(function(image, index) { %>
-            <div class="gallery-item" data-category="<%= image.category || 'all' %>" data-lightbox="gallery">
+            <% const isVideo = image.type === 'video'; %>
+            <div class="gallery-item<%= isVideo ? ' gallery-item--video' : '' %>" data-category="<%= image.category || 'all' %>" data-lightbox="gallery"
+                 data-type="<%= isVideo ? 'video' : 'image' %>" data-full="<%= image.src %>"<% if (isVideo) { %> data-poster="<%= image.poster || image.thumb || '' %>"<% } %>
+                 tabindex="0" role="button" aria-label="<%= (isVideo ? 'Смотреть видео: ' : 'Открыть фото: ') + (image.title || 'работа') %>">
               <img 
                 src="<%= image.thumb || image.src %>" 
-                alt="<%= image.title || 'Изображение работы' %>"
-                data-full="<%= image.src %>"
+                alt="<%= image.alt || image.title || 'Изображение работы' %>"
                 loading="lazy"
                 class="gallery-item__image"
               >
+              <% if (isVideo) { %>
+                <span class="gallery-item__play" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+                </span>
+              <% } %>
               <div class="gallery-item__overlay">
                 <div class="gallery-item__content">
                   <h3 class="gallery-item__title"><%= image.title || 'Работа' %></h3>
@@ -62,6 +69,14 @@
     </div>
   </section>
 </main>
+
+<div class="lightbox" id="galleryLightbox" hidden role="dialog" aria-modal="true" aria-label="Просмотр">
+  <button type="button" class="lightbox__close" aria-label="Закрыть">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="lightbox__stage"></div>
+  <p class="lightbox__caption"></p>
+</div>
 
 <script>
   // Фильтр галереи
@@ -87,18 +102,62 @@
     });
   });
 
-  // Лайтбокс функциональность
-  document.querySelectorAll('[data-lightbox="gallery"]').forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const fullSrc = this.querySelector('img').getAttribute('data-full');
-      const title = this.querySelector('.gallery-item__title')?.textContent || '';
-      
-      // Здесь можно добавить лайтбокс библиотеку (например, GLightbox)
-      // Пока просто открываем изображение в новом окне
-      window.open(fullSrc, '_blank');
+  // Просмотр фото и видео поверх страницы
+  (function () {
+    const box = document.getElementById('galleryLightbox');
+    if (!box) return;
+    const stage = box.querySelector('.lightbox__stage');
+    const caption = box.querySelector('.lightbox__caption');
+    let lastFocus = null;
+
+    function open(item) {
+      lastFocus = item;
+      const src = item.getAttribute('data-full');
+      const title = item.querySelector('.gallery-item__title')?.textContent || '';
+      stage.innerHTML = '';
+      let media;
+      if (item.getAttribute('data-type') === 'video') {
+        media = document.createElement('video');
+        media.src = src;
+        media.controls = true;
+        media.autoplay = true;
+        media.playsInline = true;
+        media.preload = 'metadata';
+        const poster = item.getAttribute('data-poster');
+        if (poster) media.poster = poster;
+      } else {
+        media = document.createElement('img');
+        media.src = src;
+        media.alt = title;
+      }
+      media.className = 'lightbox__media';
+      stage.appendChild(media);
+      caption.textContent = title;
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+      box.querySelector('.lightbox__close').focus();
+    }
+
+    function close() {
+      box.hidden = true;
+      stage.innerHTML = ''; // останавливает видео
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-lightbox="gallery"]').forEach(item => {
+      item.addEventListener('click', e => { e.preventDefault(); open(item); });
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item); }
+      });
     });
-  });
+    box.addEventListener('click', e => {
+      if (!e.target.closest('.lightbox__media')) close();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !box.hidden) close();
+    });
+  })();
 </script>
 
 <%- include('../partials/footer') %>

@@ -40,6 +40,14 @@
     .btn-delete { padding: 6px 12px; background: #e8ccc0; color: #8b4513; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; flex: 1; }
     .btn-delete:hover { background: #dbb5a8; }
     .gallery-empty { text-align: center; padding: 40px 20px; color: #999; }
+    .gallery-item__info .form-input, .gallery-item__info .form-select { padding: 7px 9px; font-size: 13px; margin-bottom: 8px; }
+    .gallery-item__order { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #777; margin-bottom: 8px; }
+    .gallery-item__order input { width: 70px; margin: 0 !important; }
+    .gallery-section-title { font-size: 15px; font-weight: 600; margin: 24px 0 12px; color: #4a5236; }
+    .gallery-section-title:first-child { margin-top: 0; }
+    .file-name { font-size: 13px; color: #555; margin-left: 10px; }
+    .btn-save { padding: 12px 24px; background: #8FA86E; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-save:hover { background: #4a5236; }
   </style>
 </head>
 <body>
@@ -61,31 +69,31 @@
   <% } %>
 
   <form class="admin-form" method="POST" action="/admin/gallery" enctype="multipart/form-data">
-    <h2 style="margin-bottom: 20px; font-size: 18px;">Загрузить изображение</h2>
-    
+    <h2 style="margin-bottom: 20px; font-size: 18px;">Добавить фото</h2>
+
     <div class="form-group">
-      <label class="form-label">Изображение</label>
-      <label class="file-input-label">Выбрать файл</label>
-      <input type="file" name="image" class="form-input" accept="image/*" required>
+      <label class="form-label">Фото</label>
+      <label class="file-input-label" for="galleryFiles">Выбрать файлы</label><span class="file-name" id="galleryFileName">не выбрано</span>
+      <input type="file" id="galleryFiles" name="images" class="form-input" accept="image/jpeg,image/png,image/webp" multiple required>
       <div style="font-size:12px;color:#888;margin-top:6px;">
-        Рекомендуется <strong>4:3</strong> или квадрат (например 1200×900 px). JPG / WebP. Любой размер сожмётся и впишется в рамку.
+        Можно выбрать несколько фото сразу — им будет присвоена одна подпись и рубрика (потом можно поменять ниже).
+        JPG, PNG или WebP до 10 МБ. Фото сожмутся автоматически.
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label class="form-label">Категория</label>
+        <label class="form-label">Рубрика</label>
         <select name="category" class="form-select">
-          <option value="center">Центр</option>
-          <option value="results">Результаты</option>
-          <option value="services">Услуги</option>
-          <option value="team">Команда</option>
-          <option value="other">Другое</option>
+          <% gallery.categories.forEach(function(cat) { %>
+            <option value="<%= cat.id %>"><%= cat.name %></option>
+          <% }); %>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Alt текст (для SEO)</label>
-        <input type="text" name="alt" class="form-input" placeholder="Описание изображения" required>
+        <label class="form-label">Подпись</label>
+        <input type="text" name="title" class="form-input" placeholder="Например: Подология: коррекция вросшего ногтя">
+        <div style="font-size:12px;color:#888;margin-top:6px;">Видна на сайте под фото и помогает в поиске по картинкам</div>
       </div>
     </div>
 
@@ -95,33 +103,90 @@
     </div>
   </form>
 
-  <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-    <h2 style="margin-bottom: 20px; font-size: 18px;">Изображения в галерее</h2>
-    
-    <% if ((gallery || []).length > 0) { %>
-      <div class="gallery-grid">
-        <% gallery.forEach((image, index) => { %>
-          <div class="gallery-item">
-            <img src="<%= image.url %>" alt="<%= image.alt %>" class="gallery-item__image">
-            <div class="gallery-item__info">
-              <div class="gallery-item__category"><%= image.category %></div>
-              <div class="gallery-item__alt"><%= image.alt %></div>
-              <div class="gallery-item__action">
-                <form method="POST" action="/admin/gallery/delete" style="flex: 1;">
-                  <input type="hidden" name="imageId" value="<%= image.id %>">
-                  <button type="submit" class="btn-delete" onclick="return confirm('Удалить это изображение?')">Удалить</button>
-                </form>
+  <form class="admin-form" method="POST" action="/admin/gallery/update">
+    <h2 style="margin-bottom: 20px; font-size: 18px;">Страница «Портфолио»</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Заголовок страницы</label>
+        <input type="text" name="galleryTitle" class="form-input" value="<%= gallery.title || '' %>" placeholder="Галерея">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Подзаголовок</label>
+        <input type="text" name="gallerySubtitle" class="form-input" value="<%= gallery.subtitle || '' %>" placeholder="Наш центр и результаты работы">
+      </div>
+    </div>
+
+    <h2 style="margin: 12px 0 8px; font-size: 18px;">Фото в галерее (<%= gallery.images.length %>)</h2>
+    <div style="font-size:12px;color:#888;margin-bottom:16px;">Порядок — чем меньше число, тем выше фото на сайте. После изменений нажмите «Сохранить» внизу.</div>
+
+    <% if (gallery.images.length > 0) { %>
+      <% gallery.categories.forEach(function(cat) { const inCat = gallery.images.map(function(img, i) { return { img: img, i: i }; }).filter(function(x) { return x.img.category === cat.id; }); %>
+        <div class="gallery-section-title"><%= cat.name %> — <%= inCat.length %></div>
+        <% if (inCat.length) { %>
+        <div class="gallery-grid">
+          <% inCat.forEach(function(x) { const image = x.img, index = x.i; %>
+            <div class="gallery-item">
+              <img src="<%= image.thumb || image.src %>" alt="<%= image.title || '' %>" class="gallery-item__image" loading="lazy">
+              <div class="gallery-item__info">
+                <input type="hidden" name="items[<%= index %>][src]" value="<%= image.src %>">
+                <input type="text" name="items[<%= index %>][title]" class="form-input" value="<%= image.title || '' %>" placeholder="Подпись">
+                <select name="items[<%= index %>][category]" class="form-select">
+                  <% gallery.categories.forEach(function(c) { %>
+                    <option value="<%= c.id %>" <%= c.id === image.category ? 'selected' : '' %>><%= c.name %></option>
+                  <% }); %>
+                </select>
+                <div class="gallery-item__order">Порядок <input type="number" name="items[<%= index %>][order]" class="form-input" value="<%= index + 1 %>"></div>
+                <div class="gallery-item__action">
+                  <button type="submit" class="btn-delete" formaction="/admin/gallery/delete" name="src" value="<%= image.src %>" onclick="return confirm('Удалить это фото из галереи?')">Удалить</button>
+                </div>
               </div>
             </div>
-          </div>
-        <% }); %>
-      </div>
+          <% }); %>
+        </div>
+        <% } else { %>
+          <div class="gallery-empty" style="padding:16px;">В этой рубрике пока нет фото</div>
+        <% } %>
+      <% }); %>
+      <% const orphans = gallery.images.filter(function(img) { return !gallery.categories.some(function(c) { return c.id === img.category; }); }); %>
+      <% if (orphans.length) { %>
+        <div class="gallery-section-title">Без рубрики — <%= orphans.length %> (на сайте видны только во вкладке «Все»)</div>
+        <div class="gallery-grid">
+          <% gallery.images.forEach(function(image, index) { if (gallery.categories.some(function(c) { return c.id === image.category; })) return; %>
+            <div class="gallery-item">
+              <img src="<%= image.thumb || image.src %>" alt="" class="gallery-item__image" loading="lazy">
+              <div class="gallery-item__info">
+                <input type="hidden" name="items[<%= index %>][src]" value="<%= image.src %>">
+                <input type="text" name="items[<%= index %>][title]" class="form-input" value="<%= image.title || '' %>" placeholder="Подпись">
+                <select name="items[<%= index %>][category]" class="form-select">
+                  <option value="">— выберите —</option>
+                  <% gallery.categories.forEach(function(c) { %><option value="<%= c.id %>"><%= c.name %></option><% }); %>
+                </select>
+                <div class="gallery-item__order">Порядок <input type="number" name="items[<%= index %>][order]" class="form-input" value="<%= index + 1 %>"></div>
+                <div class="gallery-item__action">
+                  <button type="submit" class="btn-delete" formaction="/admin/gallery/delete" name="src" value="<%= image.src %>" onclick="return confirm('Удалить это фото из галереи?')">Удалить</button>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
     <% } else { %>
       <div class="gallery-empty">
-        <p>Галерея пока пуста. Загрузите первое изображение.</p>
+        <p>Галерея пока пуста. Загрузите первое фото.</p>
       </div>
     <% } %>
-  </div>
+
+    <div style="display: flex; gap: 12px; margin-top: 24px;">
+      <button type="submit" class="btn-save">Сохранить</button>
+      <a href="/admin" class="btn-cancel">Отмена</a>
+    </div>
+  </form>
 </div>
+<script>
+document.getElementById('galleryFiles').addEventListener('change', function () {
+  const n = this.files.length;
+  document.getElementById('galleryFileName').textContent = n === 0 ? 'не выбрано' : n === 1 ? this.files[0].name : 'выбрано файлов: ' + n;
+});
+</script>
 </body>
 </html>

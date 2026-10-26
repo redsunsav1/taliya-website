@@ -51,103 +51,61 @@
   <% } %>
   
   <form class="admin-form" method="POST" action="/admin/seo">
-    <!-- Home Page -->
     <div class="seo-page">
-      <div class="seo-page__title">Главная страница</div>
+      <div class="seo-page__title">Общие настройки</div>
       <div class="form-group">
-        <label class="form-label">Заголовок (Title)</label>
-        <input type="text" name="pages[home][title]" class="form-input seo-title" value="<%= seo?.home?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
-        <div class="char-count"><span class="count">0</span>/60</div>
-        <div class="seo-hint">Это заголовок в браузере и результатах поиска</div>
+        <label class="form-label">Основной адрес сайта</label>
+        <input type="text" name="canonical" class="form-input" value="<%= seo.canonical || '' %>" placeholder="https://tali-ya.ru">
+        <div class="seo-hint">Используется для канонических ссылок и карточек в соцсетях. Пусто — https://tali-ya.ru</div>
       </div>
       <div class="form-group">
-        <label class="form-label">Описание (Meta Description)</label>
-        <textarea name="pages[home][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.home?.description || '' %></textarea>
-        <div class="char-count"><span class="count">0</span>/160</div>
-        <div class="seo-hint">Это краткое описание в результатах поиска</div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Ключевые слова</label>
-        <input type="text" name="pages[home][keywords]" class="form-input" value="<%= seo?.home?.keywords || '' %>" placeholder="Разделите запятыми: косметология, омоложение, уход...">
-        <div class="seo-hint">Основные ключевые слова для поиска</div>
+        <label class="form-label">Картинка для соцсетей и мессенджеров</label>
+        <input type="text" name="ogImage" class="form-input" value="<%= seo.ogImage || '' %>" placeholder="Ссылка на JPG/PNG, 1200×630">
+        <div class="seo-hint">Показывается при отправке ссылки на сайт. Пусто — фото с главного экрана</div>
       </div>
     </div>
 
-    <!-- About Page -->
+    <% seoPages.forEach(function(pg) { %>
     <div class="seo-page">
-      <div class="seo-page__title">О нас</div>
+      <div class="seo-page__title"><%= pg.label %> <span style="font-weight:400;color:#999;font-size:13px;"><%= pg.path %></span></div>
       <div class="form-group">
         <label class="form-label">Заголовок (Title)</label>
-        <input type="text" name="pages[about][title]" class="form-input seo-title" value="<%= seo?.about?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
-        <div class="char-count"><span class="count">0</span>/60</div>
+        <input type="text" name="<%= pg.key %>Title" class="form-input seo-title" value="<%= seo[pg.key + 'Title'] || '' %>" placeholder="Рекомендуется до 60–70 символов" oninput="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/70</div>
+        <div class="seo-hint">Заголовок вкладки браузера и ссылки в Яндексе и Google</div>
       </div>
       <div class="form-group">
         <label class="form-label">Описание (Meta Description)</label>
-        <textarea name="pages[about][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.about?.description || '' %></textarea>
+        <textarea name="<%= pg.key %>Description" class="form-textarea seo-desc" placeholder="Рекомендуется 140–160 символов" oninput="updateCharCount(this)"><%= seo[pg.key + 'Description'] || '' %></textarea>
         <div class="char-count"><span class="count">0</span>/160</div>
+        <div class="seo-hint">Текст под ссылкой в результатах поиска</div>
       </div>
       <div class="form-group">
         <label class="form-label">Ключевые слова</label>
-        <input type="text" name="pages[about][keywords]" class="form-input" value="<%= seo?.about?.keywords || '' %>" placeholder="Разделите запятыми">
+        <input type="text" name="<%= pg.key %>Keywords" class="form-input" value="<%= seo[pg.key + 'Keywords'] || '' %>" placeholder="Через запятую">
       </div>
     </div>
+    <% }); %>
 
-    <!-- Services Page -->
+    <% services.forEach(function(svc) { %>
     <div class="seo-page">
-      <div class="seo-page__title">Услуги</div>
+      <div class="seo-page__title">Услуга: <%= svc.name %> <span style="font-weight:400;color:#999;font-size:13px;">/service/<%= svc.slug %></span></div>
       <div class="form-group">
         <label class="form-label">Заголовок (Title)</label>
-        <input type="text" name="pages[services][title]" class="form-input seo-title" value="<%= seo?.services?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
-        <div class="char-count"><span class="count">0</span>/60</div>
+        <input type="text" name="services[<%= svc.slug %>][title]" class="form-input seo-title" value="<%= svc.seoTitle || '' %>" placeholder="Пусто — «<%= svc.name %> в Мытищах — цены | Талия»" oninput="updateCharCount(this)">
+        <div class="char-count"><span class="count">0</span>/70</div>
       </div>
       <div class="form-group">
         <label class="form-label">Описание (Meta Description)</label>
-        <textarea name="pages[services][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.services?.description || '' %></textarea>
+        <textarea name="services[<%= svc.slug %>][description]" class="form-textarea seo-desc" placeholder="Пусто — начало описания услуги" oninput="updateCharCount(this)"><%= svc.seoDescription || '' %></textarea>
         <div class="char-count"><span class="count">0</span>/160</div>
       </div>
       <div class="form-group">
         <label class="form-label">Ключевые слова</label>
-        <input type="text" name="pages[services][keywords]" class="form-input" value="<%= seo?.services?.keywords || '' %>" placeholder="Разделите запятыми">
+        <input type="text" name="services[<%= svc.slug %>][keywords]" class="form-input" value="<%= svc.seoKeywords || '' %>" placeholder="Через запятую">
       </div>
     </div>
-
-    <!-- Team Page -->
-    <div class="seo-page">
-      <div class="seo-page__title">Специалисты</div>
-      <div class="form-group">
-        <label class="form-label">Заголовок (Title)</label>
-        <input type="text" name="pages[team][title]" class="form-input seo-title" value="<%= seo?.team?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
-        <div class="char-count"><span class="count">0</span>/60</div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Описание (Meta Description)</label>
-        <textarea name="pages[team][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.team?.description || '' %></textarea>
-        <div class="char-count"><span class="count">0</span>/160</div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Ключевые слова</label>
-        <input type="text" name="pages[team][keywords]" class="form-input" value="<%= seo?.team?.keywords || '' %>" placeholder="Разделите запятыми">
-      </div>
-    </div>
-
-    <!-- Gallery Page -->
-    <div class="seo-page">
-      <div class="seo-page__title">Галерея</div>
-      <div class="form-group">
-        <label class="form-label">Заголовок (Title)</label>
-        <input type="text" name="pages[gallery][title]" class="form-input seo-title" value="<%= seo?.gallery?.title || '' %>" placeholder="Рекомендуется 50-60 символов" onchange="updateCharCount(this)">
-        <div class="char-count"><span class="count">0</span>/60</div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Описание (Meta Description)</label>
-        <textarea name="pages[gallery][description]" class="form-textarea seo-desc" placeholder="Рекомендуется 150-160 символов" onchange="updateCharCount(this)"><%= seo?.gallery?.description || '' %></textarea>
-        <div class="char-count"><span class="count">0</span>/160</div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Ключевые слова</label>
-        <input type="text" name="pages[gallery][keywords]" class="form-input" value="<%= seo?.gallery?.keywords || '' %>" placeholder="Разделите запятыми">
-      </div>
-    </div>
+    <% }); %>
 
     <div class="form-actions">
       <button type="submit" class="btn-save">Сохранить</button>
@@ -162,7 +120,7 @@ function updateCharCount(input) {
   const countDisplay = input.nextElementSibling.querySelector('.count');
   const charCountDiv = input.nextElementSibling;
   
-  let limit = 60;
+  let limit = 70;
   if (input.classList.contains('seo-desc')) {
     limit = 160;
   }
@@ -171,7 +129,8 @@ function updateCharCount(input) {
   
   if (count > limit) {
     charCountDiv.classList.add('error');
-  } else if (count > limit * 0.8) {
+  } else if (count > limit * 0.9) {
+    charCountDiv.classList.remove('error');
     charCountDiv.classList.add('warning');
   } else {
     charCountDiv.classList.remove('warning', 'error');
